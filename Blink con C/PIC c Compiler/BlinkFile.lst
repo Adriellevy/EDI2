@@ -1,0 +1,110 @@
+CCS PCM C Compiler, Version 5.093, 4770               09-ago-25 19:00
+
+               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\Blink con C\BlinkFile.lst
+
+               ROM used:   65 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   5 (1%) at main() level
+                           17 (4%) worst case
+               Stack used: 0 locations
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   019
+0002:  NOP
+.................... #include <16F1827.h>        // Librería del micro
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+.................... 
+.................... #list
+.................... 
+.................... #fuses INTRC_IO, NOWDT, NOPROTECT, NOLVP   // Configuración de fuses
+.................... #use delay(clock=4000000)  // Oscilador interno de 4 MHz
+0003:  MOVLW  20
+0004:  MOVWF  05
+0005:  MOVLW  02
+0006:  MOVWF  04
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  RETURN
+.................... 
+.................... void main() {
+0019:  MOVLW  6A
+001A:  MOVLB  01
+001B:  MOVWF  19
+001C:  MOVLB  03
+001D:  CLRF   0C
+001E:  CLRF   0D
+001F:  MOVLB  02
+0020:  CLRF   12
+0021:  CLRF   11
+0022:  CLRF   14
+0023:  CLRF   13
+....................    set_tris_a(0b11111110); // RA0 como salida
+0024:  MOVLW  FE
+0025:  MOVLB  01
+0026:  MOVWF  0C
+....................    output_low(PIN_A0);     // LED apagado
+0027:  BCF    0C.0
+0028:  MOVLB  02
+0029:  BCF    0C.0
+.................... 
+....................    while(TRUE) {
+....................       output_high(PIN_A0); // Encender LED
+002A:  MOVLB  01
+002B:  BCF    0C.0
+002C:  MOVLB  02
+002D:  BSF    0C.0
+....................       delay_ms(200);      // Esperar 1 segundo
+002E:  MOVLW  C8
+002F:  MOVLB  00
+0030:  MOVWF  22
+0031:  CALL   003
+....................       output_low(PIN_A0);  // Apagar LED
+0032:  MOVLB  01
+0033:  BCF    0C.0
+0034:  MOVLB  02
+0035:  BCF    0C.0
+....................       delay_ms(1000);      // Esperar 1 segundo
+0036:  MOVLW  04
+0037:  MOVLB  00
+0038:  MOVWF  21
+0039:  MOVLW  FA
+003A:  MOVWF  22
+003B:  CALL   003
+003C:  DECFSZ 21,F
+003D:  GOTO   039
+003E:  MOVLB  02
+003F:  GOTO   02A
+....................    }
+.................... }
+.................... 
+0040:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FC4   INTRC_IO NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

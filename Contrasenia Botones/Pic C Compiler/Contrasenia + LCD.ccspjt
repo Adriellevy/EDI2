@@ -1,0 +1,25 @@
+[PROJECT]
+Target=Contrasenia + LCD.hex
+Processor_Text=PIC16F1827
+CCSVersion=5.093
+Compiler=PCM
+[Target Data]
+FileList=Contrasenia + LCD.c
+[Contrasenia + LCD.c]
+Type=4
+[mru-list]
+1=Contrasenia + LCD.c
+[Units]
+Count=1
+1=Contrasenia + LCD (main)
+
+[defines]
+buildcount=1
+
+[ProjectLog]
+Days=1
+D1=09-08-2025
+D1_L=3
+D1_L1=[70467]Stopped Editing.
+D1_L2=[72264]Started Editing.
+D1_L3=[72305]Project Closed.

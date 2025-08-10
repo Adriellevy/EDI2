@@ -1,0 +1,594 @@
+CCS PCM C Compiler, Version 5.093, 4770               10-ago-25 10:40
+
+               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.lst
+
+               ROM used:   405 words (10%)
+                           Largest free fragment is 2048
+               RAM used:   17 (4%) at main() level
+                           31 (8%) worst case
+               Stack used: 2 locations (1 in main + 1 for interrupts)
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   116
+0002:  NOP
+*
+0004:  CLRF   03
+0005:  MOVLP  00
+0006:  MOVLB  00
+0007:  MOVF   77,W
+0008:  MOVWF  20
+0009:  MOVF   78,W
+000A:  MOVWF  21
+000B:  MOVF   79,W
+000C:  MOVWF  22
+000D:  MOVF   7A,W
+000E:  MOVWF  23
+000F:  BTFSS  0B.5
+0010:  GOTO   013
+0011:  BTFSC  0B.2
+0012:  GOTO   01C
+0013:  MOVF   20,W
+0014:  MOVWF  77
+0015:  MOVF   21,W
+0016:  MOVWF  78
+0017:  MOVF   22,W
+0018:  MOVWF  79
+0019:  MOVF   23,W
+001A:  MOVWF  7A
+001B:  RETFIE
+001C:  MOVLP  00
+001D:  GOTO   02B
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+001E:  BRW
+001F:  RETLW  01
+0020:  RETLW  02
+0021:  RETLW  03
+0022:  RETLW  04
+0023:  RETLW  05
+0024:  RETLW  06
+0025:  RETLW  07
+0026:  RETLW  08
+0027:  RETLW  09
+0028:  RETLW  FE
+0029:  RETLW  00
+002A:  RETLW  FD
+*
+0055:  CLRF   77
+0056:  CLRF   78
+0057:  MOVF   2E,W
+0058:  BCF    03.0
+0059:  BTFSC  2F.0
+005A:  ADDWF  77,F
+005B:  RRF    77,F
+005C:  RRF    78,F
+005D:  BTFSC  2F.1
+005E:  ADDWF  77,F
+005F:  RRF    77,F
+0060:  RRF    78,F
+0061:  BTFSC  2F.2
+0062:  ADDWF  77,F
+0063:  RRF    77,F
+0064:  RRF    78,F
+0065:  BTFSC  2F.3
+0066:  ADDWF  77,F
+0067:  RRF    77,F
+0068:  RRF    78,F
+0069:  BTFSC  2F.4
+006A:  ADDWF  77,F
+006B:  RRF    77,F
+006C:  RRF    78,F
+006D:  BTFSC  2F.5
+006E:  ADDWF  77,F
+006F:  RRF    77,F
+0070:  RRF    78,F
+0071:  BTFSC  2F.6
+0072:  ADDWF  77,F
+0073:  RRF    77,F
+0074:  RRF    78,F
+0075:  BTFSC  2F.7
+0076:  ADDWF  77,F
+0077:  RRF    77,F
+0078:  RRF    78,F
+0079:  RETURN
+*
+00E7:  BCF    0A.0
+00E8:  BCF    0A.1
+00E9:  BCF    0A.2
+00EA:  ADDWF  02,F
+00EB:  GOTO   096
+00EC:  GOTO   09C
+00ED:  GOTO   0A2
+00EE:  GOTO   0A8
+.................... 
+.................... #list
+.................... 
+.................... #fuses INTRC_IO, NOWDT, NOMCLR, NOPUT, NOBROWNOUT, NOCPD, NOLVP
+.................... #use delay(clock=16000000)
+*
+0100:  MOVLW  20
+0101:  MOVWF  05
+0102:  MOVLW  0D
+0103:  MOVWF  04
+0104:  MOVF   00,W
+0105:  BTFSC  03.2
+0106:  GOTO   115
+0107:  MOVLW  05
+0108:  MOVWF  78
+0109:  CLRF   77
+010A:  DECFSZ 77,F
+010B:  GOTO   10A
+010C:  DECFSZ 78,F
+010D:  GOTO   109
+010E:  MOVLW  2E
+010F:  MOVWF  77
+0110:  DECFSZ 77,F
+0111:  GOTO   110
+0112:  GOTO   113
+0113:  DECFSZ 00,F
+0114:  GOTO   107
+0115:  RETURN
+.................... 
+.................... // Pines para keypad-phone 4x3
+.................... #define COL1 PIN_B0
+.................... #define COL2 PIN_B1
+.................... #define COL3 PIN_B2
+.................... 
+.................... #define ROW1 PIN_B3
+.................... #define ROW2 PIN_B5
+.................... #define ROW3 PIN_B6
+.................... #define ROW4 PIN_B7
+.................... 
+.................... // LEDs
+.................... #define LED_VERDE PIN_A0
+.................... #define LED_ROJO  PIN_A1
+.................... 
+.................... volatile int8 toggle_flag = 0;
+.................... volatile int  count = 0;
+.................... // Timer0 ISR: se dispara cada ~10ms (configurado abajo)
+.................... #INT_TIMER0
+.................... void timer0_isr() {
+....................     count++;
+*
+002B:  INCF   25,F
+....................     if (count >= 100) {   // 50 * 10ms = 500ms
+002C:  MOVF   25,W
+002D:  SUBLW  63
+002E:  BTFSC  03.0
+002F:  GOTO   033
+....................         toggle_flag = 1; // Indica que hay que togglear el led
+0030:  MOVLW  01
+0031:  MOVWF  24
+....................         count = 0;
+0032:  CLRF   25
+....................     }
+0033:  BCF    0B.2
+0034:  MOVLP  00
+0035:  GOTO   013
+.................... }
+.................... 
+.................... 
+.................... // Matriz de teclas
+.................... const int keys[4][3] = {
+....................    {1, 2, 3},
+....................    {4, 5, 6},
+....................    {7, 8, 9},
+....................    {-2, 0, -3}  // '*' = -2, '0' = 0, '#' = -3
+.................... };
+.................... 
+.................... // Inicializar keypad (filas salida, columnas entrada)
+.................... void keypad_init() {
+....................    // Ahora B0,B1,B2 inputs, B3,B5,B6,B7 outputs
+....................    set_tris_b(0b11110001); 
+*
+0040:  MOVLW  F1
+0041:  MOVLB  01
+0042:  MOVWF  0D
+....................    // B7 B6 B5 B4 B3 B2 B1 B0
+....................    //  1  1  1  1  0  0  0  1  (B3=0 salida, B4=1 entrada)
+....................    output_high(ROW1);
+0043:  BCF    0D.3
+0044:  MOVLB  02
+0045:  BSF    0D.3
+....................    output_high(ROW2);
+0046:  MOVLB  01
+0047:  BCF    0D.5
+0048:  MOVLB  02
+0049:  BSF    0D.5
+....................    output_high(ROW3);
+004A:  MOVLB  01
+004B:  BCF    0D.6
+004C:  MOVLB  02
+004D:  BSF    0D.6
+....................    output_high(ROW4);
+004E:  MOVLB  01
+004F:  BCF    0D.7
+0050:  MOVLB  02
+0051:  BSF    0D.7
+0052:  MOVLP  00
+0053:  MOVLB  00
+0054:  GOTO   13F (RETURN)
+.................... }
+.................... 
+.................... // Leer tecla pulsada, -1 si no hay, o el valor de la tecla
+.................... int keypad_get_key() {
+....................    int row, col;
+....................    
+....................    for(row=0; row<4; row++) {
+*
+007A:  CLRF   2C
+007B:  MOVF   2C,W
+007C:  SUBLW  03
+007D:  BTFSS  03.0
+007E:  GOTO   0E3
+....................       // Poner todas las filas en alto (no activas)
+....................       output_high(ROW1);
+007F:  MOVLB  01
+0080:  BCF    0D.3
+0081:  MOVLB  02
+0082:  BSF    0D.3
+....................       output_high(ROW2);
+0083:  MOVLB  01
+0084:  BCF    0D.5
+0085:  MOVLB  02
+0086:  BSF    0D.5
+....................       output_high(ROW3);
+0087:  MOVLB  01
+0088:  BCF    0D.6
+0089:  MOVLB  02
+008A:  BSF    0D.6
+....................       output_high(ROW4);
+008B:  MOVLB  01
+008C:  BCF    0D.7
+008D:  MOVLB  02
+008E:  BSF    0D.7
+....................       
+....................       // Activar una fila poniendola en bajo
+....................       switch(row) {
+008F:  MOVLB  00
+0090:  MOVF   2C,W
+0091:  ADDLW  FC
+0092:  BTFSC  03.0
+0093:  GOTO   0AD
+0094:  ADDLW  04
+0095:  GOTO   0E7
+....................          case 0: output_low(ROW1); break;
+0096:  MOVLB  01
+0097:  BCF    0D.3
+0098:  MOVLB  02
+0099:  BCF    0D.3
+009A:  MOVLB  00
+009B:  GOTO   0AD
+....................          case 1: output_low(ROW2); break;
+009C:  MOVLB  01
+009D:  BCF    0D.5
+009E:  MOVLB  02
+009F:  BCF    0D.5
+00A0:  MOVLB  00
+00A1:  GOTO   0AD
+....................          case 2: output_low(ROW3); break;
+00A2:  MOVLB  01
+00A3:  BCF    0D.6
+00A4:  MOVLB  02
+00A5:  BCF    0D.6
+00A6:  MOVLB  00
+00A7:  GOTO   0AD
+....................          case 3: output_low(ROW4); break;
+00A8:  MOVLB  01
+00A9:  BCF    0D.7
+00AA:  MOVLB  02
+00AB:  BCF    0D.7
+00AC:  MOVLB  00
+....................       }
+....................       delay_us(20);
+00AD:  MOVLW  1A
+00AE:  MOVWF  77
+00AF:  DECFSZ 77,F
+00B0:  GOTO   0AF
+00B1:  NOP
+....................       
+....................       // Leer columnas
+....................       if(!input(COL1)) return keys[row][0];
+00B2:  MOVLB  01
+00B3:  BSF    0D.0
+00B4:  MOVLB  00
+00B5:  BTFSC  0D.0
+00B6:  GOTO   0C1
+00B7:  MOVF   2C,W
+00B8:  MOVWF  2E
+00B9:  MOVLW  03
+00BA:  MOVWF  2F
+00BB:  CALL   055
+00BC:  MOVF   78,W
+00BD:  CALL   01E
+00BE:  MOVWF  78
+00BF:  MOVWF  78
+00C0:  GOTO   0E5
+....................       if(!input(COL2)) return keys[row][1];
+00C1:  MOVLB  01
+00C2:  BSF    0D.1
+00C3:  MOVLB  00
+00C4:  BTFSC  0D.1
+00C5:  GOTO   0D1
+00C6:  MOVF   2C,W
+00C7:  MOVWF  2E
+00C8:  MOVLW  03
+00C9:  MOVWF  2F
+00CA:  CALL   055
+00CB:  MOVLW  01
+00CC:  ADDWF  78,W
+00CD:  CALL   01E
+00CE:  MOVWF  78
+00CF:  MOVWF  78
+00D0:  GOTO   0E5
+....................       if(!input(COL3)) return keys[row][2];
+00D1:  MOVLB  01
+00D2:  BSF    0D.2
+00D3:  MOVLB  00
+00D4:  BTFSC  0D.2
+00D5:  GOTO   0E1
+00D6:  MOVF   2C,W
+00D7:  MOVWF  2E
+00D8:  MOVLW  03
+00D9:  MOVWF  2F
+00DA:  CALL   055
+00DB:  MOVLW  02
+00DC:  ADDWF  78,W
+00DD:  CALL   01E
+00DE:  MOVWF  78
+00DF:  MOVWF  78
+00E0:  GOTO   0E5
+00E1:  INCF   2C,F
+00E2:  GOTO   07B
+....................    }
+....................    return -1;
+00E3:  MOVLW  FF
+00E4:  MOVWF  78
+00E5:  MOVLP  00
+00E6:  GOTO   140 (RETURN)
+.................... }
+.................... 
+.................... // Apagar ambos LEDs
+.................... void leds_off() {
+....................    output_low(LED_VERDE);
+*
+0036:  MOVLB  01
+0037:  BCF    0C.0
+0038:  MOVLB  02
+0039:  BCF    0C.0
+....................    output_low(LED_ROJO);
+003A:  MOVLB  01
+003B:  BCF    0C.1
+003C:  MOVLB  02
+003D:  BCF    0C.1
+003E:  MOVLB  00
+003F:  RETURN
+.................... }
+.................... 
+.................... // Encender LED verde o rojo (led=0 verde, led=1 rojo)
+.................... void led_on(int led) {
+....................    if(led == 0) output_high(LED_VERDE);
+*
+00EF:  MOVF   2C,F
+00F0:  BTFSS  03.2
+00F1:  GOTO   0F8
+00F2:  MOVLB  01
+00F3:  BCF    0C.0
+00F4:  MOVLB  02
+00F5:  BSF    0C.0
+00F6:  GOTO   0FE
+00F7:  MOVLB  00
+....................    else if(led == 1) output_high(LED_ROJO);
+00F8:  DECFSZ 2C,W
+00F9:  GOTO   0FE
+00FA:  MOVLB  01
+00FB:  BCF    0C.1
+00FC:  MOVLB  02
+00FD:  BSF    0C.1
+00FE:  MOVLB  00
+00FF:  RETURN
+.................... }
+.................... 
+.................... void main() {
+*
+0116:  MOVLW  7A
+0117:  MOVLB  01
+0118:  MOVWF  19
+0119:  MOVLB  00
+011A:  CLRF   24
+011B:  CLRF   25
+011C:  MOVLB  03
+011D:  CLRF   0C
+011E:  CLRF   0D
+011F:  MOVLB  02
+0120:  CLRF   12
+0121:  CLRF   11
+0122:  CLRF   14
+0123:  CLRF   13
+*
+012B:  CLRF   29
+012C:  MOVLW  FF
+012D:  MOVWF  2A
+012E:  MOVWF  2B
+....................    int passwd[3] = {2, 5, 3};
+*
+0124:  MOVLW  02
+0125:  MOVLB  00
+0126:  MOVWF  26
+0127:  MOVLW  05
+0128:  MOVWF  27
+0129:  MOVLW  03
+012A:  MOVWF  28
+....................    int index = 0;
+....................    int key = -1;
+....................    int last_key = -1;
+....................    
+....................    // Configuro Timer0
+....................    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256); // Prescaler 1:256
+*
+012F:  MOVLB  01
+0130:  MOVF   15,W
+0131:  ANDLW  C0
+0132:  IORLW  07
+0133:  MOVWF  15
+....................    set_timer0(0);
+0134:  MOVLB  00
+0135:  CLRF   15
+.................... 
+....................    enable_interrupts(INT_TIMER0);
+0136:  BSF    0B.5
+....................    enable_interrupts(GLOBAL);
+0137:  MOVLW  C0
+0138:  IORWF  0B,F
+....................    
+....................    set_tris_a(0x00); // LEDs como salida
+0139:  MOVLW  00
+013A:  MOVLB  01
+013B:  MOVWF  0C
+....................    leds_off();
+013C:  MOVLB  00
+013D:  CALL   036
+....................    keypad_init();
+013E:  GOTO   040
+....................    
+....................    while(TRUE) {
+....................       key = keypad_get_key();
+013F:  GOTO   07A
+0140:  MOVF   78,W
+0141:  MOVWF  2A
+....................       
+....................       if (toggle_flag && key == last_key) {
+0142:  MOVF   24,F
+0143:  BTFSC  03.2
+0144:  GOTO   151
+0145:  MOVF   2B,W
+0146:  SUBWF  2A,W
+0147:  BTFSS  03.2
+0148:  GOTO   151
+....................             index = 0;
+0149:  CLRF   29
+....................             toggle_flag = 0;
+014A:  CLRF   24
+....................             output_toggle(LED_ROJO);
+014B:  MOVLB  01
+014C:  BCF    0C.1
+014D:  MOVLW  02
+014E:  MOVLB  02
+014F:  XORWF  0C,F
+0150:  MOVLB  00
+....................       }
+....................       
+....................       if(key != -1 && key != last_key) {  // Nueva tecla detectada
+0151:  MOVF   2A,W
+0152:  SUBLW  FF
+0153:  BTFSC  03.2
+0154:  GOTO   18B
+0155:  MOVF   2B,W
+0156:  SUBWF  2A,W
+0157:  BTFSC  03.2
+0158:  GOTO   18B
+....................       count=0;
+0159:  CLRF   25
+....................       toggle_flag = 0;
+015A:  CLRF   24
+....................          if(key >= 0 && key <= 9) {  // Solo dígitos
+015B:  MOVF   2A,W
+015C:  SUBLW  09
+015D:  BTFSS  03.0
+015E:  GOTO   189
+....................             if(key == passwd[index]) {
+015F:  MOVLW  06
+0160:  ADDWF  29,W
+0161:  MOVWF  04
+0162:  MOVLW  20
+0163:  MOVWF  05
+0164:  BTFSC  03.0
+0165:  INCF   05,F
+0166:  MOVF   00,W
+0167:  SUBWF  2A,W
+0168:  BTFSS  03.2
+0169:  GOTO   17C
+....................                index++;
+016A:  INCF   29,F
+....................                if(index == 3) {  // Contraseña correcta completa
+016B:  MOVF   29,W
+016C:  SUBLW  03
+016D:  BTFSS  03.2
+016E:  GOTO   17B
+....................                   leds_off();
+016F:  CALL   036
+....................                   led_on(0); // Verde ON
+0170:  CLRF   2C
+0171:  CALL   0EF
+....................                   delay_ms(500);
+0172:  MOVLW  02
+0173:  MOVWF  2C
+0174:  MOVLW  FA
+0175:  MOVWF  2D
+0176:  CALL   100
+0177:  DECFSZ 2C,F
+0178:  GOTO   174
+....................                   leds_off();
+0179:  CALL   036
+....................                   index = 0;
+017A:  CLRF   29
+....................                }
+....................             } else { // Error
+017B:  GOTO   189
+....................                leds_off();
+017C:  CALL   036
+....................                led_on(1); // Rojo ON
+017D:  MOVLW  01
+017E:  MOVWF  2C
+017F:  CALL   0EF
+....................                delay_ms(500);
+0180:  MOVLW  02
+0181:  MOVWF  2C
+0182:  MOVLW  FA
+0183:  MOVWF  2D
+0184:  CALL   100
+0185:  DECFSZ 2C,F
+0186:  GOTO   182
+....................                leds_off();
+0187:  CALL   036
+....................                index = 0;
+0188:  CLRF   29
+....................             }
+....................          }
+....................          last_key = key;
+0189:  MOVF   2A,W
+018A:  MOVWF  2B
+....................       }
+....................       
+....................       if(key == -1) last_key = -1; // Esperar a que se suelte la tecla
+018B:  MOVF   2A,W
+018C:  SUBLW  FF
+018D:  BTFSS  03.2
+018E:  GOTO   191
+018F:  MOVLW  FF
+0190:  MOVWF  2B
+....................       
+....................       delay_ms(50);
+0191:  MOVLW  32
+0192:  MOVWF  2D
+0193:  CALL   100
+0194:  GOTO   13F
+....................    }
+.................... }
+.................... 
+0195:  SLEEP
+
+Configuration Fuses:
+   Word  1: 39A4   INTRC_IO NOWDT NOPUT NOMCLR NOPROTECT NOCPD NOBROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

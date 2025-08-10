@@ -1,0 +1,16 @@
+#include <16F1827.h>        // Librería del micro
+#fuses INTRC_IO, NOWDT, NOPROTECT, NOLVP   // Configuración de fuses
+#use delay(clock=4000000)  // Oscilador interno de 4 MHz
+
+void main() {
+   set_tris_a(0b11111110); // RA0 como salida
+   output_low(PIN_A0);     // LED apagado
+
+   while(TRUE) {
+      output_high(PIN_A0); // Encender LED
+      delay_ms(1000);      // Esperar 1 segundo
+      output_low(PIN_A0);  // Apagar LED
+      delay_ms(1000);      // Esperar 1 segundo
+   }
+}
+

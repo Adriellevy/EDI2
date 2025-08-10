@@ -1,0 +1,32 @@
+[PROJECT]
+Target=BlinkFile.hex
+Processor_Text=PIC16F1827
+CCSVersion=5.093
+Compiler=PCM
+[Target Data]
+FileList=BlinkFile.c
+[BlinkFile.c]
+Type=4
+[mru-list]
+1=BlinkFile.c
+
+[defines]
+buildcount=2
+
+[ProjectLog]
+Days=1
+D1=09-08-2025
+D1_L=5
+D1_L1=[66856]Stopped Editing.
+D1_L2=[67835]Started Editing.
+D1_L3=[68135]Stopped Editing.
+D1_L4=[68427]Started Editing.
+D1_L5=[68734]Stopped Editing.
+
+[Opened Files]
+1=BlinkFile.c
+t1=1
+Count=1
+[Units]
+Count=1
+1=BlinkFile (main)

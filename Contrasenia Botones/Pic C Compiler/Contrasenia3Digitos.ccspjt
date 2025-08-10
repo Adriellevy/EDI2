@@ -1,0 +1,49 @@
+[PROJECT]
+Target=Contrasenia3Digitos.hex
+Processor_Text=PIC16F1827
+CCSVersion=5.093
+Compiler=PCM
+[Target Data]
+FileList=Contrasenia3Digitos.c
+[Contrasenia3Digitos.c]
+Type=4
+[mru-list]
+1=Contrasenia3Digitos.c
+
+[defines]
+buildcount=53
+
+[Opened Files]
+1=Contrasenia3Digitos.c
+t1=97
+2=..\..\Blink con C\PIC c Compiler\BlinkFile.c
+t2=1
+Count=1
+
+[ProjectLog]
+Days=2
+D1=09-08-2025
+D1_L=6
+D1_L1=[73161]Stopped Editing.
+D1_L2=[74451]Started Editing.
+D1_L3=[74794]Stopped Editing.
+D1_L4=[75334]Started Editing.
+D1_L5=[75909]Stopped Editing.
+D1_L6=[76175]Started Editing.
+D2=10-08-2025
+D2_L=12
+D2_L1=[27554]Stopped Editing.
+D2_L2=[28771]Started Editing.
+D2_L3=[29072]Stopped Editing.
+D2_L4=[29562]Started Editing.
+D2_L5=[31881]Stopped Editing.
+D2_L6=[32433]Started Editing.
+D2_L7=[33091]Stopped Editing.
+D2_L8=[33306]Started Editing.
+D2_L9=[34129]Stopped Editing.
+D2_L10=[34827]Started Editing.
+D2_L11=[36705]Stopped Editing.
+D2_L12=[37340]Started Editing.
+[Units]
+Count=1
+1=Contrasenia3Digitos (main)

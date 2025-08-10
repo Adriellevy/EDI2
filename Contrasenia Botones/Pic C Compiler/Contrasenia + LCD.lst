@@ -1,0 +1,68 @@
+CCS PCM C Compiler, Version 5.093, 4770               09-ago-25 19:29
+
+               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia + LCD.lst
+
+               ROM used:   26 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   4 (1%) at main() level
+                           15 (4%) worst case
+               Stack used: 0 locations
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   003
+0002:  NOP
+.................... #include <16F1827.h>        // Librería del micro
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+.................... 
+.................... #list
+.................... 
+.................... #fuses INTRC_IO, NOWDT, NOPROTECT, NOLVP   // Configuración de fuses
+.................... #use delay(clock=4000000)  // Oscilador interno de 4 MHz
+.................... 
+.................... void main(){
+0003:  MOVLW  6A
+0004:  MOVLB  01
+0005:  MOVWF  19
+0006:  MOVLB  03
+0007:  CLRF   0C
+0008:  CLRF   0D
+0009:  MOVLB  02
+000A:  CLRF   12
+000B:  CLRF   11
+000C:  CLRF   14
+000D:  CLRF   13
+....................    set_tris_a(0b11111100); // RA0 y RA1 salidas, el resto entradas
+000E:  MOVLW  FC
+000F:  MOVLB  01
+0010:  MOVWF  0C
+....................    output_high(PIN_A0);// RA0 como salida
+0011:  BCF    0C.0
+0012:  MOVLB  02
+0013:  BSF    0C.0
+....................    output_high(PIN_A1);// RA1 como salida
+0014:  MOVLB  01
+0015:  BCF    0C.1
+0016:  MOVLB  02
+0017:  BSF    0C.1
+....................    while(TRUE){
+0018:  GOTO   018
+....................         
+....................    
+....................    }
+.................... }
+0019:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FC4   INTRC_IO NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

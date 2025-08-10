@@ -1,0 +1,118 @@
+#include <16F1827.h>
+#fuses INTRC_IO, NOWDT, NOMCLR, NOPUT, NOBROWNOUT, NOCPD, NOLVP
+#use delay(clock=16000000)  // Oscilador interno a 16MHz
+
+#define LED_VERDADERO PIN_A0
+#define LED_FALSO PIN_A1
+
+volatile int8 toggle_flag = 0;
+
+
+#define COL_1 PIN_B1
+#define COL_2 PIN_B2
+#define COL_3 PIN_B3
+
+// Filas (output)
+#define ROW_A PIN_B4
+#define ROW_B PIN_B5
+#define ROW_C PIN_B6
+#define ROW_D PIN_B7 
+
+
+char keymap[4][3] = {
+    {'1','2','3'},
+    {'4','5','6'},
+    {'7','8','9'},
+    {'*','0','#'}
+};
+
+// Timer0 ISR: se dispara cada ~10ms (configurado abajo)
+#INT_TIMER0
+void timer0_isr() {
+    static int count = 0;
+    count++;
+    if (count >= 50) {   // 50 * 10ms = 500ms
+        toggle_flag = 1; // Indica que hay que togglear el led
+        count = 0;
+    }
+}
+void init_keypad() {
+    // Configurar TRISB: RB1..RB3 entradas, RB4..RB7 salidas
+    set_tris_b(0b0000110); // RB0 libre, RB1-3 entradas, RB4-7 salidas
+
+    // Activar pull-ups en RB1-RB3
+    port_b_pullups(TRUE);
+    // Inicializo filas en alto
+    output_high(ROW_A);
+    output_high(ROW_B);
+    output_high(ROW_C);
+    output_high(ROW_D);
+    output_high(COL_1);
+}
+
+int8 read_keypad() {
+    int row;
+    int col;
+    int8 key = -1;
+
+    for (row = 0; row < 4; row++) {
+        // Poner todas filas en alto (inactivas)
+        output_high(ROW_A);
+        output_high(ROW_B);
+        output_high(ROW_C);
+        output_high(ROW_D);
+
+        // Bajar la fila que queremos escanear
+        switch(row) {
+            case 0: output_low(ROW_A); break;
+            case 1: output_low(ROW_B); break;
+            case 2: output_low(ROW_C); break;
+            case 3: output_low(ROW_D); break;
+        }
+        delay_us(50);
+
+        // Leer columnas, si alguna está en 0, tecla presionada
+        if (!input(COL_1)) col = 0;
+        else if (!input(COL_2)) col = 1;
+        else if (!input(COL_3)) col = 2;
+        else continue;
+
+        // Debounce: esperar y verificar que sigue presionada
+        delay_ms(20);
+        if(!input((col==0)?COL_1 : (col==1)?COL_2 : COL_3)) {
+           key = keymap[row][col];
+           // Esperar a que se suelte
+           while(!input((col==0)?COL_1 : (col==1)?COL_2 : COL_3));
+        }
+        break;
+    }
+    return key;
+}
+void main() {
+    int8 key_pressed = -1;
+    init_keypad();
+    // Configuro RA0 como salida
+    set_tris_a(0b11111100);   // Todos entradas inicialmente exeptuando ra0 y ra1
+    // Configuro Timer0
+    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256); // Prescaler 1:256
+    set_timer0(0);
+
+    enable_interrupts(INT_TIMER0);
+    enable_interrupts(GLOBAL);
+
+    while(TRUE) {
+        // Aquí puedes hacer otras tareas (ejemplo: leer datos, etc)
+
+        if (toggle_flag) {
+            toggle_flag = 0;
+            output_toggle(LED_FALSO);
+        }
+        
+        key_pressed = read_keypad();
+
+        if (key_pressed != -1) { // ahora chequeamos -1, no 0
+            output_toggle(LED_VERDADERO);
+        }
+    }
+}
+

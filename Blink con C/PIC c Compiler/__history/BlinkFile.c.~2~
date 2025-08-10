@@ -1,0 +1,39 @@
+#include <xc.h>
+
+// CONFIG1
+#pragma config FOSC = INTOSC    // Oscilador interno
+#pragma config WDTE = OFF       // Watchdog Timer off
+#pragma config PWRTE = OFF      // Power-up Timer off
+#pragma config MCLRE = ON       // MCLR como reset
+#pragma config CP = OFF         // Código no protegido
+#pragma config CPD = OFF        // Data no protegida
+#pragma config BOREN = ON       // Brown-out Reset on
+#pragma config CLKOUTEN = OFF   // CLKOUT desactivado
+#pragma config IESO = OFF       // No cambio entre osciladores
+#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor off
+
+// CONFIG2
+#pragma config WRT = OFF        // Escritura en Flash permitida
+#pragma config PLLEN = OFF      // PLL x4 desactivado
+#pragma config STVREN = ON      // Reset en overflow de pila
+#pragma config BORV = LO        // Brown-out a nivel bajo
+#pragma config LVP = OFF        // Programación en bajo voltaje off
+
+#define _XTAL_FREQ 4000000UL    // Frecuencia del oscilador interno (4 MHz)
+
+void main(void) {
+    // Configurar oscilador interno a 4 MHz
+    OSCCON = 0b01101010; // 4 MHz, stable
+
+    // Configurar RA0 como salida
+    TRISA0 = 0;   // RA0 salida
+    RA0 = 0;      // Apagado inicial
+
+    while(1) {
+        RA0 = 1;           // LED ON
+        __delay_ms(1000);  // Esperar 1 segundo
+        RA0 = 0;           // LED OFF
+        __delay_ms(1000);  // Esperar 1 segundo
+    }
+}
+

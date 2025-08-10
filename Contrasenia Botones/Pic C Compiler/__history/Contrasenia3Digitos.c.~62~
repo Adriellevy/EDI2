@@ -1,0 +1,145 @@
+#include <16F1827.h>
+#fuses INTRC_IO, NOWDT, NOMCLR, NOPUT, NOBROWNOUT, NOCPD, NOLVP
+#use delay(clock=16000000)
+
+// Pines para keypad-phone 4x3
+#define COL1 PIN_B0
+#define COL2 PIN_B1
+#define COL3 PIN_B2
+
+#define ROW1 PIN_B3
+#define ROW2 PIN_B5
+#define ROW3 PIN_B6
+#define ROW4 PIN_B7
+
+// LEDs
+#define LED_VERDE PIN_A0
+#define LED_ROJO  PIN_A1
+
+volatile int8 toggle_flag = 0;
+volatile int  count = 0;
+// Timer0 ISR: se dispara cada ~10ms (configurado abajo)
+#INT_TIMER0
+void timer0_isr() {
+    count++;
+    if (count >= 50) {   // 50 * 10ms = 500ms
+        toggle_flag = 1; // Indica que hay que togglear el led
+        count = 0;
+    }
+}
+
+
+// Matriz de teclas
+const int keys[4][3] = {
+   {1, 2, 3},
+   {4, 5, 6},
+   {7, 8, 9},
+   {-2, 0, -3}  // '*' = -2, '0' = 0, '#' = -3
+};
+
+// Inicializar keypad (filas salida, columnas entrada)
+void keypad_init() {
+   // Ahora B0,B1,B2 inputs, B3,B5,B6,B7 outputs
+   set_tris_b(0b11110001); 
+   // B7 B6 B5 B4 B3 B2 B1 B0
+   //  1  1  1  1  0  0  0  1  (B3=0 salida, B4=1 entrada)
+   output_high(ROW1);
+   output_high(ROW2);
+   output_high(ROW3);
+   output_high(ROW4);
+}
+
+// Leer tecla pulsada, -1 si no hay, o el valor de la tecla
+int keypad_get_key() {
+   int row, col;
+   
+   for(row=0; row<4; row++) {
+      // Poner todas las filas en alto (no activas)
+      output_high(ROW1);
+      output_high(ROW2);
+      output_high(ROW3);
+      output_high(ROW4);
+      
+      // Activar una fila poniendola en bajo
+      switch(row) {
+         case 0: output_low(ROW1); break;
+         case 1: output_low(ROW2); break;
+         case 2: output_low(ROW3); break;
+         case 3: output_low(ROW4); break;
+      }
+      delay_us(20);
+      
+      // Leer columnas
+      if(!input(COL1)) return keys[row][0];
+      if(!input(COL2)) return keys[row][1];
+      if(!input(COL3)) return keys[row][2];
+   }
+   return -1;
+}
+
+// Apagar ambos LEDs
+void leds_off() {
+   output_low(LED_VERDE);
+   output_low(LED_ROJO);
+}
+
+// Encender LED verde o rojo (led=0 verde, led=1 rojo)
+void led_on(int led) {
+   if(led == 0) output_high(LED_VERDE);
+   else if(led == 1) output_high(LED_ROJO);
+}
+
+void main() {
+   int passwd[3] = {2, 5, 3};
+   int index = 0;
+   int key = -1;
+   int last_key = -1;
+   
+   // Configuro Timer0
+   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256); // Prescaler 1:256
+   set_timer0(0);
+
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+   
+   set_tris_a(0x00); // LEDs como salida
+   leds_off();
+   keypad_init();
+   
+   while(TRUE) {
+      key = keypad_get_key();
+      
+      if (toggle_flag) {
+            toggle_flag = 0;
+            output_toggle(LED_VERDE);
+        }
+      
+      if(key != -1 && key != last_key) {  // Nueva tecla detectada
+      count=0;
+         if(key >= 0 && key <= 9) {  // Solo dígitos
+            if(key == passwd[index]) {
+               index++;
+               if(index == 3) {  // Contraseña correcta completa
+                  leds_off();
+                  led_on(0); // Verde ON
+                  delay_ms(500);
+                  leds_off();
+                  index = 0;
+               }
+            } else { // Error
+               leds_off();
+               led_on(1); // Rojo ON
+               delay_ms(500);
+               leds_off();
+               index = 0;
+            }
+         }
+         last_key = key;
+      }
+      
+      if(key == -1) last_key = -1; // Esperar a que se suelte la tecla
+      
+      delay_ms(50);
+   }
+}
+

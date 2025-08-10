@@ -1,0 +1,7 @@
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos on 10-ago-25 at 10:40
+>>> Warning 241 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 118(18,19): Comparing unsigned to signed
+>>> Warning 241 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 142(18,19): Comparing unsigned to signed
+>>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 54(13,16): Variable never used:   col
+      Memory usage:   ROM=10%      RAM=4% - 8%
+      0 Errors,  3 Warnings.
+Build Successful.

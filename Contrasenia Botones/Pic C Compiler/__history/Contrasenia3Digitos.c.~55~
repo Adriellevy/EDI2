@@ -1,0 +1,125 @@
+#include <16F1827.h>
+#fuses INTRC_IO, NOWDT, NOMCLR, NOPUT, NOBROWNOUT, NOCPD, NOLVP
+#use delay(clock=16000000)
+
+// Define pines para keypad phone 4x3
+#define COL1 PIN_B0
+#define COL2 PIN_B1
+#define COL3 PIN_B2
+
+#define ROW1 PIN_B4
+#define ROW2 PIN_B5
+#define ROW3 PIN_B6
+#define ROW4 PIN_B7
+
+// LEDs
+#define LED_VERDE PIN_A0
+#define LED_ROJO PIN_A1
+
+// Función para inicializar filas y columnas del keypad
+void keypad_init() {
+    // Filas como output y en 0 (drive low)
+    output_low(ROW1);
+    output_low(ROW2);
+    output_low(ROW3);
+    output_low(ROW4);
+    set_tris_b(0b00000111); // B0,B1,B2 inputs (columnas), B4-B7 outputs (filas)
+    output_b(output_b() & 0x0F); // asegurar filas en 0
+}
+
+// Función para leer tecla presionada del keypad-phone 4x3
+// Devuelve -1 si no hay tecla presionada, o número 0..9, o -2 para '*', -3 para '#'
+int8_t keypad_get_key() {
+    const int8_t keys[4][3] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9},
+        {-2, 0, -3}  // * = -2, 0 = 0, # = -3
+    };
+    
+    // Iterar filas activando cada una en bajo y leyendo columnas
+    for(int row=0; row<4; row++) {
+        // Poner todas filas en alto (alta impedancia)
+        output_high(ROW1);
+        output_high(ROW2);
+        output_high(ROW3);
+        output_high(ROW4);
+        // Bajar solo la fila que queremos leer
+        switch(row) {
+            case 0: output_low(ROW1); break;
+            case 1: output_low(ROW2); break;
+            case 2: output_low(ROW3); break;
+            case 3: output_low(ROW4); break;
+        }
+        delay_us(20); // espera a que línea se estabilice
+        
+        if(!input(COL1)) return keys[row][0];
+        if(!input(COL2)) return keys[row][1];
+        if(!input(COL3)) return keys[row][2];
+    }
+    return -1; // no hay tecla
+}
+
+void led_on(int8_t led) {
+    if(led == 0) output_high(LED_VERDE);
+    else if(led == 1) output_high(LED_ROJO);
+}
+
+void led_off(int8_t led) {
+    if(led == 0) output_low(LED_VERDE);
+    else if(led == 1) output_low(LED_ROJO);
+}
+
+void leds_off_all() {
+    output_low(LED_VERDE);
+    output_low(LED_ROJO);
+}
+
+void main() {
+    int8_t passwd[3] = {2, 5, 3};
+    int8_t index = 0;
+    int8_t key = -1;
+    int8_t last_key = -1;
+    
+    // Configuraciones iniciales
+    set_tris_a(0x00); // LEDs salida
+    output_low(LED_VERDE);
+    output_low(LED_ROJO);
+    
+    keypad_init();
+    
+    while(TRUE) {
+        key = keypad_get_key();
+        
+        if(key != -1 && key != last_key) {
+            // Ignorar teclas no numéricas (*,#)
+            if(key >= 0 && key <= 9) {
+                // Validar contra contraseña
+                if(key == passwd[index]) {
+                    index++;
+                    if(index == 3) {
+                        // Contraseña correcta
+                        leds_off_all();
+                        led_on(0); // Led verde
+                        delay_ms(500);
+                        leds_off_all();
+                        index = 0;
+                    }
+                } else {
+                    // Error en clave
+                    leds_off_all();
+                    led_on(1); // Led rojo
+                    delay_ms(500);
+                    leds_off_all();
+                    index = 0;
+                }
+            }
+            last_key = key;
+        }
+        
+        if(key == -1) last_key = -1; // reset para detección tecla siguiente
+        
+        delay_ms(50); // debounce + espera
+    }
+}
+

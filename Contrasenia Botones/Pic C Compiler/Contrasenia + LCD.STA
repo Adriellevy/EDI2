@@ -1,0 +1,45 @@
+
+ROM used:   26/4096 (1%)
+            26/4096 (1%) including unused fragments
+
+            0.0 Average locations per line
+            5.2 Average locations per statement
+
+RAM used:   4/383 (1%) at main() level
+            15/383 (4%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 16
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   14     5 100  Contrasenia + LCD.c
+  965     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+----- -----
+  979     5 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     23  88    0     67  1.6  main
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               1
+    Statements              5
+    Comments                161
+    Volume (V)              69
+    Difficulty (D)          1.4
+    Effort to implement (E) 96
+    Time to implement (T)   0 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    159
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  0  
+00003-007FF    23  2022  
+00800-00FFF     0  2048  
+
+
+
