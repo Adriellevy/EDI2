@@ -1,0 +1,51 @@
+
+ROM used:   136/4096 (3%)
+            136/4096 (3%) including unused fragments
+
+            0.1 Average locations per line
+            4.1 Average locations per statement
+
+RAM used:   6/383 (2%) at main() level
+            19/383 (5%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 16
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   83    33 100  Contador en display.c
+    5     0   0  Contador en display.h
+  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+----- -----
+ 1053    33 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     22  16    1             @delay_ms2
+0     11   8    0             @const726
+0     26  19    0     80  1.6  main
+0     12   9    2     33  1.7  mostrar_numero
+0     54  40    1    607  6.2  actualizar_boton
+0      8   6    0             @goto40712
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               3
+    Statements              33
+    Comments                181
+    Volume (V)              869
+    Difficulty (D)          8.9
+    Effort to implement (E) 7752
+    Time to implement (T)   7 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   9
+    Maintainability (MI)    77
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  0  
+00003-007FF   133  1912  
+00800-00FFF     0  2048  
+
+
+

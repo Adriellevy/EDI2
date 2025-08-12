@@ -1,0 +1,57 @@
+[PROJECT]
+Target=Contador en display.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Contador en display.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 5\Pic c compiler\Contador en display]
+Type=4
+[mru-list]
+1=Contador en display.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=12-08-2025
+D1_L=12
+D1_L1=[57604]Project Opened.
+D1_L2=[57609]Started Editing.
+D1_L3=[58338]Stopped Editing.
+D1_L4=[58494]Started Editing.
+D1_L5=[58931]Stopped Editing.
+D1_L6=[59041]Started Editing.
+D1_L7=[59286]Stopped Editing.
+TotalEdit=15
+TotalDebug=0
+D1_E=15
+D1_D=0
+D1_L8=[59286]Project Closed.
+D1_L9=[59902]Project Opened.
+D1_L10=[60122]Started Editing.
+D1_L11=[60171]Stopped Editing.
+D1_L12=[60172]Project Closed.
+
+[Opened Files]
+1=Contador en display.c
+t1=1
+Count=1
+2=Contador en display.c
+t2=21
+3=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+t3=845
+4=Contador en un display automatico.c
+t4=845
+[Contador en display.c]
+Type=4
+
+[defines]
+buildcount=8
+[Units]
+Count=1
+1=Contador en display (main)

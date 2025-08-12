@@ -1,0 +1,257 @@
+CCS PCM C Compiler, Version 5.093, 4770               12-ago-25 16:39
+
+               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 5\Pic c compiler 5B y 5C\Contador en display.lst
+
+               ROM used:   136 words (3%)
+                           Largest free fragment is 2048
+               RAM used:   6 (2%) at main() level
+                           19 (5%) worst case
+               Stack used: 0 locations
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   06E
+0002:  NOP
+.................... #include <Contador en display.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+0003:  BRW
+0004:  RETLW  3F
+0005:  RETLW  06
+0006:  RETLW  5B
+0007:  RETLW  4F
+0008:  RETLW  66
+0009:  RETLW  6D
+000A:  RETLW  7D
+000B:  RETLW  07
+000C:  RETLW  7F
+000D:  RETLW  6F
+*
+005A:  BCF    0A.0
+005B:  BCF    0A.1
+005C:  BCF    0A.2
+005D:  ADDWF  02,F
+005E:  GOTO   02A
+005F:  GOTO   032
+0060:  GOTO   044
+0061:  GOTO   04C
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+.................... 
+.................... 
+.................... #FUSES NOWDT, NOMCLR
+.................... #use delay(clock=4000000)   // Ajustar al clock que uses (ej: 4 MHz)
+*
+000E:  MOVLW  20
+000F:  MOVWF  05
+0010:  MOVLW  02
+0011:  MOVWF  04
+0012:  MOVF   00,W
+0013:  BTFSC  03.2
+0014:  GOTO   023
+0015:  MOVLW  01
+0016:  MOVWF  78
+0017:  CLRF   77
+0018:  DECFSZ 77,F
+0019:  GOTO   018
+001A:  DECFSZ 78,F
+001B:  GOTO   017
+001C:  MOVLW  4A
+001D:  MOVWF  77
+001E:  DECFSZ 77,F
+001F:  GOTO   01E
+0020:  GOTO   021
+0021:  DECFSZ 00,F
+0022:  GOTO   015
+0023:  RETURN
+.................... 
+.................... // Pines
+.................... #define DISP PORTB       // Puerto donde está conectado el display
+.................... #define BTN  PIN_A0      // Pulsador en RA0 (cambiar si es otro pin)
+.................... 
+.................... // Tabla binario ? 7 segmentos (ánodo común, invertir si es cátodo común)
+.................... const int8 tabla_7seg[10] = {
+....................    0b00111111, // 0
+....................    0b00000110, // 1
+....................    0b01011011, // 2
+....................    0b01001111, // 3
+....................    0b01100110, // 4
+....................    0b01101101, // 5
+....................    0b01111101, // 6
+....................    0b00000111, // 7
+....................    0b01111111, // 8
+....................    0b01101111  // 9
+.................... };
+.................... 
+.................... // Variables globales
+.................... int contador = 0;
+.................... int estado_boton = 0; // 0: Soltado, 1: Posible presionado, 2: Presionado, 3: Posible soltado
+.................... 
+.................... void mostrar_numero(int num);
+.................... void actualizar_boton();
+.................... 
+.................... 
+.................... 
+.................... void main() {
+*
+006E:  MOVLW  6A
+006F:  MOVLB  01
+0070:  MOVWF  19
+0071:  MOVLB  00
+0072:  CLRF   20
+0073:  CLRF   21
+0074:  MOVLB  03
+0075:  CLRF   0C
+0076:  CLRF   0D
+0077:  MOVLB  02
+0078:  CLRF   12
+0079:  CLRF   11
+007A:  CLRF   14
+007B:  CLRF   13
+....................    set_tris_b(0x00); // Puerto B como salida para el display
+007C:  MOVLW  00
+007D:  MOVLB  01
+007E:  MOVWF  0D
+....................    set_tris_a(0x01); // RA0 como entrada para el pulsador
+007F:  MOVLW  01
+0080:  MOVWF  0C
+.................... 
+....................    while (TRUE) {
+....................       actualizar_boton();
+0081:  MOVLB  00
+0082:  GOTO   024
+....................       mostrar_numero(contador);
+0083:  MOVF   20,W
+0084:  MOVWF  22
+0085:  GOTO   062
+0086:  GOTO   082
+....................    }
+.................... }
+.................... 
+0087:  SLEEP
+.................... // Función para mostrar número en display
+.................... void mostrar_numero(int num) {
+....................    output_b(tabla_7seg[num]);
+*
+0062:  MOVF   22,W
+0063:  CALL   003
+0064:  MOVWF  23
+0065:  MOVLB  01
+0066:  CLRF   0D
+0067:  MOVLB  00
+0068:  MOVF   23,W
+0069:  MOVLB  02
+006A:  MOVWF  0D
+006B:  MOVLP  00
+006C:  MOVLB  00
+006D:  GOTO   086 (RETURN)
+.................... }
+.................... 
+.................... // Máquina de estados antirrebote
+.................... void actualizar_boton() {
+....................    switch (estado_boton) {
+*
+0024:  MOVF   21,W
+0025:  ADDLW  FC
+0026:  BTFSC  03.0
+0027:  GOTO   058
+0028:  ADDLW  04
+0029:  GOTO   05A
+....................       case 0: // Soltado
+....................          if (input(BTN) == 1) { 
+002A:  MOVLB  01
+002B:  BSF    0C.0
+002C:  MOVLB  00
+002D:  BTFSS  0C.0
+002E:  GOTO   031
+....................             estado_boton = 1; 
+002F:  MOVLW  01
+0030:  MOVWF  21
+....................          }
+....................          break;
+0031:  GOTO   058
+.................... 
+....................       case 1: // Posible presionado
+....................          delay_ms(20); // Tiempo para filtrar rebote
+0032:  MOVLW  14
+0033:  MOVWF  22
+0034:  CALL   00E
+....................          if (input(BTN) == 1) {
+0035:  MOVLB  01
+0036:  BSF    0C.0
+0037:  MOVLB  00
+0038:  BTFSS  0C.0
+0039:  GOTO   042
+....................             estado_boton = 2;
+003A:  MOVLW  02
+003B:  MOVWF  21
+....................             contador++;
+003C:  INCF   20,F
+....................             if (contador > 9) contador = 0;
+003D:  MOVF   20,W
+003E:  SUBLW  09
+003F:  BTFSS  03.0
+0040:  CLRF   20
+....................          } else {
+0041:  GOTO   043
+....................             estado_boton = 0;
+0042:  CLRF   21
+....................          }
+....................          break;
+0043:  GOTO   058
+.................... 
+....................       case 2: // Presionado
+....................          if (input(BTN) == 0) {
+0044:  MOVLB  01
+0045:  BSF    0C.0
+0046:  MOVLB  00
+0047:  BTFSC  0C.0
+0048:  GOTO   04B
+....................             estado_boton = 3;
+0049:  MOVLW  03
+004A:  MOVWF  21
+....................          }
+....................          break;
+004B:  GOTO   058
+.................... 
+....................       case 3: // Posible soltado
+....................          delay_ms(20);
+004C:  MOVLW  14
+004D:  MOVWF  22
+004E:  CALL   00E
+....................          if (input(BTN) == 0) {
+004F:  MOVLB  01
+0050:  BSF    0C.0
+0051:  MOVLB  00
+0052:  BTFSC  0C.0
+0053:  GOTO   056
+....................             estado_boton = 0;
+0054:  CLRF   21
+....................          } else {
+0055:  GOTO   058
+....................             estado_boton = 2;
+0056:  MOVLW  02
+0057:  MOVWF  21
+....................          }
+....................          break;
+....................    }
+0058:  MOVLP  00
+0059:  GOTO   083 (RETURN)
+.................... }
+
+Configuration Fuses:
+   Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

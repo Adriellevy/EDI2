@@ -1,0 +1,82 @@
+#include <Contador en display.h>
+#FUSES NOWDT, NOMCLR
+#use delay(clock=4000000)   // Ajustar al clock que uses (ej: 4 MHz)
+
+// Pines
+#define DISP PORTB       // Puerto donde está conectado el display
+#define BTN  PIN_A0      // Pulsador en RA0 (cambiar si es otro pin)
+
+// Tabla binario ? 7 segmentos (ánodo común, invertir si es cátodo común)
+const int8 tabla_7seg[10] = {
+   0b00111111, // 0
+   0b00000110, // 1
+   0b01011011, // 2
+   0b01001111, // 3
+   0b01100110, // 4
+   0b01101101, // 5
+   0b01111101, // 6
+   0b00000111, // 7
+   0b01111111, // 8
+   0b01101111  // 9
+};
+
+// Variables globales
+int contador = 0;
+int estado_boton = 0; // 0: Soltado, 1: Posible presionado, 2: Presionado, 3: Posible soltado
+
+void mostrar_numero(int num)
+void actualizar_boton()
+
+
+
+void main() {
+   set_tris_b(0x00); // Puerto B como salida para el display
+   set_tris_a(0x01); // RA0 como entrada para el pulsador
+
+   while (TRUE) {
+      actualizar_boton();
+      mostrar_numero(contador);
+   }
+}
+
+// Función para mostrar número en display
+void mostrar_numero(int num) {
+   output_b(tabla_7seg[num]);
+}
+
+// Máquina de estados antirrebote
+void actualizar_boton() {
+   switch (estado_boton) {
+      case 0: // Soltado
+         if (input(BTN) == 1) { 
+            estado_boton = 1; 
+         }
+         break;
+
+      case 1: // Posible presionado
+         delay_ms(20); // Tiempo para filtrar rebote
+         if (input(BTN) == 1) {
+            estado_boton = 2;
+            contador++;
+            if (contador > 9) contador = 0;
+         } else {
+            estado_boton = 0;
+         }
+         break;
+
+      case 2: // Presionado
+         if (input(BTN) == 0) {
+            estado_boton = 3;
+         }
+         break;
+
+      case 3: // Posible soltado
+         delay_ms(20);
+         if (input(BTN) == 0) {
+            estado_boton = 0;
+         } else {
+            estado_boton = 2;
+         }
+         break;
+   }
+}

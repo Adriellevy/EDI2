@@ -1,0 +1,28 @@
+[PROJECT]
+Target=Contador en un display automatico.hex
+Processor_Text=PIC16F1827
+CCSVersion=5.093
+Compiler=PCM
+[Target Data]
+FileList=Contador en un display automatico.c
+[Contador en un display automatico.c]
+Type=4
+[mru-list]
+1=Contador en un display automatico.c
+[Units]
+Count=1
+1=Contador en un display automatico (main)
+
+[defines]
+buildcount=1
+
+[ProjectLog]
+Days=1
+D1=12-08-2025
+D1_L=2
+D1_L1=[59648]Stopped Editing.
+TotalEdit=4
+TotalDebug=0
+D1_E=4
+D1_D=0
+D1_L2=[59648]Project Closed.

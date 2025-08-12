@@ -1,0 +1,47 @@
+
+ROM used:   59/4096 (1%)
+            59/4096 (1%) including unused fragments
+
+            0.1 Average locations per line
+            8.4 Average locations per statement
+
+RAM used:   5/383 (1%) at main() level
+            17/383 (4%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 16
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   18     7 100  Contador.c
+    5     0   0  Contador.h
+  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+----- -----
+  988     7 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     23  39    1             @delay_ms2
+0     33  56    1    132  2.6  main
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               1
+    Statements              7
+    Comments                164
+    Volume (V)              136
+    Difficulty (D)          2.3
+    Effort to implement (E) 311
+    Time to implement (T)   0 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    156
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  0  
+00003-007FF    56  1989  
+00800-00FFF     0  2048  
+
+
+

@@ -1,0 +1,81 @@
+004-005 @READ_PACKED_MEMORY.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+004-005 @WRITE_PACKED_MEMORY.P3
+004-005 @READ_PROGRAM_MEMORY8.P4
+006-007 @WRITE_PACKED_MEMORY.P1
+006-007 @READ_PACKED_MEMORY.P2
+020     contador
+021     estado_boton
+022     mostrar_numero.num
+022     @delay_ms2.P1
+022     actualizar_boton.@SCRATCH1
+023     mostrar_numero.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+111.6   C1OUT
+113.6   C2OUT
+191-192 @READ_PROGRAM_MEMORY8.P1
+191-192 @WRITE_PROGRAM_MEMORY8.P2
+291     CCP_1
+291     CCP_1_LOW
+292     CCP_1_HIGH
+298     CCP_2_LOW
+298     CCP_2
+299     CCP_2_HIGH
+311     CCP_3_LOW
+311     CCP_3
+312     CCP_3_HIGH
+318     CCP_4_LOW
+318     CCP_4
+319     CCP_4_HIGH
+
+ROM Allocation:
+000003  tabla_7seg.call
+000004  tabla_7seg.data
+00000E  @delay_ms2
+000024  actualizar_boton
+00005A  @goto40712
+000062  mostrar_numero
+00006E  main
+00006E  @cinit1
+00007C  @cinit2
+
+Project Directory:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 5\Pic c compiler 5B y 5C\
+
+Project Files:
+    Contador en display.c                                   [12-ago-25 16:25  CRC=20765B2A]
+    Contador en display.h                                   [12-ago-25 16:00  CRC=00000000]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb-20 15:48  CRC=D6A5AF9F]
+
+Source signature=CDC1BA68
+Program memory checksum=0000
+Hex file CRC=0CB5
+
+Units:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 5\Pic c compiler 5B y 5C\Contador en display (main)
+
+Compiler Settings:
+    Processor:      PIC16F1827
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Enhanced 16:    Yes
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   Contador en display.xsym
+    Errors:      Contador en display.err
+    Ext Symbols: Contador en display.esym
+    INHX8:       Contador en display.hex
+    Symbols:     Contador en display.sym
+    List:        Contador en display.lst
+    Debug/COFF:  Contador en display.cof
+    Project:     Contador en display.ccspjt
+    Call Tree:   Contador en display.tre
+    Statistics:  Contador en display.STA

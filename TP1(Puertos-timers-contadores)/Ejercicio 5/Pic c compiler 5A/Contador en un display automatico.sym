@@ -1,0 +1,71 @@
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PACKED_MEMORY.P2
+004-005 @READ_PROGRAM_MEMORY8.P3
+004-005 @WRITE_PACKED_MEMORY.P4
+006-007 @WRITE_PACKED_MEMORY.P1
+006-007 @READ_PACKED_MEMORY.P2
+021     main.contador
+022     @delay_ms2.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+111.6   C1OUT
+113.6   C2OUT
+191-192 @WRITE_PROGRAM_MEMORY8.P1
+191-192 @READ_PROGRAM_MEMORY8.P2
+291     CCP_1
+291     CCP_1_LOW
+292     CCP_1_HIGH
+298     CCP_2_LOW
+298     CCP_2
+299     CCP_2_HIGH
+311     CCP_3_LOW
+311     CCP_3
+312     CCP_3_HIGH
+318     CCP_4
+318     CCP_4_LOW
+319     CCP_4_HIGH
+
+ROM Allocation:
+000003  @delay_ms2
+00001A  main
+00001A  @cinit1
+000025  @cinit2
+
+Project Directory:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 5\Pic c compiler b\
+
+Project Files:
+    Contador en un display automatico.c                     [12-ago-25 16:31  CRC=10F19199]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb-20 15:48  CRC=D6A5AF9F]
+
+Source signature=BE3CF0D7
+Program memory checksum=0000
+Hex file CRC=C1AA
+
+Units:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 5\Pic c compiler b\Contador en un display automatico (main)
+
+Compiler Settings:
+    Processor:      PIC16F1827
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Enhanced 16:    Yes
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   Contador en un display automatico.xsym
+    Errors:      Contador en un display automatico.err
+    Ext Symbols: Contador en un display automatico.esym
+    INHX8:       Contador en un display automatico.hex
+    Symbols:     Contador en un display automatico.sym
+    List:        Contador en un display automatico.lst
+    Debug/COFF:  Contador en un display automatico.cof
+    Project:     Contador en un display automatico.ccspjt
+    Call Tree:   Contador en un display automatico.tre
+    Statistics:  Contador en un display automatico.STA

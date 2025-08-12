@@ -1,0 +1,14 @@
+#include <Contador en display.h>
+
+#FUSES NOWDT,NOMCLR
+void main()
+{
+
+   while(TRUE)
+   {
+
+
+      //TODO: User Code
+   }
+
+}

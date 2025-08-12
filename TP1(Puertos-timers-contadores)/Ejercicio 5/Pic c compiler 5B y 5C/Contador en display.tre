@@ -1,0 +1,10 @@
+ÀÄContador en display
+   ÀÄmain  0/26  Ram=0
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄ@cinit2  (Inline)  Ram=0
+      ÃÄactualizar_boton  0/54  Ram=1
+      ³  ÃÄ@goto40712  0/8  Ram=0
+      ³  ÃÄ@delay_ms2  0/22  Ram=1
+      ³  ÀÄ@delay_ms2  0/22  Ram=1
+      ÀÄmostrar_numero  0/12  Ram=2
+         ÀÄ@const726  0/11  Ram=0

@@ -1,0 +1,43 @@
+[PROJECT]
+Target=Contador.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Contador.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 4\Pic c compiler\Contador]
+Type=4
+[mru-list]
+1=Contador.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=12-08-2025
+D1_L=4
+D1_L1=[55663]Project Opened.
+D1_L2=[56062]Started Editing.
+D1_L3=[56369]Stopped Editing.
+TotalEdit=1
+TotalDebug=0
+D1_E=1
+D1_D=0
+D1_L4=[57328]Project Closed.
+
+[Opened Files]
+1=Contador.c
+t1=1
+Count=1
+[Contador.c]
+Type=4
+[Units]
+Count=1
+1=Contador (main)
+
+[defines]
+buildcount=1

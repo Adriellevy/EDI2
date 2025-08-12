@@ -1,0 +1,110 @@
+CCS PCM C Compiler, Version 5.093, 4770               12-ago-25 15:36
+
+               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 4\Pic c compiler\Contador.lst
+
+               ROM used:   59 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   5 (1%) at main() level
+                           17 (4%) worst case
+               Stack used: 0 locations
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   01A
+0002:  NOP
+.................... #include <Contador.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+.................... 
+.................... 
+.................... 
+.................... #fuses XT, NOWDT
+.................... #use delay(clock=4000000)  // Frecuencia del cristal (4 MHz en este ejemplo)
+0003:  MOVLW  20
+0004:  MOVWF  05
+0005:  MOVLW  02
+0006:  MOVWF  04
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   018
+000A:  MOVLW  01
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  4A
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  GOTO   016
+0016:  DECFSZ 00,F
+0017:  GOTO   00A
+0018:  MOVLP  00
+0019:  GOTO   037 (RETURN)
+.................... 
+.................... void main() {
+001A:  MOVLW  6A
+001B:  MOVLB  01
+001C:  MOVWF  19
+001D:  MOVLB  03
+001E:  CLRF   0C
+001F:  CLRF   0D
+0020:  MOVLB  02
+0021:  CLRF   12
+0022:  CLRF   11
+0023:  CLRF   14
+0024:  CLRF   13
+0025:  MOVLB  00
+0026:  CLRF   21
+....................    int8 contador = 0;      // Variable para contar de 0 a 255
+.................... 
+....................    set_tris_b(0x00);       // Puerto B como salida (0 = salida, 1 = entrada)
+0027:  MOVLW  00
+0028:  MOVLB  01
+0029:  MOVWF  0D
+....................    output_b(0x00);         // Inicializa el puerto B en 0
+002A:  CLRF   0D
+002B:  MOVLB  02
+002C:  CLRF   0D
+.................... 
+....................    while(TRUE) {
+....................       output_b(contador);  // Muestra el valor en los LEDs
+002D:  MOVLB  01
+002E:  CLRF   0D
+002F:  MOVLB  00
+0030:  MOVF   21,W
+0031:  MOVLB  02
+0032:  MOVWF  0D
+....................       delay_ms(200);       // Espera 200 ms
+0033:  MOVLW  C8
+0034:  MOVLB  00
+0035:  MOVWF  22
+0036:  GOTO   003
+....................       contador++;          // Incrementa el contador (se reinicia automáticamente en 255 -> 0)
+0037:  INCF   21,F
+0038:  MOVLB  02
+0039:  GOTO   02D
+....................    }
+.................... }
+003A:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FC1   XT NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP
