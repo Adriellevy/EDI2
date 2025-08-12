@@ -1,0 +1,61 @@
+[PROJECT]
+Target=main.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=main.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\main]
+Type=4
+[mru-list]
+1=main.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=12-08-2025
+D1_L=18
+D1_L1=[52486]Project Opened.
+D1_L2=[52517]Project Closed.
+D1_L3=[52517]Project Opened.
+D1_L4=[52521]Project Closed.
+D1_L5=[52521]Project Opened.
+D1_L6=[52545]Started Editing.
+D1_L7=[52699]Stopped Editing.
+TotalEdit=4
+TotalDebug=0
+D1_E=4
+D1_D=0
+D1_L8=[52699]Project Closed.
+D1_L9=[52699]Project Opened.
+D1_L10=[52701]Project Closed.
+D1_L11=[52701]Project Opened.
+D1_L12=[52737]Started Editing.
+D1_L13=[52767]Stopped Editing.
+D1_L14=[52767]Project Closed.
+D1_L15=[52840]Project Opened.
+D1_L16=[52844]Started Editing.
+D1_L17=[53840]Stopped Editing.
+D1_L18=[53885]Started Editing.
+
+[Opened Files]
+1=main.c
+t1=1
+Count=3
+2=main.h
+t2=1
+3=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+t3=61
+[main.c]
+Type=4
+
+[defines]
+buildcount=6
+[Units]
+Count=1
+1=main (main)

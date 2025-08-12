@@ -1,0 +1,15 @@
+#include <main.h>
+
+#FUSES NOMCLR,NOWDT,INTRC_IO
+
+void main()
+{
+
+   while(TRUE)
+   {
+
+
+      //TODO: User Code
+   }
+
+}

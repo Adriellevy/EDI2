@@ -1,0 +1,103 @@
+CCS PCM C Compiler, Version 5.093, 4770               12-ago-25 14:58
+
+               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 1\Pic c compiler\main.lst
+
+               ROM used:   43 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   4 (1%) at main() level
+                           15 (4%) worst case
+               Stack used: 0 locations
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   00B
+0002:  NOP
+.................... #include <main.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+.................... 
+.................... 
+.................... 
+.................... #FUSES NOMCLR,NOWDT,INTRC_IO
+.................... 
+.................... void GPIO(void);
+.................... 
+.................... 
+.................... void main()
+*
+000B:  MOVLW  6A
+000C:  MOVLB  01
+000D:  MOVWF  19
+000E:  MOVLB  03
+000F:  CLRF   0C
+0010:  CLRF   0D
+0011:  MOVLB  02
+0012:  CLRF   12
+0013:  CLRF   11
+0014:  CLRF   14
+0015:  CLRF   13
+.................... {
+....................    GPIO();
+0016:  MOVLB  00
+0017:  GOTO   003
+....................    while(TRUE)
+....................    {
+....................       output_high(PIN_B0);
+0018:  MOVLB  01
+0019:  BCF    0D.0
+001A:  MOVLB  02
+001B:  BSF    0D.0
+....................       output_high(PIN_B1);
+001C:  MOVLB  01
+001D:  BCF    0D.1
+001E:  MOVLB  02
+001F:  BSF    0D.1
+....................       output_low(PIN_B2);
+0020:  MOVLB  01
+0021:  BCF    0D.2
+0022:  MOVLB  02
+0023:  BCF    0D.2
+....................       output_low(PIN_B3);
+0024:  MOVLB  01
+0025:  BCF    0D.3
+0026:  MOVLB  02
+0027:  BCF    0D.3
+0028:  MOVLB  00
+0029:  GOTO   018
+....................    }
+.................... 
+.................... }
+.................... 
+002A:  SLEEP
+.................... void GPIO(void){
+....................    set_tris_a(0xFF);
+*
+0003:  MOVLW  FF
+0004:  MOVLB  01
+0005:  MOVWF  0C
+....................    set_tris_b(0b11110000);
+0006:  MOVLW  F0
+0007:  MOVWF  0D
+0008:  MOVLP  00
+0009:  MOVLB  00
+000A:  GOTO   018 (RETURN)
+.................... }
+
+Configuration Fuses:
+   Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

@@ -1,0 +1,23 @@
+#include <main.h>
+
+#FUSES NOMCLR,NOWDT,INTRC_IO
+
+void GPIO(void);
+
+
+void main()
+{
+   GPIO();
+   while(TRUE)
+   {
+      
+   
+      //TODO: User Code
+   }
+
+}
+
+void GPIO(void){
+   set_tris_a(0xFF);
+   set_tris_b(0b11110000);
+}
