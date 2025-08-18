@@ -1,0 +1,51 @@
+
+ROM used:   92/4096 (2%)
+            92/4096 (2%) including unused fragments
+
+            0.1 Average locations per line
+            5.1 Average locations per statement
+
+RAM used:   9/383 (2%) at main() level
+            20/383 (5%) worst case
+
+Stack used: 1 worst case (0 in main + 1 for interrupts)
+Stack size: 16
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   50    18 100  Blink Timer0.c
+    5     0   0  Blink Timer0.h
+  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+----- -----
+ 1020    18 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     18  20    0     38  1.2  main
+0     13  14    0     98  1.7  INIT_TIMER0
+0     15  16    0     82  2.8  timer0_isr
+0     17  18    0     67  1.2  INIT_GPIO
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               4
+    Statements              18
+    Comments                166
+    Volume (V)              432
+    Difficulty (D)          6.9
+    Effort to implement (E) 2988
+    Time to implement (T)   3 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    96
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  0  
+00003-00003     0  1  
+00004-0001D    26  0  
+0001E-007FF    63  1955  
+00800-00FFF     0  2048  
+
+
+

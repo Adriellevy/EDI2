@@ -1,0 +1,24 @@
+#include <Blink Timer0.h>
+
+#FUSES NOWDT , NOMCLR
+
+void INIT_GPIO();
+
+void main()
+{
+   INIT_GPIO();
+   while(TRUE)
+   {
+
+
+      //TODO: User Code
+   }
+
+}
+
+void INIT_GPIO(){
+   set_tris_a(0b00001000);
+   set_tris_b(0b00000001);
+   output_a(0b00000001); 
+   output_b(0b00000001); 
+}

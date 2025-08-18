@@ -1,0 +1,179 @@
+CCS PCM C Compiler, Version 5.093, 4770               18-ago-25 20:42
+
+               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 6\Pic c\Blink Timer0.lst
+
+               ROM used:   92 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   9 (2%) at main() level
+                           20 (5%) worst case
+               Stack used: 1 locations (0 in main + 1 for interrupts)
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   04B
+0002:  NOP
+*
+0004:  CLRF   03
+0005:  MOVLP  00
+0006:  MOVLB  00
+0007:  MOVF   77,W
+0008:  MOVWF  20
+0009:  MOVF   78,W
+000A:  MOVWF  21
+000B:  MOVF   79,W
+000C:  MOVWF  22
+000D:  MOVF   7A,W
+000E:  MOVWF  23
+000F:  BTFSS  0B.5
+0010:  GOTO   013
+0011:  BTFSC  0B.2
+0012:  GOTO   01C
+0013:  MOVF   20,W
+0014:  MOVWF  77
+0015:  MOVF   21,W
+0016:  MOVWF  78
+0017:  MOVF   22,W
+0018:  MOVWF  79
+0019:  MOVF   23,W
+001A:  MOVWF  7A
+001B:  RETFIE
+001C:  MOVLP  00
+001D:  GOTO   01E
+.................... #include <Blink Timer0.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+.................... 
+.................... 
+.................... 
+.................... #FUSES NOWDT , NOMCLR
+.................... 
+.................... void INIT_GPIO();
+.................... void INIT_TIMER0();
+.................... void TIMER0();
+.................... 
+.................... // --- Prototipos de funciones ---
+.................... int contador_overflows = 0;
+.................... 
+.................... void main()
+*
+004B:  MOVLW  6A
+004C:  MOVLB  01
+004D:  MOVWF  19
+004E:  MOVLB  00
+004F:  CLRF   24
+0050:  MOVLB  03
+0051:  CLRF   0C
+0052:  CLRF   0D
+0053:  MOVLB  02
+0054:  CLRF   12
+0055:  CLRF   11
+0056:  CLRF   14
+0057:  CLRF   13
+.................... {
+....................    INIT_GPIO();
+0058:  MOVLB  00
+0059:  GOTO   02D
+....................    INIT_TIMER0();
+005A:  GOTO   03E
+....................    while(TRUE)
+....................    {
+005B:  GOTO   05B
+.................... 
+.................... 
+....................       //TODO: User Code
+....................    }
+.................... 
+.................... }
+.................... 
+005C:  SLEEP
+.................... Void INIT_TIMER0(){
+....................    set_timer0(0);                    // arrancar TMR0 en 0
+*
+003E:  CLRF   15
+....................    clear_interrupt(INT_TIMER0); 
+003F:  BCF    0B.2
+....................    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);  
+0040:  MOVLB  01
+0041:  MOVF   15,W
+0042:  ANDLW  C0
+0043:  IORLW  07
+0044:  MOVWF  15
+....................    // Fuente interna (Fosc/4) y prescaler 1:256
+....................    enable_interrupts(INT_TIMER0);  // Habilitar interrupción Timer0
+0045:  BSF    0B.5
+....................    enable_interrupts(GLOBAL); 
+0046:  MOVLW  C0
+0047:  IORWF  0B,F
+0048:  MOVLP  00
+0049:  MOVLB  00
+004A:  GOTO   05B (RETURN)
+.................... }
+.................... 
+.................... // --- Interrupción de TIMER0 ---
+.................... #INT_TIMER0 //Habilito interrupciones por timer0
+.................... void timer0_isr(void) {
+....................    contador_overflows++;
+*
+001E:  INCF   24,F
+.................... 
+....................    if(contador_overflows >= 8) {   // 8 desbordes ˜ 500 ms
+001F:  MOVF   24,W
+0020:  SUBLW  07
+0021:  BTFSC  03.0
+0022:  GOTO   02A
+....................       output_toggle(PIN_A0);       // Ejemplo: toggle LED en RB0
+0023:  MOVLB  01
+0024:  BCF    0C.0
+0025:  MOVLW  01
+0026:  MOVLB  02
+0027:  XORWF  0C,F
+....................       contador_overflows = 0;
+0028:  MOVLB  00
+0029:  CLRF   24
+....................    }
+002A:  BCF    0B.2
+002B:  MOVLP  00
+002C:  GOTO   013
+.................... }
+.................... void INIT_GPIO(){
+....................    set_tris_a(0b00011000);
+002D:  MOVLW  18
+002E:  MOVLB  01
+002F:  MOVWF  0C
+....................    set_tris_b(0b00000001);
+0030:  MOVLW  01
+0031:  MOVWF  0D
+....................    output_a(0b00100001); 
+0032:  CLRF   0C
+0033:  MOVLW  21
+0034:  MOVLB  02
+0035:  MOVWF  0C
+....................    output_b(0b00000001); 
+0036:  MOVLB  01
+0037:  CLRF   0D
+0038:  MOVLW  01
+0039:  MOVLB  02
+003A:  MOVWF  0D
+003B:  MOVLP  00
+003C:  MOVLB  00
+003D:  GOTO   05A (RETURN)
+.................... }
+
+Configuration Fuses:
+   Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

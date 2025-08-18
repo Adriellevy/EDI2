@@ -1,0 +1,45 @@
+[PROJECT]
+Target=Blink Timer0.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Blink Timer0.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 6\Pic c\Blink Timer0]
+Type=4
+[mru-list]
+1=Blink Timer0.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=18-08-2025
+D1_L=8
+D1_L1=[70944]Project Opened.
+D1_L2=[70954]Started Editing.
+D1_L3=[71507]Stopped Editing.
+D1_L4=[71641]Started Editing.
+D1_L5=[72773]Stopped Editing.
+D1_L6=[72821]Started Editing.
+D1_L7=[73222]Stopped Editing.
+D1_L8=[73520]Started Editing.
+
+[Opened Files]
+1=Blink Timer0.c
+t1=21
+Count=2
+2=Blink Timer0.h
+t2=1
+[Blink Timer0.c]
+Type=4
+
+[defines]
+buildcount=21
+[Units]
+Count=1
+1=Blink Timer0 (main)
