@@ -1,0 +1,7 @@
+ÀÄSeñal cuadrada por Timer0
+   ÃÄmain  0/16  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄ@cinit2  (Inline)  Ram=0
+   ³  ÃÄINIT_GPIO  0/17  Ram=0
+   ³  ÀÄINIT_TIMER0  0/14  Ram=0
+   ÀÄtimer0_isr  0/11  Ram=0

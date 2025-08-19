@@ -1,0 +1,47 @@
+[PROJECT]
+Target=Señal cuadrada por Timer0.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Señal cuadrada por Timer0.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\Ejercicio 7\Pic c\Señal cuadrada por Timer0]
+Type=4
+[mru-list]
+1=Señal cuadrada por Timer0.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=19-08-2025
+D1_L=6
+D1_L1=[31348]Project Opened.
+D1_L2=[31413]Started Editing.
+D1_L3=[31772]Stopped Editing.
+D1_L4=[33842]Started Editing.
+D1_L5=[34406]Stopped Editing.
+TotalEdit=6
+TotalDebug=0
+D1_E=6
+D1_D=0
+D1_L6=[34561]Project Closed.
+
+[Opened Files]
+1=Señal cuadrada por Timer0.c
+t1=37
+2=..\..\Ejercicio 6\Pic c\Blink Timer0.c
+t2=37
+Count=2
+[Señal cuadrada por Timer0.c]
+Type=4
+
+[defines]
+buildcount=2
+[Units]
+Count=1
+1=Señal cuadrada por Timer0 (main)

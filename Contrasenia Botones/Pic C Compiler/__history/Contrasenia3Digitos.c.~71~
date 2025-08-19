@@ -115,11 +115,11 @@ void main() {
             output_toggle(LED_ROJO);
       }
       
-      if(key != -1 && key!= last_key)// Nueva tecla detectada
+      if(key != -1 && key != last_key) {  // Nueva tecla detectada
       count=0;
       toggle_flag = 0;
-         if(key >= 0 && key <=sS
-            if(key == passwd[indc
+         if(key >= 0 && key <= 9) {  // Solo dígitos
+            if(key == passwd[index]) {
                index++;
                if(index == 3) {  // Contraseña correcta completa
                   leds_off();
@@ -128,7 +128,7 @@ void main() {
                   leds_off();
                   index = 0;
                }
-            } else { // ErrorEbn caso de queb
+            } else { // Error
                leds_off();
                led_on(1); // Rojo ON
                delay_ms(500);

@@ -1,55 +1,52 @@
 
-ROM used:   405/4096 (10%)
-            405/4096 (10%) including unused fragments
+ROM used:   368/4096 (9%)
+            368/4096 (9%) including unused fragments
 
-            0.4 Average locations per line
-            5.1 Average locations per statement
+            0.3 Average locations per line
+            4.6 Average locations per statement
 
-RAM used:   17/383 (4%) at main() level
-            31/383 (8%) worst case
+RAM used:   13/383 (3%) at main() level
+            27/383 (7%) worst case
 
-Stack used: 2 worst case (1 in main + 1 for interrupts)
+Stack used: 1 worst case (1 in main + 0 for interrupts)
 Stack size: 16
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  148    80 100  Contrasenia3Digitos.c
+  161    80 100  Contrasenia3Digitos.c
   965     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
 ----- -----
- 1113    80 Total
+ 1126    80 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
-0     22   5    1             @delay_ms1
-0     11   3    0     76  2.7  timer0_isr
-0     13   3    0     86  1.3  @const725
-0     21   5    0     86  1.3  keypad_init
-0    109  27    3    743  8.2  keypad_get_key
-0      8   2    0    313  3.3  @goto53290
-0     37   9    2     32  1.0  @MUL88
-0     10   2    0     32  1.0  leds_off
-0     17   4    1     96  2.5  led_on
-0    128  32    7   1263  8.6  MAIN
- Inline         0    871  8.7  @cinit1
+0     22   6    1             @delay_ms1
+0     13   4    0   1263  8.6  @const730
+0    128  35    7   1263  8.6  main
+0     21   6    0     86  1.3  keypad_init
+0    109  30    3    743  8.2  keypad_get_key
+0      8   2    0   1263  8.6  @goto38216
+0     37  10    2   1263  8.6  @MUL88
+0     10   3    0     32  1.0  leds_off
+0     17   5    1     96  2.5  led_on
+ Inline         0             @cinit1
 
 Program metrics:
-    Functions               10
+    Functions               8
     Statements              80
-    Comments                185
-    Volume (V)              5262
-    Difficulty (D)          39.3
-    Effort to implement (E) 206556
-    Time to implement (T)   3 hours, 11 minutes
-    Est Delivered Bugs (B)  1
-    Cyclomatic Complexity   25
-    Maintainability (MI)    123
+    Comments                187
+    Volume (V)              8451
+    Difficulty (D)          47.8
+    Effort to implement (E) 403811
+    Time to implement (T)   6 hours, 14 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   34
+    Maintainability (MI)    143
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     3  0  
-00003-00003     0  1  
-00004-0001D    26  0  
-0001E-007FF   376  1642  
+00003-007FF   365  1680  
 00800-00FFF     0  2048  
 
 

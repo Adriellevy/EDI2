@@ -1,7 +1,20 @@
-Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos on 10-ago-25 at 10:40
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos on 12-ago-25 at 13:57
 >>> Warning 241 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 118(18,19): Comparing unsigned to signed
->>> Warning 241 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 142(18,19): Comparing unsigned to signed
->>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 54(13,16): Variable never used:   col
-      Memory usage:   ROM=10%      RAM=4% - 8%
-      0 Errors,  3 Warnings.
-Build Successful.
+>>> Warning 204 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 121(1,1): Condition always FALSE   sS
+*** Error 12 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 121(31,33): Undefined identifier
+*** Error 51 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 131(15,19): A numeric expression must appear here
+*** Error 48 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 139(10,18): Expecting a (
+*** Error 48 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 139(21,24): Expecting a (
+*** Error 43 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 140(7,8): Expecting a declaration
+*** Error 43 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 142(7,9): Expecting a declaration
+*** Error 43 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 142(9,10): Expecting a declaration
+*** Error 48 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 142(10,13): Expecting a (
+*** Error 43 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 142(17,18): Expecting a declaration
+*** Error 43 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 142(18,19): Expecting a declaration
+*** Error 43 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 142(19,20): Expecting a declaration
+*** Error 48 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 142(21,29): Expecting a (
+*** Error 43 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 142(32,33): Expecting a declaration
+*** Error 43 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 142(33,34): Expecting a declaration
+*** Error 28 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 144(16,18): Expecting an identifier
+*** Error 43 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 145(4,5): Expecting a declaration
+*** Error 43 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Contrasenia Botones\Pic C Compiler\Contrasenia3Digitos.c" Line 146(1,2): Expecting a declaration

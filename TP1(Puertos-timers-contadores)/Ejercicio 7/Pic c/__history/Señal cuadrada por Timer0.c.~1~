@@ -1,0 +1,13 @@
+#include <Señal cuadrada por Timer0.h>
+
+void main()
+{
+
+	while(TRUE)
+	{
+
+
+		//TODO: User Code
+	}
+
+}
