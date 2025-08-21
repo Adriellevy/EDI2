@@ -1,0 +1,53 @@
+[PROJECT]
+Target=AntiRebote.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=AntiRebote.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\AntiRebote\Pic c compiler\AntiRebote]
+Type=4
+[mru-list]
+1=AntiRebote.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=21-08-2025
+D1_L=10
+D1_L1=[48059]Project Opened.
+D1_L2=[48069]Started Editing.
+D1_L3=[50401]Stopped Editing.
+D1_L4=[50623]Started Editing.
+D1_L5=[50923]Stopped Editing.
+D1_L6=[50935]Started Editing.
+D1_L7=[51564]Stopped Editing.
+D1_L8=[51886]Started Editing.
+D1_L9=[51933]Stopped Editing.
+TotalEdit=41
+TotalDebug=0
+D1_E=41
+D1_D=0
+D1_L10=[51933]Project Closed.
+
+[Opened Files]
+1=AntiRebote.c
+t1=13
+Count=3
+2=AntiRebote.h
+t2=1
+3=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+t3=37
+[AntiRebote.c]
+Type=4
+
+[defines]
+buildcount=11
+[Units]
+Count=1
+1=AntiRebote (main)

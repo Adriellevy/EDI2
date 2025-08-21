@@ -1,0 +1,259 @@
+CCS PCM C Compiler, Version 5.093, 4770               19-Aug-25 14:40
+
+               Filename:   C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\Backup PICC\SemaforoTimer.lst
+
+               ROM used:   152 words (4%)
+                           Largest free fragment is 2048
+               RAM used:   10 (3%) at main() level
+                           21 (5%) worst case
+               Stack used: 1 locations (0 in main + 1 for interrupts)
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   059
+0002:  NOP
+*
+0004:  CLRF   03
+0005:  MOVLP  00
+0006:  MOVLB  00
+0007:  MOVF   77,W
+0008:  MOVWF  20
+0009:  MOVF   78,W
+000A:  MOVWF  21
+000B:  MOVF   79,W
+000C:  MOVWF  22
+000D:  MOVF   7A,W
+000E:  MOVWF  23
+000F:  BTFSS  0B.5
+0010:  GOTO   013
+0011:  BTFSC  0B.2
+0012:  GOTO   01C
+0013:  MOVF   20,W
+0014:  MOVWF  77
+0015:  MOVF   21,W
+0016:  MOVWF  78
+0017:  MOVF   22,W
+0018:  MOVWF  79
+0019:  MOVF   23,W
+001A:  MOVWF  7A
+001B:  RETFIE
+001C:  MOVLP  00
+001D:  GOTO   01E
+.................... #include <Semaforo.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+.................... 
+.................... 
+.................... #FUSES NOWDT, NOMCLR
+.................... 
+.................... int8 contador = 0;
+.................... typedef enum {
+....................     VERDE,
+....................     AMARILLO,
+....................     ROJO
+.................... } EstadoSemaforo;
+.................... EstadoSemaforo estado = VERDE;
+.................... 
+.................... void INIT_GPIO();
+.................... void INIT_TIMER_0();
+.................... 
+.................... void main()
+*
+0059:  MOVLW  6A
+005A:  MOVLB  01
+005B:  MOVWF  19
+005C:  MOVLB  00
+005D:  CLRF   24
+005E:  CLRF   25
+005F:  MOVLB  03
+0060:  CLRF   0C
+0061:  CLRF   0D
+0062:  MOVLB  02
+0063:  CLRF   12
+0064:  CLRF   11
+0065:  CLRF   14
+0066:  CLRF   13
+.................... {
+.................... 
+....................     INIT_GPIO();
+0067:  MOVLB  00
+0068:  GOTO   044
+....................     INIT_TIMER_0();
+0069:  GOTO   04D
+....................     output_toggle(PIN_A2);
+006A:  MOVLB  01
+006B:  BCF    0C.2
+006C:  MOVLW  04
+006D:  MOVLB  02
+006E:  XORWF  0C,F
+....................     while (TRUE) {
+....................         switch (estado) {
+006F:  MOVLB  00
+0070:  MOVF   25,W
+0071:  BTFSC  03.2
+0072:  GOTO   07A
+0073:  XORLW  01
+0074:  BTFSC  03.2
+0075:  GOTO   084
+0076:  XORLW  03
+0077:  BTFSC  03.2
+0078:  GOTO   08E
+0079:  GOTO   097
+....................             case VERDE:
+....................                 output_high(PIN_A2);
+007A:  MOVLB  01
+007B:  BCF    0C.2
+007C:  MOVLB  02
+007D:  BSF    0C.2
+....................                 output_low(PIN_A4);
+007E:  MOVLB  01
+007F:  BCF    0C.4
+0080:  MOVLB  02
+0081:  BCF    0C.4
+....................                 break;
+0082:  MOVLB  00
+0083:  GOTO   097
+.................... 
+....................             case AMARILLO:            
+....................                 output_high(PIN_A3);
+0084:  MOVLB  01
+0085:  BCF    0C.3
+0086:  MOVLB  02
+0087:  BSF    0C.3
+....................                 output_low(PIN_A2);
+0088:  MOVLB  01
+0089:  BCF    0C.2
+008A:  MOVLB  02
+008B:  BCF    0C.2
+....................                 break;
+008C:  MOVLB  00
+008D:  GOTO   097
+.................... 
+....................             case ROJO:
+....................                 output_high(PIN_A4);
+008E:  MOVLB  01
+008F:  BCF    0C.4
+0090:  MOVLB  02
+0091:  BSF    0C.4
+....................                 output_low(PIN_A3);
+0092:  MOVLB  01
+0093:  BCF    0C.3
+0094:  MOVLB  02
+0095:  BCF    0C.3
+....................                 break;
+0096:  MOVLB  00
+....................         }
+0097:  GOTO   070
+....................     }
+.................... }
+.................... 
+0098:  SLEEP
+.................... void INIT_GPIO()
+.................... {
+....................    set_tris_a(0b00100000);
+*
+0044:  MOVLW  20
+0045:  MOVLB  01
+0046:  MOVWF  0C
+....................    output_a(0b00100000);
+0047:  CLRF   0C
+0048:  MOVLB  02
+0049:  MOVWF  0C
+004A:  MOVLP  00
+004B:  MOVLB  00
+004C:  GOTO   069 (RETURN)
+.................... }
+.................... 
+.................... void INIT_TIMER_0()
+.................... {
+.................... setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);
+004D:  MOVLB  01
+004E:  MOVF   15,W
+004F:  ANDLW  C0
+0050:  IORLW  07
+0051:  MOVWF  15
+.................... set_timer0(0); //Se recarga el timer0
+0052:  MOVLB  00
+0053:  CLRF   15
+.................... enable_interrupts(INT_TIMER0); // Habilita interrupcion timer0
+0054:  BSF    0B.5
+.................... enable_interrupts(global); // Habilita interrupciones globales
+0055:  MOVLW  C0
+0056:  IORWF  0B,F
+0057:  MOVLP  00
+0058:  GOTO   06A (RETURN)
+.................... }
+.................... 
+.................... #INT_TIMER0 
+.................... void TIMER0_ISR()
+.................... {
+....................    set_timer0(0);
+*
+001E:  CLRF   15
+....................    contador++;
+001F:  INCF   24,F
+....................    if (contador<76) {estado = VERDE;}
+0020:  MOVF   24,W
+0021:  SUBLW  4B
+0022:  BTFSS  03.0
+0023:  GOTO   026
+0024:  CLRF   25
+0025:  GOTO   03B
+....................    else if (contador>76 && contador<107 ) {estado = AMARILLO;}
+0026:  MOVF   24,W
+0027:  SUBLW  4C
+0028:  BTFSC  03.0
+0029:  GOTO   031
+002A:  MOVF   24,W
+002B:  SUBLW  6A
+002C:  BTFSS  03.0
+002D:  GOTO   031
+002E:  MOVLW  01
+002F:  MOVWF  25
+0030:  GOTO   03B
+....................    else if (contador>107 && contador<184 ) {estado = ROJO;}
+0031:  MOVF   24,W
+0032:  SUBLW  6B
+0033:  BTFSC  03.0
+0034:  GOTO   03B
+0035:  MOVF   24,W
+0036:  SUBLW  B7
+0037:  BTFSS  03.0
+0038:  GOTO   03B
+0039:  MOVLW  02
+003A:  MOVWF  25
+....................    if (contador>184){
+003B:  MOVF   24,W
+003C:  SUBLW  B8
+003D:  BTFSC  03.0
+003E:  GOTO   041
+....................    estado = VERDE;
+003F:  CLRF   25
+....................    contador=0;
+0040:  CLRF   24
+....................    }
+....................    
+....................    
+0041:  BCF    0B.2
+0042:  MOVLP  00
+0043:  GOTO   013
+.................... }
+
+Configuration Fuses:
+   Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

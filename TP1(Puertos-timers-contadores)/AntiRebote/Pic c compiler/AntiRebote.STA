@@ -1,0 +1,51 @@
+
+ROM used:   150/4096 (4%)
+            150/4096 (4%) including unused fragments
+
+            0.1 Average locations per line
+            4.5 Average locations per statement
+
+RAM used:   9/383 (2%) at main() level
+            20/383 (5%) worst case
+
+Stack used: 1 worst case (0 in main + 1 for interrupts)
+Stack size: 16
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   68    33 100  AntiRebote.c
+    5     0   0  AntiRebote.h
+  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+----- -----
+ 1038    33 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     70  47    0    407  4.7  main
+0     15  10    0     67  1.2  INIT_GPIO
+0     23  15    0    165  3.4  TIMER0_ISR
+0     13   9    0     78  1.6  INIT_TIMER_0
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               4
+    Statements              33
+    Comments                158
+    Volume (V)              983
+    Difficulty (D)          10.9
+    Effort to implement (E) 10687
+    Time to implement (T)   10 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   6
+    Maintainability (MI)    93
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  0  
+00003-00003     0  1  
+00004-0001D    26  0  
+0001E-007FF   121  1897  
+00800-00FFF     0  2048  
+
+
+

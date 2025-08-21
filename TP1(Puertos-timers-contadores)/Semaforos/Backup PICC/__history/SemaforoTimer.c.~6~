@@ -1,0 +1,66 @@
+#include <Semaforo.h>
+#FUSES NOWDT, NOMCLR
+
+int8 contador = 0;
+
+typedef enum {
+    VERDE,
+    AMARILLO,
+    ROJO
+} EstadoSemaforo;
+
+void INIT_GPIO();
+void INIT_TIMER_0();
+
+void main()
+{
+
+    INIT_GPIO();
+    INIT_TIMER_0();
+    EstadoSemaforo estado = VERDE;
+    output_toggle(PIN_A2);
+    while (TRUE) {
+        switch (contador) {
+            case (contador<76):
+                output_toggle(PIN_A2);
+                output_toggle(PIN_A3);
+                break;
+
+            case (contador>76 && contador<107):             
+                output_toggle(PIN_A3);
+                output_toggle(PIN_A4);
+                break;
+
+            case (contador>107 && contador<184):
+                output_toggle(PIN_A4);
+                output_toggle(PIN_A2);
+                contador=0;
+                break;
+            case (contador>184):
+                contador=0;
+                break;
+        }
+    }
+}
+
+void INIT_GPIO()
+{
+   set_tris_a(0b00100000);
+   output_a(0b00100000);
+}
+
+void INIT_TIMER_0()
+{
+setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);
+set_timer0(0); //Se recarga el timer0
+enable_interrupts(INT_TIMER0); // Habilita interrupcion timer0
+enable_interrupts(global); // Habilita interrupciones globales
+}
+
+#INT_TIMER0 
+void TIMER0_ISR()
+{
+   set_timer0(0);
+   contador++;
+   
+}

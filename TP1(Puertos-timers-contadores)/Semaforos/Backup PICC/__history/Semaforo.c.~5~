@@ -1,0 +1,40 @@
+#include <Semaforo.h>
+#FUSES NOWDT, NOMCLR
+
+typedef enum {
+    VERDE,
+    AMARILLO,
+    ROJO
+} EstadoSemaforo;
+
+void INITGPIO();
+
+void main()
+{
+
+    EstadoSemaforo estado = VERDE;
+
+    while (TRUE) {
+        switch (estado) {
+            case VERDE:
+                delay_ms(500);                 // 5 segundos
+                estado = AMARILLO;
+                break;
+
+            case AMARILLO:            
+                delay_ms(200);                 // 2 segundos
+                estado = ROJO;
+                break;
+
+            case ROJO:
+                delay_ms(500);                 // 5 segundos
+                estado = VERDE;
+                break;
+        }
+    }
+}
+
+void INITGPIO()
+{
+
+}

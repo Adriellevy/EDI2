@@ -1,0 +1,67 @@
+#include <AntiRebote.h>
+#FUSES NOMCLR,NOWDT
+
+typedef enum {
+    DESPULSADO,
+    PULSANDO,
+    PULSADO,
+    DESPULSANDO
+} EstadoAR;
+EstadoAR estado = DESPULSADO;
+
+void INIT_GPIO();
+void INIT_TIMER_0();
+
+void main()
+{
+   INIT_GPIO();
+   INIT_TIMER_0(); 
+   
+   while(TRUE){
+      if(input(PIN_A2) && estado != PULSANDO && estado !=PULSADO) {
+      estado = PULSANDO;
+      set_timer0(100);
+      output_low(PIN_A0);
+      }
+      if(input(PIN_A2) && estado ==PULSADO){
+      output_high(PIN_A0);
+      set_timer0(100);
+      }
+      if(!input(PIN_A2) && estado != PULSADO  ){
+      estado = DESPULSADO;
+      output_low(PIN_A0);
+      }
+   }
+
+}
+
+void INIT_GPIO()
+{
+   set_tris_a(0b00000100);
+   set_tris_b(0b00000000);
+   output_a(0x00);
+   output_b(0x00);
+}
+
+#INT_TIMER0
+void TIMER0_ISR(){
+  set_timer0(100);
+  switch(estado){
+         case PULSANDO:
+            estado = PULSADO;
+            break;
+         case PULSADO:
+            estado = DESPULSANDO;
+            break;
+         case DESPULSANDO:
+            estado = DESPULSADO;
+            break;
+  }
+}
+
+void INIT_TIMER_0(){
+   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_128);
+   set_timer0(100); 
+   enable_interrupts(INT_TIMER0); 
+   enable_interrupts(global);
+}

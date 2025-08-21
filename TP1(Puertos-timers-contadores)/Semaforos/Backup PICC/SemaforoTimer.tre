@@ -1,0 +1,7 @@
+ÀÄSemaforoTimer
+   ÃÄmain  0/64  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄ@cinit2  (Inline)  Ram=0
+   ³  ÃÄINIT_GPIO  0/9  Ram=0
+   ³  ÀÄINIT_TIMER_0  0/12  Ram=0
+   ÀÄTIMER0_ISR  0/38  Ram=0

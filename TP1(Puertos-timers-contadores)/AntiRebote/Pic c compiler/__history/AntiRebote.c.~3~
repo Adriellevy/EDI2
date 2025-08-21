@@ -1,0 +1,26 @@
+#include <AntiRebote.h>
+
+#FUSES NOMCLR,NOWDT
+
+void main()
+{
+
+   while(TRUE)
+   {
+
+
+      //TODO: User Code
+   }
+
+}
+
+#INT_TIMER0
+void TIMER0_ISR{
+   //funcion de interrupccion
+}
+
+void INIT_TIMER0{
+   setup_timer_0(RTCC_INTENAL|RTC_DIV_128); 
+   set_timer0(100); 
+   
+}

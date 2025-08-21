@@ -1,0 +1,256 @@
+CCS PCM C Compiler, Version 5.093, 4770               21-ago.-25 14:14
+
+               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\TP1(Puertos-timers-contadores)\AntiRebote\Pic c compiler\AntiRebote.lst
+
+               ROM used:   150 words (4%)
+                           Largest free fragment is 2048
+               RAM used:   9 (2%) at main() level
+                           20 (5%) worst case
+               Stack used: 1 locations (0 in main + 1 for interrupts)
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   051
+0002:  NOP
+*
+0004:  CLRF   03
+0005:  MOVLP  00
+0006:  MOVLB  00
+0007:  MOVF   77,W
+0008:  MOVWF  20
+0009:  MOVF   78,W
+000A:  MOVWF  21
+000B:  MOVF   79,W
+000C:  MOVWF  22
+000D:  MOVF   7A,W
+000E:  MOVWF  23
+000F:  BTFSS  0B.5
+0010:  GOTO   013
+0011:  BTFSC  0B.2
+0012:  GOTO   01C
+0013:  MOVF   20,W
+0014:  MOVWF  77
+0015:  MOVF   21,W
+0016:  MOVWF  78
+0017:  MOVF   22,W
+0018:  MOVWF  79
+0019:  MOVF   23,W
+001A:  MOVWF  7A
+001B:  RETFIE
+001C:  MOVLP  00
+001D:  GOTO   01E
+.................... #include <AntiRebote.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+.................... 
+.................... 
+.................... #FUSES NOMCLR,NOWDT
+.................... 
+.................... typedef enum {
+....................     DESPULSADO,
+....................     PULSANDO,
+....................     PULSADO,
+....................     DESPULSANDO
+.................... } EstadoAR;
+.................... EstadoAR estado = DESPULSADO;
+.................... 
+.................... void INIT_GPIO();
+.................... void INIT_TIMER_0();
+.................... 
+.................... void main()
+*
+0051:  MOVLW  6A
+0052:  MOVLB  01
+0053:  MOVWF  19
+0054:  MOVLB  00
+0055:  CLRF   24
+0056:  MOVLB  03
+0057:  CLRF   0C
+0058:  CLRF   0D
+0059:  MOVLB  02
+005A:  CLRF   12
+005B:  CLRF   11
+005C:  CLRF   14
+005D:  CLRF   13
+.................... {
+....................    INIT_GPIO();
+005E:  MOVLB  00
+005F:  GOTO   035
+....................    INIT_TIMER_0(); 
+0060:  GOTO   044
+....................    
+....................    while(TRUE){
+....................       if(input(PIN_A2) && estado != PULSANDO && estado !=PULSADO) {
+0061:  MOVLB  01
+0062:  BSF    0C.2
+0063:  MOVLB  00
+0064:  BTFSS  0C.2
+0065:  GOTO   076
+0066:  DECFSZ 24,W
+0067:  GOTO   069
+0068:  GOTO   076
+0069:  MOVF   24,W
+006A:  SUBLW  02
+006B:  BTFSC  03.2
+006C:  GOTO   076
+....................       estado = PULSANDO;
+006D:  MOVLW  01
+006E:  MOVWF  24
+....................       set_timer0(100);
+006F:  MOVLW  64
+0070:  MOVWF  15
+....................       output_low(PIN_A0);
+0071:  MOVLB  01
+0072:  BCF    0C.0
+0073:  MOVLB  02
+0074:  BCF    0C.0
+0075:  MOVLB  00
+....................       }
+....................       if(input(PIN_A2) && estado ==PULSADO){
+0076:  MOVLB  01
+0077:  BSF    0C.2
+0078:  MOVLB  00
+0079:  BTFSS  0C.2
+007A:  GOTO   086
+007B:  MOVF   24,W
+007C:  SUBLW  02
+007D:  BTFSS  03.2
+007E:  GOTO   086
+....................       output_high(PIN_A0);
+007F:  MOVLB  01
+0080:  BCF    0C.0
+0081:  MOVLB  02
+0082:  BSF    0C.0
+....................       set_timer0(100);
+0083:  MOVLW  64
+0084:  MOVLB  00
+0085:  MOVWF  15
+....................       }
+....................       if(!input(PIN_A2) && estado != PULSADO  ){
+0086:  MOVLB  01
+0087:  BSF    0C.2
+0088:  MOVLB  00
+0089:  BTFSC  0C.2
+008A:  GOTO   095
+008B:  MOVF   24,W
+008C:  SUBLW  02
+008D:  BTFSC  03.2
+008E:  GOTO   095
+....................       estado = DESPULSADO;
+008F:  CLRF   24
+....................       output_low(PIN_A0);
+0090:  MOVLB  01
+0091:  BCF    0C.0
+0092:  MOVLB  02
+0093:  BCF    0C.0
+0094:  MOVLB  00
+....................       }
+0095:  GOTO   061
+....................    }
+.................... 
+.................... }
+.................... 
+0096:  SLEEP
+.................... void INIT_GPIO()
+.................... {
+....................    set_tris_a(0b00000100);
+*
+0035:  MOVLW  04
+0036:  MOVLB  01
+0037:  MOVWF  0C
+....................    set_tris_b(0b00000000);
+0038:  MOVLW  00
+0039:  MOVWF  0D
+....................    output_a(0x00);
+003A:  CLRF   0C
+003B:  MOVLB  02
+003C:  CLRF   0C
+....................    output_b(0x00);
+003D:  MOVLB  01
+003E:  CLRF   0D
+003F:  MOVLB  02
+0040:  CLRF   0D
+0041:  MOVLP  00
+0042:  MOVLB  00
+0043:  GOTO   060 (RETURN)
+.................... }
+.................... 
+.................... #INT_TIMER0
+.................... void TIMER0_ISR(){
+....................   set_timer0(100);
+*
+001E:  MOVLW  64
+001F:  MOVWF  15
+....................   switch(estado){
+0020:  MOVF   24,W
+0021:  XORLW  01
+0022:  BTFSC  03.2
+0023:  GOTO   02B
+0024:  XORLW  03
+0025:  BTFSC  03.2
+0026:  GOTO   02E
+0027:  XORLW  01
+0028:  BTFSC  03.2
+0029:  GOTO   031
+002A:  GOTO   032
+....................          case PULSANDO:
+....................             estado = PULSADO;
+002B:  MOVLW  02
+002C:  MOVWF  24
+....................             break;
+002D:  GOTO   032
+....................          case PULSADO:
+....................             estado = DESPULSANDO;
+002E:  MOVLW  03
+002F:  MOVWF  24
+....................             break;
+0030:  GOTO   032
+....................          case DESPULSANDO:
+....................             estado = DESPULSADO;
+0031:  CLRF   24
+....................             break;
+....................   }
+0032:  BCF    0B.2
+0033:  MOVLP  00
+0034:  GOTO   013
+.................... }
+.................... 
+.................... void INIT_TIMER_0(){
+....................    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_128);
+*
+0044:  MOVLB  01
+0045:  MOVF   15,W
+0046:  ANDLW  C0
+0047:  IORLW  06
+0048:  MOVWF  15
+....................    set_timer0(100); 
+0049:  MOVLW  64
+004A:  MOVLB  00
+004B:  MOVWF  15
+....................    enable_interrupts(INT_TIMER0); 
+004C:  BSF    0B.5
+....................    enable_interrupts(global);
+004D:  MOVLW  C0
+004E:  IORWF  0B,F
+004F:  MOVLP  00
+0050:  GOTO   061 (RETURN)
+.................... }
+
+Configuration Fuses:
+   Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

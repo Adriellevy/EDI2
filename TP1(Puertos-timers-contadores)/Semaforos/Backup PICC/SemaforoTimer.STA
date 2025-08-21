@@ -1,0 +1,51 @@
+
+ROM used:   152/4096 (4%)
+            152/4096 (4%) including unused fragments
+
+            0.1 Average locations per line
+            4.2 Average locations per statement
+
+RAM used:   10/383 (3%) at main() level
+            21/383 (5%) worst case
+
+Stack used: 1 worst case (0 in main + 1 for interrupts)
+Stack size: 16
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   70    36 100  SemaforoTimer.c
+    5     0   0  Semaforo.h
+  965     0   0  ..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+----- -----
+ 1040    36 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     64  42    0    292  3.7  main
+0      9   6    0     32  1.0  INIT_GPIO
+0     12   8    0     78  1.6  INIT_TIMER_0
+0     38  25    0    328  4.6  TIMER0_ISR
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               4
+    Statements              36
+    Comments                161
+    Volume (V)              994
+    Difficulty (D)          10.8
+    Effort to implement (E) 10780
+    Time to implement (T)   10 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   7
+    Maintainability (MI)    87
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  0  
+00003-00003     0  1  
+00004-0001D    26  0  
+0001E-007FF   123  1895  
+00800-00FFF     0  2048  
+
+
+

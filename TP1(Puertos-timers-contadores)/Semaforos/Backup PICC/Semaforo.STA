@@ -1,0 +1,48 @@
+
+ROM used:   123/4096 (3%)
+            123/4096 (3%) including unused fragments
+
+            0.1 Average locations per line
+            5.3 Average locations per statement
+
+RAM used:   6/383 (2%) at main() level
+            18/383 (5%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 16
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   48    23 100  Semaforo.c
+    5     0   0  Semaforo.h
+  965     0   0  ..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+----- -----
+ 1018    23 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     22  18    1             @delay_ms1
+0     89  72    2    470  4.3  main
+0      9   7    0     32  1.0  INITGPIO
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               2
+    Statements              23
+    Comments                161
+    Volume (V)              554
+    Difficulty (D)          5.2
+    Effort to implement (E) 2881
+    Time to implement (T)   3 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   3
+    Maintainability (MI)    150
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  0  
+00003-007FF   120  1925  
+00800-00FFF     0  2048  
+
+
+

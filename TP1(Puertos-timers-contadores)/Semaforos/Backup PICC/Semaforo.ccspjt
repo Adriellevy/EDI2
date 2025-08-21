@@ -1,0 +1,49 @@
+[PROJECT]
+Target=Semaforo.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Semaforo.c
+[Directories]
+Include=
+[C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\Backup PICC\Semaforo]
+Type=4
+[mru-list]
+1=Semaforo.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=19-08-2025
+D1_L=4
+D1_L1=[47015]Project Opened.
+D1_L2=[47029]Started Editing.
+D1_L3=[48975]Stopped Editing.
+D1_L4=[49698]Project Closed.
+D2=21-08-2025
+D2_L=4
+D2_L1=[45347]Project Opened.
+D2_L2=[45365]Project Closed.
+D2_L3=[45394]Project Opened.
+D2_L4=[48059]Project Closed.
+
+[Opened Files]
+1=..\..\AntiRebote\Pic c compiler\AntiRebote.c
+t1=1
+Count=1
+2=Semaforo.h
+t2=1
+3=..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+t3=57
+[Semaforo.c]
+Type=4
+
+[defines]
+buildcount=5
+[Units]
+Count=1
+1=Semaforo (main)

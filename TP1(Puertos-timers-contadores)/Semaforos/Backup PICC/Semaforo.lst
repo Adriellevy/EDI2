@@ -1,0 +1,206 @@
+CCS PCM C Compiler, Version 5.093, 4770               19-Aug-25 13:32
+
+               Filename:   C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\Backup PICC\Semaforo.lst
+
+               ROM used:   123 words (3%)
+                           Largest free fragment is 2048
+               RAM used:   6 (2%) at main() level
+                           18 (5%) worst case
+               Stack used: 0 locations
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   022
+0002:  NOP
+.................... #include <Semaforo.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+*
+000C:  MOVLW  20
+000D:  MOVWF  05
+000E:  MOVLW  03
+000F:  MOVWF  04
+0010:  MOVF   00,W
+0011:  BTFSC  03.2
+0012:  GOTO   021
+0013:  MOVLW  01
+0014:  MOVWF  78
+0015:  CLRF   77
+0016:  DECFSZ 77,F
+0017:  GOTO   016
+0018:  DECFSZ 78,F
+0019:  GOTO   015
+001A:  MOVLW  4A
+001B:  MOVWF  77
+001C:  DECFSZ 77,F
+001D:  GOTO   01C
+001E:  GOTO   01F
+001F:  DECFSZ 00,F
+0020:  GOTO   013
+0021:  RETURN
+.................... 
+.................... 
+.................... #FUSES NOWDT, NOMCLR
+.................... 
+.................... typedef enum {
+....................     VERDE,
+....................     AMARILLO,
+....................     ROJO
+.................... } EstadoSemaforo;
+.................... 
+.................... void INITGPIO();
+.................... 
+.................... void main()
+0022:  MOVLW  6A
+0023:  MOVLB  01
+0024:  MOVWF  19
+0025:  MOVLB  03
+0026:  CLRF   0C
+0027:  CLRF   0D
+0028:  MOVLB  02
+0029:  CLRF   12
+002A:  CLRF   11
+002B:  CLRF   14
+002C:  CLRF   13
+.................... {
+....................     INITGPIO();
+002D:  MOVLB  00
+002E:  GOTO   003
+....................     EstadoSemaforo estado = VERDE;
+002F:  CLRF   21
+....................     output_toggle(PIN_A2);
+0030:  MOVLB  01
+0031:  BCF    0C.2
+0032:  MOVLW  04
+0033:  MOVLB  02
+0034:  XORWF  0C,F
+....................     while (TRUE) {
+....................         switch (estado) {
+0035:  MOVLB  00
+0036:  MOVF   21,W
+0037:  BTFSC  03.2
+0038:  GOTO   040
+0039:  XORLW  01
+003A:  BTFSC  03.2
+003B:  GOTO   055
+003C:  XORLW  03
+003D:  BTFSC  03.2
+003E:  GOTO   066
+003F:  GOTO   079
+....................             case VERDE:
+....................                 delay_ms(500);  // 5 segundos
+0040:  MOVLW  02
+0041:  MOVWF  22
+0042:  MOVLW  FA
+0043:  MOVWF  23
+0044:  CALL   00C
+0045:  DECFSZ 22,F
+0046:  GOTO   042
+....................                 output_toggle(PIN_A2);
+0047:  MOVLB  01
+0048:  BCF    0C.2
+0049:  MOVLW  04
+004A:  MOVLB  02
+004B:  XORWF  0C,F
+....................                 output_toggle(PIN_A3);
+004C:  MOVLB  01
+004D:  BCF    0C.3
+004E:  MOVLW  08
+004F:  MOVLB  02
+0050:  XORWF  0C,F
+....................                 estado = AMARILLO;
+0051:  MOVLW  01
+0052:  MOVLB  00
+0053:  MOVWF  21
+....................                 break;
+0054:  GOTO   079
+.................... 
+....................             case AMARILLO:            
+....................                 delay_ms(200);   // 2 segundos
+0055:  MOVLW  C8
+0056:  MOVWF  23
+0057:  CALL   00C
+....................                 output_toggle(PIN_A3);
+0058:  MOVLB  01
+0059:  BCF    0C.3
+005A:  MOVLW  08
+005B:  MOVLB  02
+005C:  XORWF  0C,F
+....................                 output_toggle(PIN_A4);
+005D:  MOVLB  01
+005E:  BCF    0C.4
+005F:  MOVLW  10
+0060:  MOVLB  02
+0061:  XORWF  0C,F
+....................                 estado = ROJO;
+0062:  MOVLW  02
+0063:  MOVLB  00
+0064:  MOVWF  21
+....................                 break;
+0065:  GOTO   079
+.................... 
+....................             case ROJO:
+....................                 delay_ms(500);                 // 5 segundos
+0066:  MOVLW  02
+0067:  MOVWF  22
+0068:  MOVLW  FA
+0069:  MOVWF  23
+006A:  CALL   00C
+006B:  DECFSZ 22,F
+006C:  GOTO   068
+....................                 output_toggle(PIN_A4);
+006D:  MOVLB  01
+006E:  BCF    0C.4
+006F:  MOVLW  10
+0070:  MOVLB  02
+0071:  XORWF  0C,F
+....................                 output_toggle(PIN_A2);
+0072:  MOVLB  01
+0073:  BCF    0C.2
+0074:  MOVLW  04
+0075:  MOVLB  02
+0076:  XORWF  0C,F
+....................                 estado = VERDE;
+0077:  MOVLB  00
+0078:  CLRF   21
+....................                 break;
+....................         }
+0079:  GOTO   036
+....................     }
+.................... }
+.................... 
+007A:  SLEEP
+.................... void INITGPIO()
+.................... {
+....................    set_tris_a(0b00100000);
+*
+0003:  MOVLW  20
+0004:  MOVLB  01
+0005:  MOVWF  0C
+....................    output_a(0b00100000);
+0006:  CLRF   0C
+0007:  MOVLB  02
+0008:  MOVWF  0C
+0009:  MOVLP  00
+000A:  MOVLB  00
+000B:  GOTO   02F (RETURN)
+.................... }
+
+Configuration Fuses:
+   Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP
