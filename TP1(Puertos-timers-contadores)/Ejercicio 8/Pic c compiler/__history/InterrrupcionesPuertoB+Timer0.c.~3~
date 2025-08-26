@@ -1,0 +1,52 @@
+#include <InterrrupcionesPuertoB+Timer0.h>
+#fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO
+#use delay(clock=8000000)   // Oscilador interno a 8 MHz
+
+volatile int1 led_on = 0;    // Bandera para saber si el LED está encendido
+volatile int16 counter = 0;  // Contador de ms
+
+// Interrupción por cambio en PORTB (RB4-RB7)
+#INT_RB
+void RB_isr(void) {
+   // Si alguno de los pines RB4–RB7 está en alto
+   if(input(PIN_B4) || input(PIN_B5) || input(PIN_B6) || input(PIN_B7)) {
+      output_high(PIN_A2);   // Enciende LED
+      led_on = 1;            // Activa bandera
+      counter = 0;           // Reinicia contador
+   }
+}
+
+// Interrupción del Timer0 (cada 1 ms aprox)
+#INT_TIMER0
+void T0_isr(void) {
+   set_timer0(100);  // Recarga para 1 ms aprox (con 8 MHz, prescaler ajustado)
+   
+   if(led_on) {
+      counter++;
+      if(counter >= 500) {   // 500 ms pasados
+         output_low(PIN_B2); // Apagar LED
+         led_on = 0;         // Reset bandera
+      }
+   }
+}
+
+void main() {
+   // Configuración de puertos
+   set_tris_b(0b11110000);   // RB7-RB4 entradas, RB3-RB0 salidas
+   output_low(PIN_B2);
+
+   // Configuración Timer0 ? 1ms
+   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_64);  
+   set_timer0(100);   // Ajuste fino para 1 ms
+   
+   // Habilitar interrupciones
+   clear_interrupt(INT_RB);      
+   enable_interrupts(INT_RB);   
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+
+   while(TRUE) {
+      // El PIC se queda en loop sin hacer nada
+      // Todo lo manejan las interrupciones
+   }
+}

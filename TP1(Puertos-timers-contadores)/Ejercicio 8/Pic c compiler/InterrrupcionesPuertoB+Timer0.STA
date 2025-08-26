@@ -1,0 +1,52 @@
+
+ROM used:   118/4096 (3%)
+            118/4096 (3%) including unused fragments
+
+            0.1 Average locations per line
+            4.5 Average locations per statement
+
+RAM used:   10/383 (3%) at main() level
+            21/383 (5%) worst case
+
+Stack used: 1 worst case (0 in main + 1 for interrupts)
+Stack size: 16
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   63    26 100  InterrrupcionesPuertoB+Timer0.c
+    5     0   0  InterrrupcionesPuertoB+Timer0.h
+  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+----- -----
+ 1033    26 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     29  25    0    114  1.7  main
+0     11   9    0     78  1.6  INIT_TIMER0
+0     10   8    0     38  1.4  EXT_ISR
+0     18  15    0    121  3.0  timer0_isr
+0     15  13    0     67  1.2  INIT_GPIO
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               5
+    Statements              26
+    Comments                177
+    Volume (V)              658
+    Difficulty (D)          8.8
+    Effort to implement (E) 5791
+    Time to implement (T)   5 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   2
+    Maintainability (MI)    129
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  0  
+00003-00003     0  1  
+00004-00023    32  0  
+00024-007FF    83  1929  
+00800-00FFF     0  2048  
+
+
+

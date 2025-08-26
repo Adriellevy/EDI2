@@ -1,0 +1,62 @@
+#include <InterrrupcionesPuertoB+Timer0.h>
+#FUSES NOWDT , NOMCLR
+#use delay(clock=4000000)   // Oscilador de 4 MHz
+
+// --- Variables globales ---
+int contador_overflows = 0;
+int led_encendido = 0;
+
+// --- Prototipos ---
+void INIT_GPIO();
+void INIT_TIMER0();
+
+// --- MAIN ---
+void main() {
+   INIT_GPIO();
+   INIT_TIMER0();
+
+   enable_interrupts(INT_EXT);     // Habilitar interrupción por RB0/INT
+   enable_interrupts(GLOBAL);      // Habilitar interrupciones globales
+
+   while(TRUE) {
+      // Loop principal vacío
+   }
+}
+
+// --- Configuración Timer0 ---
+void INIT_TIMER0() {
+   set_timer0(0);                             
+   clear_interrupt(INT_TIMER0); 
+   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);  
+   enable_interrupts(INT_TIMER0);   // Habilitar interrupción Timer0
+}
+
+// --- ISR: Interrupción por RB0/INT ---
+#INT_EXT
+void ext_isr(void) {
+   output_high(PIN_A0);   // Encender LED en RA0
+   led_encendido = 1;     // Flag para que Timer0 lo apague después
+}
+
+// --- ISR: Interrupción Timer0 ---
+#INT_TIMER0
+void timer0_isr(void) {
+   contador_overflows++;
+
+   if(contador_overflows >= 8) {   // ~500ms con prescaler 1:256
+      if(led_encendido) {
+         output_low(PIN_A0);   // Apagar LED
+         led_encendido = 0;
+      }
+      contador_overflows = 0;
+   }
+}
+
+// --- Configuración GPIO ---
+void INIT_GPIO() {
+   set_tris_a(0b00011000);  // RA0 salida para LED
+   set_tris_b(0b00000001);  // RB0 como entrada (INT)
+   output_a(0b00000000);    // Inicializar RA en 0
+   output_b(0b00000000);    // Inicializar RB en 0
+}
+

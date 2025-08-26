@@ -1,0 +1,8 @@
+ÀÄInterrrupcionesPuertoB+Timer0
+   ÃÄmain  0/29  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄ@cinit2  (Inline)  Ram=0
+   ³  ÃÄINIT_GPIO  0/15  Ram=0
+   ³  ÀÄINIT_TIMER0  0/11  Ram=0
+   ÃÄEXT_ISR  0/10  Ram=0
+   ÀÄtimer0_isr  0/18  Ram=0

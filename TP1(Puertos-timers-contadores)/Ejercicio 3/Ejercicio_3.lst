@@ -1,0 +1,168 @@
+CCS PCM C Compiler, Version 5.093, 4770               18-ago.-25 20:37
+
+               Filename:   C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\Guia 1\Ejercicio_3\Ejercicio_3.lst
+
+               ROM used:   98 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   6 (2%) at main() level
+                           18 (5%) worst case
+               Stack used: 0 locations
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   021
+0002:  NOP
+.................... #include <Ejercicio_3.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+*
+000B:  MOVLW  20
+000C:  MOVWF  05
+000D:  MOVLW  03
+000E:  MOVWF  04
+000F:  MOVF   00,W
+0010:  BTFSC  03.2
+0011:  GOTO   020
+0012:  MOVLW  01
+0013:  MOVWF  78
+0014:  CLRF   77
+0015:  DECFSZ 77,F
+0016:  GOTO   015
+0017:  DECFSZ 78,F
+0018:  GOTO   014
+0019:  MOVLW  4A
+001A:  MOVWF  77
+001B:  DECFSZ 77,F
+001C:  GOTO   01B
+001D:  GOTO   01E
+001E:  DECFSZ 00,F
+001F:  GOTO   012
+0020:  RETURN
+.................... 
+.................... 
+.................... #FUSES INTRC_IO
+.................... #FUSES NOMCLR
+.................... #FUSES NOWDT
+.................... 
+.................... void GPIO(void);
+.................... 
+.................... void main()
+0021:  MOVLW  6A
+0022:  MOVLB  01
+0023:  MOVWF  19
+0024:  MOVLB  03
+0025:  CLRF   0C
+0026:  CLRF   0D
+0027:  MOVLB  02
+0028:  CLRF   12
+0029:  CLRF   11
+002A:  CLRF   14
+002B:  CLRF   13
+.................... {
+....................    GPIO();
+002C:  MOVLB  00
+002D:  GOTO   003
+....................    while(TRUE)
+....................    {
+....................       int1 s1 = input(PIN_B1);   // Lee interruptor en RB1
+....................       int1 s2 = input(PIN_B2);   // Lee interruptor en RB2
+002E:  MOVLB  01
+002F:  BSF    0D.1
+0030:  MOVLB  00
+0031:  BCF    21.0
+0032:  BTFSC  0D.1
+0033:  BSF    21.0
+0034:  MOVLB  01
+0035:  BSF    0D.2
+0036:  MOVLB  00
+0037:  BCF    21.1
+0038:  BTFSC  0D.2
+0039:  BSF    21.1
+.................... 
+....................       if (s1 == s2) { // Mismo estado: hace intermitente el LED
+003A:  CLRF   77
+003B:  BTFSC  21.1
+003C:  BSF    77.0
+003D:  MOVF   21,W
+003E:  XORWF  77,W
+003F:  ANDLW  01
+0040:  BTFSS  03.2
+0041:  GOTO   05B
+....................          
+....................         output_high(PIN_B4); //Prende el led
+0042:  MOVLB  01
+0043:  BCF    0D.4
+0044:  MOVLB  02
+0045:  BSF    0D.4
+....................         delay_ms(500);  //Espera 500ms y lo apaga
+0046:  MOVLW  02
+0047:  MOVLB  00
+0048:  MOVWF  22
+0049:  MOVLW  FA
+004A:  MOVWF  23
+004B:  CALL   00B
+004C:  DECFSZ 22,F
+004D:  GOTO   049
+....................         output_low(PIN_B4);   //Apaga el led
+004E:  MOVLB  01
+004F:  BCF    0D.4
+0050:  MOVLB  02
+0051:  BCF    0D.4
+....................         delay_ms(500);  //Espera 500ms y lo prende
+0052:  MOVLW  02
+0053:  MOVLB  00
+0054:  MOVWF  22
+0055:  MOVLW  FA
+0056:  MOVWF  23
+0057:  CALL   00B
+0058:  DECFSZ 22,F
+0059:  GOTO   055
+....................          
+....................       } else { // Distinto estado: LED apagado (sin parpadeo)
+005A:  GOTO   060
+....................          
+....................          output_low(PIN_B4);
+005B:  MOVLB  01
+005C:  BCF    0D.4
+005D:  MOVLB  02
+005E:  BCF    0D.4
+005F:  MOVLB  00
+....................       }
+0060:  GOTO   02E
+....................    }      
+.................... }
+.................... 
+0061:  SLEEP
+.................... void GPIO(void){
+....................    set_tris_a(0xFF);
+*
+0003:  MOVLW  FF
+0004:  MOVLB  01
+0005:  MOVWF  0C
+....................    set_tris_b(0b11101111);
+0006:  MOVLW  EF
+0007:  MOVWF  0D
+0008:  MOVLP  00
+0009:  MOVLB  00
+000A:  GOTO   02E (RETURN)
+.................... }
+.................... 
+
+Configuration Fuses:
+   Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

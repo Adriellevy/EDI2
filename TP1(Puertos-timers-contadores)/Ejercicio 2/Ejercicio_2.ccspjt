@@ -1,0 +1,67 @@
+[PROJECT]
+Target=Ejercicio_2.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Ejercicio_2.c
+[Directories]
+Include=
+[C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\Guia 1\Ejercicio_2\Ejercicio_2]
+Type=4
+[mru-list]
+1=Ejercicio_2.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=12-08-2025
+D1_L=6
+D1_L1=[69012]Project Opened.
+D1_L2=[69021]Started Editing.
+D1_L3=[69835]Stopped Editing.
+D1_L4=[70027]Started Editing.
+D1_L5=[70281]Stopped Editing.
+TotalEdit=17
+TotalDebug=0
+D1_E=13
+D1_D=0
+D1_L6=[70281]Project Closed.
+D2=18-08-2025
+D2_L=8
+D2_L1=[72596]Project Opened.
+D2_L2=[72916]Project Closed.
+D2_L3=[72923]Project Opened.
+D2_L4=[72975]Started Editing.
+D2_L5=[73471]Stopped Editing.
+D2_E=4
+D2_D=0
+D2_L6=[73783]Project Closed.
+D2_L7=[74039]Project Opened.
+D2_L8=[74107]Project Closed.
+
+[Opened Files]
+1=Ejercicio_2.c
+t1=1
+2=Ejercicio_2.h
+t2=1
+3=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+t3=1
+4=..\Ejercicio_4\Contador.c
+t4=1
+Count=1
+5=..\Ejercicio_1\Ejercicio_1.c
+t5=1
+6=..\Ejercicio_3\Ejercicio_3.c
+t6=1
+[Ejercicio_2.c]
+Type=4
+
+[defines]
+buildcount=6
+[Units]
+Count=1
+1=Ejercicio_2 (main)

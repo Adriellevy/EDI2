@@ -1,0 +1,132 @@
+CCS PCM C Compiler, Version 5.093, 4770               18-ago.-25 20:27
+
+               Filename:   C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\Guia 1\Ejercicio_2\Ejercicio_2.lst
+
+               ROM used:   72 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   5 (1%) at main() level
+                           17 (4%) worst case
+               Stack used: 0 locations
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   021
+0002:  NOP
+.................... #include <Ejercicio_2.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+*
+000B:  MOVLW  20
+000C:  MOVWF  05
+000D:  MOVLW  02
+000E:  MOVWF  04
+000F:  MOVF   00,W
+0010:  BTFSC  03.2
+0011:  GOTO   020
+0012:  MOVLW  01
+0013:  MOVWF  78
+0014:  CLRF   77
+0015:  DECFSZ 77,F
+0016:  GOTO   015
+0017:  DECFSZ 78,F
+0018:  GOTO   014
+0019:  MOVLW  4A
+001A:  MOVWF  77
+001B:  DECFSZ 77,F
+001C:  GOTO   01B
+001D:  GOTO   01E
+001E:  DECFSZ 00,F
+001F:  GOTO   012
+0020:  RETURN
+.................... 
+.................... 
+.................... #FUSES INTRC_IO
+.................... #FUSES NOMCLR
+.................... #FUSES NOWDT
+.................... 
+.................... void GPIO(void);
+.................... 
+.................... void main()
+0021:  MOVLW  6A
+0022:  MOVLB  01
+0023:  MOVWF  19
+0024:  MOVLB  03
+0025:  CLRF   0C
+0026:  CLRF   0D
+0027:  MOVLB  02
+0028:  CLRF   12
+0029:  CLRF   11
+002A:  CLRF   14
+002B:  CLRF   13
+.................... {
+....................    GPIO();
+002C:  MOVLB  00
+002D:  GOTO   003
+....................    while(TRUE)
+....................    {
+....................       output_high(PIN_B4); //Prende el led
+002E:  MOVLB  01
+002F:  BCF    0D.4
+0030:  MOVLB  02
+0031:  BSF    0D.4
+....................       delay_ms(500);  //Espera 500ms y lo apaga
+0032:  MOVLW  02
+0033:  MOVLB  00
+0034:  MOVWF  21
+0035:  MOVLW  FA
+0036:  MOVWF  22
+0037:  CALL   00B
+0038:  DECFSZ 21,F
+0039:  GOTO   035
+....................       output_low(PIN_B4);   //Apaga el led
+003A:  MOVLB  01
+003B:  BCF    0D.4
+003C:  MOVLB  02
+003D:  BCF    0D.4
+....................       delay_ms(500);  //Espera 500ms y lo prende
+003E:  MOVLW  02
+003F:  MOVLB  00
+0040:  MOVWF  21
+0041:  MOVLW  FA
+0042:  MOVWF  22
+0043:  CALL   00B
+0044:  DECFSZ 21,F
+0045:  GOTO   041
+0046:  GOTO   02E
+....................    }
+.................... 
+.................... }
+.................... 
+0047:  SLEEP
+.................... void GPIO(void){
+....................    set_tris_a(0xFF);
+*
+0003:  MOVLW  FF
+0004:  MOVLB  01
+0005:  MOVWF  0C
+....................    set_tris_b(0b11101111);
+0006:  MOVLW  EF
+0007:  MOVWF  0D
+0008:  MOVLP  00
+0009:  MOVLB  00
+000A:  GOTO   02E (RETURN)
+.................... }
+
+Configuration Fuses:
+   Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP
