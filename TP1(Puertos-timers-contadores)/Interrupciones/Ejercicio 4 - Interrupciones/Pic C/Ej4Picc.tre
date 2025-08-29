@@ -1,0 +1,9 @@
+ÀÄEj4Picc
+   ÃÄmain  0/22  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄ@cinit2  (Inline)  Ram=0
+   ³  ÃÄINIT_GPIO  0/15  Ram=0
+   ³  ÃÄINIT_TIMER_0  0/12  Ram=0
+   ³  ÀÄINIT_INTER  0/16  Ram=0
+   ÃÄTIMER0_ISR  0/57  Ram=0
+   ÀÄEXT_isr  0/43  Ram=0

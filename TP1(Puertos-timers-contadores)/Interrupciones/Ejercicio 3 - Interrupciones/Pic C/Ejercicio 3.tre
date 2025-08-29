@@ -1,0 +1,9 @@
+ÀÄEjercicio 3
+   ÃÄmain  0/21  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄ@cinit2  (Inline)  Ram=0
+   ³  ÃÄINIT_GPIO  0/15  Ram=0
+   ³  ÃÄINIT_TIMER_0  0/12  Ram=0
+   ³  ÀÄINIT_INTER  0/16  Ram=0
+   ÃÄTIMER0_ISR  0/26  Ram=0
+   ÀÄEXT_isr  0/11  Ram=0

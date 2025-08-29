@@ -1,0 +1,52 @@
+[PROJECT]
+Target=Ej4Picc.hex
+Processor_Text=PIC16F1827
+CCSVersion=5.093
+Compiler=PCM
+[Target Data]
+FileList=Ej4Picc.c
+[Ej4Picc.c]
+Type=4
+[mru-list]
+1=Ej4Picc.c
+
+[defines]
+buildcount=50
+
+[Opened Files]
+1=Ej4Picc.c
+t1=1
+2=..\..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+t2=564
+Count=1
+
+[ProjectLog]
+Days=1
+D1=26-08-2025
+D1_L=16
+D1_L1=[55056]Stopped Editing.
+D1_L2=[55277]Started Editing.
+D1_L3=[56295]Stopped Editing.
+D1_L4=[56595]Started Editing.
+D1_L5=[58044]Stopped Editing.
+D1_L6=[58051]Started Editing.
+D1_L7=[60783]Stopped Editing.
+D1_L8=[60830]Started Editing.
+D1_L9=[61462]Stopped Editing.
+TotalEdit=148
+TotalDebug=0
+D1_E=148
+D1_D=0
+D1_L10=[61462]Project Closed.
+D1_L11=[62272]Project Opened.
+D1_L12=[62342]Started Editing.
+D1_L13=[62877]Stopped Editing.
+D1_L14=[63184]Started Editing.
+D1_L15=[65871]Stopped Editing.
+D1_L16=[65871]Project Closed.
+
+[fileformats]
+forcecoff=0
+[Units]
+Count=1
+1=Ej4Picc (main)

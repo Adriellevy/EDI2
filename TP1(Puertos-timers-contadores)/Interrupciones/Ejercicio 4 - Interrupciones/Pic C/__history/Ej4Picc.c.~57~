@@ -1,0 +1,100 @@
+#include <16F1827.h>
+#device ADC=10
+#use delay(internal=4MHz)
+#FUSES NOWDT, NOMCLR
+
+int8 contador = 0;
+int1 flag_rb5 = 0;
+
+
+void INIT_GPIO();
+void INIT_TIMER_0();
+void INIT_INTER();
+
+void main()
+{
+
+    INIT_GPIO();
+    INIT_TIMER_0();
+    INIT_INTER();
+    while (TRUE) {
+        
+        }
+    }
+
+void INIT_GPIO()
+{
+   set_tris_a(0b00000000);
+   output_a(0b00000000);
+   set_tris_b(0b11110000);
+   output_b(0b00000000);
+}
+
+void INIT_TIMER_0() //Utilizar en RB5
+{
+setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);
+set_timer0(0); //Se recarga el timer0
+enable_interrupts(INT_TIMER0); // Habilita interrupcion timer0
+enable_interrupts(global); // Habilita interrupciones globales
+}
+
+   
+void INIT_INTER()
+{
+   enable_interrupts(INT_EXT_L2H);
+   enable_interrupts(INT_RB); 
+   enable_interrupts(INT_IOC);
+   enable_interrupts(GLOBAL);
+}
+
+#INT_TIMER0 
+void TIMER0_ISR()
+{
+   set_timer0(0);
+   contador++;
+   if (flag_rb5)
+   {
+      if (contador>=15 && contador<31 ) 
+      {output_high(PIN_A1);}
+      else if (contador>=31) 
+      {
+      output_low(PIN_A1);
+      contador=0;
+      flag_rb5 = 0;
+      }
+   }
+}
+
+#INT_IOC
+void EXT_isr(void){
+
+   // RB4 CON TIMER 1
+   
+   
+   // RB5 CON TIMER 0
+   if(input_state(PIN_B5))
+      {
+      flag_rb5 = 1;
+      contador = 0;
+      set_timer0(0);
+      }
+   
+   // RB6 COPIA A RA3
+   else if (input_state(PIN_B6)){
+   output_bit(PIN_A3, input(PIN_B3));}   
+   
+   // RB7 DEFINIDO COMO TOGGLE DEL LED
+   else if (input_state(PIN_B7)){
+   output_toggle(PIN_B3);}   
+
+}
+      
+
+
+  
+   
+ 
+  
+  
+ 
+
