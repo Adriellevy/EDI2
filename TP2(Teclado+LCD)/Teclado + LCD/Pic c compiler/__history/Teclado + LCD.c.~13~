@@ -1,0 +1,41 @@
+#include <Teclado + LCD.h>
+#fuses INTRC_IO, NOWDT, NOMCLR
+
+//=======================
+// Driver para GLCD (KS0108)
+//=======================
+#define LCD_ENABLE_PIN  PIN_B0
+#define LCD_RS_PIN      PIN_B1
+#define LCD_RW_PIN      PIN_B2
+#define LCD_DATA4       PIN_B4
+#define LCD_DATA5       PIN_B5
+#define LCD_DATA6       PIN_B6
+#define LCD_DATA7       PIN_B7
+#include <lcd.c>
+
+//======================
+// Asignaciones de funciones
+//======================
+void EscribirDisplay(signed int valor);
+void InitGPIO();
+lcd_init(); 
+int valor=0;
+//=======================
+// PROGRAMA PRINCIPAL
+//=======================
+void main() {
+   InitGPIO();
+   int contador = 0;
+   printf(LCD_PUTC,"Cuenta: %d",valor);
+   while(TRUE) {
+      output_toggle(PIN_A7);
+      delay(500);
+   }
+}
+
+
+void InitGPIO(void){
+    set_tris_a(0xFF);   // PORTA como ENTRADA
+    set_tris_b(0x00);   // PORTB como SALIDA
+}
+

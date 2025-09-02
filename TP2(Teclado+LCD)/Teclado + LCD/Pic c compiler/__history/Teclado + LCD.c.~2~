@@ -1,0 +1,14 @@
+#include <Teclado + LCD.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      output_toggle(PIN_B0);
+      delay_ms(500);
+
+      //TODO: User Code
+   }
+
+}

@@ -1,0 +1,51 @@
+[PROJECT]
+Target=Teclado + LCD.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Teclado + LCD.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Teclado + LCD\Pic c compiler\Teclado + LCD]
+Type=4
+[mru-list]
+1=Teclado + LCD.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=02-09-2025
+D1_L=12
+D1_L1=[26927]Project Opened.
+D1_L2=[27077]Started Editing.
+D1_L3=[27406]Stopped Editing.
+D1_L4=[28223]Started Editing.
+D1_L5=[29279]Stopped Editing.
+D1_L6=[29344]Started Editing.
+D1_L7=[29644]Stopped Editing.
+D1_L8=[30324]Started Editing.
+D1_L9=[31487]Stopped Editing.
+D1_L10=[31827]Started Editing.
+D1_L11=[32792]Stopped Editing.
+TotalEdit=39
+TotalDebug=0
+D1_E=39
+D1_D=0
+D1_L12=[33691]Project Closed.
+
+[Opened Files]
+1=Teclado + LCD.c
+t1=29
+Count=1
+[Teclado + LCD.c]
+Type=4
+
+[defines]
+buildcount=14
+[Units]
+Count=1
+1=Teclado + LCD (main)

@@ -1,0 +1,16 @@
+#include <Teclado + LCD.h>
+#fuses INTRC_IO, NOWDT, NOMCLR
+#include <lcd.c>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      output_toggle(PIN_A7);
+      delay_ms(500);
+
+      //TODO: User Code
+   }
+
+}

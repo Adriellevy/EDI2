@@ -1,0 +1,18 @@
+#include <Teclado + LCD.h>
+#fuses INTRC_IO, NOWDT, NOMCLR
+#include <graphics.c>   // Librería genérica
+#include <glcd.c>    
+
+void main()
+{
+
+   while(TRUE)
+   {
+      output_toggle(PIN_A7);
+      delay_ms(500);
+      glcd_init(ON);  
+      glcd_text57(0,0, "Hola!", 1, ON);  // escribe texto en (x=0,y=0)
+      glcd_line(0,0,127,31,ON); 
+   }
+
+}
