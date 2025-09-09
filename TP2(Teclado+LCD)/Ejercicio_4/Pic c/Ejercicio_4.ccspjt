@@ -1,0 +1,55 @@
+[PROJECT]
+Target=Ejercicio_4.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Ejercicio_4.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4]
+Type=4
+[mru-list]
+1=Ejercicio_4.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=09-09-2025
+D1_L=12
+D1_L1=[51058]Project Opened.
+D1_L2=[51716]Started Editing.
+D1_L3=[52354]Stopped Editing.
+D1_L4=[52356]Started Editing.
+D1_L5=[54127]Stopped Editing.
+D1_L6=[54497]Started Editing.
+D1_L7=[59816]Stopped Editing.
+D1_L8=[59825]Started Editing.
+D1_L9=[60044]Stopped Editing.
+TotalEdit=118
+TotalDebug=0
+D1_E=118
+D1_D=0
+D1_L10=[60045]Project Closed.
+D1_L11=[60094]Project Opened.
+D1_L12=[60130]Started Editing.
+
+[Opened Files]
+1=Ejercicio_4.c
+t1=17
+2=Ejercicio_4.h
+t2=1
+3=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+t3=17
+Count=2
+[Ejercicio_4.c]
+Type=4
+
+[defines]
+buildcount=52
+[Units]
+Count=1
+1=Ejercicio_4 (main)

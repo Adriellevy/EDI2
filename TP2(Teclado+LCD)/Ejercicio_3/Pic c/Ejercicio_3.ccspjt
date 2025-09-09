@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=1
+Days=2
 D1=04-09-2025
 D1_L=4
 D1_L1=[64256]Project Opened.
@@ -28,10 +28,14 @@ TotalDebug=0
 D1_E=22
 D1_D=0
 D1_L4=[65559]Project Closed.
+D2=09-09-2025
+D2_L=2
+D2_L1=[60045]Project Opened.
+D2_L2=[60093]Project Closed.
 
 [Opened Files]
 1=Ejercicio_3.c
-t1=12
+t1=1
 Count=2
 2=..\..\Ejercicio_1\Pic c\Ejercicio_1.c
 t2=1

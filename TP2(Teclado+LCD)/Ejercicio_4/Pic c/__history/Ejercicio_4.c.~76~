@@ -1,0 +1,91 @@
+#include <Ejercicio_4.h>
+#use fast_io(B)
+#fuses XT, NOWDT, NOMCLR
+
+//=======PROTOTIPOS=======
+void INIT_GPIO();
+void INIT_TIMER_0();
+void INIT_INT_ICO();
+
+//======CHAR_TECLADO=====
+char const teclado[4][3] = {
+   {'1', '2', '3'},
+   {'4', '5', '6'},
+   {'7', '8', '9'},
+   {'*', '0', '#'}
+};
+
+//======DEFINES_LCD======
+#define LCD_ENABLE_PIN  PIN_A2 // Pines del LCD
+#define LCD_RS_PIN      PIN_A0
+#define LCD_RW_PIN      PIN_A1
+#define LCD_DATA4       PIN_A3
+#define LCD_DATA5       PIN_A4
+#define LCD_DATA6       PIN_A6
+#define LCD_DATA7       PIN_A7
+#include <lcd.c>
+
+//======PUERTOS TECLADO========
+const int PuertosTecladoEntrada[] = { PIN_B0, PIN_B1, PIN_B2 };
+const int PuertosTecladoSalida[]  = { PIN_B4, PIN_B5, PIN_B6, PIN_B7 };
+
+int port=0; // se pone un 0 en el numero del puerto seran los puertos b(4,5,6 o 7)
+
+
+void main()
+{
+   INIT_GPIO();
+   INIT_TIMER_0();
+   INIT_INT_ICO();
+
+   lcd_init();                      // Inicializa el LCD
+   lcd_putc("\f");                  // Limpia la pantalla
+   lcd_gotoxy(1,1);                 // Ubica el cursor en fila 1, col 1
+   lcd_putc("Hola Mundo!");         // Escribe mensaje
+   lcd_gotoxy(1,2);                 // Fila 2, col 1
+   lcd_putc("Probando LCD");        // Otro mensaje
+
+   while(TRUE)
+   {
+      // Acá podés ir imprimiendo otras cosas si querés
+   }
+}
+
+
+void INIT_GPIO(){
+   set_tris_a(0x00);       // Todo el puerto A como salida (LCD)
+   set_tris_b(0b00000111); // RB0-RB2 entradas (teclado), RB4-RB7 salidas
+   output_b(0x00);
+}
+
+
+void INIT_TIMER_0() 
+{
+   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);
+   set_timer0(0); 
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(global);
+}
+
+#INT_TIMER0 
+void TIMER0_ISR()
+{
+   set_timer0(0);
+   port++;
+   if(port>3)port=0;
+
+   // Todos prendidos
+   output_high(PuertosTecladoSalida[0]);
+   output_high(PuertosTecladoSalida[1]);
+   output_high(PuertosTecladoSalida[2]);
+   output_high(PuertosTecladoSalida[3]);
+
+   // Apagamos el que tiene el port
+   output_toggle(PuertosTecladoSalida[port]);
+}
+
+void INIT_INT_ICO()
+{
+   // Desactivado por ahora
+}
+

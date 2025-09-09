@@ -1,0 +1,68 @@
+
+ROM used:   687/4096 (17%)
+            687/4096 (17%) including unused fragments
+
+            0.5 Average locations per line
+            5.4 Average locations per statement
+
+RAM used:   15/383 (4%) at main() level
+            45/383 (12%) worst case
+
+Stack used: 7 worst case (5 in main + 2 for interrupts)
+Stack size: 16
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   92    27  21  Ejercicio_4.c
+    5     0   0  Ejercicio_4.h
+  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+  456   100  79  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+----- -----
+ 1518   127 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     22   3    1             @delay_ms1
+ Inline         3    760  4.5  lcd_read_byte
+0     49   7    2    262  3.7  lcd_read_nibble
+0     55   8    1    399  2.4  lcd_send_nibble
+0     97  14    3    415  3.7  lcd_send_byte
+0     73  11    6    852  6.2  lcd_init
+0     18   3    4    208  6.3  lcd_gotoxy
+0     44   6    1    354  4.7  lcd_putc
+0      5   1    0             @const768
+0     52   8    0    195  2.1  MAIN
+0      1   0    0     62  1.4  @const774
+0     74  11    3     78  1.6  @PSTRINGC7_752
+0      6   1    0     82  1.1  @const779
+0      7   1    0     78  1.6  @const780
+0     10   1    0     48  1.1  INIT_GPIO
+0     12   2    0     78  1.6  INIT_TIMER_0
+0     41   6    1    240  3.7  TIMER0_ISR
+0     26   4    5    240  3.7  @READBITA
+0     32   5    6      3  0.0  @WRITEBITA
+0      2   0    0      3  0.0  INIT_INT_ICO
+ Inline         0      3  0.0  @cinit1
+
+Program metrics:
+    Functions               19
+    Statements              127
+    Comments                280
+    Volume (V)              7466
+    Difficulty (D)          52.2
+    Effort to implement (E) 389490
+    Time to implement (T)   6 hours, 1 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   10
+    Maintainability (MI)    93
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  0  
+00003-00003     1  0  
+00004-0003D    58  0  
+0003E-007FF   625  1361  
+00800-00FFF     0  2048  
+
+
+
