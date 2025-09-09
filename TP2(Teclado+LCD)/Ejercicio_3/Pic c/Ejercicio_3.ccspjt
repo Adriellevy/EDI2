@@ -1,0 +1,45 @@
+[PROJECT]
+Target=Ejercicio_3.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Ejercicio_3.c
+[Directories]
+Include=
+[C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_2 - copia\Pic c\Ejercicio_3]
+Type=4
+[mru-list]
+1=Ejercicio_3.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=04-09-2025
+D1_L=4
+D1_L1=[64256]Project Opened.
+D1_L2=[64259]Started Editing.
+D1_L3=[65559]Stopped Editing.
+TotalEdit=22
+TotalDebug=0
+D1_E=22
+D1_D=0
+D1_L4=[65559]Project Closed.
+
+[Opened Files]
+1=Ejercicio_3.c
+t1=12
+Count=2
+2=..\..\Ejercicio_1\Pic c\Ejercicio_1.c
+t2=1
+[Ejercicio_3.c]
+Type=4
+
+[defines]
+buildcount=14
+[Units]
+Count=1
+1=Ejercicio_3 (main)

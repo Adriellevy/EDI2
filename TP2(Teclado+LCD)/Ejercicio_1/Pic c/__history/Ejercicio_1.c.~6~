@@ -1,0 +1,51 @@
+#include <Ejercicio_1.h>
+#fuses INTRC_IO, NOWDT, NOMCLR
+
+#define LCD_ENABLE_PIN  PIN_B0 //Librerias para el LCD
+#define LCD_RS_PIN      PIN_B1
+#define LCD_RW_PIN      PIN_B2
+#define LCD_DATA4       PIN_B4
+#define LCD_DATA5       PIN_B5
+#define LCD_DATA6       PIN_B6
+#define LCD_DATA7       PIN_B7
+#include <lcd.c>
+
+void InitGPIO();
+
+void main() {
+
+   InitGPIO();
+   
+   int contador = 0;
+   
+   while(TRUE) 
+   {
+      contador++; //aumento el contador cada vez que se repite el while
+lcd_putc("\fPuto");
+delay_ms(1000);
+lcd_putc("\fEl");
+delay_ms(1000);
+lcd_putc("\fQue");
+delay_ms(1000);
+lcd_putc("\fLee");
+delay_ms(1000);
+//!      lcd_putc("\fHello World");   // \f limpia pantalla y escribo lo nuevo
+//!      delay_ms(1000);
+//!
+//!      lcd_putc("\fBienvenidos a\nEDI2");
+//!      delay_ms(1000);
+//!
+//!    
+//!      printf(lcd_putc, "\fContador = %d", contador); // imprime el valor del contador
+//!      delay_ms(1000);
+   }
+}
+
+
+void InitGPIO(void){
+    set_tris_a(0b01111111);   // A es ENTRADA
+    set_tris_b(0b00000000);   // PORTB como SALIDA
+    lcd_init(); 
+}
+
+

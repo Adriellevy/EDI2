@@ -1,0 +1,55 @@
+[PROJECT]
+Target=Ejercicio_1.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Ejercicio_1.c
+[Directories]
+Include=
+[C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_1\Pic c\Ejercicio_1]
+Type=4
+[mru-list]
+1=Ejercicio_1.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=04-09-2025
+D1_L=8
+D1_L1=[59528]Project Opened.
+D1_L2=[59762]Started Editing.
+D1_L3=[60619]Stopped Editing.
+D1_L4=[60797]Started Editing.
+D1_L5=[61484]Stopped Editing.
+D1_L6=[61948]Started Editing.
+D1_L7=[62390]Stopped Editing.
+TotalEdit=24
+TotalDebug=0
+D1_E=24
+D1_D=0
+D1_L8=[62390]Project Closed.
+
+[Opened Files]
+1=Ejercicio_1.c
+t1=1
+2=Ejercicio_1.h
+t2=1
+Count=1
+3=..\..\..\TP1(Puertos-timers-contadores)\Interrupciones\Ejercicio 1 - Interrupciones\Pic c\Blink Timer0.c
+t3=1
+4=..\..\..\TP1(Puertos-timers-contadores)\Interrupciones\Ejercicio 3 - Interrupciones\Pic C\Ejercicio 3.c
+t4=29
+5=..\..\..\TP1(Puertos-timers-contadores)\Interrupciones\Ejercicio 4 - Interrupciones\Pic C\Ej4Picc.c
+t5=1
+[Ejercicio_1.c]
+Type=4
+
+[defines]
+buildcount=7
+[Units]
+Count=1
+1=Ejercicio_1 (main)

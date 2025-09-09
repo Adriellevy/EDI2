@@ -1,0 +1,107 @@
+004-005 @READ_PACKED_MEMORY.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+004-005 @WRITE_PACKED_MEMORY.P3
+004-005 @WRITE_PROGRAM_MEMORY8.P4
+006-007 @WRITE_PACKED_MEMORY.P1
+006-007 @READ_PACKED_MEMORY.P2
+020-021 @sprintf_string
+022     lcd_init.i
+022     MAIN.@SCRATCH1
+022     @PSTRINGC7_745.@SCRATCH1
+023-026 lcd_init.LCD_INIT_STRING
+023     @PSTRINGC7_745.@SCRATCH2
+024     @PSTRINGC7_745.@SCRATCH3
+025     lcd_putc.c
+026     lcd_gotoxy.x
+027     lcd_gotoxy.y
+027     @delay_ms1.P1
+027     lcd_init.@SCRATCH1
+028     lcd_gotoxy.address
+029     lcd_gotoxy.@SCRATCH1
+02A     lcd_send_byte.address
+02B     lcd_send_byte.n
+02C     lcd_read_byte.low
+02C     lcd_send_byte.@SCRATCH1
+02D     lcd_send_nibble.n
+02D     lcd_read_byte.high
+02E     lcd_read_nibble.n
+02E     lcd_read_byte.@SCRATCH1
+02F     lcd_read_nibble.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+111.6   C1OUT
+113.6   C2OUT
+191-192 @WRITE_PROGRAM_MEMORY8.P1
+191-192 @READ_PROGRAM_MEMORY8.P2
+291     CCP_1_LOW
+291     CCP_1
+292     CCP_1_HIGH
+298     CCP_2_LOW
+298     CCP_2
+299     CCP_2_HIGH
+311     CCP_3_LOW
+311     CCP_3
+312     CCP_3_HIGH
+318     CCP_4_LOW
+318     CCP_4
+319     CCP_4_HIGH
+
+ROM Allocation:
+000003  @const761.call
+000009  @const766.call
+00000A  @const767.call
+00000F  @const768.call
+000010  @delay_ms1
+000026  lcd_send_nibble
+00005D  lcd_read_nibble
+00008E  lcd_send_byte
+000096  lcd_read_byte
+0000EF  InitGPIO
+0000F4  lcd_init
+00013E  lcd_gotoxy
+000150  lcd_putc
+00017C  @PSTRINGC7_745
+0001C6  @cinit1
+0001C6  MAIN
+0001D4  @cinit2
+
+Project Directory:
+    C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_2\Pic c\
+
+Project Files:
+    Ejercicio_2.c                                           [04-sep.-25 17:39  CRC=7B03117B]
+    Ejercicio_2.h                                           [04-sep.-25 17:19  CRC=00000000]
+    ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
+    ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [22-feb.-16 09:05  CRC=D1A6378A]
+
+Source signature=F4F5302E
+Program memory checksum=0000
+Hex file CRC=CF04
+
+Units:
+    C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_2\Pic c\Ejercicio_2 (main)
+
+Compiler Settings:
+    Processor:      PIC16F1827
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Enhanced 16:    Yes
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   Ejercicio_2.xsym
+    Errors:      Ejercicio_2.err
+    Ext Symbols: Ejercicio_2.esym
+    INHX8:       Ejercicio_2.hex
+    Symbols:     Ejercicio_2.sym
+    List:        Ejercicio_2.lst
+    Debug/COFF:  Ejercicio_2.cof
+    Project:     Ejercicio_2.ccspjt
+    Call Tree:   Ejercicio_2.tre
+    Statistics:  Ejercicio_2.STA
