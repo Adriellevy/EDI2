@@ -1,11 +1,12 @@
 #include <Ejercicio_4.h>
-#use fast_io(A)
 #use fast_io(B)
-#fuses XT, NOWDT, NOMCLR
+#fuses NOWDT, NOMCLR
+
 //=======PROTOTIPOS=======
 void INIT_GPIO();
 void INIT_TIMER_0();
 void INIT_INT_ICO();
+
 //======CHAR_TECLADO=====
 char const teclado[4][3] = {
    {'1', '2', '3'},
@@ -13,10 +14,11 @@ char const teclado[4][3] = {
    {'7', '8', '9'},
    {'*', '0', '#'}
 };
+
 //======DEFINES_LCD======
-#define LCD_ENABLE_PIN  PIN_A0 //Librerias para el LCD
-#define LCD_RS_PIN      PIN_A1
-#define LCD_RW_PIN      PIN_A2
+#define LCD_ENABLE_PIN  PIN_A2 // Pines del LCD
+#define LCD_RS_PIN      PIN_A0
+#define LCD_RW_PIN      PIN_A1
 #define LCD_DATA4       PIN_A3
 #define LCD_DATA5       PIN_A4
 #define LCD_DATA6       PIN_A6
@@ -24,9 +26,9 @@ char const teclado[4][3] = {
 #include <lcd.c>
 
 //======PUERTOS TECLADO========
-const int PuertosTecladoEntradas[] = { PIN_B0, PIN_B1, PIN_B2 };
-const int PuertosTecladoSalida[]={PIN_B4,PIN_B5,PIN_B6,PIN_B7};
-const int PuertosDisplay[]={PIN_A0,PIN_A1,PIN_A2,PIN_A3,PIN_A4,PIN_A6,PIN_A7};
+const int PuertosTecladoEntrada[] = { PIN_B0, PIN_B1, PIN_B2 };
+const int PuertosTecladoSalida[]  = { PIN_B4, PIN_B5, PIN_B6, PIN_B7 };
+
 int port=0; // se pone un 0 en el numero del puerto seran los puertos b(4,5,6 o 7)
 
 
@@ -35,28 +37,34 @@ void main()
    INIT_GPIO();
    INIT_TIMER_0();
    INIT_INT_ICO();
-   lcd_init();
+
+   lcd_init();                      // Inicializa el LCD
+   lcd_putc("\f");                  // Limpia la pantalla
+   lcd_gotoxy(1,1);                 // Ubica el cursor en fila 1, col 1
+   lcd_putc("Hola Mundo!");         // Escribe mensaje
+   lcd_gotoxy(1,2);                 // Fila 2, col 1
+   lcd_putc("Probando LCD");        // Otro mensaje
+
    while(TRUE)
    {
-      
+      // Acá podés ir imprimiendo otras cosas si querés
    }
-
 }
 
 
 void INIT_GPIO(){
-   set_tris_a(0b00100000);
-   set_tris_b(0b00000111);
-   output_b(0x00); 
+   set_tris_a(0x00);       // Todo el puerto A como salida (LCD)
+   set_tris_b(0b00000111); // RB0-RB2 entradas (teclado), RB4-RB7 salidas
+   output_b(0x00);
 }
 
 
-void INIT_TIMER_0() //Utilizar en RB5
+void INIT_TIMER_0() 
 {
    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);
-   set_timer0(0); //Se recarga el timer0
-   enable_interrupts(INT_TIMER0); // Habilita interrupcion timer0
-   enable_interrupts(global); // Habilita interrupciones globales
+   set_timer0(0); 
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(global);
 }
 
 #INT_TIMER0 
@@ -65,11 +73,13 @@ void TIMER0_ISR()
    set_timer0(0);
    port++;
    if(port>3)port=0;
-    // Todos prendidos
+
+   // Todos prendidos
    output_high(PuertosTecladoSalida[0]);
    output_high(PuertosTecladoSalida[1]);
    output_high(PuertosTecladoSalida[2]);
    output_high(PuertosTecladoSalida[3]);
+
    // Apagamos el que tiene el port
    output_toggle(PuertosTecladoSalida[port]);
 }
@@ -79,26 +89,21 @@ void INIT_INT_ICO()
    enable_interrupts(INT_EXT_H2L);
    enable_interrupts(INT_IOC);
    enable_interrupts(GLOBAL);
+   
 }
 
-#INT_IOC
-void EXT_isr(void)
-{
-   // Revisamos cada entrada explícitamente
-   if(!input_state(PuertosTecladoSalida[0])) {
-      printf(lcd_putc, "\fCARACTER: %c", teclado[port][0]);
-   }
-
-   if(!input_state(PuertosTecladoSalida[1])) {
+#INT_IOC 
+void EXT_isr(void) {
+   if(!input_state(PuertosTecladoEntrada[1])) {
       printf(lcd_putc, "\fCARACTER: %c", teclado[port][1]);
    }
 
-   if(!input_state(PuertosTecladoSalida[2])) {
+   if(!input_state(PuertosTecladoEntrada[2])) {
       printf(lcd_putc, "\fCARACTER: %c", teclado[port][2]);
    }
 
-   if(!input_state(PuertosTecladoSalida[3])) {
+   if(!input_state(PuertosTecladoEntrada[3])) {
       printf(lcd_putc, "\fCARACTER: %c", teclado[port][3]);
    }
-}
+   }
 

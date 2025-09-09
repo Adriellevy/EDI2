@@ -1,6 +1,6 @@
 #include <Ejercicio_4.h>
 #use fast_io(B)
-#fuses NOWDT, NOMCLR
+#fuses XT, NOWDT, NOMCLR
 
 //=======PROTOTIPOS=======
 void INIT_GPIO();
@@ -84,24 +84,19 @@ void TIMER0_ISR()
    output_toggle(PuertosTecladoSalida[port]);
 }
 
-void INIT_INT_ICO()
-{
-   enable_interrupts(INT_EXT_H2L);
-   enable_interrupts(INT_IOC);
-   enable_interrupts(GLOBAL);
-   
-}
-
-#INT_IOC 
-void EXT_isr(void) {
-   if(!input_state(PuertosTecladoEntrada[0])) {
-      printf(lcd_putc, "\fCARACTER: %c", teclado[port][0]);
-   }
-   if(!input_state(PuertosTecladoEntrada[1])) {
-      printf(lcd_putc, "\fCARACTER: %c", teclado[port][1]);
-   }
-   if(!input_state(PuertosTecladoEntrada[2])) {
-      printf(lcd_putc, "\fCARACTER: %c", teclado[port][2]);
-   }
-}
+//!void INIT_INT_ICO()
+//!{
+//!   enable_interrupts(INT_EXT_H2L);
+//!   enable_interrupts(INT_IOC);
+//!   enable_interrupts(GLOBAL);
+//!   
+//!}
+//!
+//!#INT_IOC 
+//!void EXT_isr(void) {
+//!// Revisamos cada entrada explícitamente
+//!   if(!input_state(PuertosTecladoEntrada[0])) {
+//!      printf(lcd_putc, "\fCARACTER: %c", teclado[port][0]);
+//!   }
+//!}
 

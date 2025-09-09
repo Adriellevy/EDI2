@@ -1,4 +1,9 @@
-Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4 on 09-sep.-25 at 16:42
-      Memory usage:   ROM=17%      RAM=4% - 12%
-      0 Errors,  0 Warnings.
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4 on 09-sep.-25 at 17:02
+>>> Warning 216 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4.c" Line 106(1,2): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
+>>> Warning 216 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4.c" Line 106(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_nibble)
+>>> Warning 216 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4.c" Line 106(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_byte)
+>>> Warning 216 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4.c" Line 106(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_putc)
+>>> Warning 216 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4.c" Line 106(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_gotoxy)
+      Memory usage:   ROM=24%      RAM=4% - 15%
+      0 Errors,  5 Warnings.
 Build Successful.
