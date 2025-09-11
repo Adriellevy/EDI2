@@ -1,0 +1,47 @@
+[PROJECT]
+Target=Ejercicio_5.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Ejercicio_5.c
+[Directories]
+Include=
+[C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_5\Pic c\Ejercicio_5]
+Type=4
+[mru-list]
+1=Ejercicio_5.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=10-09-2025
+D1_L=4
+D1_L1=[73707]Project Opened.
+D1_L2=[73738]Started Editing.
+D1_L3=[75200]Stopped Editing.
+TotalEdit=25
+TotalDebug=0
+D1_E=25
+D1_D=0
+D1_L4=[75200]Project Closed.
+
+[Opened Files]
+1=Ejercicio_5.c
+t1=28
+2=..\..\Ejercicio_4\Pic c\Ejercicio_4.c
+t2=1
+Count=3
+3=..\..\Ejercicio_3\Pic c\Ejercicio_3.c
+t3=1
+[Ejercicio_5.c]
+Type=4
+
+[defines]
+buildcount=14
+[Units]
+Count=1
+1=Ejercicio_5 (main)

@@ -1,0 +1,134 @@
+#include <Ejercicio_5.h>
+#use fast_io(B)
+#fuses NOWDT, NOMCLR
+
+//=======PROTOTIPOS=======
+void INIT_GPIO();
+void INIT_TIMER_0();
+void INIT_INT_ICO();
+
+//======CHAR_TECLADO=====
+char const teclado[4][3] = {
+   {'1', '2', '3'},
+   {'4', '5', '6'},
+   {'7', '8', '9'},
+   {'*', '0', '#'}
+};
+
+//======DEFINES_LCD======
+#define LCD_ENABLE_PIN  PIN_A2 // Pines del LCD
+#define LCD_RS_PIN      PIN_A0
+#define LCD_RW_PIN      PIN_A1
+#define LCD_DATA4       PIN_A3
+#define LCD_DATA5       PIN_A4
+#define LCD_DATA6       PIN_A6
+#define LCD_DATA7       PIN_A7
+#include <lcd.c>
+
+//======PUERTOS TECLADO========
+const int PuertosTecladoEntrada[] = { PIN_B0, PIN_B1, PIN_B2 };
+const int PuertosTecladoSalida[]  = { PIN_B4, PIN_B5, PIN_B6, PIN_B7 };
+
+int port=0; 
+
+// ====== VARIABLES P/CONTRASEÑA ======
+char password[3] = {'2','5','3'};   // Contraseña fija
+char entrada[3];                    // Array para comparar el digito ingresado contra el de la contraseña
+int indice = 0;                     // Posición actual, que voy a ir moviendo
+
+
+void main()
+{
+   INIT_GPIO();
+   INIT_TIMER_0();
+   INIT_INT_ICO();
+
+   lcd_init();                      
+   lcd_putc("\fIngrese clave");      // Mensaje inicial
+
+   while(TRUE)
+   {
+      // Hacemos todo con las interrupciones
+   }
+}
+
+
+void INIT_GPIO(){
+   set_tris_a(0x00);       // Todo el puerto A como salida (LCD)
+   set_tris_b(0b00000111); // RB0-RB2 entradas (teclado), RB4-RB7 salidas
+   output_b(0x00);
+}
+
+
+void INIT_TIMER_0() 
+{
+   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);
+   set_timer0(0); 
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(global);
+}
+
+#INT_TIMER0 
+void TIMER0_ISR()
+{
+   set_timer0(0);
+   port++;
+   if(port>3)port=0;
+
+   // Todos prendidos
+   output_high(PuertosTecladoSalida[0]);
+   output_high(PuertosTecladoSalida[1]);
+   output_high(PuertosTecladoSalida[2]);
+   output_high(PuertosTecladoSalida[3]);
+
+   // Apagamos el que tiene el port
+   output_toggle(PuertosTecladoSalida[port]);
+}
+
+void INIT_INT_ICO()
+{
+   enable_interrupts(INT_EXT_H2L);
+   enable_interrupts(INT_IOC);
+   enable_interrupts(GLOBAL);
+}
+
+// ======== TECLADO MATRICIAL =========
+#INT_IOC 
+void EXT_isr(void) {
+   char tecla = 0;
+
+   if(!input_state(PuertosTecladoEntrada[0])) {
+      tecla = teclado[port][0]; //Guardo en la variable tecla, el valor de la tecla ingresado en caso de primera columna
+   }
+   if(!input_state(PuertosTecladoEntrada[1])) {
+      tecla = teclado[port][1]; //Guardo en la variable tecla, el valor de la tecla ingresado en caso de segunda columna
+   }
+   if(!input_state(PuertosTecladoEntrada[2])) {
+      tecla = teclado[port][2]; //Guardo en la variable tecla, el valor de la tecla ingresado en caso de tercera columna
+   }
+
+   if(tecla != 0) 
+   {
+      
+
+      // Verificación inmediata
+      if(entrada[indice] != password[indice]) 
+      {
+         lcd_putc("\fClave Incorrecta");
+         indice = 0;  // reiniciar ingreso
+         return;
+      } else 
+      {
+      entrada[indice] = tecla; 
+      LCD_PUTC('\f');
+      lcd_gotoxy(9, 1);
+      lcd_putc(tecla);
+      }
+      indice++;
+      if(indice == 3) 
+      {
+         lcd_putc("\fClave Correcta");
+         indice = 0;   // reiniciar para próximo intento
+      }
+   }
+}
