@@ -1,0 +1,24 @@
+#include <Ejercicio_2.h>
+#FUSES INTRC_IO
+#FUSES NOMCLR
+#FUSES NOWDT
+
+void GPIO(void);
+
+void main()
+{
+   GPIO();
+   while(TRUE)
+   {
+      output_high(PIN_B4); //Prende el led
+      delay_ms(500);  //Espera 500ms y lo apaga
+      output_low(PIN_B4);   //Apaga el led
+      delay_ms(500);  //Espera 500ms y lo prende
+   }
+
+}
+
+void GPIO(void){
+   set_tris_a(0xFF);
+   set_tris_b(0b11101111);
+}

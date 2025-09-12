@@ -1,0 +1,8 @@
+Compiling C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_5\Pic c\Ejercicio_5 on 10-sep.-25 at 20:52
+>>> Warning 216 "C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_5\Pic c\Ejercicio_5.c" Line 132(1,2): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
+>>> Warning 216 "C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_5\Pic c\Ejercicio_5.c" Line 132(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_nibble)
+>>> Warning 216 "C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_5\Pic c\Ejercicio_5.c" Line 132(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_byte)
+>>> Warning 216 "C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_5\Pic c\Ejercicio_5.c" Line 132(1,2): Interrupts disabled during call to prevent re-entrancy:  (@PSTRINGC7_752)
+      Memory usage:   ROM=22%      RAM=6% - 17%
+      0 Errors,  4 Warnings.
+Build Successful.
