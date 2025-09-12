@@ -1,0 +1,179 @@
+004-005 @WRITE_PACKED_MEMORY.P1
+004-005 @READ_PACKED_MEMORY.P2
+004-005 @WRITE_PROGRAM_MEMORY8.P3
+004-005 @READ_PROGRAM_MEMORY8.P4
+006-007 @WRITE_PACKED_MEMORY.P1
+006-007 @READ_PACKED_MEMORY.P2
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028.0   adc_enable
+029-02A @sprintf_string
+02B-02C MAIN.adc_value
+02D-030 MAIN.voltage
+034     @PSTRINGCN7_745.P1
+034     lcd_init.i
+034-037 @PRINTF_L32D_745FPFPF.P1
+034-035 @PRINTF_LU_745.P2
+034-035 @ITOF.P3
+034     MAIN.@SCRATCH1
+034     @PSTRINGC7_745.@SCRATCH1
+035-038 lcd_init.LCD_INIT_STRING
+035     MAIN.@SCRATCH2
+035     @PSTRINGC7_745.@SCRATCH2
+036     MAIN.@SCRATCH3
+036     @PSTRINGC7_745.@SCRATCH3
+037     MAIN.@SCRATCH4
+037     @PSTRINGCN7_745.@SCRATCH1
+038-03B @DIVFF.P1
+038     @PRINTF_L32D_745FPFPF.P2
+038     @PSTRINGCN7_745.@SCRATCH2
+038     @PRINTF_LU_745.@SCRATCH1
+039     lcd_init.@SCRATCH1
+039     @PSTRINGCN7_745.@SCRATCH3
+039     @PRINTF_LU_745.@SCRATCH2
+03A     @PRINTF_LU_745.@SCRATCH3
+03B     @PRINTF_LU_745.@SCRATCH4
+03C-03F @DIVFF.P1
+03C     @PRINTF_LU_745.@SCRATCH5
+03D     @PRINTF_LU_745.@SCRATCH6
+03E     @PRINTF_LU_745.@SCRATCH7
+040     @DIVFF.@SCRATCH1
+040     @PRINTF_L32D_745FPFPF.@SCRATCH1
+041     @DIVFF.@SCRATCH2
+041     @PRINTF_L32D_745FPFPF.@SCRATCH2
+042     @DIVFF.@SCRATCH3
+042     @PRINTF_L32D_745FPFPF.@SCRATCH3
+043     @DIVFF.@SCRATCH4
+043     @PRINTF_L32D_745FPFPF.@SCRATCH4
+044     @DIVFF.@SCRATCH5
+044     @PRINTF_L32D_745FPFPF.@SCRATCH5
+045     @DIVFF.@SCRATCH6
+045     @PRINTF_L32D_745FPFPF.@SCRATCH6
+046     @PRINTF_L32D_745FPFPF.@SCRATCH7
+047     @PRINTF_L32D_745FPFPF.@SCRATCH8
+048-04B @DIV3232.P1
+048     lcd_putc.c
+048-04B @FTOSD.P1
+048-04B @MULFF.P2
+049     @delay_ms1.P1
+049     lcd_gotoxy.x
+04A     lcd_gotoxy.y
+04B     lcd_gotoxy.address
+04C-04F @MULFF.P1
+04C-04F @DIV3232.P2
+04C     lcd_gotoxy.@SCRATCH1
+04C     @FTOSD.@SCRATCH1
+04D     lcd_send_byte.address
+04E     lcd_send_byte.n
+04F     lcd_read_byte.low
+04F     lcd_send_byte.@SCRATCH1
+050     lcd_read_byte.high
+050     lcd_send_nibble.n
+051     lcd_read_nibble.n
+051     lcd_read_byte.@SCRATCH1
+052     lcd_read_nibble.@SCRATCH1
+052     @MULFF.@SCRATCH1
+052     @DIV3232.@SCRATCH1
+053     @MULFF.@SCRATCH2
+053     @DIV3232.@SCRATCH2
+054     @MULFF.@SCRATCH3
+054     @DIV3232.@SCRATCH3
+055     @MULFF.@SCRATCH4
+055     @DIV3232.@SCRATCH4
+056     @MULFF.@SCRATCH5
+056     @DIV3232.@SCRATCH5
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+111.6   C1OUT
+113.6   C2OUT
+191-192 @WRITE_PROGRAM_MEMORY8.P1
+191-192 @READ_PROGRAM_MEMORY8.P2
+291     CCP_1_LOW
+291     CCP_1
+292     CCP_1_HIGH
+298     CCP_2
+298     CCP_2_LOW
+299     CCP_2_HIGH
+311     CCP_3
+311     CCP_3_LOW
+312     CCP_3_HIGH
+318     CCP_4_LOW
+318     CCP_4
+319     CCP_4_HIGH
+
+ROM Allocation:
+000003  @const780.call
+00003E  ext_isr
+000043  @const767.call
+00004B  @const781.call
+000050  @const795.call
+000057  @delay_ms1
+00006D  lcd_send_nibble
+0000A4  lcd_read_nibble
+0000D5  lcd_send_byte
+0000DD  lcd_read_byte
+000136  lcd_init
+00017E  init_GPIO
+000187  lcd_gotoxy
+000199  lcd_putc
+0001C5  @PSTRINGC7_745
+00020F  init_adc
+00022B  init_interrupts
+000233  @ITOF
+000251  @MULFF
+0002C6  @DIVFF
+000391  @PSTRINGCN7_745
+0003E2  @PRINTF_LU_745
+000448  @DIV3232
+000495  @PRINTF_L32D_745FPFPF
+0004BC  @FTOSD
+000577  MAIN
+000577  @cinit1
+000586  @cinit2
+
+Project Directory:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\CAD-DAC\pic c compiler\
+
+Project Files:
+    main.c                                                  [12-sep.-25 11:50  CRC=A922ECFE]
+    main.h                                                  [12-sep.-25 11:40  CRC=00000000]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [22-feb.-16 09:05  CRC=D1A6378A]
+
+Source signature=23150BB1
+Program memory checksum=0000
+Hex file CRC=01BE
+
+Units:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\CAD-DAC\pic c compiler\main (main)
+
+Compiler Settings:
+    Processor:      PIC16F1827
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Enhanced 16:    Yes
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

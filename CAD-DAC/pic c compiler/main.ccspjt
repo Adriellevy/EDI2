@@ -1,0 +1,40 @@
+[PROJECT]
+Target=main.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=main.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\CAD-DAC\pic c compiler\main]
+Type=4
+[mru-list]
+1=main.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=12-09-2025
+D1_L=3
+D1_L1=[42006]Project Opened.
+D1_L2=[42406]Started Editing.
+D1_L3=[42930]Stopped Editing.
+
+[Opened Files]
+1=main.c
+t1=34
+2=main.h
+t2=1
+Count=2
+[main.c]
+Type=4
+[Units]
+Count=1
+1=main (main)
+
+[defines]
+buildcount=1
