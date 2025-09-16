@@ -1,0 +1,77 @@
+#include <main.h>
+#fuses NOWDT, INTRC_IO, NOMCLR, NOBROWNOUT
+
+#define LCD_ENABLE_PIN PIN_B3 //Librerias para el LCD 
+#define LCD_RS_PIN PIN_B1 
+#define LCD_RW_PIN PIN_B2 
+#define LCD_DATA4 PIN_B4 
+#define LCD_DATA5 PIN_B5 
+#define LCD_DATA6 PIN_B6 
+#define LCD_DATA7 PIN_B7
+
+#include <lcd.c>
+//======= VARIABLES GLOBALES =======
+volatile int1 adc_enable = 1;   // Habilitación del ADC (1 = activo, 0 = pausado)
+
+//======= PROTOTIPOS =======
+void init_adc();
+void init_interrupts();
+void init_GPIO();
+
+//======= RUTINA DE INTERRUPCIÓN =======
+#INT_IOC
+void ext_isr(void) {
+   // Cada flanco en RB0 alterna el estado de lectura ADC
+   adc_enable = !adc_enable;
+}
+
+//======= INICIALIZACIONES =======
+void init_adc() {
+   setup_adc_ports(sAN0);         // RA0 como analógico
+   setup_adc(ADC_CLOCK_INTERNAL); // Reloj ADC interno
+   set_adc_channel(0);            // Canal 0 = RA0
+   delay_us(20);                  // Tiempo de adquisición
+}
+
+void init_interrupts() {
+   enable_interrupts(INT_IOC_B0);    // Habilita interrupción externa en RB0
+   enable_interrupts(GLOBAL);
+}
+
+
+void init_GPIO(void){
+    set_tris_a(0xFF);   // A es ENTRADA
+    set_tris_b(0b00000001);   // PORTB como SALIDA
+    lcd_init(); 
+}
+//======= PROGRAMA PRINCIPAL =======
+void main() {
+   int16 adc_value;
+   float voltage;
+   
+   init_GPIO();
+   lcd_putc("\fADC PIC16F1827");  
+   delay_ms(1000);
+
+   init_adc();
+   init_interrupts();
+
+   while(TRUE) {
+      if(adc_enable) {
+         adc_value = read_adc();        // Leer ADC (10 bits)
+         voltage = (adc_value * 5.0) / 1023.0;   // Convertir a voltaje (0-5V)
+
+         lcd_putc("\f");  
+         printf(lcd_putc, "ADC: %4Lu", adc_value);
+         lcd_gotoxy(1,2);
+         printf(lcd_putc, "V= %1.2f V", voltage);
+
+         delay_ms(200);
+      }
+      else {
+         // Si está pausado, mostrar mensaje
+         lcd_putc("\fADC PAUSADO");
+         delay_ms(500);
+      }
+   }
+}
