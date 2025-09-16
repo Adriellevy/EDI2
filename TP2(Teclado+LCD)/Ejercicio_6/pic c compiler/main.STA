@@ -1,9 +1,9 @@
 
-ROM used:   1582/4096 (39%)
-            1582/4096 (39%) including unused fragments
+ROM used:   1598/4096 (39%)
+            1598/4096 (39%) including unused fragments
 
             1.1 Average locations per line
-            12.3 Average locations per statement
+            12.4 Average locations per statement
 
 RAM used:   28/383 (7%) at main() level
             72/383 (19%) worst case
@@ -13,12 +13,12 @@ Stack size: 16
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   78    29  22  main.c
+   81    29  22  main.c
     5     0   0  main.h
-  965     0   0  ..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
-  456   100  78  ..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+  965     0   0  ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+  456   100  78  ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
 ----- -----
- 1504   129 Total
+ 1507   129 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
@@ -31,10 +31,10 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0     18   1    4    208  6.3  lcd_gotoxy
 0     44   3    1    354  4.7  lcd_putc
 0     10   1    0     25  1.9  ext_isr
-0     28   2    0     67  1.2  init_adc
+0     23   1    0     48  1.1  init_adc
 0      9   1    0     32  1.0  init_interrupts
 0     79   5    0     48  1.1  init_GPIO
-0    179  11   13    496  4.5  MAIN
+0    201  13   13    566  4.6  MAIN
 0      8   1    0             @const767
 0     74   5    3             @PSTRINGC7_745
 0     30   2    2             @ITOF
@@ -46,18 +46,18 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    102   6   11             @PRINTF_LU_745
  Inline         5             @FTOSD
 0     77   5   15             @DIV3232
-0    226  14   20             @PRINTF_L32D_745FPFPF
+0    225  14   20             @PRINTF_L32D_745FPFPF
 0      7   0    0             @const795
  Inline         0             @cinit1
 
 Program metrics:
     Functions               12
     Statements              129
-    Comments                277
-    Volume (V)              6229
+    Comments                280
+    Volume (V)              6288
     Difficulty (D)          39.9
-    Effort to implement (E) 248544
-    Time to implement (T)   3 hours, 50 minutes
+    Effort to implement (E) 251062
+    Time to implement (T)   3 hours, 52 minutes
     Est Delivered Bugs (B)  1
     Cyclomatic Complexity   9
     Maintainability (MI)    146
@@ -67,7 +67,7 @@ Program metrics:
 00000-00002     3  0  
 00003-00003     1  0  
 00004-0003D    58  0  
-0003E-007FF  1520  466  
+0003E-007FF  1536  450  
 00800-00FFF     0  2048  
 
 

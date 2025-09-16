@@ -30,7 +30,7 @@ void init_adc() {
    setup_adc_ports(sAN0);         // RA0 como analógico
    setup_adc(ADC_CLOCK_INTERNAL); // Reloj ADC interno
    set_adc_channel(0);            // Canal 0 = RA0
-   //delay_us(20);                  // Tiempo de adquisición PREGUNTAR
+   //delay_us(20);                  // Tiempo de adquisición
 }
 
 void init_interrupts() {

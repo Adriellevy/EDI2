@@ -1,5 +1,5 @@
 #include <main.h>
-#fuses NOWDT, INTRC_IO, NOMCLR
+#fuses NOWDT, INTRC_IO, NOMCLR, NOBROWNOUT
 
 #define LCD_ENABLE_PIN PIN_B3 //Librerias para el LCD 
 #define LCD_RS_PIN PIN_B1 
@@ -30,7 +30,7 @@ void init_adc() {
    setup_adc_ports(sAN0);         // RA0 como analógico
    setup_adc(ADC_CLOCK_INTERNAL); // Reloj ADC interno
    set_adc_channel(0);            // Canal 0 = RA0
-   //delay_us(20);                  // Tiempo de adquisición PREGUNTAR
+   delay_us(20);                  // Tiempo de adquisición
 }
 
 void init_interrupts() {
@@ -51,6 +51,7 @@ void main() {
    
    init_GPIO();
    lcd_putc("\fADC PIC16F1827");  
+   delay_ms(1000);
 
    init_adc();
    init_interrupts();
@@ -69,12 +70,8 @@ void main() {
       }
       else {
          // Si está pausado, mostrar mensaje
-         lcd_putc("\fADC PAUSADO"); //cambiarlo y poner el ultimo valor
-         //lcd_putc("\f");  
-         //printf(lcd_putc, "ADC: %4Lu", adc_value);
-         lcd_gotoxy(1,2);
-         printf(lcd_putc, "V= %1.2f V", voltage);
-         delay_ms(200);
+         lcd_putc("\fADC PAUSADO");
+         delay_ms(500);
       }
    }
 }

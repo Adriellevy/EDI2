@@ -1,5 +1,5 @@
 ÀÄmain
-   ÃÄMAIN  0/179  Ram=13
+   ÃÄMAIN  0/201  Ram=13
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄ@cinit2  (Inline)  Ram=0
    ³  ÃÄinit_GPIO  0/79  Ram=0
@@ -31,8 +31,7 @@
    ³  ³  ³     ÀÄ*
    ³  ³  ÀÄlcd_putc  0/44  Ram=1
    ³  ³     ÀÄ*
-   ³  ÃÄ@delay_ms1  0/22  Ram=1
-   ³  ÃÄinit_adc  0/28  Ram=0
+   ³  ÃÄinit_adc  0/23  Ram=0
    ³  ÃÄinit_interrupts  0/9  Ram=0
    ³  ÃÄ@ITOF  0/30  Ram=2
    ³  ÃÄ@MULFF  0/117  Ram=15
@@ -55,7 +54,7 @@
    ³  ³  ÀÄ*
    ³  ÃÄlcd_putc  0/44  Ram=1
    ³  ³  ÀÄ*
-   ³  ÃÄ@PRINTF_L32D_745FPFPF  0/226  Ram=20
+   ³  ÃÄ@PRINTF_L32D_745FPFPF  0/225  Ram=20
    ³  ³  ÃÄ@MULFF  0/117  Ram=15
    ³  ³  ÃÄ@FTOSD  (Inline)  Ram=5
    ³  ³  ÃÄ@DIV3232  0/77  Ram=15
@@ -74,6 +73,20 @@
    ³  ³  ÀÄ*
    ³  ÃÄ@delay_ms1  0/22  Ram=1
    ³  ÃÄ@PSTRINGC7_745  0/74  Ram=3
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_gotoxy  0/18  Ram=4
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_putc  0/44  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_putc  0/44  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_putc  0/44  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄ@PRINTF_L32D_745FPFPF  0/225  Ram=20
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_putc  0/44  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_putc  0/44  Ram=1
    ³  ³  ÀÄ*
    ³  ÀÄ@delay_ms1  0/22  Ram=1
    ÀÄext_isr  0/10  Ram=0

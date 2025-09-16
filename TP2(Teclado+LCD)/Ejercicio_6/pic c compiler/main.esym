@@ -1,9 +1,9 @@
-D G "__PCM__" 0 79 ""5.093""
-D G "__DEVICE__" 0 79 "1827"
-D G "__DATE__" 0 79 ""16-Sep-25""
-D G "__TIME__" 0 79 ""10:53:46""
-D G "_UNICODE" 0 79 ""?""
-D G "__EVAL" 0 79 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
+D G "__PCM__" 0 82 ""5.093""
+D G "__DEVICE__" 0 82 "1827"
+D G "__DATE__" 0 82 ""16-Sep-25""
+D G "__TIME__" 0 82 ""13:18:37""
+D G "_UNICODE" 0 82 ""?""
+D G "__EVAL" 0 82 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
 f N "set_tris_a" 2 39 ""
 v L "value" 2 39 "int8" `55 
@@ -1487,8 +1487,7 @@ F N "init_adc" 0 29 ""
 F G "init_adc" 0 29 "void()" `758 
 C L "init_adc" 0 13 1 "FUNCTION"
 C L "init_adc" 0 13 1 "FUNCTION"
-C L "init_adc" 0 13 1 "FUNCTION"
-C L "init_adc" 0 13 1 "FUNCTION"
+C L "init_adc" 0 13 2 "FUNCTION"
 F N "init_interrupts" 0 36 ""
 F G "init_interrupts" 0 36 "void()" `759 
 C L "init_interrupts" 0 13 1 "FUNCTION"
@@ -1504,6 +1503,7 @@ V L "voltage" 0 50 "float" `764
 C L "MAIN" 0 13 1 "FUNCTION"
 C L "MAIN" 0 13 1 "FUNCTION"
 C L "MAIN" 0 13 1 "FUNCTION"
+C L "MAIN" 0 13 3 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0
