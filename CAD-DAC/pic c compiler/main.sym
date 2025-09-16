@@ -113,48 +113,48 @@
 ROM Allocation:
 000003  @const780.call
 00003E  ext_isr
-000043  @const767.call
-00004B  @const781.call
-000050  @const795.call
-000057  @delay_ms1
-00006D  lcd_send_nibble
-0000A4  lcd_read_nibble
-0000D5  lcd_send_byte
-0000DD  lcd_read_byte
-000136  lcd_init
-00017E  init_GPIO
-000187  lcd_gotoxy
-000199  lcd_putc
-0001C5  @PSTRINGC7_745
-00020F  init_adc
-00022B  init_interrupts
-000233  @ITOF
-000251  @MULFF
-0002C6  @DIVFF
-000391  @PSTRINGCN7_745
-0003E2  @PRINTF_LU_745
-000448  @DIV3232
-000495  @PRINTF_L32D_745FPFPF
-0004BC  @FTOSD
-000577  MAIN
-000577  @cinit1
-000586  @cinit2
+000048  @const767.call
+000050  @const781.call
+000055  @const795.call
+00005C  @delay_ms1
+000072  lcd_send_nibble
+0000A9  lcd_read_nibble
+0000DA  lcd_send_byte
+0000E2  lcd_read_byte
+00013B  init_GPIO
+000140  lcd_init
+00018A  lcd_gotoxy
+00019C  lcd_putc
+0001C8  @PSTRINGC7_745
+000212  init_adc
+00022E  init_interrupts
+000237  @ITOF
+000255  @MULFF
+0002CA  @DIVFF
+000395  @PSTRINGCN7_745
+0003E6  @PRINTF_LU_745
+00044C  @DIV3232
+000499  @PRINTF_L32D_745FPFPF
+0004C0  @FTOSD
+00057B  MAIN
+00057B  @cinit1
+00058A  @cinit2
 
 Project Directory:
-    C:\Users\adrie\OneDrive\Escritorio\EDI2\CAD-DAC\pic c compiler\
+    C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\CAD-DAC\pic c compiler\
 
 Project Files:
-    main.c                                                  [12-sep.-25 11:50  CRC=A922ECFE]
-    main.h                                                  [12-sep.-25 11:40  CRC=00000000]
-    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
-    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [22-feb.-16 09:05  CRC=D1A6378A]
+    main.c                                                  [16-Sep-25 10:53  CRC=1159C682]
+    main.h                                                  [15-Sep-25 21:23  CRC=00000000]
+    ..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-Feb-20 15:48  CRC=D6A5AF9F]
+    ..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [22-Feb-16 09:05  CRC=D1A6378A]
 
-Source signature=23150BB1
+Source signature=8B4BE535
 Program memory checksum=0000
-Hex file CRC=01BE
+Hex file CRC=397F
 
 Units:
-    C:\Users\adrie\OneDrive\Escritorio\EDI2\CAD-DAC\pic c compiler\main (main)
+    C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\CAD-DAC\pic c compiler\main (main)
 
 Compiler Settings:
     Processor:      PIC16F1827

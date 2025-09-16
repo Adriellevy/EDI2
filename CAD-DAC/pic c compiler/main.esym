@@ -1,10 +1,9 @@
-F N "MAIN" 0 47 ""
-D G "__PCM__" 0 78 ""5.093""
-D G "__DEVICE__" 0 78 "1827"
-D G "__DATE__" 0 78 ""12-Sep-25""
-D G "__TIME__" 0 78 ""11:51:44""
-D G "_UNICODE" 0 78 ""?""
-D G "__EVAL" 0 78 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
+D G "__PCM__" 0 79 ""5.093""
+D G "__DEVICE__" 0 79 "1827"
+D G "__DATE__" 0 79 ""16-Sep-25""
+D G "__TIME__" 0 79 ""10:53:46""
+D G "_UNICODE" 0 79 ""?""
+D G "__EVAL" 0 79 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
 f N "set_tris_a" 2 39 ""
 v L "value" 2 39 "int8" `55 
@@ -1399,7 +1398,7 @@ d G "INT_RB6_H2L" 2 959 "0x21400B08"
 d G "INT_RB7" 2 960 "0x31800B08"
 d G "INT_RB7_L2H" 2 961 "0x11800B08"
 d G "INT_RB7_H2L" 2 962 "0x21800B08"
-D G "LCD_ENABLE_PIN" 0 4 "PIN_B0" "Librerias para el LCD"
+D G "LCD_ENABLE_PIN" 0 4 "PIN_B3" "Librerias para el LCD"
 D G "LCD_RS_PIN" 0 5 "PIN_B1"
 D G "LCD_RW_PIN" 0 6 "PIN_B2"
 D G "LCD_DATA4" 0 7 "PIN_B4"
@@ -1473,39 +1472,38 @@ V L "on" 3 443 "int8" `756
 F G "lcd_cursor_on" 3 444 "void(int8 on)" `755 
 C L "lcd_cursor_on" 3 2 1 "FUNCTION"
 C L "lcd_cursor_on" 3 2 1 "FUNCTION"
-V G "adc_enable" 0 13 "int1" `757 
-C L "init_adc" 0 12 2 "FUNCTION"
-F N "init_adc" 0 16 ""
-f G "init_adc" 0 16 "void()" `758 
-F N "init_interrupts" 0 17 ""
-f G "init_interrupts" 0 17 "void()" `759 
-F N "init_GPIO" 0 18 ""
-f G "init_GPIO" 0 18 "void()" `760  "======= RUTINA DE INTERRUPCIÓN ======="
-F N "ext_isr" 0 21 ""
-F G "ext_isr" 0 21 "void()" `761  "Cada flanco en RB0 alterna el estado de lectura ADC"
-C L "init_adc" 0 12 1 "FUNCTION"
-F N "init_adc" 0 27 ""
-F G "init_adc" 0 27 "void()" `758 
-C L "init_adc" 0 12 1 "FUNCTION"
-C L "init_adc" 0 12 1 "FUNCTION"
-C L "init_adc" 0 12 1 "FUNCTION"
-C L "init_adc" 0 12 1 "FUNCTION"
-F N "init_interrupts" 0 34 ""
-F G "init_interrupts" 0 34 "void()" `759 
-C L "init_interrupts" 0 12 1 "FUNCTION"
-C L "init_interrupts" 0 12 1 "FUNCTION"
-F N "init_GPIO" 0 41 ""
-F G "init_GPIO" 0 41 "void()" `760 
-C L "init_GPIO" 0 12 1 "FUNCTION"
-C L "init_GPIO" 0 12 1 "FUNCTION"
-C L "MAIN" 0 12 1 "FUNCTION"
-F N "MAIN" 0 47 ""
-F G "MAIN" 0 47 "void()" `762 
-V L "adc_value" 0 48 "int16" `763 
-V L "voltage" 0 49 "float" `764 
-C L "MAIN" 0 12 1 "FUNCTION"
-C L "MAIN" 0 12 1 "FUNCTION"
-C L "MAIN" 0 12 1 "FUNCTION"
+V G "adc_enable" 0 14 "int1" `757 
+C L "init_adc" 0 13 2 "FUNCTION"
+F N "init_adc" 0 17 ""
+f G "init_adc" 0 17 "void()" `758 
+F N "init_interrupts" 0 18 ""
+f G "init_interrupts" 0 18 "void()" `759 
+F N "init_GPIO" 0 19 ""
+f G "init_GPIO" 0 19 "void()" `760  "======= RUTINA DE INTERRUPCIÓN ======="
+F N "ext_isr" 0 23 ""
+F G "ext_isr" 0 23 "void()" `761  "Cada flanco en RB0 alterna el estado de lectura ADC"
+C L "init_adc" 0 13 1 "FUNCTION"
+F N "init_adc" 0 29 ""
+F G "init_adc" 0 29 "void()" `758 
+C L "init_adc" 0 13 1 "FUNCTION"
+C L "init_adc" 0 13 1 "FUNCTION"
+C L "init_adc" 0 13 1 "FUNCTION"
+C L "init_adc" 0 13 1 "FUNCTION"
+F N "init_interrupts" 0 36 ""
+F G "init_interrupts" 0 36 "void()" `759 
+C L "init_interrupts" 0 13 1 "FUNCTION"
+F N "init_GPIO" 0 42 ""
+F G "init_GPIO" 0 42 "void()" `760 
+C L "init_GPIO" 0 13 1 "FUNCTION"
+C L "init_GPIO" 0 13 1 "FUNCTION"
+C L "MAIN" 0 13 1 "FUNCTION"
+F N "MAIN" 0 48 ""
+F G "MAIN" 0 48 "void()" `762 
+V L "adc_value" 0 49 "int16" `763 
+V L "voltage" 0 50 "float" `764 
+C L "MAIN" 0 13 1 "FUNCTION"
+C L "MAIN" 0 13 1 "FUNCTION"
+C L "MAIN" 0 13 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0
