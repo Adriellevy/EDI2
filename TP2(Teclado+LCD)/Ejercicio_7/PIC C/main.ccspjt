@@ -1,0 +1,33 @@
+[PROJECT]
+Target=main.hex
+Processor_Text=PIC16F1827
+CCSVersion=5.093
+Compiler=PCM
+[Target Data]
+FileList=main.c
+[main.c]
+Type=4
+[mru-list]
+1=main.c
+
+[defines]
+buildcount=5
+
+[ProjectLog]
+Days=1
+D1=16-09-2025
+D1_L=6
+D1_L1=[51009]Stopped Editing.
+D1_L2=[51305]Started Editing.
+D1_L3=[51691]Stopped Editing.
+D1_L4=[51865]Started Editing.
+D1_L5=[53123]Stopped Editing.
+D1_L6=[54107]Started Editing.
+
+[Opened Files]
+1=main.c
+t1=21
+Count=1
+[Units]
+Count=1
+1=main (main)

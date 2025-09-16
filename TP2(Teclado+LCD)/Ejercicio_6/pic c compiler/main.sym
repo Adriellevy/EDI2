@@ -144,12 +144,12 @@ Project Directory:
     C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TP2(Teclado+LCD)\Ejercicio_6\pic c compiler\
 
 Project Files:
-    main.c                                                  [16-Sep-25 13:18  CRC=A2CF8975]
+    main.c                                                  [16-Sep-25 13:45  CRC=F65DC58A]
     main.h                                                  [15-Sep-25 21:23  CRC=00000000]
     ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-Feb-20 15:48  CRC=D6A5AF9F]
     ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [22-Feb-16 09:05  CRC=D1A6378A]
 
-Source signature=1CC1A828
+Source signature=704FE43D
 Program memory checksum=0000
 Hex file CRC=9D32
 

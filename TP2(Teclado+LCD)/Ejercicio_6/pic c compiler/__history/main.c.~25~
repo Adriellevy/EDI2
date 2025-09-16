@@ -69,7 +69,7 @@ void main() {
       }
       else {
          // Si está pausado, mostrar mensaje
-         lcd_putc("\fADC PAUSADO"); 
+         lcd_putc("\fADC PAUSADO"); //cambiarlo y poner el ultimo valor
          //lcd_putc("\f");  
          //printf(lcd_putc, "ADC: %4Lu", adc_value);
          lcd_gotoxy(1,2);

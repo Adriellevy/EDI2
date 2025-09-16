@@ -1,0 +1,53 @@
+#include <main.h>
+#fuses NOWDT, INTRC_IO, NOMCLR
+
+//======= VARIABLES GLOBALES =======
+volatile int1 adc_enable = 1;   // Habilitación del ADC (1 = activo, 0 = pausado)
+
+//======= PROTOTIPOS =======
+void init_adc();
+void init_interrupts();
+void init_GPIO();
+
+//======= RUTINA DE INTERRUPCIÓN =======
+#INT_IOC
+void ext_isr(void) {
+   
+}
+
+//======= INICIALIZACIONES =======
+void init_adc() {
+   setup_adc_ports(sAN0);         // RA0 como analógico
+   setup_adc(ADC_CLOCK_INTERNAL); // Reloj ADC interno
+   set_adc_channel(0);            // Canal 0 = RA0
+   //delay_us(20);                  // Tiempo de adquisición PREGUNTAR
+}
+
+void init_interrupts() {
+   //enable_interrupts(INT_IOC_B0);    // Habilita interrupción externa en RB0
+   enable_interrupts(GLOBAL);
+}
+
+
+void init_GPIO(void){
+    set_tris_a(0b00000001);   // A es ENTRADA
+    set_tris_b(0b00000000);   // PORTB como SALIDA
+}
+//======= PROGRAMA PRINCIPAL =======
+void main() {
+   int16 adc_value;
+   
+   init_GPIO();
+
+   init_adc();
+   init_interrupts();
+
+   while(TRUE) {
+      if(adc_enable) {
+         adc_value = read_adc();        // Leer ADC (10 bits)
+      }
+      else {
+
+      }
+   }
+}

@@ -1,4 +1,4 @@
-CCS PCM C Compiler, Version 5.093, 4770               16-Sep-25 13:18
+CCS PCM C Compiler, Version 5.093, 4770               16-Sep-25 13:45
 
                Filename:   C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TP2(Teclado+LCD)\Ejercicio_6\pic c compiler\main.lst
 
@@ -1912,7 +1912,7 @@ CCS PCM C Compiler, Version 5.093, 4770               16-Sep-25 13:18
 0226:  MOVLP  00
 0227:  MOVLB  00
 0228:  GOTO   58E (RETURN)
-....................    //delay_us(20);                  // Tiempo de adquisición
+....................    //delay_us(20);                  // Tiempo de adquisición PREGUNTAR
 .................... }
 .................... 
 .................... void init_interrupts() {
@@ -2126,7 +2126,7 @@ CCS PCM C Compiler, Version 5.093, 4770               16-Sep-25 13:18
 0610:  GOTO   63C
 ....................       else {
 ....................          // Si está pausado, mostrar mensaje
-....................          lcd_putc("\fADC PAUSADO"); //cambiarlo y poner el ultimo valor
+....................          lcd_putc("\fADC PAUSADO"); 
 0611:  MOVLW  55
 0612:  MOVLB  03
 0613:  MOVWF  11

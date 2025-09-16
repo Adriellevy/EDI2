@@ -53,7 +53,7 @@ Page ROM  %  RAM    Vol Diff  Functions:
 Program metrics:
     Functions               12
     Statements              129
-    Comments                280
+    Comments                279
     Volume (V)              6288
     Difficulty (D)          39.9
     Effort to implement (E) 251062
