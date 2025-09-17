@@ -18,7 +18,7 @@ void INIT_TIMER_0();
 #INT_AD
 void isr_adc(void){
    adc_value = read_adc(ADC_READ_ONLY); // Leo el resultado
-   dac_write(adc_value/32);                // Lo mando al DAC
+   dac_write(adc_value);                // Lo mando al DAC
 }
 
 #INT_TIMER0 

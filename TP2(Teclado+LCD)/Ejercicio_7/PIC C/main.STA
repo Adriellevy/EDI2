@@ -1,11 +1,11 @@
 
-ROM used:   144/4096 (4%)
-            144/4096 (4%) including unused fragments
+ROM used:   151/4096 (4%)
+            151/4096 (4%) including unused fragments
 
             0.1 Average locations per line
-            6.0 Average locations per statement
+            6.3 Average locations per statement
 
-RAM used:   10/383 (3%) at main() level
+RAM used:   9/383 (2%) at main() level
             21/383 (5%) worst case
 
 Stack used: 1 worst case (0 in main + 1 for interrupts)
@@ -13,41 +13,41 @@ Stack size: 16
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   77    24 100  main.c
+   75    24 100  main.c
   965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
 ----- -----
- 1042    24 Total
+ 1040    24 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
-0     17  12    0     47  1.5  isr_adc
-0      8   6    0     32  1.0  TIMER0_ISR
-0     24  17    0     67  1.2  INIT_ADC
+0     22  15    1     57  1.9  isr_adc
+0      8   5    0     32  1.0  TIMER0_ISR
+0     28  19    0     67  1.2  INIT_ADC
 0      6   4    0     30  1.3  INIT_DAC
-0      7   5    0     32  1.0  INIT_INTERRUPTS
-0     13   9    0     78  1.6  INIT_TIMER_0
-0      8   6    0     37  1.1  INIT_GPIO
-0     23  16    0     75  1.5  MAIN
+0      8   5    0     48  1.1  INIT_INTERRUPTS
+0     10   7    0     42  1.4  INIT_TIMER_0
+0      8   5    0     37  1.1  INIT_GPIO
+0     23  15    0     95  1.6  MAIN
  Inline         0             @cinit1
 
 Program metrics:
     Functions               8
     Statements              24
-    Comments                176
-    Volume (V)              729
-    Difficulty (D)          10.2
-    Effort to implement (E) 7451
+    Comments                179
+    Volume (V)              745
+    Difficulty (D)          10.6
+    Effort to implement (E) 7938
     Time to implement (T)   7 minutes
     Est Delivered Bugs (B)  0
     Cyclomatic Complexity   1
-    Maintainability (MI)    171
+    Maintainability (MI)    173
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     3  0  
 00003-00003     0  1  
 00004-00026    35  0  
-00027-007FF   106  1903  
+00027-007FF   113  1896  
 00800-00FFF     0  2048  
 
 

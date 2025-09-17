@@ -2,10 +2,10 @@
    ÃÄMAIN  0/23  Ram=0
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄ@cinit2  (Inline)  Ram=0
-   ³  ÃÄINIT_TIMER_0  0/13  Ram=0
    ³  ÃÄINIT_GPIO  0/8  Ram=0
    ³  ÃÄINIT_DAC  0/6  Ram=0
-   ³  ÃÄINIT_ADC  0/24  Ram=0
-   ³  ÀÄINIT_INTERRUPTS  0/7  Ram=0
-   ÃÄisr_adc  0/17  Ram=0
+   ³  ÃÄINIT_ADC  0/28  Ram=0
+   ³  ÃÄINIT_TIMER_0  0/10  Ram=0
+   ³  ÀÄINIT_INTERRUPTS  0/8  Ram=0
+   ÃÄisr_adc  0/22  Ram=1
    ÀÄTIMER0_ISR  0/8  Ram=0
