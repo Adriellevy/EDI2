@@ -1,4 +1,6 @@
-Compiling C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TP2(Teclado+LCD)\Ejercicio_7\PIC C\main on 16-Sep-25 at 15:05
-      Memory usage:   ROM=3%      RAM=3% - 5%
-      0 Errors,  0 Warnings.
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_7\Pic c\main on 17-sep.-25 at 10:23
+>>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_7\Pic c\main.c" Line 8(15,25): Variable never used:   adc_enable
+>>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_7\Pic c\main.c" Line 9(15,23): Variable never used:   flag_ADC
+      Memory usage:   ROM=4%      RAM=3% - 5%
+      0 Errors,  2 Warnings.
 Build Successful.

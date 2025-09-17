@@ -11,10 +11,10 @@ Type=4
 1=main.c
 
 [defines]
-buildcount=5
+buildcount=13
 
 [ProjectLog]
-Days=1
+Days=2
 D1=16-09-2025
 D1_L=6
 D1_L1=[51009]Stopped Editing.
@@ -23,11 +23,20 @@ D1_L3=[51691]Stopped Editing.
 D1_L4=[51865]Started Editing.
 D1_L5=[53123]Stopped Editing.
 D1_L6=[54107]Started Editing.
+D2=17-09-2025
+D2_L=4
+D2_L1=[35016]Project Opened.
+D2_L2=[35057]Started Editing.
+D2_L3=[35503]Stopped Editing.
+D2_L4=[36182]Started Editing.
 
 [Opened Files]
 1=main.c
-t1=21
+t1=40
 Count=1
+
+[fileformats]
+forcecoff=0
 [Units]
 Count=1
 1=main (main)

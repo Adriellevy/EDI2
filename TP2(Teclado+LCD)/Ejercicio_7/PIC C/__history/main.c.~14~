@@ -6,7 +6,6 @@
 
 //======= VARIABLES GLOBALES =======
 volatile int1 adc_enable = 1;   // Habilitación del ADC (1 = activo, 0 = pausado)
-volatile int1 flag_ADC=0;
 volatile int8 adc_value = 0;
 //======= PROTOTIPOS =======
 void INIT_ADC();
@@ -19,14 +18,16 @@ void INIT_DAC();
 //======= RUTINA DE INTERRUPCIÓN =======
 #INT_AD
 void isr_adc(void){
-   adc_value = read_adc(ADC_READ_ONLY);
+
+
    dac_write(adc_value);
 }
 #INT_TIMER0 
 void TIMER0_ISR()
 {
-   set_timer0(128);
-   read_adc(ADC_START_ONLY); //Si no anda probar con '0'
+   set_timer0(0);
+   adc_value = read_adc(); //Si no anda probar con '0'
+   valor_adc = read_adc(ADC_READ_ONLY)
 }
 
 //======= INICIALIZACIONES =======
@@ -52,7 +53,7 @@ void INIT_INTERRUPTS() {
 void INIT_TIMER_0() //Utilizar en RB5
 {
 setup_timer_0(RTCC_INTERNAL | RTCC_DIV_1);
-set_timer0(128); //Se recarga el timer0
+set_timer0(0); //Se recarga el timer0
 enable_interrupts(INT_TIMER0); // Habilita interrupcion timer0
 enable_interrupts(global); // Habilita interrupciones globales
 }

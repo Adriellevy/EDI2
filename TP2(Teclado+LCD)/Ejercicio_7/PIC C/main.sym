@@ -9,6 +9,7 @@
 022     @INTERRUPT_AREA
 023     @INTERRUPT_AREA
 024.0   adc_enable
+024.1   flag_ADC
 025     adc_value
 077     @SCRATCH
 078     @SCRATCH
@@ -28,34 +29,35 @@
 311     CCP_3
 311     CCP_3_LOW
 312     CCP_3_HIGH
-318     CCP_4
 318     CCP_4_LOW
+318     CCP_4
 319     CCP_4_HIGH
 
 ROM Allocation:
-00001E  TIMER0_ISR
-000032  INIT_TIMER_0
-00003F  INIT_GPIO
-000047  INIT_DAC
-00004D  INIT_ADC
-000065  INIT_INTERRUPTS
-00006C  @cinit1
-00006C  MAIN
-00007A  @cinit2
+000027  isr_adc
+000038  TIMER0_ISR
+000040  INIT_TIMER_0
+00004D  INIT_GPIO
+000055  INIT_DAC
+00005B  INIT_ADC
+000073  INIT_INTERRUPTS
+00007A  MAIN
+00007A  @cinit1
+000089  @cinit2
 
 Project Directory:
-    C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TP2(Teclado+LCD)\Ejercicio_7\PIC C\
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_7\Pic c\
 
 Project Files:
-    main.c                                                  [16-Sep-25 15:05  CRC=BB034C99]
-    ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-Feb-20 15:48  CRC=D6A5AF9F]
+    main.c                                                  [17-sep.-25 10:23  CRC=B82BE1A0]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
 
-Source signature=684EABD7
+Source signature=657740DE
 Program memory checksum=0000
-Hex file CRC=F2B0
+Hex file CRC=B13B
 
 Units:
-    C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TP2(Teclado+LCD)\Ejercicio_7\PIC C\main (main)
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_7\Pic c\main (main)
 
 Compiler Settings:
     Processor:      PIC16F1827
