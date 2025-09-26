@@ -1,0 +1,47 @@
+ÀÄComunicacion_serial
+   ÀÄMAIN  0/53  Ram=0
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄ@cinit2  (Inline)  Ram=0
+      ÃÄlcd_init  0/50  Ram=0
+      ³  ÃÄ@delay_ms1  0/22  Ram=1
+      ³  ÃÄi2c_lcd_send_nibble  0/29  Ram=4
+      ³  ³  ÃÄ@I2C_WRITEU_129  0/20  Ram=1
+      ³  ³  ÃÄ@I2C_WRITEU_129  0/20  Ram=1
+      ³  ³  ÀÄ@I2C_WRITEU_129  0/20  Ram=1
+      ³  ÃÄ@delay_ms1  0/22  Ram=1
+      ³  ÃÄi2c_lcd_send_nibble  0/29  Ram=4
+      ³  ³  ÀÄ*
+      ³  ÃÄi2c_lcd_send_nibble  0/29  Ram=4
+      ³  ³  ÀÄ*
+      ³  ÃÄ@delay_ms1  0/22  Ram=1
+      ³  ÃÄi2c_lcd_send_nibble  0/29  Ram=4
+      ³  ³  ÀÄ*
+      ³  ÃÄ@delay_ms1  0/22  Ram=1
+      ³  ÃÄlcd_cmd  0/8  Ram=1
+      ³  ³  ÃÄi2c_lcd_send_byte  0/19  Ram=3
+      ³  ³  ³  ÃÄi2c_lcd_send_nibble  0/29  Ram=4
+      ³  ³  ³  ³  ÀÄ*
+      ³  ³  ³  ÀÄi2c_lcd_send_nibble  0/29  Ram=4
+      ³  ³  ³     ÀÄ*
+      ³  ³  ÀÄ@delay_ms1  0/22  Ram=1
+      ³  ÃÄlcd_cmd  0/8  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_cmd  0/8  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_cmd  0/8  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÀÄ@delay_ms1  0/22  Ram=1
+      ÃÄlcd_gotoxy  0/15  Ram=3
+      ³  ÀÄlcd_cmd  0/8  Ram=1
+      ³     ÀÄ*
+      ÃÄ@PSTRINGC7_734  0/74  Ram=3
+      ³  ÃÄlcd_putc  0/9  Ram=1
+      ³  ³  ÃÄi2c_lcd_send_byte  0/19  Ram=3
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÀÄ@delay_ms1  0/22  Ram=1
+      ³  ÀÄlcd_putc  0/9  Ram=1
+      ³     ÀÄ*
+      ÃÄlcd_gotoxy  0/15  Ram=3
+      ³  ÀÄ*
+      ÀÄ@PSTRINGC7_734  0/74  Ram=3
+         ÀÄ*

@@ -5,7 +5,7 @@
 #fuses NOWDT, INTRC_IO, NOMCLR
 
 //======= VARIABLES GLOBALES =======
-volatile int16 adc_value = 0;
+volatile int8 adc_value = 0;
 
 //======= PROTOTIPOS =======
 void INIT_ADC();
@@ -18,8 +18,7 @@ void INIT_TIMER_0();
 #INT_AD
 void isr_adc(void){
    adc_value = read_adc(ADC_READ_ONLY); // Leo el resultado
-   dac_write(adc_value*31/(1023));                // Lo mando al DAC
-   read_adc(ADC_START_ONLY);
+   dac_write(adc_value*31/1023);                // Lo mando al DAC
 }
 
 #INT_TIMER0 
@@ -34,7 +33,7 @@ void INIT_ADC() {
    setup_adc_ports(sAN0);         // RA0 como analógico
    setup_adc(ADC_CLOCK_INTERNAL); // Reloj ADC interno
    set_adc_channel(0);            // Canal AN0
-   read_adc(ADC_START_ONLY);
+   delay_us(20);                  // Tiempo de adquisición
 }
 
 void INIT_DAC(void){
@@ -63,7 +62,7 @@ void main() {
    INIT_GPIO();
    INIT_DAC();
    INIT_ADC();
-//!   INIT_TIMER_0();
+   INIT_TIMER_0();
    INIT_INTERRUPTS();
 
 

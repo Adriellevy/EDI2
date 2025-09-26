@@ -11,10 +11,10 @@ Type=4
 1=main.c
 
 [defines]
-buildcount=17
+buildcount=35
 
 [ProjectLog]
-Days=2
+Days=5
 D1=16-09-2025
 D1_L=6
 D1_L1=[51009]Stopped Editing.
@@ -30,7 +30,7 @@ D2_L2=[35057]Started Editing.
 D2_L3=[35503]Stopped Editing.
 D2_L4=[36182]Started Editing.
 D2_L5=[37700]Stopped Editing.
-TotalEdit=31
+TotalEdit=61
 TotalDebug=0
 D2_E=31
 D2_D=0
@@ -45,11 +45,33 @@ D2_L13=[50611]Stopped Editing.
 D2_L14=[52223]Started Editing.
 D2_L15=[52530]Stopped Editing.
 D2_L16=[52676]Project Closed.
+D3=18-09-2025
+D3_L=9
+D3_L1=[44363]Project Opened.
+D3_L2=[46020]Project Closed.
+D3_L3=[46983]Project Opened.
+D3_L4=[47040]Started Editing.
+D3_L5=[48900]Stopped Editing.
+D3_L6=[49016]Started Editing.
+D3_L7=[49507]Stopped Editing.
+D3_L8=[49959]Started Editing.
+D3_L9=[50259]Stopped Editing.
+D4=19-09-2025
+D4_E=30
+D4_D=0
+D4_L=1
+D4_L1=[28106]Project Closed.
+D5=23-09-2025
+D5_L=2
+D5_L1=[46632]Project Opened.
+D5_L2=[47223]Project Closed.
 
 [Opened Files]
 1=main.c
-t1=9
-Count=1
+t1=1
+Count=2
+2=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+t2=137
 
 [fileformats]
 forcecoff=0

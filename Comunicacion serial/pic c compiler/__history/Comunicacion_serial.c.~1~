@@ -1,0 +1,13 @@
+#include <Comunicacion_serial.h>
+
+void main()
+{
+
+	while(TRUE)
+	{
+
+
+		//TODO: User Code
+	}
+
+}

@@ -1,0 +1,57 @@
+
+ROM used:   311/4096 (8%)
+            311/4096 (8%) including unused fragments
+
+            0.3 Average locations per line
+            8.2 Average locations per statement
+
+RAM used:   6/383 (2%) at main() level
+            29/383 (8%) worst case
+
+Stack used: 5 worst case (5 in main + 0 for interrupts)
+Stack size: 16
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   89    38 100  Comunicacion_serial.c
+    5     0   0  Comunicacion_serial.h
+  965     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+----- -----
+ 1059    38 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     22   7    1             @delay_ms1
+0     20   6    1             @I2C_WRITEU_129
+0     29   9    4    221  4.0  i2c_lcd_send_nibble
+0     19   6    3    112  2.8  i2c_lcd_send_byte
+0      8   3    1     52  1.6  lcd_cmd
+0      9   3    1     52  1.6  lcd_putc
+0     50  16    0    346  1.9  lcd_init
+0     15   5    3    183  5.0  lcd_gotoxy
+0     53  17    0    147  2.1  MAIN
+0      3   1    0             @const744
+0     74  24    3             @PSTRINGC7_734
+0      6   2    0             @const749
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               7
+    Statements              38
+    Comments                165
+    Volume (V)              1749
+    Difficulty (D)          18.0
+    Effort to implement (E) 31401
+    Time to implement (T)   29 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    162
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  0  
+00003-007FF   308  1737  
+00800-00FFF     0  2048  
+
+
+

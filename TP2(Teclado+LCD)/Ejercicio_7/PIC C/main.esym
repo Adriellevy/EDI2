@@ -1,8 +1,8 @@
-F N "MAIN" 0 61 ""
+C L "MAIN" 0 7 1 "FUNCTION"
 D G "__PCM__" 0 76 ""5.093""
 D G "__DEVICE__" 0 76 "1827"
-D G "__DATE__" 0 76 ""17-Sep-25""
-D G "__TIME__" 0 76 ""14:30:31""
+D G "__DATE__" 0 76 ""18-Sep-25""
+D G "__TIME__" 0 76 ""13:52:43""
 D G "_UNICODE" 0 76 ""?""
 D G "__EVAL" 0 76 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
@@ -1400,7 +1400,7 @@ d G "INT_RB7" 1 960 "0x31800B08"
 d G "INT_RB7_L2H" 1 961 "0x11800B08"
 d G "INT_RB7_H2L" 1 962 "0x21800B08"
 C L "jump_to_isr" 0 7 1 "FUNCTION"
-V G "adc_value" 0 8 "int8" `721 
+V G "adc_value" 0 8 "int16" `721 
 C L "jump_to_isr" 0 7 1 "FUNCTION"
 F N "INIT_ADC" 0 11 ""
 f G "INIT_ADC" 0 11 "void()" `722 
@@ -1416,34 +1416,33 @@ F N "isr_adc" 0 19 ""
 F G "isr_adc" 0 19 "void()" `727 
 C L "isr_adc" 0 7 1 "FUNCTION"
 C L "isr_adc" 0 7 1 "FUNCTION"
-F N "TIMER0_ISR" 0 25 ""
-F G "TIMER0_ISR" 0 26 "void()" `728 
+F N "TIMER0_ISR" 0 26 ""
+F G "TIMER0_ISR" 0 27 "void()" `734 
 C L "TIMER0_ISR" 0 7 1 "FUNCTION"
 C L "INIT_ADC" 0 7 1 "FUNCTION"
-F N "INIT_ADC" 0 32 ""
-F G "INIT_ADC" 0 32 "void()" `722 
+F N "INIT_ADC" 0 33 ""
+F G "INIT_ADC" 0 33 "void()" `722 
 C L "INIT_ADC" 0 7 1 "FUNCTION"
 C L "INIT_ADC" 0 7 1 "FUNCTION"
 C L "INIT_ADC" 0 7 1 "FUNCTION"
-C L "INIT_ADC" 0 7 1 "FUNCTION"
-F N "INIT_DAC" 0 39 ""
-F G "INIT_DAC" 0 39 "void()" `725 
+F N "INIT_DAC" 0 40 ""
+F G "INIT_DAC" 0 40 "void()" `725 
 C L "INIT_DAC" 0 7 1 "FUNCTION"
-F N "INIT_INTERRUPTS" 0 43 ""
-F G "INIT_INTERRUPTS" 0 43 "void()" `723 
+F N "INIT_INTERRUPTS" 0 44 ""
+F G "INIT_INTERRUPTS" 0 44 "void()" `723 
 C L "INIT_INTERRUPTS" 0 7 1 "FUNCTION"
 C L "INIT_INTERRUPTS" 0 7 1 "FUNCTION"
 C L "INIT_INTERRUPTS" 0 7 1 "FUNCTION"
-F N "INIT_TIMER_0" 0 49 ""
-F G "INIT_TIMER_0" 0 50 "void()" `726 
+F N "INIT_TIMER_0" 0 50 ""
+F G "INIT_TIMER_0" 0 51 "void()" `726 
 C L "INIT_TIMER_0" 0 7 1 "FUNCTION"
-F N "INIT_GPIO" 0 55 ""
-F G "INIT_GPIO" 0 55 "void()" `724 
+F N "INIT_GPIO" 0 56 ""
+F G "INIT_GPIO" 0 56 "void()" `724 
 C L "INIT_GPIO" 0 7 1 "FUNCTION"
 C L "INIT_GPIO" 0 7 1 "FUNCTION"
 C L "MAIN" 0 7 1 "FUNCTION"
-F N "MAIN" 0 61 ""
-F G "MAIN" 0 61 "void()" `729 
+F N "MAIN" 0 62 ""
+F G "MAIN" 0 62 "void()" `735 
 C L "MAIN" 0 7 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0

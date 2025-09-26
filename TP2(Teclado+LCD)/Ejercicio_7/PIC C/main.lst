@@ -1,16 +1,16 @@
-CCS PCM C Compiler, Version 5.093, 4770               17-sep.-25 14:30
+CCS PCM C Compiler, Version 5.093, 4770               18-sep.-25 13:52
 
                Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_7\Pic c\main.lst
 
-               ROM used:   151 words (4%)
+               ROM used:   210 words (5%)
                            Largest free fragment is 2048
-               RAM used:   9 (2%) at main() level
-                           21 (5%) worst case
+               RAM used:   10 (3%) at main() level
+                           28 (7%) worst case
                Stack used: 1 locations (0 in main + 1 for interrupts)
                Stack size: 16
 
 0000:  MOVLP  00
-0001:  GOTO   081
+0001:  GOTO   0BE
 0002:  NOP
 *
 0004:  CLRF   03
@@ -45,7 +45,7 @@ CCS PCM C Compiler, Version 5.093, 4770               17-sep.-25 14:30
 0021:  MOVWF  7A
 0022:  RETFIE
 0023:  MOVLP  00
-0024:  GOTO   03D
+0024:  GOTO   089
 0025:  MOVLP  00
 0026:  GOTO   027
 .................... #include <16F1827.h>
@@ -60,6 +60,64 @@ CCS PCM C Compiler, Version 5.093, 4770               17-sep.-25 14:30
 .................... //// form are not restricted in any way.                               ////
 .................... ///////////////////////////////////////////////////////////////////////////
 .................... #device PIC16F1827
+*
+003C:  MOVLW  10
+003D:  MOVWF  2A
+003E:  CLRF   77
+003F:  CLRF   7A
+0040:  RRF    27,F
+0041:  RRF    26,F
+0042:  BTFSS  03.0
+0043:  GOTO   04A
+0044:  MOVF   28,W
+0045:  ADDWF  77,F
+0046:  BTFSC  03.0
+0047:  INCF   7A,F
+0048:  MOVF   29,W
+0049:  ADDWF  7A,F
+004A:  RRF    7A,F
+004B:  RRF    77,F
+004C:  RRF    79,F
+004D:  RRF    78,F
+004E:  DECFSZ 2A,F
+004F:  GOTO   040
+*
+005C:  CLRF   78
+005D:  CLRF   79
+005E:  CLRF   77
+005F:  CLRF   7A
+0060:  MOVF   2B,W
+0061:  BTFSS  03.2
+0062:  GOTO   066
+0063:  MOVF   2A,W
+0064:  BTFSC  03.2
+0065:  GOTO   080
+0066:  MOVLW  10
+0067:  MOVWF  2C
+0068:  BCF    03.0
+0069:  RLF    28,F
+006A:  RLF    29,F
+006B:  RLF    77,F
+006C:  RLF    7A,F
+006D:  MOVF   2B,W
+006E:  SUBWF  7A,W
+006F:  BTFSS  03.2
+0070:  GOTO   073
+0071:  MOVF   2A,W
+0072:  SUBWF  77,W
+0073:  BTFSS  03.0
+0074:  GOTO   07C
+0075:  MOVF   2A,W
+0076:  SUBWF  77,F
+0077:  BTFSS  03.0
+0078:  DECF   7A,F
+0079:  MOVF   2B,W
+007A:  SUBWF  7A,F
+007B:  BSF    03.0
+007C:  RLF    78,F
+007D:  RLF    79,F
+007E:  DECFSZ 2C,F
+007F:  GOTO   068
 .................... 
 .................... #list
 .................... 
@@ -69,7 +127,7 @@ CCS PCM C Compiler, Version 5.093, 4770               17-sep.-25 14:30
 .................... #fuses NOWDT, INTRC_IO, NOMCLR
 .................... 
 .................... //======= VARIABLES GLOBALES =======
-.................... volatile int8 adc_value = 0;
+.................... volatile int16 adc_value = 0;
 .................... 
 .................... //======= PROTOTIPOS =======
 .................... void INIT_ADC();
@@ -82,6 +140,7 @@ CCS PCM C Compiler, Version 5.093, 4770               17-sep.-25 14:30
 .................... #INT_AD
 .................... void isr_adc(void){
 ....................    adc_value = read_adc(ADC_READ_ONLY); // Leo el resultado
+*
 0027:  MOVLW  11
 0028:  MOVWF  77
 0029:  MOVLB  01
@@ -90,171 +149,175 @@ CCS PCM C Compiler, Version 5.093, 4770               17-sep.-25 14:30
 002C:  DECFSZ 77,F
 002D:  GOTO   02A
 002E:  MOVF   1B,W
-002F:  MOVLB  00
-0030:  MOVWF  24
-....................    dac_write(adc_value/32);                // Lo mando al DAC
-0031:  SWAPF  24,W
+002F:  MOVWF  78
+0030:  MOVF   1C,W
+0031:  MOVLB  00
 0032:  MOVWF  25
-0033:  RRF    25,F
-0034:  MOVLW  07
-0035:  ANDWF  25,F
-0036:  MOVF   25,W
-0037:  MOVLB  02
-0038:  MOVWF  19
+0033:  MOVF   78,W
+0034:  MOVWF  24
+....................    dac_write(adc_value*31/(1023));                // Lo mando al DAC
+0035:  MOVF   25,W
+0036:  MOVWF  27
+0037:  MOVF   24,W
+0038:  MOVWF  26
+0039:  CLRF   29
+003A:  MOVLW  1F
+003B:  MOVWF  28
+*
+0050:  MOVF   79,W
+0051:  MOVWF  27
+0052:  MOVF   78,W
+0053:  MOVWF  26
+0054:  MOVF   27,W
+0055:  MOVWF  29
+0056:  MOVF   26,W
+0057:  MOVWF  28
+0058:  MOVLW  03
+0059:  MOVWF  2B
+005A:  MOVLW  FF
+005B:  MOVWF  2A
+*
+0080:  MOVF   78,W
+0081:  MOVLB  02
+0082:  MOVWF  19
+....................    read_adc(ADC_START_ONLY);
+0083:  MOVLB  01
+0084:  BSF    1D.1
 .................... }
 .................... 
-0039:  MOVLB  00
-003A:  BCF    11.6
-003B:  MOVLP  00
-003C:  GOTO   01A
+0085:  MOVLB  00
+0086:  BCF    11.6
+0087:  MOVLP  00
+0088:  GOTO   01A
 .................... #INT_TIMER0 
 .................... void TIMER0_ISR()
 .................... {
-....................    set_timer0(128);
-003D:  MOVLW  80
-003E:  MOVWF  15
+....................    set_timer0(0);
+0089:  CLRF   15
 ....................    read_adc(ADC_START_ONLY); // Inicio nueva conversión
-003F:  MOVLB  01
-0040:  BSF    1D.1
-0041:  BCF    0B.2
-0042:  MOVLP  00
-0043:  MOVLB  00
-0044:  GOTO   01A
+008A:  MOVLB  01
+008B:  BSF    1D.1
+008C:  BCF    0B.2
+008D:  MOVLP  00
+008E:  MOVLB  00
+008F:  GOTO   01A
 .................... }
 .................... 
 .................... //======= INICIALIZACIONES =======
 .................... void INIT_ADC() {
 ....................    setup_adc_ports(sAN0);         // RA0 como analógico
 *
-0053:  MOVLB  01
-0054:  BCF    1E.0
-0055:  BCF    1E.1
-0056:  BCF    1E.2
-0057:  MOVLW  01
-0058:  MOVLB  03
-0059:  MOVWF  0C
-005A:  MOVLW  00
-005B:  MOVWF  0D
+009E:  MOVLB  01
+009F:  BCF    1E.0
+00A0:  BCF    1E.1
+00A1:  BCF    1E.2
+00A2:  MOVLW  01
+00A3:  MOVLB  03
+00A4:  MOVWF  0C
+00A5:  MOVLW  00
+00A6:  MOVWF  0D
 ....................    setup_adc(ADC_CLOCK_INTERNAL); // Reloj ADC interno
-005C:  MOVLB  01
-005D:  BSF    1E.4
-005E:  BSF    1E.5
-005F:  BCF    1E.6
-0060:  BSF    1E.7
-0061:  BSF    1D.0
+00A7:  MOVLB  01
+00A8:  BSF    1E.4
+00A9:  BSF    1E.5
+00AA:  BCF    1E.6
+00AB:  BSF    1E.7
+00AC:  BSF    1D.0
 ....................    set_adc_channel(0);            // Canal AN0
-0062:  MOVWF  78
-0063:  MOVF   1D,W
-0064:  ANDLW  83
-0065:  IORWF  78,W
-0066:  MOVWF  1D
-....................    delay_us(20);                  // Tiempo de adquisición
-0067:  MOVLW  06
-0068:  MOVWF  77
-0069:  DECFSZ 77,F
-006A:  GOTO   069
-006B:  NOP
-006C:  MOVLP  00
-006D:  MOVLB  00
-006E:  GOTO   092 (RETURN)
+00AD:  MOVWF  78
+00AE:  MOVF   1D,W
+00AF:  ANDLW  83
+00B0:  IORWF  78,W
+00B1:  MOVWF  1D
+....................    read_adc(ADC_START_ONLY);
+00B2:  BSF    1D.1
+00B3:  MOVLP  00
+00B4:  MOVLB  00
+00B5:  GOTO   0D0 (RETURN)
 .................... }
 .................... 
 .................... void INIT_DAC(void){
 ....................    setup_dac(DAC_VSS_VDD | DAC_OUTPUT); // Habilito DAC con salida física
 *
-004D:  MOVLW  A0
-004E:  MOVLB  02
-004F:  MOVWF  18
-0050:  MOVLP  00
-0051:  MOVLB  00
-0052:  GOTO   091 (RETURN)
+0098:  MOVLW  A0
+0099:  MOVLB  02
+009A:  MOVWF  18
+009B:  MOVLP  00
+009C:  MOVLB  00
+009D:  GOTO   0CF (RETURN)
 .................... }
 .................... 
 .................... void INIT_INTERRUPTS() {
 ....................    enable_interrupts(INT_AD);     // Habilita interrupción del ADC
 *
-0079:  MOVLB  01
-007A:  BSF    11.6
+00B6:  MOVLB  01
+00B7:  BSF    11.6
 ....................    enable_interrupts(INT_TIMER0); // Habilita interrupcion timer0
-007B:  BSF    0B.5
+00B8:  BSF    0B.5
 ....................    enable_interrupts(GLOBAL);     // Interrupciones globales
-007C:  MOVLW  C0
-007D:  IORWF  0B,F
-007E:  MOVLP  00
-007F:  MOVLB  00
-0080:  GOTO   094 (RETURN)
+00B9:  MOVLW  C0
+00BA:  IORWF  0B,F
+00BB:  MOVLP  00
+00BC:  MOVLB  00
+00BD:  GOTO   0D1 (RETURN)
 .................... }
 .................... 
 .................... void INIT_TIMER_0()
 .................... {
-....................    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_64); // Más lento para que dé tiempo
-*
-006F:  MOVLB  01
-0070:  MOVF   15,W
-0071:  ANDLW  C0
-0072:  IORLW  05
-0073:  MOVWF  15
-....................    set_timer0(128);
-0074:  MOVLW  80
-0075:  MOVLB  00
-0076:  MOVWF  15
-0077:  MOVLP  00
-0078:  GOTO   093 (RETURN)
+....................    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_32); // Más lento para que dé tiempo
+....................    set_timer0(0);
 .................... }
 .................... 
 .................... void INIT_GPIO(void){
-....................     set_tris_a(0b00000001);   // RA0 como entrada (potenciómetro)
+....................     set_tris_a(0b00000001);   // RA0 como entrada 
 *
-0045:  MOVLW  01
-0046:  MOVLB  01
-0047:  MOVWF  0C
+0090:  MOVLW  01
+0091:  MOVLB  01
+0092:  MOVWF  0C
 ....................     set_tris_b(0x00);         // PORTB como salida
-0048:  MOVLW  00
-0049:  MOVWF  0D
-004A:  MOVLP  00
-004B:  MOVLB  00
-004C:  GOTO   090 (RETURN)
+0093:  MOVLW  00
+0094:  MOVWF  0D
+0095:  MOVLP  00
+0096:  MOVLB  00
+0097:  GOTO   0CE (RETURN)
 .................... }
 .................... 
 .................... //======= PROGRAMA PRINCIPAL =======
 .................... void main() {
 *
-0081:  MOVLW  6A
-0082:  MOVLB  01
-0083:  MOVWF  19
-0084:  MOVLB  00
-0085:  CLRF   24
-0086:  MOVLB  03
-0087:  CLRF   0C
-0088:  CLRF   0D
-0089:  MOVLB  02
-008A:  CLRF   12
-008B:  CLRF   11
-008C:  CLRF   14
-008D:  CLRF   13
+00BE:  MOVLW  6A
+00BF:  MOVLB  01
+00C0:  MOVWF  19
+00C1:  MOVLB  00
+00C2:  CLRF   25
+00C3:  CLRF   24
+00C4:  MOVLB  03
+00C5:  CLRF   0C
+00C6:  CLRF   0D
+00C7:  MOVLB  02
+00C8:  CLRF   12
+00C9:  CLRF   11
+00CA:  CLRF   14
+00CB:  CLRF   13
 ....................    INIT_GPIO();
-008E:  MOVLB  00
-008F:  GOTO   045
+00CC:  MOVLB  00
+00CD:  GOTO   090
 ....................    INIT_DAC();
-0090:  GOTO   04D
+00CE:  GOTO   098
 ....................    INIT_ADC();
-0091:  GOTO   053
-....................    INIT_TIMER_0();
-0092:  GOTO   06F
+00CF:  GOTO   09E
+.................... //!   INIT_TIMER_0();
 ....................    INIT_INTERRUPTS();
-0093:  GOTO   079
+00D0:  GOTO   0B6
 .................... 
-....................    read_adc(ADC_START_ONLY); // Primera conversión para arrancar
-0094:  MOVLB  01
-0095:  BSF    1D.1
 .................... 
 ....................    while(TRUE) {
-0096:  GOTO   096
+00D1:  GOTO   0D1
 ....................       // Nada que hacer en el loop principal
 ....................    }
 .................... }
 .................... 
-0097:  SLEEP
+00D2:  SLEEP
 
 Configuration Fuses:
    Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN

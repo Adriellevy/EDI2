@@ -1,0 +1,49 @@
+[PROJECT]
+Target=Comunicacion_serial.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Comunicacion_serial.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\Comunicacion_serial]
+Type=4
+[mru-list]
+1=Comunicacion_serial.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=23-09-2025
+D1_L=8
+D1_L1=[47388]Project Opened.
+D1_L2=[49205]Started Editing.
+D1_L3=[49579]Stopped Editing.
+D1_L4=[51742]Started Editing.
+D1_L5=[52270]Stopped Editing.
+D1_L6=[52524]Started Editing.
+D1_L7=[60304]Stopped Editing.
+TotalEdit=135
+TotalDebug=0
+D1_E=135
+D1_D=0
+D1_L8=[60304]Project Closed.
+
+[Opened Files]
+1=Comunicacion_serial.c
+t1=68
+Count=2
+2=Comunicacion_serial.h
+t2=1
+[Comunicacion_serial.c]
+Type=4
+
+[defines]
+buildcount=2
+[Units]
+Count=1
+1=Comunicacion_serial (main)

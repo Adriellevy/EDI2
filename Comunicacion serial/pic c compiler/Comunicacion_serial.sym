@@ -1,0 +1,98 @@
+004-005 @READ_PACKED_MEMORY.P1
+004-005 @WRITE_PACKED_MEMORY.P2
+004-005 @WRITE_PROGRAM_MEMORY8.P3
+004-005 @READ_PROGRAM_MEMORY8.P4
+006-007 @READ_PACKED_MEMORY.P1
+006-007 @WRITE_PACKED_MEMORY.P2
+020-021 @sprintf_string
+022     lcd_gotoxy.x
+022     @PSTRINGC7_734.@SCRATCH1
+023     lcd_gotoxy.y
+023     @PSTRINGC7_734.@SCRATCH2
+024     lcd_gotoxy.addr
+024     @PSTRINGC7_734.@SCRATCH3
+025     lcd_putc.c
+025     lcd_cmd.cmd
+026     i2c_lcd_send_byte.data
+026     @delay_ms1.P1
+027     i2c_lcd_send_byte.rs
+028     i2c_lcd_send_byte.@SCRATCH1
+029     i2c_lcd_send_nibble.nibble
+02A     i2c_lcd_send_nibble.rs
+02B     i2c_lcd_send_nibble.data
+02C     i2c_lcd_send_nibble.@SCRATCH1
+02D     @I2C_WRITEU_129.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+111.6   C1OUT
+113.6   C2OUT
+191-192 @READ_PROGRAM_MEMORY8.P1
+191-192 @WRITE_PROGRAM_MEMORY8.P2
+291     CCP_1_LOW
+291     CCP_1
+292     CCP_1_HIGH
+298     CCP_2
+298     CCP_2_LOW
+299     CCP_2_HIGH
+311     CCP_3
+311     CCP_3_LOW
+312     CCP_3_HIGH
+318     CCP_4
+318     CCP_4_LOW
+319     CCP_4_HIGH
+
+ROM Allocation:
+000003  @const744.call
+000006  @const749.call
+00000C  @delay_ms1
+000022  @I2C_WRITEU_129
+000036  i2c_lcd_send_nibble
+000053  i2c_lcd_send_byte
+000066  lcd_cmd
+00006E  lcd_init
+0000A0  lcd_gotoxy
+0000AF  lcd_putc
+0000B8  @PSTRINGC7_734
+000102  MAIN
+000102  @cinit1
+00011C  @cinit2
+
+Project Directory:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\
+
+Project Files:
+    Comunicacion_serial.c                                   [23-sep.-25 14:26  CRC=3E7640D2]
+    Comunicacion_serial.h                                   [23-sep.-25 14:23  CRC=00000000]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
+
+Source signature=EBC1A010
+Program memory checksum=0000
+Hex file CRC=053C
+
+Units:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\Comunicacion_serial (main)
+
+Compiler Settings:
+    Processor:      PIC16F1827
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Enhanced 16:    Yes
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   Comunicacion_serial.xsym
+    Errors:      Comunicacion_serial.err
+    Ext Symbols: Comunicacion_serial.esym
+    INHX8:       Comunicacion_serial.hex
+    Symbols:     Comunicacion_serial.sym
+    List:        Comunicacion_serial.lst
+    Debug/COFF:  Comunicacion_serial.cof
+    Project:     Comunicacion_serial.ccspjt
+    Call Tree:   Comunicacion_serial.tre
+    Statistics:  Comunicacion_serial.STA

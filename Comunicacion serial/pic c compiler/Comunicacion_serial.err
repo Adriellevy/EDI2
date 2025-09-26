@@ -1,0 +1,5 @@
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\Comunicacion_serial on 23-sep.-25 at 14:35
+*** Error 132 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\Comunicacion_serial.c" Line 80(17,18): STDOUT not defined (may be missing #USE RS232)  ::
+*** Error 132 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\Comunicacion_serial.c" Line 83(23,24): STDOUT not defined (may be missing #USE RS232)  ::
+      2 Errors,  0 Warnings.
+Build Failed.

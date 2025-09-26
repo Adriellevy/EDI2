@@ -1,0 +1,438 @@
+CCS PCM C Compiler, Version 5.093, 4770               23-sep.-25 14:26
+
+               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\Comunicacion_serial.lst
+
+               ROM used:   311 words (8%)
+                           Largest free fragment is 2048
+               RAM used:   6 (2%) at main() level
+                           29 (8%) worst case
+               Stack used: 5 locations
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   102
+0002:  NOP
+.................... #include <Comunicacion_serial.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+0003:  DATA C8,37
+0004:  DATA EC,30
+0005:  DATA 00,00
+0006:  DATA D0,24
+0007:  DATA C3,18
+0008:  DATA 36,23
+0009:  DATA 31,1C
+000A:  DATA B2,1B
+000B:  DATA 00,00
+*
+00B8:  MOVF   0B,W
+00B9:  BCF    0B.7
+00BA:  MOVLB  03
+00BB:  BSF    15.7
+00BC:  BSF    15.0
+00BD:  NOP
+00BE:  NOP
+00BF:  BTFSC  09.7
+00C0:  BSF    0B.7
+00C1:  MOVF   13,W
+00C2:  ANDLW  7F
+00C3:  BTFSC  03.2
+00C4:  GOTO   100
+00C5:  MOVLB  00
+00C6:  MOVWF  22
+00C7:  MOVLB  03
+00C8:  MOVF   11,W
+00C9:  MOVLB  00
+00CA:  MOVWF  23
+00CB:  MOVLB  03
+00CC:  MOVF   12,W
+00CD:  MOVLB  00
+00CE:  MOVWF  24
+00CF:  MOVF   22,W
+00D0:  MOVWF  25
+00D1:  CALL   0AF
+00D2:  MOVF   23,W
+00D3:  MOVLB  03
+00D4:  MOVWF  11
+00D5:  MOVLB  00
+00D6:  MOVF   24,W
+00D7:  MOVLB  03
+00D8:  MOVWF  12
+00D9:  MOVF   0B,W
+00DA:  BCF    0B.7
+00DB:  BSF    15.7
+00DC:  BSF    15.0
+00DD:  NOP
+00DE:  NOP
+00DF:  BTFSC  09.7
+00E0:  BSF    0B.7
+00E1:  RLF    13,W
+00E2:  RLF    14,W
+00E3:  ANDLW  7F
+00E4:  BTFSC  03.2
+00E5:  GOTO   100
+00E6:  MOVLB  00
+00E7:  MOVWF  22
+00E8:  MOVLB  03
+00E9:  MOVF   11,W
+00EA:  MOVLB  00
+00EB:  MOVWF  23
+00EC:  MOVLB  03
+00ED:  MOVF   12,W
+00EE:  MOVLB  00
+00EF:  MOVWF  24
+00F0:  MOVF   22,W
+00F1:  MOVWF  25
+00F2:  CALL   0AF
+00F3:  MOVF   23,W
+00F4:  MOVLB  03
+00F5:  MOVWF  11
+00F6:  MOVLB  00
+00F7:  MOVF   24,W
+00F8:  MOVLB  03
+00F9:  MOVWF  12
+00FA:  INCF   11,F
+00FB:  BTFSC  03.2
+00FC:  INCF   12,F
+00FD:  MOVLB  00
+00FE:  GOTO   0B8
+00FF:  MOVLB  03
+0100:  MOVLB  00
+0101:  RETURN
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+*
+000C:  MOVLW  20
+000D:  MOVWF  05
+000E:  MOVLW  06
+000F:  MOVWF  04
+0010:  MOVF   00,W
+0011:  BTFSC  03.2
+0012:  GOTO   021
+0013:  MOVLW  01
+0014:  MOVWF  78
+0015:  CLRF   77
+0016:  DECFSZ 77,F
+0017:  GOTO   016
+0018:  DECFSZ 78,F
+0019:  GOTO   015
+001A:  MOVLW  4A
+001B:  MOVWF  77
+001C:  DECFSZ 77,F
+001D:  GOTO   01C
+001E:  GOTO   01F
+001F:  DECFSZ 00,F
+0020:  GOTO   013
+0021:  RETURN
+.................... 
+.................... 
+.................... 
+.................... // Activar módulo I2C por software en los pines que quieras
+.................... #use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow,ADDRESS=0x00)  
+0022:  MOVLB  04
+0023:  BCF    15.7
+0024:  MOVLB  00
+0025:  BCF    11.3
+0026:  MOVF   2D,W
+0027:  MOVLB  04
+0028:  MOVWF  11
+0029:  MOVLW  02
+002A:  BTFSC  15.7
+002B:  GOTO   033
+002C:  MOVLB  00
+002D:  BTFSS  11.3
+002E:  GOTO   02D
+002F:  MOVLW  00
+0030:  MOVLB  04
+0031:  BTFSC  16.6
+0032:  MOVLW  01
+0033:  MOVWF  78
+0034:  MOVLB  00
+0035:  RETURN
+.................... 
+.................... #define PCF8574_ADDR 0x4E     // Dirección del expansor (A0=A1=A2=VCC)
+.................... 
+.................... // LCD + I2C funciones básicas
+.................... #define LCD_RS 0x01
+.................... #define LCD_EN 0x04
+.................... #define LCD_BACKLIGHT 0x08
+.................... 
+.................... void i2c_lcd_send_nibble(int8 nibble, int8 rs)
+.................... {
+....................    int8 data;
+.................... 
+....................    data = nibble | LCD_BACKLIGHT | rs;
+0036:  MOVF   29,W
+0037:  IORLW  08
+0038:  IORWF  2A,W
+0039:  MOVWF  2B
+....................    i2c_start();
+003A:  MOVLB  04
+003B:  BSF    16.0
+003C:  BTFSC  16.0
+003D:  GOTO   03C
+....................    i2c_write(PCF8574_ADDR);
+003E:  MOVLW  4E
+003F:  MOVLB  00
+0040:  MOVWF  2D
+0041:  CALL   022
+....................    i2c_write(data | LCD_EN);
+0042:  MOVF   2B,W
+0043:  IORLW  04
+0044:  MOVWF  2C
+0045:  MOVWF  2D
+0046:  CALL   022
+....................    delay_us(1);
+0047:  NOP
+....................    i2c_write(data & ~LCD_EN);
+0048:  MOVF   2B,W
+0049:  ANDLW  FB
+004A:  MOVWF  2C
+004B:  MOVWF  2D
+004C:  CALL   022
+....................    i2c_stop();
+004D:  MOVLB  04
+004E:  BSF    16.2
+004F:  BTFSC  16.2
+0050:  GOTO   04F
+0051:  MOVLB  00
+0052:  RETURN
+.................... }
+.................... 
+.................... void i2c_lcd_send_byte(int8 data, int8 rs)
+.................... {
+....................    i2c_lcd_send_nibble(data & 0xF0, rs);
+0053:  MOVF   26,W
+0054:  ANDLW  F0
+0055:  MOVWF  28
+0056:  MOVWF  29
+0057:  MOVF   27,W
+0058:  MOVWF  2A
+0059:  CALL   036
+....................    i2c_lcd_send_nibble((data << 4) & 0xF0, rs);
+005A:  SWAPF  26,W
+005B:  MOVWF  77
+005C:  MOVLW  F0
+005D:  ANDWF  77,F
+005E:  MOVF   77,W
+005F:  ANDLW  F0
+0060:  MOVWF  28
+0061:  MOVWF  29
+0062:  MOVF   27,W
+0063:  MOVWF  2A
+0064:  CALL   036
+0065:  RETURN
+.................... }
+.................... 
+.................... void lcd_cmd(int8 cmd)
+.................... {
+....................    i2c_lcd_send_byte(cmd, 0);
+0066:  MOVF   25,W
+0067:  MOVWF  26
+0068:  CLRF   27
+0069:  CALL   053
+....................    delay_ms(2);
+006A:  MOVLW  02
+006B:  MOVWF  26
+006C:  CALL   00C
+006D:  RETURN
+.................... }
+.................... 
+.................... void lcd_putc(char c)
+.................... {
+....................    i2c_lcd_send_byte(c, LCD_RS);
+*
+00AF:  MOVF   25,W
+00B0:  MOVWF  26
+00B1:  MOVLW  01
+00B2:  MOVWF  27
+00B3:  CALL   053
+....................    delay_ms(1);
+00B4:  MOVLW  01
+00B5:  MOVWF  26
+00B6:  CALL   00C
+00B7:  RETURN
+.................... }
+.................... 
+.................... void lcd_init()
+.................... {
+....................    delay_ms(50);
+*
+006E:  MOVLW  32
+006F:  MOVWF  26
+0070:  CALL   00C
+.................... 
+....................    i2c_lcd_send_nibble(0x30, 0);
+0071:  MOVLW  30
+0072:  MOVWF  29
+0073:  CLRF   2A
+0074:  CALL   036
+....................    delay_ms(5);
+0075:  MOVLW  05
+0076:  MOVWF  26
+0077:  CALL   00C
+....................    i2c_lcd_send_nibble(0x30, 0);
+0078:  MOVLW  30
+0079:  MOVWF  29
+007A:  CLRF   2A
+007B:  CALL   036
+....................    delay_us(200);
+007C:  MOVLW  42
+007D:  MOVWF  77
+007E:  DECFSZ 77,F
+007F:  GOTO   07E
+0080:  NOP
+....................    i2c_lcd_send_nibble(0x30, 0);
+0081:  MOVLW  30
+0082:  MOVWF  29
+0083:  CLRF   2A
+0084:  CALL   036
+....................    delay_ms(5);
+0085:  MOVLW  05
+0086:  MOVWF  26
+0087:  CALL   00C
+.................... 
+....................    i2c_lcd_send_nibble(0x20, 0); 
+0088:  MOVLW  20
+0089:  MOVWF  29
+008A:  CLRF   2A
+008B:  CALL   036
+....................    delay_ms(5);
+008C:  MOVLW  05
+008D:  MOVWF  26
+008E:  CALL   00C
+.................... 
+....................    lcd_cmd(0x28); // 4 bits, 2 líneas, 5x8
+008F:  MOVLW  28
+0090:  MOVWF  25
+0091:  CALL   066
+....................    lcd_cmd(0x0C); // Display ON, cursor OFF
+0092:  MOVLW  0C
+0093:  MOVWF  25
+0094:  CALL   066
+....................    lcd_cmd(0x06); // Incremento automático
+0095:  MOVLW  06
+0096:  MOVWF  25
+0097:  CALL   066
+....................    lcd_cmd(0x01); // Clear
+0098:  MOVLW  01
+0099:  MOVWF  25
+009A:  CALL   066
+....................    delay_ms(5);
+009B:  MOVLW  05
+009C:  MOVWF  26
+009D:  CALL   00C
+009E:  MOVLP  00
+009F:  GOTO   11E (RETURN)
+.................... }
+.................... 
+.................... void lcd_gotoxy(int8 x, int8 y)
+.................... {
+....................    int8 addr;
+....................    if(y==1)
+00A0:  DECFSZ 23,W
+00A1:  GOTO   0A7
+....................       addr=0x80 + (x-1);
+00A2:  MOVLW  01
+00A3:  SUBWF  22,W
+00A4:  ADDLW  80
+00A5:  MOVWF  24
+00A6:  GOTO   0AB
+....................    else
+....................       addr=0xC0 + (x-1);
+00A7:  MOVLW  01
+00A8:  SUBWF  22,W
+00A9:  ADDLW  C0
+00AA:  MOVWF  24
+....................    lcd_cmd(addr);
+00AB:  MOVF   24,W
+00AC:  MOVWF  25
+00AD:  CALL   066
+00AE:  RETURN
+.................... }
+.................... 
+.................... void main()
+*
+0102:  MOVLW  6A
+0103:  MOVLB  01
+0104:  MOVWF  19
+0105:  BSF    0D.4
+0106:  BSF    0D.1
+0107:  MOVLB  04
+0108:  BCF    17.0
+0109:  BCF    17.1
+010A:  BCF    17.3
+010B:  MOVLW  09
+010C:  MOVWF  12
+010D:  MOVLW  28
+010E:  MOVWF  15
+010F:  BSF    14.7
+0110:  BCF    14.6
+0111:  MOVLB  00
+0112:  CLRF   21
+0113:  CLRF   20
+0114:  MOVLB  03
+0115:  CLRF   0C
+0116:  CLRF   0D
+0117:  MOVLB  02
+0118:  CLRF   12
+0119:  CLRF   11
+011A:  CLRF   14
+011B:  CLRF   13
+.................... {
+....................    lcd_init();
+011C:  MOVLB  00
+011D:  GOTO   06E
+.................... 
+....................    lcd_gotoxy(1,1);
+011E:  MOVLW  01
+011F:  MOVWF  22
+0120:  MOVWF  23
+0121:  CALL   0A0
+....................    printf(lcd_putc,"Hola");
+0122:  MOVLW  03
+0123:  MOVLB  03
+0124:  MOVWF  11
+0125:  MOVLW  00
+0126:  MOVWF  12
+0127:  MOVLB  00
+0128:  CALL   0B8
+....................    
+....................    lcd_gotoxy(1,2);
+0129:  MOVLW  01
+012A:  MOVWF  22
+012B:  MOVLW  02
+012C:  MOVWF  23
+012D:  CALL   0A0
+....................    printf(lcd_putc,"PIC16F1827");
+012E:  MOVLW  06
+012F:  MOVLB  03
+0130:  MOVWF  11
+0131:  MOVLW  00
+0132:  MOVWF  12
+0133:  MOVLB  00
+0134:  CALL   0B8
+.................... 
+....................    while(TRUE) {
+0135:  GOTO   135
+....................       // Loop infinito
+....................    }
+.................... }
+0136:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FC4   INTRC_IO NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP
