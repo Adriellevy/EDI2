@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=2
+Days=3
 D1=04-09-2025
 D1_L=4
 D1_L1=[64256]Project Opened.
@@ -32,6 +32,10 @@ D2=09-09-2025
 D2_L=2
 D2_L1=[60045]Project Opened.
 D2_L2=[60093]Project Closed.
+D3=27-09-2025
+D3_L=2
+D3_L1=[53650]Project Opened.
+D3_L2=[53682]Project Closed.
 
 [Opened Files]
 1=Ejercicio_3.c
@@ -43,7 +47,7 @@ t2=1
 Type=4
 
 [defines]
-buildcount=14
+buildcount=15
 [Units]
 Count=1
 1=Ejercicio_3 (main)

@@ -1,62 +1,66 @@
 
-ROM used:   726/4096 (18%)
-            726/4096 (18%) including unused fragments
+ROM used:   822/4096 (20%)
+            822/4096 (20%) including unused fragments
 
             0.5 Average locations per line
-            6.4 Average locations per statement
+            6.2 Average locations per statement
 
-RAM used:   8/383 (2%) at main() level
-            38/383 (10%) worst case
+RAM used:   18/383 (5%) at main() level
+            46/383 (12%) worst case
 
-Stack used: 5 worst case (5 in main + 0 for interrupts)
+Stack used: 6 worst case (5 in main + 1 for interrupts)
 Stack size: 16
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   45    14  12  Ejercicio_1.c
+   79    32  24  Ejercicio_1.c
     5     0   0  Ejercicio_1.h
-  965     0   0  ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
-  456   100  88  ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+  456   100  76  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
 ----- -----
- 1471   114 Total
+ 1505   132 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
-0     22   3    1             @delay_ms1
+0     22   3    1             @delay_ms2
  Inline         3    760  4.5  lcd_read_byte
-0     49   7    2    262  3.7  lcd_read_nibble
-0     55   8    1    399  2.4  lcd_send_nibble
-0     97  13    3    415  3.7  lcd_send_byte
+0     49   6    2    262  3.7  lcd_read_nibble
+0     55   7    1    399  2.4  lcd_send_nibble
+0     97  12    3    415  3.7  lcd_send_byte
  Inline         6    852  6.2  lcd_init
 0     18   2    4    208  6.3  lcd_gotoxy
-0     44   6    1    354  4.7  lcd_putc
-0     70  10    2    221  3.0  MAIN
-0      7   1    0             @const762
-0     74  10    5             @PSTRINGC7_745
-0     10   1    0             @const767
-0      8   1    0             @const768
-0     81  11    5             @PSTRINGCN7_745
-0     21   3    3     48  1.1  @DIV88
-0     88  12    9             @PRINTF_D_745
-0     79  11    0     48  1.1  InitGPIO
- Inline         0     48  1.1  @cinit1
+0     44   5    1    354  4.7  lcd_putc
+0     16   2    0    114  3.4  isr_timer1
+0     74   9    2    439  5.6  MAIN
+0      7   1    0             @const771
+0     74   9    3             @PSTRINGC7_749
+0     10   1    0             @const776
+0      8   1    0             @const777
+0     81  10    6             @PSTRINGCN7_749
+0     21   3    3             @DIV88
+0     88  11    6             @PRINTF_D_749
+0     79  10    0     48  1.1  InitGPIO
+0     15   2    0     96  2.1  InitTimer
+ Inline         0             @cinit1
 
 Program metrics:
     Functions               11
-    Statements              114
-    Comments                265
-    Volume (V)              5702
-    Difficulty (D)          37.1
-    Effort to implement (E) 211512
-    Time to implement (T)   3 hours, 16 minutes
+    Statements              132
+    Comments                269
+    Volume (V)              6270
+    Difficulty (D)          42.9
+    Effort to implement (E) 268676
+    Time to implement (T)   4 hours, 9 minutes
     Est Delivered Bugs (B)  1
-    Cyclomatic Complexity   8
-    Maintainability (MI)    149
+    Cyclomatic Complexity   13
+    Maintainability (MI)    147
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     3  0  
-00003-007FF   723  1322  
+00003-00003     0  1  
+00004-00040    61  0  
+00041-007FF   758  1225  
 00800-00FFF     0  2048  
 
 

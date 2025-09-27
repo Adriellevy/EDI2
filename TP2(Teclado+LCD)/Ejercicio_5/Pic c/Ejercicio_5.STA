@@ -1,70 +1,73 @@
 
-ROM used:   902/4096 (22%)
-            902/4096 (22%) including unused fragments
+ROM used:   963/4096 (24%)
+            963/4096 (24%) including unused fragments
 
             0.6 Average locations per line
-            6.0 Average locations per statement
+            5.8 Average locations per statement
 
-RAM used:   23/383 (6%) at main() level
-            64/383 (17%) worst case
+RAM used:   24/383 (6%) at main() level
+            67/383 (17%) worst case
 
 Stack used: 13 worst case (6 in main + 7 for interrupts)
 Stack size: 16
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  133    51  34  Ejercicio_5.c
+  159    66  40  Ejercicio_5.c
     5     0   0  Ejercicio_5.h
-  965     0   0  ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
-  456   100  66  ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+  456   100  60  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
 ----- -----
- 1559   151 Total
+ 1585   166 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
 0     22   2    1             @delay_ms1
-0     13   1    0             @const725
-0     50   6    3    760  4.5  lcd_read_byte
+0     13   1    0             @const726
+0     50   5    3    760  4.5  lcd_read_byte
 0     49   5    2    262  3.7  lcd_read_nibble
 0     55   6    1    399  2.4  lcd_send_nibble
 0     49   5    3    415  3.7  lcd_send_byte
-0    109  12    6    852  6.2  lcd_init
+0    109  11    6    852  6.2  lcd_init
 0     18   2    4    208  6.3  lcd_gotoxy
 0     44   5    1    354  4.7  lcd_putc
-0      5   1    0             @const768
-0     42   5    0     84  1.4  MAIN
-0      8   1    0             @const777
-0     74   8    4             @PSTRINGC7_752
+0      5   1    0             @const769
+0     44   5    0     98  1.5  MAIN
+0      8   1    0             @const779
+0     74   8    5             @PSTRINGC7_753
 0     10   1    0     48  1.1  INIT_GPIO
 0     12   1    0     78  1.6  INIT_TIMER_0
-0     41   5    1    240  3.7  TIMER0_ISR
-0     26   3    5     78  1.6  @READBITA
-0     32   4    6    240  3.7  @WRITEBITA
+0     41   4    1    240  3.7  TIMER0_ISR
+0     26   3    5    240  3.7  @READBITA
+0     32   3    6             @WRITEBITA
 0     13   1    0     48  1.1  INIT_INT_ICO
-0    109  12    3    740  5.7  EXT_isr
-0     37   4    2     48  1.1  @MUL88
-0      9   1    0    346  3.2  @const795
-0      8   1    0             @const796
+0      8   1    0     42  1.4  INIT_TIMER_1
+0     18   2    0    104  2.7  TIMER1_ISR
+0      8   1    0    956  6.7  @const793
+0    125  13    4    956  6.7  EXT_isr
+0     37   4    2             @MUL88
+0      9   1    0             @const799
+0      8   1    0             @const800
  Inline         0             @cinit1
 
 Program metrics:
     Functions               17
-    Statements              151
-    Comments                287
-    Volume (V)              8825
-    Difficulty (D)          55.3
-    Effort to implement (E) 487815
-    Time to implement (T)   7 hours, 32 minutes
+    Statements              166
+    Comments                279
+    Volume (V)              10076
+    Difficulty (D)          61.3
+    Effort to implement (E) 617786
+    Time to implement (T)   9 hours, 32 minutes
     Est Delivered Bugs (B)  2
-    Cyclomatic Complexity   19
-    Maintainability (MI)    107
+    Cyclomatic Complexity   23
+    Maintainability (MI)    100
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     3  0  
 00003-00003     0  1  
-00004-00043    64  0  
-00044-007FF   835  1145  
+00004-0004C    73  0  
+0004D-007FF   887  1084  
 00800-00FFF     0  2048  
 
 

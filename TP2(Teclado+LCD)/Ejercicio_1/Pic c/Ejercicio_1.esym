@@ -1,9 +1,10 @@
-D G "__PCM__" 0 53 ""5.093""
-D G "__DEVICE__" 0 53 "1827"
-D G "__DATE__" 0 53 ""4-Sep-25""
-D G "__TIME__" 0 53 ""17:17:31""
-D G "_UNICODE" 0 53 ""?""
-D G "__EVAL" 0 53 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
+F N "InitGPIO" 0 73 ""
+D G "__PCM__" 0 80 ""5.093""
+D G "__DEVICE__" 0 80 "1827"
+D G "__DATE__" 0 80 ""27-Sep-25""
+D G "__TIME__" 0 80 ""14:29:34""
+D G "_UNICODE" 0 80 ""?""
+D G "__EVAL" 0 80 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
 f N "set_tris_a" 2 39 ""
 v L "value" 2 39 "int8" `55 
@@ -1398,13 +1399,13 @@ d G "INT_RB6_H2L" 2 959 "0x21400B08"
 d G "INT_RB7" 2 960 "0x31800B08"
 d G "INT_RB7_L2H" 2 961 "0x11800B08"
 d G "INT_RB7_H2L" 2 962 "0x21800B08"
-D G "LCD_ENABLE_PIN" 0 4 "PIN_B0" "Librerias para el LCD"
-D G "LCD_RS_PIN" 0 5 "PIN_B1"
-D G "LCD_RW_PIN" 0 6 "PIN_B2"
-D G "LCD_DATA4" 0 7 "PIN_B4"
-D G "LCD_DATA5" 0 8 "PIN_B5"
-D G "LCD_DATA6" 0 9 "PIN_B6"
-D G "LCD_DATA7" 0 10 "PIN_B7"
+D G "LCD_ENABLE_PIN" 0 5 "PIN_B0" "Librerías para el LCD"
+D G "LCD_RS_PIN" 0 6 "PIN_B1"
+D G "LCD_RW_PIN" 0 7 "PIN_B2"
+D G "LCD_DATA4" 0 8 "PIN_B4"
+D G "LCD_DATA5" 0 9 "PIN_B5"
+D G "LCD_DATA6" 0 10 "PIN_B6"
+D G "LCD_DATA7" 0 11 "PIN_B7"
 D G "__LCD_C__" 3 76 ""
 C L "jump_to_isr" 3 2 2 "FUNCTION"
 C L "jump_to_isr" 3 2 1 "FUNCTION"
@@ -1413,7 +1414,7 @@ C L "jump_to_isr" 3 2 1 "FUNCTION"
 C L "jump_to_isr" 3 2 1 "FUNCTION"
 C L "jump_to_isr" 3 2 1 "FUNCTION"
 C L "jump_to_isr" 3 2 2 "FUNCTION"
-T G "LCD_PIN_MAP" 3 90 "{int1 enable,int1 rs,int1 rw,int1 unused,int4 data}" `727  "this is to improve compatability with previous LCD drivers that accepted"
+T G "LCD_PIN_MAP" 3 90 "{int1 enable,int1 rs,int1 rw,int1 unused,int4 data}" `731  "this is to improve compatability with previous LCD drivers that accepted"
 D G "lcd_output_enable" 3 112 "(x) output_bit(LCD_ENABLE_PIN, x)"
 D G "lcd_enable_tris" 3 113 "()  output_drive(LCD_ENABLE_PIN)"
 D G "lcd_output_rs" 3 120 "(x) output_bit(LCD_RS_PIN, x)"
@@ -1424,66 +1425,77 @@ D G "LCD_TYPE" 3 179 "2" "0=5x7, 1=5x10, 2=2 lines"
 D G "LCD_LINE_TWO" 3 183 "0x40" "LCD RAM address for the second line"
 D G "LCD_LINE_LENGTH" 3 187 "20"
 F N "lcd_read_nibble" 3 190 ""
-f G "lcd_read_nibble" 3 190 "int8()" `728 
+f G "lcd_read_nibble" 3 190 "int8()" `732 
 F N "lcd_read_byte" 3 192 ""
-F G "lcd_read_byte" 3 193 "int8()" `729 
-V L "low" 3 194 "int8" `730 
-V L "high" 3 194 "int8" `731 
+F G "lcd_read_byte" 3 193 "int8()" `733 
+V L "low" 3 194 "int8" `734 
+V L "high" 3 194 "int8" `735 
 F N "lcd_read_nibble" 3 239 ""
-F G "lcd_read_nibble" 3 240 "int8()" `728 
-V L "n" 3 242 "int8" `732 
+F G "lcd_read_nibble" 3 240 "int8()" `732 
+V L "n" 3 242 "int8" `736 
 C L "lcd_read_nibble" 3 2 1 "FUNCTION"
 F N "lcd_send_nibble" 3 256 ""
-V L "n" 3 256 "int8" `734 
-F G "lcd_send_nibble" 3 257 "void(int8 n)" `733 
+V L "n" 3 256 "int8" `738 
+F G "lcd_send_nibble" 3 257 "void(int8 n)" `737 
 C L "lcd_send_nibble" 3 2 1 "FUNCTION"
 F N "lcd_send_byte" 3 274 ""
-V L "address" 3 274 "int8" `736 
-V L "n" 3 274 "int8" `737 
-F G "lcd_send_byte" 3 275 "void(int8 address,int8 n)" `735 
+V L "address" 3 274 "int8" `740 
+V L "n" 3 274 "int8" `741 
+F G "lcd_send_byte" 3 275 "void(int8 address,int8 n)" `739 
 F N "lcd_init" 3 299 ""
-F G "lcd_init" 3 300 "void()" `738 
-V L "i" 3 301 "int8" `739 
-V L "LCD_INIT_STRING" 3 302 "int8[4]" `740 
+F G "lcd_init" 3 300 "void()" `742 
+V L "i" 3 301 "int8" `743 
+V L "LCD_INIT_STRING" 3 302 "int8[4]" `744 
 C L "lcd_init" 3 2 2 "FUNCTION"
 F N "lcd_gotoxy" 3 345 ""
-V L "x" 3 345 "int8" `742 
-V L "y" 3 345 "int8" `743 
-F G "lcd_gotoxy" 3 346 "void(int8 x,int8 y)" `741 
-V L "address" 3 347 "int8" `744 
+V L "x" 3 345 "int8" `746 
+V L "y" 3 345 "int8" `747 
+F G "lcd_gotoxy" 3 346 "void(int8 x,int8 y)" `745 
+V L "address" 3 347 "int8" `748 
 F N "lcd_putc" 3 363 ""
-V L "c" 3 363 "int8" `746 
-F G "lcd_putc" 3 364 "void(int8 c)" `745 
+V L "c" 3 363 "int8" `750 
+F G "lcd_putc" 3 364 "void(int8 c)" `749 
 F N "lcd_getc" 3 406 ""
-V L "x" 3 406 "int8" `748 
-V L "y" 3 406 "int8" `749 
-F G "lcd_getc" 3 407 "int8(int8 x,int8 y)" `747 
-V L "value" 3 408 "int8" `750 
+V L "x" 3 406 "int8" `752 
+V L "y" 3 406 "int8" `753 
+F G "lcd_getc" 3 407 "int8(int8 x,int8 y)" `751 
+V L "value" 3 408 "int8" `754 
 C L "lcd_getc" 3 2 1 "FUNCTION"
 C L "lcd_set_cgram_char" 3 2 5 "FUNCTION"
 F N "lcd_set_cgram_char" 3 424 ""
-V L "which" 3 424 "int8" `752 
-V L "ptr" 3 424 "*int8" `753 
-F G "lcd_set_cgram_char" 3 425 "void(int8 which,*int8 ptr)" `751 
-V L "i" 3 426 "int8" `754 
+V L "which" 3 424 "int8" `756 
+V L "ptr" 3 424 "*int8" `757 
+F G "lcd_set_cgram_char" 3 425 "void(int8 which,*int8 ptr)" `755 
+V L "i" 3 426 "int8" `758 
 C L "lcd_set_cgram_char" 3 2 1 "FUNCTION"
 F N "lcd_cursor_on" 3 443 ""
-V L "on" 3 443 "int8" `756 
-F G "lcd_cursor_on" 3 444 "void(int8 on)" `755 
+V L "on" 3 443 "int8" `760 
+F G "lcd_cursor_on" 3 444 "void(int8 on)" `759 
 C L "lcd_cursor_on" 3 2 1 "FUNCTION"
 C L "lcd_cursor_on" 3 2 1 "FUNCTION"
-F N "InitGPIO" 0 13 ""
-f G "InitGPIO" 0 13 "void()" `757 
-F N "MAIN" 0 15 ""
-F G "MAIN" 0 15 "void()" `758 
-V L "contador" 0 19 "int8" `761 
-C L "MAIN" 0 23 1 "FUNCTION"
-C L "MAIN" 0 23 1 "FUNCTION"
-C L "MAIN" 0 23 1 "FUNCTION"
-F N "InitGPIO" 0 38 ""
-F G "InitGPIO" 0 38 "void()" `757 
-C L "InitGPIO" 0 23 1 "FUNCTION"
-C L "InitGPIO" 0 23 1 "FUNCTION"
+F N "InitGPIO" 0 14 ""
+f G "InitGPIO" 0 14 "void()" `761 
+F N "InitTimer" 0 15 ""
+f G "InitTimer" 0 15 "void()" `762  "Variables globales"
+V G "flag_1s" 0 18 "int8" `763 
+V G "cuenta50ms" 0 19 "int8" `764 
+C L "InitTimer" 0 21 1 "FUNCTION"
+F N "isr_timer1" 0 23 ""
+F G "isr_timer1" 0 23 "void()" `765  "Recargar Timer1 para 50 ms"
+C L "isr_timer1" 0 21 1 "FUNCTION"
+C L "isr_timer1" 0 21 1 "FUNCTION"
+C L "isr_timer1" 0 21 1 "FUNCTION"
+F N "MAIN" 0 35 ""
+F G "MAIN" 0 35 "void()" `766 
+V L "contador" 0 38 "int8" `769 
+V L "estado" 0 39 "int8" `770 
+C L "MAIN" 0 21 1 "FUNCTION"
+F N "InitGPIO" 0 68 ""
+F G "InitGPIO" 0 68 "void()" `761 
+C L "InitGPIO" 0 21 1 "FUNCTION"
+C L "InitGPIO" 0 21 1 "FUNCTION"
+F N "InitTimer" 0 73 ""
+F G "InitTimer" 0 73 "void()" `762 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0
@@ -1614,5 +1626,7 @@ F B "spi_data_is_in2" 0 0
 F B "setup_dac" 1 0
 F B "dac_write" 1 0
 F B "brownout_enable" 1 0
+F B "delay_ms" 1 0
+F B "delay_us" 1 0
 F B "delay_ms" 1 0
 F B "delay_us" 1 0

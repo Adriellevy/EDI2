@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=2
+Days=3
 D1=09-09-2025
 D1_L=14
 D1_L1=[51058]Project Opened.
@@ -29,7 +29,7 @@ D1_L6=[54497]Started Editing.
 D1_L7=[59816]Stopped Editing.
 D1_L8=[59825]Started Editing.
 D1_L9=[60044]Stopped Editing.
-TotalEdit=140
+TotalEdit=141
 TotalDebug=0
 D1_E=140
 D1_D=0
@@ -42,10 +42,20 @@ D2=12-09-2025
 D2_L=2
 D2_L1=[41405]Project Opened.
 D2_L2=[41869]Project Closed.
+D3=27-09-2025
+D3_L=6
+D3_L1=[53733]Project Opened.
+D3_L2=[53809]Started Editing.
+D3_L3=[53817]Stopped Editing.
+D3_E=1
+D3_D=0
+D3_L4=[53817]Project Closed.
+D3_L5=[53852]Project Opened.
+D3_L6=[53869]Project Closed.
 
 [Opened Files]
 1=Ejercicio_4.c
-t1=54
+t1=1
 2=Ejercicio_4.h
 t2=1
 3=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
@@ -55,7 +65,7 @@ Count=2
 Type=4
 
 [defines]
-buildcount=71
+buildcount=73
 [Units]
 Count=1
 1=Ejercicio_4 (main)

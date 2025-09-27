@@ -1,0 +1,57 @@
+#include <Ejercicio_2.h>
+#fuses INTRC_IO, NOWDT, NOMCLR
+
+#define LCD_ENABLE_PIN  PIN_B0 //Librerias para el LCD
+#define LCD_RS_PIN      PIN_B1
+#define LCD_RW_PIN      PIN_B2
+#define LCD_DATA4       PIN_B4
+#define LCD_DATA5       PIN_B5
+#define LCD_DATA6       PIN_B6
+#define LCD_DATA7       PIN_B7
+#include <lcd.c>
+
+void InitGPIO();
+void InitTimer();
+
+// Variables globales
+volatile int flag_500ms = 0;
+volatile int cuenta50ms = 0;
+
+// Interrupción del Timer1
+#INT_TIMER1
+void isr_timer1(void) {
+   // Recargar Timer1 para 50 ms
+   set_timer1(65536 - 6250);  // 6250 ticks * 8us = 50 ms
+   cuenta50ms++;
+   if(cuenta50ms >= 10){  // 10 * 50ms = 500ms
+      cuenta50ms = 0;
+      flag_500ms = 1;   // Señal para el main
+   }
+}
+
+void main() {
+
+   InitGPIO();
+   
+   while(TRUE) 
+   {
+       if(input(PIN_A0) == 1 && flag_500ms) // Si se presiona boton 1
+       {     
+         lcd_putc("\fPRENDIENDO");
+       }
+      else if(input(PIN_A1) == 1&&flag_500ms) // Si se presiona boton 2
+      { 
+         lcd_putc("\fAPAGANDO");
+      }
+      if(!flag_500ms){
+         lcd_putc("\f");
+      }
+   }
+}
+
+
+void InitGPIO(void){
+    set_tris_a(0b11000000);   // A es ENTRADA
+    set_tris_b(0b00000000);   // PORTB como SALIDA
+    lcd_init(); 
+}

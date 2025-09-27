@@ -15,8 +15,8 @@ Lines Stmts  %   Files
 ----- ----- ---  -----
    49    21  17  Ejercicio_3.c
     5     0   0  Ejercicio_3.h
-  965     0   0  ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
-  456   100  83  ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+  456   100  83  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
 ----- -----
  1475   121 Total
 
@@ -33,24 +33,24 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    101  18    2    529  4.7  MAIN
 0     15   3    0             @const762
 0     74  13    5             @PSTRINGC7_745
-0      1   0    0     48  1.1  @const767
-0      3   1    0     48  1.1  @const768
-0      1   0    0     48  1.1  @const769
-0      3   1    0     48  1.1  @const770
+0      1   0    0             @const767
+0      3   1    0             @const768
+0      1   0    0             @const769
+0      3   1    0             @const770
 0     78  14    0     48  1.1  InitGPIO
- Inline         0     48  1.1  @cinit1
+ Inline         0             @cinit1
 
 Program metrics:
-    Functions               14
+    Functions               9
     Statements              121
     Comments                269
-    Volume (V)              6605
-    Difficulty (D)          42.8
-    Effort to implement (E) 282811
-    Time to implement (T)   4 hours, 22 minutes
+    Volume (V)              5874
+    Difficulty (D)          36.0
+    Effort to implement (E) 211485
+    Time to implement (T)   3 hours, 16 minutes
     Est Delivered Bugs (B)  1
     Cyclomatic Complexity   10
-    Maintainability (MI)    128
+    Maintainability (MI)    136
 
  Segment     Used  Free
 -----------  ----  ----

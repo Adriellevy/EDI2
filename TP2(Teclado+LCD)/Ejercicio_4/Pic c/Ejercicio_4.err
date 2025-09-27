@@ -1,4 +1,4 @@
-Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4 on 09-sep.-25 at 17:02
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4 on 27-sep.-25 at 14:56
 >>> Warning 216 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4.c" Line 106(1,2): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
 >>> Warning 216 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4.c" Line 106(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_nibble)
 >>> Warning 216 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4.c" Line 106(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_byte)

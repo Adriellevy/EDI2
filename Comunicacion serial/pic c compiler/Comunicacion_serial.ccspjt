@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=1
+Days=2
 D1=23-09-2025
 D1_L=8
 D1_L1=[47388]Project Opened.
@@ -32,10 +32,14 @@ TotalDebug=0
 D1_E=135
 D1_D=0
 D1_L8=[60304]Project Closed.
+D2=27-09-2025
+D2_L=2
+D2_L1=[50593]Project Opened.
+D2_L2=[51718]Project Closed.
 
 [Opened Files]
 1=Comunicacion_serial.c
-t1=68
+t1=1
 Count=2
 2=Comunicacion_serial.h
 t2=1

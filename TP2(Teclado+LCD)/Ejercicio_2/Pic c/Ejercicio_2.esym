@@ -1,9 +1,9 @@
-D G "__PCM__" 0 43 ""5.093""
-D G "__DEVICE__" 0 43 "1827"
-D G "__DATE__" 0 43 ""4-Sep-25""
-D G "__TIME__" 0 43 ""17:44:18""
-D G "_UNICODE" 0 43 ""?""
-D G "__EVAL" 0 43 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
+D G "__PCM__" 0 67 ""5.093""
+D G "__DEVICE__" 0 67 "1827"
+D G "__DATE__" 0 67 ""27-Sep-25""
+D G "__TIME__" 0 67 ""14:51:19""
+D G "_UNICODE" 0 67 ""?""
+D G "__EVAL" 0 67 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
 f N "set_tris_a" 2 39 ""
 v L "value" 2 39 "int8" `55 
@@ -1474,15 +1474,29 @@ C L "lcd_cursor_on" 3 2 1 "FUNCTION"
 C L "lcd_cursor_on" 3 2 1 "FUNCTION"
 F N "InitGPIO" 0 13 ""
 f G "InitGPIO" 0 13 "void()" `757 
-F N "MAIN" 0 15 ""
-F G "MAIN" 0 15 "void()" `758 
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-F N "InitGPIO" 0 37 ""
-F G "InitGPIO" 0 37 "void()" `757 
-C L "InitGPIO" 0 21 1 "FUNCTION"
-C L "InitGPIO" 0 21 1 "FUNCTION"
+F N "InitTimer1" 0 14 ""
+f G "InitTimer1" 0 14 "void()" `758 
+V G "contador" 0 16 "int8" `759 
+C L "InitTimer1" 0 16 1 "FUNCTION"
+V G "flag_timeout" 0 17 "int8" `760 
+C L "InitTimer1" 0 16 1 "FUNCTION"
+F N "Timer1_ISR" 0 20 ""
+F G "Timer1_ISR" 0 20 "void()" `761 
+C L "Timer1_ISR" 0 16 1 "FUNCTION"
+C L "Timer1_ISR" 0 16 1 "FUNCTION"
+F N "MAIN" 0 29 ""
+F G "MAIN" 0 29 "void()" `762 
+C L "MAIN" 0 16 1 "FUNCTION"
+C L "MAIN" 0 16 1 "FUNCTION"
+C L "MAIN" 0 16 1 "FUNCTION"
+C L "MAIN" 0 16 1 "FUNCTION"
+C L "MAIN" 0 16 1 "FUNCTION"
+F N "InitGPIO" 0 53 ""
+F G "InitGPIO" 0 53 "void()" `757 
+C L "InitGPIO" 0 16 1 "FUNCTION"
+C L "InitGPIO" 0 16 1 "FUNCTION"
+F N "InitTimer1" 0 59 ""
+F G "InitTimer1" 0 59 "void()" `758 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0

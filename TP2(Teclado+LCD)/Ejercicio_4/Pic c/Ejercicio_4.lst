@@ -1,4 +1,4 @@
-CCS PCM C Compiler, Version 5.093, 4770               09-sep.-25 17:02
+CCS PCM C Compiler, Version 5.093, 4770               27-sep.-25 14:56
 
                Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\Ejercicio_4.lst
 
@@ -1388,7 +1388,7 @@ CCS PCM C Compiler, Version 5.093, 4770               09-sep.-25 17:02
 ....................    while(TRUE)
 ....................    {
 03E2:  GOTO   3E2
-....................       // Acá podés ir imprimiendo otras cosas si querés
+....................       
 ....................    }
 .................... }
 .................... 

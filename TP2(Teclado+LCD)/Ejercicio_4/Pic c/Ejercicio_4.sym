@@ -108,12 +108,12 @@ Project Directory:
     C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_4\Pic c\
 
 Project Files:
-    Ejercicio_4.c                                           [09-sep.-25 17:02  CRC=A49C34A5]
+    Ejercicio_4.c                                           [27-sep.-25 14:56  CRC=63B65C04]
     Ejercicio_4.h                                           [09-sep.-25 14:10  CRC=00000000]
     ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
     ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [22-feb.-16 09:05  CRC=D1A6378A]
 
-Source signature=1E8E5358
+Source signature=DDA87AB7
 Program memory checksum=0000
 Hex file CRC=E2DB
 

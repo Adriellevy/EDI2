@@ -47,7 +47,7 @@ void main()
 
    while(TRUE)
    {
-      // Acá podés ir imprimiendo otras cosas si querés
+      
    }
 }
 

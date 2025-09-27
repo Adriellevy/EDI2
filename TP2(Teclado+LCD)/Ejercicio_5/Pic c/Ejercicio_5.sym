@@ -1,9 +1,9 @@
-004-005 @READ_PACKED_MEMORY.P1
-004-005 @WRITE_PACKED_MEMORY.P2
-004-005 @READ_PROGRAM_MEMORY8.P3
+004-005 @WRITE_PACKED_MEMORY.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+004-005 @READ_PACKED_MEMORY.P3
 004-005 @WRITE_PROGRAM_MEMORY8.P4
-006-007 @WRITE_PACKED_MEMORY.P1
-006-007 @READ_PACKED_MEMORY.P2
+006-007 @READ_PACKED_MEMORY.P1
+006-007 @WRITE_PACKED_MEMORY.P2
 020     @INTERRUPT_AREA
 021     @INTERRUPT_AREA
 022     @INTERRUPT_AREA
@@ -17,39 +17,40 @@
 02A-02C contrasenia
 02D-02F entrada
 030     indice
-031-032 @sprintf_string
-033     lcd_init.i
-034-037 lcd_init.LCD_INIT_STRING
-038     lcd_init.@SCRATCH1
-041     EXT_isr.tecla
-041     TIMER0_ISR.@SCRATCH1
-042     @MUL88.P1
-042     @WRITEBITA.P2
-042     @READBITA.P3
-042     EXT_isr.@SCRATCH1
+031     contador
+032-033 @sprintf_string
+034     lcd_init.i
+035-038 lcd_init.LCD_INIT_STRING
+039     lcd_init.@SCRATCH1
+042     EXT_isr.tecla
+042     TIMER0_ISR.@SCRATCH1
 043     @WRITEBITA.P1
-043     @MUL88.P2
-043-044 @READBITA.P3
-043     @PSTRINGC7_752.@SCRATCH1
-043     EXT_isr.@SCRATCH2
-044-045 @WRITEBITA.P1
-044     @PSTRINGC7_752.@SCRATCH2
-045     @PSTRINGC7_752.@SCRATCH3
-046     lcd_putc.c
-047     lcd_gotoxy.x
-047     @delay_ms1.P1
-048     lcd_gotoxy.y
-049     lcd_gotoxy.address
-04A     lcd_gotoxy.@SCRATCH1
-04B     lcd_send_byte.address
-04C     lcd_send_byte.n
-04D     lcd_read_byte.low
-04D     lcd_send_byte.@SCRATCH1
-04E     lcd_send_nibble.n
-04E     lcd_read_byte.high
-04F     lcd_read_nibble.n
-04F     lcd_read_byte.@SCRATCH1
-050     lcd_read_nibble.@SCRATCH1
+043     @READBITA.P2
+044-045 @READBITA.P1
+044     @WRITEBITA.P2
+044     @MUL88.P3
+044     EXT_isr.@SCRATCH1
+045     @MUL88.P1
+045-046 @WRITEBITA.P2
+045     EXT_isr.@SCRATCH2
+046     @PSTRINGC7_753.@SCRATCH1
+047     @PSTRINGC7_753.@SCRATCH2
+048     @PSTRINGC7_753.@SCRATCH3
+049     lcd_putc.c
+04A     lcd_gotoxy.x
+04A     @delay_ms1.P1
+04B     lcd_gotoxy.y
+04C     lcd_gotoxy.address
+04D     lcd_gotoxy.@SCRATCH1
+04E     lcd_send_byte.address
+04F     lcd_send_byte.n
+050     lcd_read_byte.low
+050     lcd_send_byte.@SCRATCH1
+051     lcd_read_byte.high
+051     lcd_send_nibble.n
+052     lcd_read_nibble.n
+052     lcd_read_byte.@SCRATCH1
+053     lcd_read_nibble.@SCRATCH1
 077     @SCRATCH
 078     @SCRATCH
 078     _RETURN_
@@ -73,49 +74,52 @@
 319     CCP_4_HIGH
 
 ROM Allocation:
-000044  teclado.call
-000045  teclado.data
-000051  PuertosTecladoSalida.call
-000052  PuertosTecladoSalida.data
-000056  @const777.call
-00005E  @READBITA
-000078  @WRITEBITA
-000098  TIMER0_ISR
-0000C1  @MUL88
-0000E6  lcd_read_nibble
-000117  lcd_read_byte
-000149  lcd_send_nibble
-000180  lcd_send_byte
-0001B1  lcd_gotoxy
-0001C3  @delay_ms1
-0001D9  lcd_putc
-000205  @PSTRINGC7_752
-00024F  EXT_isr
-0002BC  @const795.call
-0002C5  @const796.call
-0002CD  INIT_GPIO
-0002D7  INIT_TIMER_0
-0002E3  INIT_INT_ICO
-0002F0  lcd_init
-00035D  MAIN
-00035D  @cinit1
-00036D  @cinit2
+00004D  teclado.call
+00004E  teclado.data
+00005A  PuertosTecladoSalida.call
+00005B  PuertosTecladoSalida.data
+00005F  @const779.call
+000067  @READBITA
+000081  @WRITEBITA
+0000A1  TIMER0_ISR
+0000CA  lcd_read_nibble
+0000FB  lcd_read_byte
+00012D  lcd_send_nibble
+000164  lcd_send_byte
+000195  lcd_gotoxy
+0001A7  @delay_ms1
+0001BD  lcd_putc
+0001E9  @PSTRINGC7_753
+000233  TIMER1_ISR
+000245  @const793.call
+00024D  @MUL88
+000272  EXT_isr
+0002EF  @const799.call
+0002F8  @const800.call
+000300  INIT_GPIO
+00030A  INIT_TIMER_0
+000316  INIT_INT_ICO
+000323  INIT_TIMER_1
+00032B  lcd_init
+000398  MAIN
+000398  @cinit1
+0003A9  @cinit2
 
 Project Directory:
-    C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_5\Pic c\
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_5\Pic c\
 
 Project Files:
-    Ejercicio_5.c                                           [10-sep.-25 20:52  CRC=5796E68F]
-    Ejercicio_5.h                                           [10-sep.-25 20:28  CRC=00000000]
-    ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
-    ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [22-feb.-16 09:05  CRC=D1A6378A]
+    Ejercicio_5.c                                           [27-sep.-25 15:10  CRC=A752BE3E]
+    Ejercicio_5.h                                           [12-sep.-25 11:59  CRC=00000000]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [22-feb.-16 09:05  CRC=D1A6378A]
 
-Source signature=D1890542
+Source signature=2144DCF1
 Program memory checksum=0000
-Hex file CRC=2AFB
+Hex file CRC=810B
 
 Units:
-    C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP2(Teclado+LCD)\Ejercicio_5\Pic c\Ejercicio_5 (main)
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TP2(Teclado+LCD)\Ejercicio_5\Pic c\Ejercicio_5 (main)
 
 Compiler Settings:
     Processor:      PIC16F1827

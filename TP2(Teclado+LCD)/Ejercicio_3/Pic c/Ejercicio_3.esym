@@ -1,10 +1,9 @@
-F N "InitGPIO" 0 44 ""
-D G "__PCM__" 0 50 ""5.093""
-D G "__DEVICE__" 0 50 "1827"
-D G "__DATE__" 0 50 ""4-Sep-25""
-D G "__TIME__" 0 50 ""18:10:28""
-D G "_UNICODE" 0 50 ""?""
-D G "__EVAL" 0 50 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
+D G "__PCM__" 0 0 ""5.093""
+D G "__DEVICE__" 0 0 ""
+D G "__DATE__" 0 0 ""27-Sep-25""
+D G "__TIME__" 0 0 ""14:54:12""
+D G "_UNICODE" 0 0 ""?""
+D G "__EVAL" 0 0 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
 f N "set_tris_a" 2 39 ""
 v L "value" 2 39 "int8" `55 
@@ -563,9 +562,9 @@ f N "read_adc" 2 564 ""
 f G "read_adc" 2 564 "int16()" `234 
 f N "read_adc" 2 565 ""
 v L "mode" 2 565 "int8" `235 
-f G "read_adc" 2 565 "int16(int8 mode,int32 pins)" `234 
+f G "read_adc" 2 565 "int16(int8 mode)" `234 
 f N "adc_done" 2 566 ""
-f B "adc_done" 2 566 "int8(int8 mode,int32 pins)" `234  "Constants used for SETUP_ADC() are:"
+f B "adc_done" 2 566 "int8(int8 mode)" `234  "Constants used for SETUP_ADC() are:"
 d G "ADC_OFF" 2 568 "0" "ADC Off"
 d G "ADC_CLOCK_DIV_2" 2 569 "0x100"
 d G "ADC_CLOCK_DIV_4" 2 570 "0x40"
@@ -970,9 +969,9 @@ f B "i2c_transfer_in" 2 729 "int8(int8 stream,int8 address,*int8 rData,int8 rCou
 f N "spi_xfer" 2 732 ""
 f B "spi_xfer" 2 732 "int8()" `505 
 f N "spi_xfer" 2 733 ""
-f G "spi_xfer" 2 733 "int16(int8 data)" `506 
+f G "spi_xfer" 2 733 "int16()" `506 
 f N "spi_xfer" 2 734 ""
-f G "spi_xfer" 2 734 "int32(int8 data)" `506 
+f G "spi_xfer" 2 734 "int32()" `506 
 f N "spi_xfer" 2 735 ""
 v L "data" 2 735 "int8" `507 
 f B "spi_xfer" 2 735 "int8(int8 data)" `506 
@@ -1052,18 +1051,18 @@ f B "spi_prewrite" 2 754 "void(int8 ,int32 data)" `559
 f N "spi_xfer_in" 2 755 ""
 f B "spi_xfer_in" 2 755 "int8()" `562 
 f N "spi_xfer_in" 2 756 ""
-f G "spi_xfer_in" 2 756 "int16(int8 bits)" `563 
+f G "spi_xfer_in" 2 756 "int16()" `563 
 f N "spi_xfer_in" 2 757 ""
-f G "spi_xfer_in" 2 757 "int32(int8 bits)" `563 
+f G "spi_xfer_in" 2 757 "int32()" `563 
 f N "spi_xfer_in" 2 758 ""
 v L "bits" 2 758 "int8" `564 
 f B "spi_xfer_in" 2 758 "int8(int8 bits)" `563 
 f N "spi_xfer_in" 2 759 ""
 v L "bits" 2 759 "int8" `566 
-f G "spi_xfer_in" 2 759 "int16(int8 bits,int8 bits)" `565 
+f G "spi_xfer_in" 2 759 "int16(int8 bits)" `565 
 f N "spi_xfer_in" 2 760 ""
 v L "bits" 2 760 "int8" `566 
-f G "spi_xfer_in" 2 760 "int32(int8 bits,int8 bits)" `565 
+f G "spi_xfer_in" 2 760 "int32(int8 bits)" `565 
 f N "spi_xfer_in" 2 761 ""
 v L "stream" 2 761 "int8" `566 
 v L "bits" 2 761 "int8" `567 
@@ -1071,11 +1070,11 @@ f B "spi_xfer_in" 2 761 "int8(int8 stream,int8 bits)" `565
 f N "spi_xfer_in" 2 762 ""
 v L "stream" 2 762 "int8" `566 
 v L "bits" 2 762 "int8" `570 
-f G "spi_xfer_in" 2 762 "int16(int8 stream,int8 bits,int16 count)" `568 
+f G "spi_xfer_in" 2 762 "int16(int8 stream,int8 bits)" `568 
 f N "spi_xfer_in" 2 763 ""
 v L "stream" 2 763 "int8" `566 
 v L "bits" 2 763 "int8" `570 
-f G "spi_xfer_in" 2 763 "int32(int8 stream,int8 bits,int16 count)" `568 
+f G "spi_xfer_in" 2 763 "int32(int8 stream,int8 bits)" `568 
 f N "spi_transfer" 2 764 ""
 v L "wData" 2 764 "*int8" `569 
 v L "rData" 2 764 "*int8" `570 
@@ -1144,9 +1143,9 @@ f B "rtos_stats" 2 784 "void(int8 task,*int8 stat)" `611  "#use timer() Prototyp
 f N "get_ticks" 2 787 ""
 f B "get_ticks" 2 787 "int8()" `614 
 f N "get_ticks" 2 788 ""
-f G "get_ticks" 2 788 "int16(int8 stream)" `615 
+f G "get_ticks" 2 788 "int16()" `615 
 f N "get_ticks" 2 789 ""
-f G "get_ticks" 2 789 "int32(int8 stream)" `615 
+f G "get_ticks" 2 789 "int32()" `615 
 f N "get_ticks" 2 790 ""
 v L "stream" 2 790 "int8" `616 
 f B "get_ticks" 2 790 "int8(int8 stream)" `615 
@@ -1250,7 +1249,7 @@ f B "read_configuration_memory" 2 838 "void(int8 offset,*int8 dataptr,int8 count
 f N "read_configuration_memory" 2 839 ""
 v L "dataptr" 2 839 "*int8" `673 
 v L "count" 2 839 "int8" `681 
-f G "read_configuration_memory" 2 839 "void(*int8 dataptr,int8 count,int16 count)" `679 
+f G "read_configuration_memory" 2 839 "void(*int8 dataptr,int8 count)" `679 
 f N "read_configuration_memory" 2 840 ""
 v L "offset" 2 840 "int8" `676 
 v L "dataptr" 2 840 "*int8" `677 
@@ -1277,16 +1276,16 @@ f B "write_configuration_memory" 2 846 "void(int8 offset,*int8 dataptr,int8 coun
 f N "write_configuration_memory" 2 847 ""
 v L "dataptr" 2 847 "*int8" `687 
 v L "count" 2 847 "int8" `695 
-f G "write_configuration_memory" 2 847 "void(*int8 dataptr,int8 count,int8 address,int8 value)" `693 
+f G "write_configuration_memory" 2 847 "void(*int8 dataptr,int8 count)" `693 
 f N "write_configuration_memory" 2 848 ""
 v L "offset" 2 848 "int8" `690 
 v L "dataptr" 2 848 "*int8" `691 
 v L "count" 2 848 "int8" `696 
-f G "write_configuration_memory" 2 848 "void(int8 offset,*int8 dataptr,int8 count,int8 value)" `693  "EEPROM Prototypes:"
+f G "write_configuration_memory" 2 848 "void(int8 offset,*int8 dataptr,int8 count)" `693  "EEPROM Prototypes:"
 d G "__EEADDRESS__" 2 855 "unsigned int8"
 f N "read_eeprom" 2 858 ""
 v L "address" 2 858 "int8" `694 
-f B "read_eeprom" 2 858 "int8(int8 address,*int8 dataptr,int8 count,int8 value)" `693 
+f B "read_eeprom" 2 858 "int8(int8 address,*int8 dataptr,int8 count)" `693 
 f N "write_eeprom" 2 859 ""
 v L "address" 2 859 "int8" `696 
 v L "value" 2 859 "int8" `697 

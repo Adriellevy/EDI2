@@ -1,8 +1,7 @@
-F N "EXT_isr" 0 96 ""
 D G "__PCM__" 0 109 ""5.093""
 D G "__DEVICE__" 0 109 "1827"
-D G "__DATE__" 0 109 ""9-Sep-25""
-D G "__TIME__" 0 109 ""17:02:55""
+D G "__DATE__" 0 109 ""27-Sep-25""
+D G "__TIME__" 0 109 ""14:56:50""
 D G "_UNICODE" 0 109 ""?""
 D G "__EVAL" 0 109 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
@@ -1487,7 +1486,6 @@ V G "port" 0 32 "int8" `770
 C L "MAIN" 0 28 1 "FUNCTION"
 F N "MAIN" 0 35 ""
 F G "MAIN" 0 36 "void()" `771 
-C L "MAIN" 0 28 1 "FUNCTION"
 C L "MAIN" 0 28 1 "FUNCTION"
 C L "MAIN" 0 28 1 "FUNCTION"
 C L "MAIN" 0 28 1 "FUNCTION"

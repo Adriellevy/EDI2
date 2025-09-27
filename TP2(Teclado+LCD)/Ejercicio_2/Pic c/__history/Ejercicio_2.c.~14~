@@ -1,0 +1,73 @@
+#include <Ejercicio_2.h>
+#fuses INTRC_IO, NOWDT, NOMCLR
+#use delay(clock=4000000)
+
+#define LCD_ENABLE_PIN  PIN_B0 // Librerías para el LCD
+#define LCD_RS_PIN      PIN_B1
+#define LCD_RW_PIN      PIN_B2
+#define LCD_DATA4       PIN_B4
+#define LCD_DATA5       PIN_B5
+#define LCD_DATA6       PIN_B6
+#define LCD_DATA7       PIN_B7
+#include <lcd.c>
+
+void InitGPIO();
+
+// Variables globales
+volatile int flag_500ms = 0;
+
+// Interrupción del Timer1
+#INT_TIMER1
+void isr_timer1(void) {
+   set_timer1(1036);  // recarga para 500 ms (62.500 ticks * 8us = 500 ms)
+   flag_500ms = 1;
+}
+
+void main() {
+   InitGPIO();
+
+   int estado = 0;   // 0 = idle, 1 = mostrando, 2 = borrar
+   int boton = 0;    // 1 = prendiendo, 2 = apagando
+
+   // Configurar Timer1
+   setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);  
+   set_timer1(1036);  
+   enable_interrupts(INT_TIMER1);
+   enable_interrupts(GLOBAL);
+   
+   while(TRUE) 
+   {
+      if(estado == 0) {   // esperando botón
+         if(input(PIN_A0) == 1) {
+            lcd_putc("\fPRENDIENDO");
+            boton = 1;
+            estado = 1;
+         }
+         else if(input(PIN_A1) == 1) {
+            lcd_putc("\fAPAGANDO");
+            boton = 2;
+            estado = 1;
+         }
+      }
+      
+      else if(estado == 1 && flag_500ms) {
+         // pasó 500 ms
+         flag_500ms = 0;
+         estado = 2;
+      }
+      
+      else if(estado == 2 && flag_500ms) {
+         // pasó otro 500 ms (total 1 segundo)
+         flag_500ms = 0;
+         lcd_putc("\f");  // borrar mensaje
+         estado = 0;      // volver a esperar botones
+      }
+   }
+}
+
+void InitGPIO(void){
+    set_tris_a(0b11000000);   // A como ENTRADA
+    set_tris_b(0b00000000);   // PORTB como SALIDA
+    lcd_init(); 
+}
+

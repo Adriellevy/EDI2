@@ -6,6 +6,7 @@
 void INIT_GPIO();
 void INIT_TIMER_0();
 void INIT_INT_ICO();
+void INIT_TIMER_1();
 
 //======CHAR_TECLADO=====
 char const teclado[4][3] = {
@@ -33,32 +34,32 @@ int port=0;
 
 // ====== VARIABLES P/CONTRASEÑA ======
 char contrasenia[3] = {'2','5','3'};   // Contraseña fija
-char entrada[3];                    // Array para comparar el digito ingresado contra el de la contraseña
-int indice = 0;                     // Posición actual, para recorrer la contraseña
+char entrada[3];                       
+int indice = 0;                       
 
+// ====== CONTROL DE TIMER1 ======
+volatile int contador = 0;
 
 void main()
 {
    INIT_GPIO();
    INIT_TIMER_0();
    INIT_INT_ICO();
+   INIT_TIMER_1();
 
    lcd_init();                      
    lcd_putc("\fINGRESE CLAVE:");      // Mensaje inicial
 
    while(TRUE)
    {
-      // Hacemos todo con las interrupciones
    }
 }
 
-
 void INIT_GPIO(){
-   set_tris_a(0x00);       // Todo el puerto A como salida (LCD)
-   set_tris_b(0b00000111); // RB0-RB2 entradas (teclado), RB4-RB7 salidas
+   set_tris_a(0x00);       
+   set_tris_b(0b00000111); 
    output_b(0x00);
 }
-
 
 void INIT_TIMER_0() 
 {
@@ -92,41 +93,66 @@ void INIT_INT_ICO()
    enable_interrupts(GLOBAL);
 }
 
+// ====== CONFIG TIMER1 ======
+void INIT_TIMER_1() {
+   setup_timer_1(T1_INTERNAL | T1_DIV_BY_8); 
+   disable_interrupts(INT_TIMER1); // apagado por defecto
+}
+
+#INT_TIMER1
+void TIMER1_ISR(void) {
+   contador++;
+   if(contador>2){
+      disable_interrupts(INT_TIMER1);   // solo cuando se habilita
+      lcd_putc("\fINGRESE CLAVE:");
+      contador=0;
+   }
+}
+
 // ======== TECLADO MATRICIAL =========
 #INT_IOC 
 void EXT_isr(void) {
    char tecla = 0;
 
    if(!input_state(PuertosTecladoEntrada[0])) {
-      tecla = teclado[port][0]; //Guardo en la variable tecla, el valor de la tecla ingresado en caso de primera columna
+      tecla = teclado[port][0]; 
    }
    if(!input_state(PuertosTecladoEntrada[1])) {
-      tecla = teclado[port][1]; //Guardo en la variable tecla, el valor de la tecla ingresado en caso de segunda columna
+      tecla = teclado[port][1]; 
    }
    if(!input_state(PuertosTecladoEntrada[2])) {
-      tecla = teclado[port][2]; //Guardo en la variable tecla, el valor de la tecla ingresado en caso de tercera columna
+      tecla = teclado[port][2]; 
    }
 
    if(tecla != 0) 
    {
       entrada[indice] = tecla; 
       LCD_PUTC('\f');
-      lcd_gotoxy(9, 1); //Para centrar en el LCD nomas
+      lcd_gotoxy(9, 1); 
       lcd_putc(tecla);
 
-      if(entrada[indice] != contrasenia[indice]) //En caso de apreta en cierto digito un numero distinto a la contraseña entro a este if
+      if(entrada[indice] != contrasenia[indice]) 
       {
          lcd_putc("\fClave Incorrecta");
-         indice = 0;  // Reinicio el ingreso de los digitos
+         indice = 0;  
+
+         // arranca Timer1 ? 500ms
+         set_timer1(65536 - 62500/2); // Fosc=4MHz, presc=8 ? 1 tick=8us ? 62500 ticks ˜ 500ms
+         clear_interrupt(INT_TIMER1);
+         enable_interrupts(INT_TIMER1);
          return;
       }
 
-      indice++; //Paso al siguiente digito de la contraseña
+      indice++; 
       
-      if(indice == 3) //Significa que todo los digitos coinciden con la contraseña
+      if(indice == 3) 
       {
          lcd_putc("\fClave Correcta");
-         indice = 0;   // Reinicio el ingreso
+         indice = 0;   
+         set_timer1(0); 
+         clear_interrupt(INT_TIMER1);
+         enable_interrupts(INT_TIMER1);
       }
    }
 }
+
