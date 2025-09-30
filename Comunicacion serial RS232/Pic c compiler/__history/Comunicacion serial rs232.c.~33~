@@ -1,0 +1,102 @@
+#include <Comunicacion serial rs232.h>
+#use RS232(BAUD=9600, BITS=8, PARITY=N, XMIT=PIN_B5, RCV=PIN_B2)
+
+int16 valor_adc = 0;      // valor del potenciómetro
+int contador_timer = 0;   // para Timer1
+char dato_rx = 0;         // último byte recibido
+char comando[3];          // buffer para comando recibido
+int idx_comando = 0;
+
+//----------- prototipos -----------------
+void enviar_valor(int16 valor);
+void enviar_estado_pin();
+void init_adc();
+void init_timer1();
+void procesar_comando();
+
+// ---------- ISR RDA ----------
+#INT_RDA
+void RDA_isr(void) {
+   dato_rx = getc();        // leer byte recibido
+   if(dato_rx != '\n' && idx_comando < 2) {
+      comando[idx_comando++] = dato_rx;  // guardar en buffer
+   } else {
+      comando[idx_comando] = '\0';      // terminar string
+      procesar_comando();               // procesar comando
+      idx_comando = 0;                  // reiniciar buffer
+   }
+}
+
+// ---------- Función para procesar comando ----------
+void procesar_comando() {
+   if(strcmp(comando, "s1") == 0) {
+      enviar_valor(valor_adc);
+   } else if(strcmp(comando, "s0") == 0) {
+      enviar_estado_pin();
+   } else {
+      printf("Comando invalido\r\n");
+   }
+}
+
+// ---------- ISR ADC ----------
+#INT_AD
+void ADC_isr(void) {
+   valor_adc = read_adc(ADC_READ_ONLY);   // leer ADC
+   clear_interrupt(INT_AD);
+}
+
+// ---------- ISR Timer1 ----------
+#INT_TIMER1
+void timer1_isr(void) {
+   set_timer1(6072);                       // recargar Timer1 para 1s aprox
+   contador_timer++;
+   if(contador_timer > 2) {               // cada ~3s
+      contador_timer = 0;
+      read_adc(ADC_START_ONLY);           // iniciar nueva conversión ADC
+   }
+}
+
+// ---------- Inicialización ADC ----------
+void init_adc() {
+   setup_adc(ADC_CLOCK_INTERNAL);
+   setup_adc_ports(sAN0);
+   set_adc_channel(0);
+   enable_interrupts(INT_AD);
+}
+
+// ---------- Inicialización Timer1 ----------
+void init_timer1() {
+   setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
+   set_timer1(6072);
+   enable_interrupts(INT_TIMER1);
+}
+
+// ---------- Inicialización RDA ----------
+void init_rda() {
+   enable_interrupts(INT_RDA);
+   enable_interrupts(GLOBAL);
+}
+
+// ---------- Función enviar valor por UART ----------
+void enviar_valor(int16 valor) {
+   printf("Valor ADC: %lu\r\n", valor);
+}
+
+// ---------- Función enviar estado de un pin ----------
+void enviar_estado_pin() {
+   int estado = input(PIN_B0);           // leemos RB0
+   printf("Estado RB0: %u\r\n", estado);
+}
+
+// ---------- Main ----------
+void main() {
+   set_tris_b(0x01); // RB0 como entrada
+   init_rda();
+   init_adc();
+   init_timer1();
+
+   while(TRUE) {
+   
+    }
+}
+

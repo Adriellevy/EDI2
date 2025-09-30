@@ -1,0 +1,505 @@
+CCS PCM C Compiler, Version 5.093, 4770               30-sep.-25 13:46
+
+               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial RS232\Pic c compiler\Comunicacion serial rs232.lst
+
+               ROM used:   399 words (10%)
+                           Largest free fragment is 2048
+               RAM used:   15 (4%) at main() level
+                           39 (10%) worst case
+               Stack used: 1 locations (0 in main + 1 for interrupts)
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   16F
+0002:  NOP
+*
+0004:  CLRF   03
+0005:  MOVLP  00
+0006:  MOVLB  00
+0007:  MOVF   77,W
+0008:  MOVWF  20
+0009:  MOVF   78,W
+000A:  MOVWF  21
+000B:  MOVF   79,W
+000C:  MOVWF  22
+000D:  MOVF   7A,W
+000E:  MOVWF  23
+000F:  MOVLB  03
+0010:  MOVF   11,W
+0011:  MOVLB  00
+0012:  MOVWF  24
+0013:  MOVLB  03
+0014:  MOVF   12,W
+0015:  MOVLB  00
+0016:  MOVWF  25
+0017:  MOVLB  03
+0018:  MOVF   13,W
+0019:  MOVLB  00
+001A:  MOVWF  26
+001B:  MOVLB  03
+001C:  MOVF   14,W
+001D:  MOVLB  00
+001E:  MOVWF  27
+001F:  CLRF   05
+0020:  MOVLW  91
+0021:  MOVWF  04
+0022:  BTFSS  00.0
+0023:  GOTO   026
+0024:  BTFSC  11.0
+0025:  GOTO   046
+0026:  CLRF   05
+0027:  MOVLW  91
+0028:  MOVWF  04
+0029:  BTFSS  00.6
+002A:  GOTO   02D
+002B:  BTFSC  11.6
+002C:  GOTO   048
+002D:  MOVF   20,W
+002E:  MOVWF  77
+002F:  MOVF   21,W
+0030:  MOVWF  78
+0031:  MOVF   22,W
+0032:  MOVWF  79
+0033:  MOVF   23,W
+0034:  MOVWF  7A
+0035:  MOVF   24,W
+0036:  MOVLB  03
+0037:  MOVWF  11
+0038:  MOVLB  00
+0039:  MOVF   25,W
+003A:  MOVLB  03
+003B:  MOVWF  12
+003C:  MOVLB  00
+003D:  MOVF   26,W
+003E:  MOVLB  03
+003F:  MOVWF  13
+0040:  MOVLB  00
+0041:  MOVF   27,W
+0042:  MOVLB  03
+0043:  MOVWF  14
+0044:  RETFIE
+0045:  MOVLB  00
+0046:  MOVLP  00
+0047:  GOTO   12F
+0048:  MOVLP  00
+0049:  GOTO   04A
+.................... #include <Comunicacion serial rs232.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+*
+0065:  MOVF   0B,W
+0066:  BCF    0B.7
+0067:  MOVLB  03
+0068:  BSF    15.7
+0069:  BSF    15.0
+006A:  NOP
+006B:  NOP
+006C:  BTFSC  09.7
+006D:  BSF    0B.7
+006E:  BTFSC  03.0
+006F:  GOTO   099
+0070:  MOVF   13,W
+0071:  ANDLW  7F
+0072:  MOVLB  00
+0073:  MOVWF  2E
+0074:  MOVLB  03
+0075:  MOVF   11,W
+0076:  MOVLB  00
+0077:  MOVWF  2F
+0078:  MOVLB  03
+0079:  MOVF   12,W
+007A:  MOVLB  00
+007B:  MOVWF  30
+007C:  MOVF   2E,W
+007D:  BTFSS  11.4
+007E:  GOTO   07D
+007F:  MOVLB  03
+0080:  MOVWF  1A
+0081:  MOVLB  00
+0082:  MOVF   2F,W
+0083:  MOVLB  03
+0084:  MOVWF  11
+0085:  MOVLB  00
+0086:  MOVF   30,W
+0087:  MOVLB  03
+0088:  MOVWF  12
+0089:  MOVF   0B,W
+008A:  BCF    0B.7
+008B:  BSF    15.7
+008C:  BSF    15.0
+008D:  NOP
+008E:  NOP
+008F:  BTFSC  09.7
+0090:  BSF    0B.7
+0091:  MOVLB  00
+0092:  DECFSZ 2D,F
+0093:  GOTO   095
+0094:  GOTO   097
+0095:  MOVLB  03
+0096:  GOTO   099
+0097:  GOTO   0BA
+0098:  MOVLB  03
+0099:  RLF    13,W
+009A:  RLF    14,W
+009B:  ANDLW  7F
+009C:  MOVLB  00
+009D:  MOVWF  2E
+009E:  MOVLB  03
+009F:  MOVF   11,W
+00A0:  MOVLB  00
+00A1:  MOVWF  2F
+00A2:  MOVLB  03
+00A3:  MOVF   12,W
+00A4:  MOVLB  00
+00A5:  MOVWF  30
+00A6:  MOVF   2E,W
+00A7:  BTFSS  11.4
+00A8:  GOTO   0A7
+00A9:  MOVLB  03
+00AA:  MOVWF  1A
+00AB:  MOVLB  00
+00AC:  MOVF   2F,W
+00AD:  MOVLB  03
+00AE:  MOVWF  11
+00AF:  MOVLB  00
+00B0:  MOVF   30,W
+00B1:  MOVLB  03
+00B2:  MOVWF  12
+00B3:  INCF   11,F
+00B4:  BTFSC  03.2
+00B5:  INCF   12,F
+00B6:  BCF    03.0
+00B7:  MOVLB  00
+00B8:  DECFSZ 2D,F
+00B9:  GOTO   065
+*
+00C0:  MOVF   05,W
+00C1:  MOVWF  37
+00C2:  MOVF   04,W
+00C3:  MOVWF  36
+00C4:  SWAPF  2E,W
+00C5:  IORLW  F0
+00C6:  MOVWF  32
+00C7:  ADDWF  32,F
+00C8:  ADDLW  E2
+00C9:  MOVWF  33
+00CA:  ADDLW  32
+00CB:  MOVWF  35
+00CC:  MOVF   2E,W
+00CD:  ANDLW  0F
+00CE:  ADDWF  33,F
+00CF:  ADDWF  33,F
+00D0:  ADDWF  35,F
+00D1:  ADDLW  E9
+00D2:  MOVWF  34
+00D3:  ADDWF  34,F
+00D4:  ADDWF  34,F
+00D5:  SWAPF  2D,W
+00D6:  ANDLW  0F
+00D7:  ADDWF  34,F
+00D8:  ADDWF  35,F
+00D9:  RLF    34,F
+00DA:  RLF    35,F
+00DB:  COMF   35,F
+00DC:  RLF    35,F
+00DD:  MOVF   2D,W
+00DE:  ANDLW  0F
+00DF:  ADDWF  35,F
+00E0:  RLF    32,F
+00E1:  MOVLW  07
+00E2:  MOVWF  31
+00E3:  MOVLW  0A
+00E4:  ADDWF  35,F
+00E5:  DECF   34,F
+00E6:  BTFSS  03.0
+00E7:  GOTO   0E4
+00E8:  ADDWF  34,F
+00E9:  DECF   33,F
+00EA:  BTFSS  03.0
+00EB:  GOTO   0E8
+00EC:  ADDWF  33,F
+00ED:  DECF   32,F
+00EE:  BTFSS  03.0
+00EF:  GOTO   0EC
+00F0:  ADDWF  32,F
+00F1:  DECF   31,F
+00F2:  BTFSS  03.0
+00F3:  GOTO   0F0
+00F4:  MOVLW  20
+00F5:  MOVWF  05
+00F6:  MOVLW  11
+00F7:  MOVWF  04
+00F8:  MOVLW  07
+00F9:  ANDWF  36,W
+00FA:  BCF    36.6
+00FB:  ADDWF  04,F
+00FC:  MOVLW  00
+00FD:  ADDWFC 05,F
+00FE:  MOVF   04,W
+00FF:  SUBLW  15
+0100:  BTFSS  03.2
+0101:  GOTO   106
+0102:  MOVF   05,W
+0103:  SUBLW  20
+0104:  BTFSC  03.2
+0105:  BSF    36.6
+0106:  MOVF   00,W
+0107:  MOVWF  77
+0108:  BTFSS  03.2
+0109:  GOTO   112
+010A:  BTFSC  36.6
+010B:  GOTO   112
+010C:  BTFSC  36.4
+010D:  GOTO   11C
+010E:  BTFSC  36.3
+010F:  GOTO   112
+0110:  MOVLW  20
+0111:  GOTO   115
+0112:  BSF    36.3
+0113:  BCF    36.4
+0114:  MOVLW  30
+0115:  ADDWF  77,F
+0116:  MOVF   77,W
+0117:  BTFSS  11.4
+0118:  GOTO   117
+0119:  MOVLB  03
+011A:  MOVWF  1A
+011B:  MOVLB  00
+011C:  ADDFSR 01,FSR0
+011D:  BTFSS  36.6
+011E:  GOTO   0FE
+*
+0141:  DATA D6,30
+0142:  DATA EC,37
+0143:  DATA 72,10
+0144:  DATA 41,22
+0145:  DATA 43,1D
+0146:  DATA A0,12
+0147:  DATA EC,3A
+0148:  DATA 0D,05
+0149:  DATA 00,00
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+.................... 
+.................... 
+.................... #use RS232(BAUD=9600, BITS=8, PARITY=N, XMIT=PIN_B5, RCV=PIN_B2)
+.................... 
+.................... int16 valor_adc = 0;   // variable global para guardar el valor del ADC
+.................... int contador_timer=0;
+.................... //----------- prototipos -----------------
+.................... void enviar_valor(int16 valor);
+.................... void init_adc();
+.................... void init_timer1();
+.................... 
+.................... // ---------- ISR ADC ----------
+.................... #INT_AD
+.................... void ADC_isr(void) {
+....................    valor_adc = read_adc(ADC_READ_ONLY);   // leer resultado de 10 bits
+*
+004A:  MOVLW  11
+004B:  MOVWF  77
+004C:  MOVLB  01
+004D:  BTFSS  1D.1
+004E:  GOTO   051
+004F:  DECFSZ 77,F
+0050:  GOTO   04D
+0051:  MOVF   1B,W
+0052:  MOVWF  78
+0053:  MOVF   1C,W
+0054:  MOVLB  00
+0055:  MOVWF  29
+0056:  MOVF   78,W
+0057:  MOVWF  28
+....................    enviar_valor(valor_adc);               // mandar el valor al terminal
+0058:  MOVF   29,W
+0059:  MOVWF  2C
+005A:  MOVF   28,W
+005B:  MOVWF  2B
+....................    clear_interrupt(INT_AD);               // limpiar flag de interrupción
+*
+012A:  MOVLB  00
+012B:  BCF    11.6
+.................... }
+.................... 
+.................... // ---------- ISR Timer1 ----------
+012C:  BCF    11.6
+012D:  MOVLP  00
+012E:  GOTO   02D
+.................... #INT_TIMER1
+.................... void timer1_isr(void) {
+....................    clear_interrupt(INT_TIMER1);           // limpiar flag de Timer1
+012F:  BCF    11.0
+....................    set_timer1(6072);
+0130:  CLRF   16
+0131:  MOVLW  17
+0132:  MOVWF  17
+0133:  MOVLW  B8
+0134:  MOVWF  16
+....................    contador_timer++;
+0135:  INCF   2A,F
+....................    if(contador_timer>2){
+0136:  MOVF   2A,W
+0137:  SUBLW  02
+0138:  BTFSC  03.0
+0139:  GOTO   13E
+....................       contador_timer=0;
+013A:  CLRF   2A
+....................       read_adc(ADC_START_ONLY);              // iniciar nueva conversión ADC
+013B:  MOVLB  01
+013C:  BSF    1D.1
+013D:  MOVLB  00
+....................    }
+013E:  BCF    11.0
+013F:  MOVLP  00
+0140:  GOTO   02D
+.................... }
+.................... 
+.................... // ---------- Inicialización ADC ----------
+.................... void init_adc() {
+....................    setup_adc(ADC_CLOCK_INTERNAL);   // reloj interno para el ADC
+*
+014A:  MOVLB  01
+014B:  BSF    1E.4
+014C:  BSF    1E.5
+014D:  BCF    1E.6
+014E:  BSF    1E.7
+014F:  BSF    1D.0
+....................    setup_adc_ports(sAN0);           // habilitar AN0 como entrada analógica
+0150:  BCF    1E.0
+0151:  BCF    1E.1
+0152:  BCF    1E.2
+0153:  MOVLW  01
+0154:  MOVLB  03
+0155:  MOVWF  0C
+0156:  MOVLW  00
+0157:  MOVWF  0D
+....................    set_adc_channel(0);              // canal 0
+0158:  MOVWF  78
+0159:  MOVLB  01
+015A:  MOVF   1D,W
+015B:  ANDLW  83
+015C:  IORWF  78,W
+015D:  MOVWF  1D
+....................    enable_interrupts(INT_AD);       // habilitar interrupción ADC
+015E:  BSF    11.6
+015F:  MOVLP  00
+0160:  MOVLB  00
+0161:  GOTO   18D (RETURN)
+.................... }
+.................... 
+.................... // ---------- Inicialización Timer1 (1 segundo aprox) ----------
+.................... void init_timer1() {
+....................    setup_timer_1(T1_INTERNAL | T1_DIV_BY_8); // reloj interno con prescaler /8
+0162:  MOVLW  35
+0163:  MOVWF  18
+0164:  CLRF   19
+....................    set_timer1(6072);        
+0165:  CLRF   16
+0166:  MOVLW  17
+0167:  MOVWF  17
+0168:  MOVLW  B8
+0169:  MOVWF  16
+....................    enable_interrupts(INT_TIMER1);
+016A:  MOVLB  01
+016B:  BSF    11.0
+016C:  MOVLP  00
+016D:  MOVLB  00
+016E:  GOTO   18E (RETURN)
+.................... }
+.................... 
+.................... // ---------- Función para enviar valor por UART ----------
+.................... void enviar_valor(int16 valor) {
+....................    printf("Valor ADC: %lu\r\n", valor);
+*
+005C:  MOVLW  41
+005D:  MOVLB  03
+005E:  MOVWF  11
+005F:  MOVLW  01
+0060:  MOVWF  12
+0061:  BCF    03.0
+0062:  MOVLW  0B
+0063:  MOVLB  00
+0064:  MOVWF  2D
+*
+00BA:  MOVLW  10
+00BB:  MOVWF  04
+00BC:  MOVF   2C,W
+00BD:  MOVWF  2E
+00BE:  MOVF   2B,W
+00BF:  MOVWF  2D
+*
+011F:  MOVLW  0D
+0120:  BTFSS  11.4
+0121:  GOTO   120
+0122:  MOVLB  03
+0123:  MOVWF  1A
+0124:  MOVLW  0A
+0125:  MOVLB  00
+0126:  BTFSS  11.4
+0127:  GOTO   126
+0128:  MOVLB  03
+0129:  MOVWF  1A
+.................... }
+.................... 
+.................... // ---------- Main ----------
+.................... void main() {
+*
+016F:  MOVLW  6A
+0170:  MOVLB  01
+0171:  MOVWF  19
+0172:  MOVLB  02
+0173:  BSF    1E.0
+0174:  BSF    1D.7
+0175:  MOVLB  03
+0176:  BCF    1F.3
+0177:  MOVLW  19
+0178:  MOVWF  1B
+0179:  MOVLW  A6
+017A:  MOVWF  1E
+017B:  MOVLW  90
+017C:  MOVWF  1D
+017D:  MOVLB  00
+017E:  CLRF   29
+017F:  CLRF   28
+0180:  CLRF   2A
+0181:  MOVLB  03
+0182:  CLRF   0C
+0183:  CLRF   0D
+0184:  MOVLB  02
+0185:  CLRF   12
+0186:  CLRF   11
+0187:  CLRF   14
+0188:  CLRF   13
+....................    enable_interrupts(GLOBAL);   // habilitar interrupciones globales
+0189:  MOVLW  C0
+018A:  IORWF  0B,F
+....................    init_adc();
+018B:  MOVLB  00
+018C:  GOTO   14A
+....................    init_timer1();
+018D:  GOTO   162
+.................... 
+....................    while(TRUE) {
+018E:  GOTO   18E
+....................       // El main queda libre, todo lo hace Timer1 y la ISR ADC
+....................    }
+.................... }
+.................... 
+018F:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FC4   INTRC_IO NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

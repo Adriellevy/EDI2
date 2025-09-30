@@ -1,0 +1,13 @@
+#include <Comunicacion serial rs232.h>
+
+void main()
+{
+
+	while(TRUE)
+	{
+
+
+		//TODO: User Code
+	}
+
+}

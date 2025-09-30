@@ -1,0 +1,43 @@
+#include <Comunicacion serial rs232.h>
+#use RS232(BAUD=9600, BITS=8, PARITY=N, XMIT=PIN_B5, RCV=PIN_B2)
+
+int16 valor_adc = 0;   // variable global para guardar el valor del ADC
+
+//----------- prototipos rutinas -----------------
+void enviar_valor(int16);
+void init_adc();
+
+// ---------- Rutina de interrupción ADC ----------
+#INT_AD
+void ADC_isr(void) {
+   valor_adc = read_adc(ADC_READ_ONLY);   // leer resultado de 10 bits
+   enviar_valor(valor_adc);               // mandar el valor al terminal
+
+   clear_interrupt(INT_AD);               // limpiar flag de interrupción
+   read_adc(ADC_START_ONLY);              // iniciar nueva conversión inmediata
+}
+
+// ---------- Función: inicializa ADC ----------
+void init_adc() {
+   setup_adc(ADC_CLOCK_INTERNAL);    // reloj interno para el ADC
+   setup_adc_ports(sAN0);            // habilitar AN0 como entrada analógica
+   set_adc_channel(0);               // canal 0
+   enable_interrupts(INT_AD);        // habilitar interrupción ADC
+   read_adc(ADC_START_ONLY);         // arrancar la primera conversión
+}
+
+// ---------- Función: envía valor por UART en ASCII ----------
+void enviar_valor(int16 valor) {
+   printf("Valor ADC: %lu\r\n", valor);   // lo manda como texto
+}
+
+// ---------- Programa principal ----------
+void main() {
+   enable_interrupts(GLOBAL);   // habilitar interrupciones globales
+   init_adc();                  // inicializar ADC
+
+   while(TRUE) {
+      // el trabajo lo hace la ISR, el main queda libre
+   }
+}
+

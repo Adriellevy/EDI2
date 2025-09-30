@@ -1,0 +1,100 @@
+004-005 @READ_PACKED_MEMORY.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+004-005 @WRITE_PACKED_MEMORY.P3
+004-005 @READ_PROGRAM_MEMORY8.P4
+006-007 @READ_PACKED_MEMORY.P1
+006-007 @WRITE_PACKED_MEMORY.P2
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028-029 valor_adc
+02A     contador_timer
+02B-02C enviar_valor.valor
+02D-02E @PRINTF_LU_9600_106_105.P1
+02D     @PSTRINGCN7_9600_106_105.P2
+02E     @PSTRINGCN7_9600_106_105.@SCRATCH1
+02F     @PSTRINGCN7_9600_106_105.@SCRATCH2
+030     @PSTRINGCN7_9600_106_105.@SCRATCH3
+031     @PRINTF_LU_9600_106_105.@SCRATCH1
+032     @PRINTF_LU_9600_106_105.@SCRATCH2
+033     @PRINTF_LU_9600_106_105.@SCRATCH3
+034     @PRINTF_LU_9600_106_105.@SCRATCH4
+035     @PRINTF_LU_9600_106_105.@SCRATCH5
+036     @PRINTF_LU_9600_106_105.@SCRATCH6
+037     @PRINTF_LU_9600_106_105.@SCRATCH7
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+111.6   C1OUT
+113.6   C2OUT
+191-192 @WRITE_PROGRAM_MEMORY8.P1
+191-192 @READ_PROGRAM_MEMORY8.P2
+291     CCP_1
+291     CCP_1_LOW
+292     CCP_1_HIGH
+298     CCP_2
+298     CCP_2_LOW
+299     CCP_2_HIGH
+311     CCP_3_LOW
+311     CCP_3
+312     CCP_3_HIGH
+318     CCP_4_LOW
+318     CCP_4
+319     CCP_4_HIGH
+
+ROM Allocation:
+00004A  ADC_isr
+00005C  enviar_valor
+000065  @PSTRINGCN7_9600_106_105
+0000C0  @PRINTF_LU_9600_106_105
+00012F  timer1_isr
+000141  @const733.call
+00014A  init_adc
+000162  init_timer1
+00016F  MAIN
+00016F  @cinit1
+000189  @cinit2
+
+Project Directory:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial RS232\Pic c compiler\
+
+Project Files:
+    Comunicacion serial rs232.c                             [30-sep.-25 13:46  CRC=DAC66327]
+    Comunicacion serial rs232.h                             [30-sep.-25 12:56  CRC=00000000]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
+
+Source signature=8811C265
+Program memory checksum=0000
+Hex file CRC=76E0
+
+Units:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial RS232\Pic c compiler\Comunicacion serial rs232 (main)
+
+Compiler Settings:
+    Processor:      PIC16F1827
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Enhanced 16:    Yes
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   Comunicacion serial rs232.xsym
+    Errors:      Comunicacion serial rs232.err
+    Ext Symbols: Comunicacion serial rs232.esym
+    INHX8:       Comunicacion serial rs232.hex
+    Symbols:     Comunicacion serial rs232.sym
+    List:        Comunicacion serial rs232.lst
+    Debug/COFF:  Comunicacion serial rs232.cof
+    Project:     Comunicacion serial rs232.ccspjt
+    Call Tree:   Comunicacion serial rs232.tre
+    Statistics:  Comunicacion serial rs232.STA

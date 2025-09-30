@@ -1,0 +1,11 @@
+ÀÄComunicacion serial rs232
+   ÃÄMAIN  0/33  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄ@cinit2  (Inline)  Ram=0
+   ³  ÃÄinit_adc  0/24  Ram=0
+   ³  ÀÄinit_timer1  0/13  Ram=0
+   ÃÄADC_isr  0/229  Ram=0
+   ³  ÀÄenviar_valor  (Inline)  Ram=2
+   ³     ÃÄ@PSTRINGCN7_9600_106_105  (Inline)  Ram=4
+   ³     ÀÄ@PRINTF_LU_9600_106_105  (Inline)  Ram=11
+   ÀÄtimer1_isr  0/18  Ram=0
