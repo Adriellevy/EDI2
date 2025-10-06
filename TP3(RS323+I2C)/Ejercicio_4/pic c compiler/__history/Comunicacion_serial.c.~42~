@@ -1,0 +1,23 @@
+#include <16F1827.h>
+#fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO
+#use delay(clock=4000000)
+#use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)
+#include "i2c_Flex_LCD.c"
+
+#define LCD_I2C_ADDR 0x3F  // Dirección típica del PCF8574
+
+void main() {
+    // Inicialización del LCD
+    lcd_init(LCD_I2C_ADDR << 1, 16, 2);   // dirección I2C shifted
+    lcd_backlight_led(ON);                 // enciende backlight
+
+    // Limpiar y escribir una vez
+    lcd_clear();
+    printf(LCD_PUTC, "\fHOLA MUNDO");     // enviar texto al LCD
+
+    while(TRUE) {
+       // Puedes hacer algo aquí si quieres refrescar
+       delay_ms(500);
+    }
+}
+

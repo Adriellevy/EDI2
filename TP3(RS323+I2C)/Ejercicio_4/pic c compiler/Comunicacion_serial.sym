@@ -1,0 +1,112 @@
+004-005 @READ_PACKED_MEMORY.P1
+004-005 @WRITE_PACKED_MEMORY.P2
+004-005 @READ_PROGRAM_MEMORY8.P3
+004-005 @WRITE_PROGRAM_MEMORY8.P4
+006-007 @READ_PACKED_MEMORY.P1
+006-007 @WRITE_PACKED_MEMORY.P2
+020     LCD_ADDR
+021     lcd_total_rows
+022     lcd_total_columns
+023     new_row_request
+024     BACKLIGHT_LED
+025     lcd_gotoxy.data
+026-027 MAIN.msg
+028-036 MAIN.@STRING763
+037     MAIN.i
+038     lcd_backlight_led.bl
+038     lcd_init.addr
+038     MAIN.@SCRATCH1
+039     LCD_PUTC.in_data
+039     lcd_init.col
+03A     lcd_init.row
+03A     lcd_gotoxy.x
+03B     lcd_init.i
+03B     lcd_gotoxy.y
+03C     lcd_gotoxy.row
+03C     @delay_ms1.P1
+03C     lcd_init.@SCRATCH1
+03D     lcd_gotoxy.column
+03E     lcd_gotoxy.row_addr
+03F     lcd_gotoxy.lcd_address
+040     lcd_gotoxy.@SCRATCH1
+041     lcd_send_byte.data
+042     lcd_send_byte.type
+043     lcd_send_byte.@SCRATCH1
+044     i2c_send_nibble.data
+045     i2c_send_nibble.type
+046     i2c_send_nibble.@SCRATCH1
+047     @I2C_WRITEU_129.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+111.6   C1OUT
+113.6   C2OUT
+191-192 @READ_PROGRAM_MEMORY8.P1
+191-192 @WRITE_PROGRAM_MEMORY8.P2
+291     CCP_1_LOW
+291     CCP_1
+292     CCP_1_HIGH
+298     CCP_2_LOW
+298     CCP_2
+299     CCP_2_HIGH
+311     CCP_3_LOW
+311     CCP_3
+312     CCP_3_HIGH
+318     CCP_4_LOW
+318     CCP_4
+319     CCP_4_HIGH
+
+ROM Allocation:
+000003  LCD_INIT_STRING.call
+000004  LCD_INIT_STRING.data
+000008  @delay_ms1
+00001E  @I2C_WRITEU_129
+000032  i2c_send_nibble
+00007C  lcd_send_byte
+00009A  lcd_clear
+0000A4  lcd_init
+0000EF  lcd_backlight_led
+0000F8  lcd_gotoxy
+00012F  LCD_PUTC
+000155  MAIN
+000155  @cinit1
+000171  @cinit2
+
+Project Directory:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\
+
+Project Files:
+    Comunicacion_serial.c                                   [06-oct.-25 20:16  CRC=40EE1F2E]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
+    i2c_Flex_LCD.c                                          [26-abr.-20 15:13  CRC=16AFB211]
+
+Source signature=44F332EF
+Program memory checksum=0000
+Hex file CRC=81CE
+
+Units:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\Comunicacion_serial (main)
+
+Compiler Settings:
+    Processor:      PIC16F1827
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Enhanced 16:    Yes
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   Comunicacion_serial.xsym
+    Errors:      Comunicacion_serial.err
+    Ext Symbols: Comunicacion_serial.esym
+    INHX8:       Comunicacion_serial.hex
+    Symbols:     Comunicacion_serial.sym
+    List:        Comunicacion_serial.lst
+    Debug/COFF:  Comunicacion_serial.cof
+    Project:     Comunicacion_serial.ccspjt
+    Call Tree:   Comunicacion_serial.tre
+    Statistics:  Comunicacion_serial.STA

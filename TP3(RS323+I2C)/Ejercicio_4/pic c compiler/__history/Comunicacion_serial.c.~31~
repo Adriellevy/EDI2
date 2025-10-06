@@ -1,0 +1,15 @@
+#include <16F1827.h>
+#fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO
+#use delay(clock=4000000)
+#use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)
+#include <lcd_i2c.c>    // driver del punto anterior
+
+void main() {
+   lcd_init();
+   lcd_gotoxy(1,1);
+   printf(lcd_putc, "Hola Mundo!");
+   lcd_gotoxy(1,2);
+   printf(lcd_putc, "I2C OK");
+   while(TRUE);
+}
+

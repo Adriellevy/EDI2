@@ -1,0 +1,6 @@
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\Comunicacion_serial on 06-oct.-25 at 20:16
+>>> Warning 236 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\Comunicacion_serial.c" Line 10(9,17): Defined identifier matches a variable ID
+>>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial\pic c compiler\i2c_Flex_LCD.c" Line 174(13,17): Variable never used:   data
+      Memory usage:   ROM=11%      RAM=8% - 14%
+      0 Errors,  2 Warnings.
+Build Successful.

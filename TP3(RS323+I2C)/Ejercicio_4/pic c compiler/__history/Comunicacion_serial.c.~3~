@@ -1,0 +1,93 @@
+#use delay(clock=8000000)    // Usamos el oscilador interno a 8MHz
+
+#use i2c(Master, SDA=PIN_B1, SCL=PIN_B4)  
+// SDA y SCL dependen de tu conexión física
+
+// Dirección I2C del expansor PCF8574 (varía según A0-A2 cableados)
+#define PCF8574_ADDR 0x4E    
+
+// Definiciones para LCD 16x2 en modo I2C con PCF8574
+#define LCD_RS 0x01
+#define LCD_EN 0x04
+#define LCD_BACKLIGHT 0x08
+
+void i2c_lcd_send_nibble(int8 nibble, int8 rs)
+{
+   int8 data;
+
+   data = nibble | LCD_BACKLIGHT | rs;
+   i2c_start();
+   i2c_write(PCF8574_ADDR);
+   i2c_write(data | LCD_EN);
+   delay_us(1);
+   i2c_write(data & ~LCD_EN);
+   i2c_stop();
+}
+
+void i2c_lcd_send_byte(int8 data, int8 rs)
+{
+   i2c_lcd_send_nibble(data & 0xF0, rs);
+   i2c_lcd_send_nibble((data << 4) & 0xF0, rs);
+}
+
+void lcd_cmd(int8 cmd)
+{
+   i2c_lcd_send_byte(cmd, 0);
+   delay_ms(2);
+}
+
+void lcd_putc(char c)
+{
+   i2c_lcd_send_byte(c, LCD_RS);
+   delay_ms(1);
+}
+
+void lcd_init()
+{
+   delay_ms(50); // Tiempo de encendido
+
+   i2c_lcd_send_nibble(0x30, 0);
+   delay_ms(5);
+   i2c_lcd_send_nibble(0x30, 0);
+   delay_us(200);
+   i2c_lcd_send_nibble(0x30, 0);
+   delay_ms(5);
+
+   i2c_lcd_send_nibble(0x20, 0); // 4 bits
+   delay_ms(5);
+
+   lcd_cmd(0x28); // 4 bits, 2 líneas, 5x8
+   lcd_cmd(0x0C); // Display ON, cursor OFF
+   lcd_cmd(0x06); // Incremento automático
+   lcd_cmd(0x01); // Clear
+   delay_ms(5);
+}
+
+void lcd_gotoxy(int8 x, int8 y)
+{
+   int8 addr;
+   if(y==1)
+      addr=0x80 + (x-1);
+   else
+      addr=0xC0 + (x-1);
+   lcd_cmd(addr);
+}
+
+void main()
+{
+   lcd_init();
+
+   lcd_gotoxy(1,1);
+   lcd_putc('H');
+   lcd_putc('o');
+   lcd_putc('l');
+   lcd_putc('a');
+
+   lcd_gotoxy(1,2);
+   printf(lcd_putc, "PIC16F1827");
+   
+   while(TRUE)
+   {
+      // Bucle principal
+   }
+}
