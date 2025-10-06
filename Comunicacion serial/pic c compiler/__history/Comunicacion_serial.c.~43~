@@ -19,7 +19,7 @@ void main() {
     lcd_gotoxy(1,1);                 // Posicionar cursor en columna 1, fila 1
 
     // Enviar texto al LCD
-    char *msg = "HOLA QUE HACE?";
+    char *msg = "HOLA MUNDO";
     int i=0;
     while(msg[i]) {
         LCD_PUTC(msg[i]);            // La función correcta es LCD_PUTC

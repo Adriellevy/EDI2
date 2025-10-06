@@ -1,0 +1,33 @@
+#include <16F1827.h>
+#fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO
+#use delay(clock=4000000)
+#use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)
+#include "i2c_Flex_LCD.c"  
+void main() {  
+int i=0; 
+lcd_init(0x4E,16,2);
+lcd_backlight_led(ON); //Enciende la luz de Fondo
+  
+ while (TRUE) { 
+   lcd_clear();  //Limpia el LCD
+   // Envio de Strings al LCD usando la función printf
+   printf(lcd_putc, "\fSuscribete a"); 
+   delay_ms(1000); 
+   printf(lcd_putc, "\nControl      "); 
+   delay_ms(1000); 
+   printf(lcd_putc, "\nAutomatico    "); 
+   delay_ms(1000); 
+   printf(lcd_putc, "\nEducacion     "); 
+   delay_ms(1000); 
+   printf(lcd_putc, "\fAprende:"); 
+   delay_ms(1000); 
+   printf(lcd_putc, "\n- PIC"); 
+   delay_ms(1000); 
+   printf(lcd_putc, "\n- Arduino"); 
+   delay_ms(1000); 
+   printf(lcd_putc, "\n- Control"); 
+   delay_ms(1000); 
+   // Limpia el LCD 
+   printf(lcd_putc, "\f"); 
+ 
+ }

@@ -1,0 +1,33 @@
+#include <Comunicacion_serial.h>
+
+#use rs232(baud=9600, xmit=PIN_A0, rcv=PIN_A1, stream=SERIAL) // opcional
+// Activar módulo I2C por software en los pines que quieras
+#use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)  
+
+#define PCF8574_ADDR 0x4E     // Dirección del expansor (A0=A1=A2=VCC)
+
+// LCD + I2C funciones básicas
+#define LCD_RS 0x01
+#define LCD_EN 0x04
+#define LCD_BACKLIGHT 0x08
+
+#define TERMINAL_ADDR 0x4E   // Dirección I2C del dispositivo terminal
+
+void enviar_hola_mundo_i2c() {
+   const char mensaje[] = "HOLA MUNDO";
+   int i;
+
+   i2c_start();                  // Inicia comunicación
+   i2c_write(TERMINAL_ADDR);     // Envía dirección del esclavo
+   for(i = 0; mensaje[i] != '\0'; i++) {
+      i2c_write(mensaje[i]);     // Envía cada carácter
+   }
+   i2c_stop();                   // Finaliza comunicación
+}
+
+void main() {
+   i2c_start(); 
+//!   i2c_stop();
+   while(TRUE);
+}
+

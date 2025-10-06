@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=2
+Days=3
 D1=23-09-2025
 D1_L=8
 D1_L1=[47388]Project Opened.
@@ -27,7 +27,7 @@ D1_L4=[51742]Started Editing.
 D1_L5=[52270]Stopped Editing.
 D1_L6=[52524]Started Editing.
 D1_L7=[60304]Stopped Editing.
-TotalEdit=135
+TotalEdit=209
 TotalDebug=0
 D1_E=135
 D1_D=0
@@ -36,18 +36,44 @@ D2=27-09-2025
 D2_L=2
 D2_L1=[50593]Project Opened.
 D2_L2=[51718]Project Closed.
+D3=06-10-2025
+D3_L=20
+D3_L1=[64964]Project Opened.
+D3_L2=[65029]Started Editing.
+D3_L3=[65353]Stopped Editing.
+D3_L4=[65827]Started Editing.
+D3_L5=[66186]Stopped Editing.
+D3_L6=[66603]Started Editing.
+D3_L7=[67437]Stopped Editing.
+D3_L8=[67568]Started Editing.
+D3_L9=[68705]Stopped Editing.
+D3_L10=[68828]Started Editing.
+D3_L11=[69496]Stopped Editing.
+D3_L12=[69508]Started Editing.
+D3_L13=[69878]Stopped Editing.
+D3_L14=[69953]Started Editing.
+D3_L15=[71278]Stopped Editing.
+D3_L16=[71289]Started Editing.
+D3_L17=[71917]Stopped Editing.
+D3_L18=[71952]Started Editing.
+D3_L19=[73116]Stopped Editing.
+D3_E=74
+D3_D=0
+D3_L20=[73116]Project Closed.
 
 [Opened Files]
 1=Comunicacion_serial.c
-t1=1
-Count=2
+t1=17
+Count=3
 2=Comunicacion_serial.h
 t2=1
+3=i2c_Flex_LCD.c
+t3=164
 [Comunicacion_serial.c]
 Type=4
 
 [defines]
-buildcount=2
+buildcount=25
 [Units]
 Count=1
 1=Comunicacion_serial (main)
