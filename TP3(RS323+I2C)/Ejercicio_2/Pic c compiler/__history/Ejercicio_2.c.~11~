@@ -133,7 +133,7 @@ void procesar_comando() {
     // Comando S1 -> iniciar envío periódico de los 3 botones
     if (Buffer[0] == 's' && Buffer[1] == '1' && Buffer[2] == '\0') {
         estado_actual = STATE_SEND_BUTTONS;
-        printf("Modo: envío de botones cada %lu ms\r\n", muestreo_ms);
+        printf("Modo: envío de botones cada %u ms\r\n", muestreo_ms);
     }
     // Comando S0 -> detener envío
     else if (Buffer[0] == 's' && Buffer[1] == '0' && Buffer[2] == '\0') {

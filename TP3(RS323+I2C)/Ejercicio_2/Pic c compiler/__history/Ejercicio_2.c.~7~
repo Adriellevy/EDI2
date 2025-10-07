@@ -19,9 +19,7 @@ char dato_rx = 0;         // último byte recibido
 char Buffer[MAX_BUFFER];          // buffer para comando recibido
 int idx_comando = 0;
 char boton_periodico = '0';   // Botón específico para el modo MX
-unsigned int16 muestreo_ms = 100; // Tiempo de muestreo en ms (por defecto 100ms)
-unsigned int16 timer1_recarga;
-unsigned int contador_1000ms = 0;
+unsigned int muestreo_ms = 100; // Tiempo de muestreo en ms (por defecto 100ms)
 //----------- prototipos -----------------
 void enviar_valor(int16 valor);
 void enviar_estado_pin();
@@ -55,15 +53,10 @@ void RDA_isr(void) {
 // ---------- ISR Timer1 ----------
 #INT_TIMER1
 void timer1_isr(void) {
-   set_timer1(timer1_recarga);
+   // recarga según el tiempo de muestreo
+    set_timer1(65536 - muestreo_ms*1000 );  // ajustar según tu clock
 
-    if (muestreo_ms == 1000) {
-        contador_1000ms++;
-        if (contador_1000ms < 2) return; // esperar 2 ticks
-        contador_1000ms = 0;             // resetear contador
-    }
-
-    // Aquí va la acción periódica, por ejemplo:
+    // envío según el estado
     switch (estado_actual) {
         case STATE_SEND_BUTTONS:
             enviar_botones();
@@ -79,24 +72,9 @@ void timer1_isr(void) {
 
 // ---------- Inicialización Timer1 ----------
 void init_timer1() {
-   switch (muestreo_ms) {
-        case 100: // 100 ms
-            timer1_recarga = 0xCF04; // 53036 decimal
-            contador_1000ms = 1;     // no usar contador
-            break;
-        case 500: // 500 ms
-            timer1_recarga = 0x0BDC; // 3036 decimal
-            contador_1000ms = 1;     // no usar contador
-            break;
-        case 1000: // 1000 ms
-            timer1_recarga = 0x0BDC; // 500ms cada interrupción
-            contador_1000ms = 0;     // se contará 2 veces
-            break;
-    }
-
-    setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
-    set_timer1(timer1_recarga);
-    enable_interrupts(INT_TIMER1);
+   setup_timer_1(T1_INTERNAL | T1_DIV_BY_1);
+   set_timer1(6072);
+   enable_interrupts(INT_TIMER1);
 }
 
 // ---------- Inicialización RDA ----------
@@ -133,7 +111,7 @@ void procesar_comando() {
     // Comando S1 -> iniciar envío periódico de los 3 botones
     if (Buffer[0] == 's' && Buffer[1] == '1' && Buffer[2] == '\0') {
         estado_actual = STATE_SEND_BUTTONS;
-        printf("Modo: envío de botones cada %lu ms\r\n", muestreo_ms);
+        printf("Modo: envío de botones cada %u ms\r\n", muestreo_ms);
     }
     // Comando S0 -> detener envío
     else if (Buffer[0] == 's' && Buffer[1] == '0' && Buffer[2] == '\0') {
@@ -151,7 +129,7 @@ void procesar_comando() {
             case '1': muestreo_ms = 500; break;
             case '2': muestreo_ms = 1000; break;
         }
-        printf("Tiempo de muestreo configurado a %lu\r\n", muestreo_ms);
+        printf("Tiempo de muestreo configurado a %u ms\r\n", muestreo_ms);
     }
     else {
         printf("Comando desconocido\r\n");

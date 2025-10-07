@@ -1,36 +1,31 @@
 ÀÄEjercicio_2
-   ÃÄMAIN  0/36  Ram=0
+   ÃÄMAIN  0/38  Ram=0
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄ@cinit2  (Inline)  Ram=0
    ³  ÃÄinit_rda  0/11  Ram=0
-   ³  ÀÄinit_timer1  0/13  Ram=0
-   ÃÄRDA_isr  0/185  Ram=4
+   ³  ÀÄinit_timer1  0/60  Ram=0
+   ÃÄRDA_isr  0/200  Ram=4
    ³  ÀÄprocesar_comando  (Inline)  Ram=0
    ³     ÃÄ@PSTRINGRN_9600_106_105  0/21  Ram=4
-   ³     ÃÄ@PRINTF_U_9600_106_105  0/62  Ram=2
-   ³     ³  ÃÄ@DIV88  0/21  Ram=3
-   ³     ³  ÀÄ@DIV88  0/21  Ram=3
+   ³     ÃÄ@PRINTF_LU_9600_106_105  0/96  Ram=14
    ³     ÃÄ@PSTRINGRN_9600_106_105  0/21  Ram=4
-   ³     ÃÄ@PSTRINGC7_9600_106_105  0/80  Ram=3
+   ³     ÃÄ@PSTRINGC7_9600_106_105  0/80  Ram=5
    ³     ÃÄenviar_boton  0/71  Ram=2
-   ³     ³  ÀÄ@PRINTF_D_9600_106_105  0/99  Ram=9
+   ³     ³  ÀÄ@PRINTF_D_9600_106_105  0/99  Ram=6
    ³     ³     ÃÄ@DIV88  0/21  Ram=3
    ³     ³     ÀÄ@DIV88  0/21  Ram=3
-   ³     ÃÄ@PSTRINGCN7_9600_106_105  0/86  Ram=6
-   ³     ÃÄ@PRINTF_U_9600_106_105  0/62  Ram=2
-   ³     ³  ÀÄ*
-   ³     ÃÄ@PSTRINGCN7_9600_106_105  0/86  Ram=6
-   ³     ÀÄ@PSTRINGC7_9600_106_105  0/80  Ram=3
-   ÀÄtimer1_isr  0/147  Ram=6
-      ÃÄ@MUL1616  (Inline)  Ram=5
+   ³     ÃÄ@PSTRINGCN7_9600_106_105  0/86  Ram=4
+   ³     ÃÄ@PRINTF_LU_9600_106_105  0/96  Ram=14
+   ³     ÀÄ@PSTRINGC7_9600_106_105  0/80  Ram=5
+   ÀÄtimer1_isr  0/121  Ram=0
       ÃÄenviar_botones  (Inline)  Ram=3
-      ³  ÃÄ@PRINTF_D_9600_106_105  0/99  Ram=9
+      ³  ÃÄ@PRINTF_D_9600_106_105  0/99  Ram=6
       ³  ³  ÀÄ*
-      ³  ÃÄ@PSTRINGCN7_9600_106_105  0/86  Ram=6
-      ³  ÃÄ@PRINTF_D_9600_106_105  0/99  Ram=9
+      ³  ÃÄ@PSTRINGCN7_9600_106_105  0/86  Ram=4
+      ³  ÃÄ@PRINTF_D_9600_106_105  0/99  Ram=6
       ³  ³  ÀÄ*
-      ³  ÃÄ@PSTRINGCN7_9600_106_105  0/86  Ram=6
-      ³  ÀÄ@PRINTF_D_9600_106_105  0/99  Ram=9
+      ³  ÃÄ@PSTRINGCN7_9600_106_105  0/86  Ram=4
+      ³  ÀÄ@PRINTF_D_9600_106_105  0/99  Ram=6
       ³     ÀÄ*
       ÀÄenviar_boton  0/71  Ram=2
          ÀÄ*

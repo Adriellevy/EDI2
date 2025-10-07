@@ -1,10 +1,9 @@
-F N "MAIN" 0 139 ""
-D G "__PCM__" 0 149 ""5.093""
-D G "__DEVICE__" 0 149 "1827"
-D G "__DATE__" 0 149 ""7-Oct-25""
-D G "__TIME__" 0 149 ""10:48:01""
-D G "_UNICODE" 0 149 ""?""
-D G "__EVAL" 0 149 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
+D G "__PCM__" 0 171 ""5.093""
+D G "__DEVICE__" 0 171 "1827"
+D G "__DATE__" 0 171 ""7-Oct-25""
+D G "__TIME__" 0 171 ""11:29:05""
+D G "_UNICODE" 0 171 ""?""
+D G "__EVAL" 0 171 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
 f N "set_tris_a" 2 39 ""
 v L "value" 2 39 "int8" `55 
@@ -1417,27 +1416,30 @@ V G "Buffer" 0 19 "int8[3]" `732  "buffer para comando recibido"
 V G "idx_comando" 0 20 "int8" `733 
 V G "boton_periodico" 0 21 "int8" `734 
 C L "jump_to_isr" 0 4 1 "FUNCTION"
-V G "muestreo_ms" 0 22 "int8" `735 
-C L "jump_to_isr" 0 4 2 "FUNCTION"
-F N "enviar_valor" 0 24 ""
-V L "valor" 0 24 "int16" `737 
-f G "enviar_valor" 0 24 "void(int16 valor)" `736 
-F N "enviar_estado_pin" 0 25 ""
-f G "enviar_estado_pin" 0 25 "void()" `738 
-F N "init_adc" 0 26 ""
-f G "init_adc" 0 26 "void()" `739 
-F N "init_timer1" 0 27 ""
-f G "init_timer1" 0 27 "void()" `740 
-F N "procesar_comando" 0 28 ""
-f G "procesar_comando" 0 28 "void()" `741 
-F N "enviar_botones" 0 29 ""
-f G "enviar_botones" 0 29 "void()" `742 
-F N "enviar_boton" 0 30 ""
-V L "??65535" 0 30 "int8" `744 
-f G "enviar_boton" 0 30 "void(int8 )" `743  "---------- ISR RDA ----------"
-F N "RDA_isr" 0 33 ""
-F G "RDA_isr" 0 33 "void()" `745 
-V L "c" 0 34 "int8" `746 
+V G "muestreo_ms" 0 22 "int16" `735 
+C L "jump_to_isr" 0 4 1 "FUNCTION"
+V G "timer1_recarga" 0 23 "int16" `736 
+V G "contador_1000ms" 0 24 "int8" `737 
+C L "jump_to_isr" 0 4 1 "FUNCTION"
+F N "enviar_valor" 0 26 ""
+V L "valor" 0 26 "int16" `739 
+f G "enviar_valor" 0 26 "void(int16 valor)" `738 
+F N "enviar_estado_pin" 0 27 ""
+f G "enviar_estado_pin" 0 27 "void()" `740 
+F N "init_adc" 0 28 ""
+f G "init_adc" 0 28 "void()" `741 
+F N "init_timer1" 0 29 ""
+f G "init_timer1" 0 29 "void()" `742 
+F N "procesar_comando" 0 30 ""
+f G "procesar_comando" 0 30 "void()" `743 
+F N "enviar_botones" 0 31 ""
+f G "enviar_botones" 0 31 "void()" `744 
+F N "enviar_boton" 0 32 ""
+V L "??65535" 0 32 "int8" `746 
+f G "enviar_boton" 0 32 "void(int8 )" `745  "---------- ISR RDA ----------"
+F N "RDA_isr" 0 35 ""
+F G "RDA_isr" 0 35 "void()" `747 
+V L "c" 0 36 "int8" `748 
 C L "RDA_isr" 0 4 2 "FUNCTION"
 C L "RDA_isr" 0 4 1 "FUNCTION"
 C L "RDA_isr" 0 4 1 "FUNCTION"
@@ -1445,37 +1447,48 @@ C L "RDA_isr" 0 4 1 "FUNCTION"
 C L "RDA_isr" 0 4 1 "FUNCTION"
 C L "RDA_isr" 0 4 1 "FUNCTION"
 C L "timer1_isr" 0 4 1 "FUNCTION"
-F N "timer1_isr" 0 55 ""
-F G "timer1_isr" 0 55 "void()" `747  "recarga según el tiempo de muestreo"
-C L "timer1_isr" 0 4 2 "FUNCTION"
+F N "timer1_isr" 0 57 ""
+F G "timer1_isr" 0 57 "void()" `749 
+C L "timer1_isr" 0 4 1 "FUNCTION"
+C L "timer1_isr" 0 4 1 "FUNCTION"
+C L "timer1_isr" 0 4 1 "FUNCTION"
 C L "init_timer1" 0 4 1 "FUNCTION"
-F N "init_timer1" 0 74 ""
-F G "init_timer1" 0 74 "void()" `740 
+F N "init_timer1" 0 81 ""
+F G "init_timer1" 0 81 "void()" `742 
+C L "init_timer1" 0 4 1 "FUNCTION"
+C L "init_timer1" 0 4 1 "FUNCTION"
+C L "init_timer1" 0 4 1 "FUNCTION"
+C L "init_timer1" 0 4 1 "FUNCTION"
+C L "init_timer1" 0 4 1 "FUNCTION"
+C L "init_timer1" 0 4 1 "FUNCTION"
+C L "init_timer1" 0 4 1 "FUNCTION"
+C L "init_timer1" 0 4 1 "FUNCTION"
+C L "init_timer1" 0 4 1 "FUNCTION"
 C L "init_rda" 0 4 1 "FUNCTION"
-F N "init_rda" 0 81 ""
-F G "init_rda" 0 81 "void()" `751 
+F N "init_rda" 0 103 ""
+F G "init_rda" 0 103 "void()" `750 
 C L "init_rda" 0 4 1 "FUNCTION"
 C L "init_rda" 0 4 1 "FUNCTION"
 C L "enviar_botones" 0 4 1 "FUNCTION"
-F N "enviar_botones" 0 89 ""
-F G "enviar_botones" 0 89 "void()" `742 
-V L "b0" 0 90 "int8" `752 
-V L "b1" 0 91 "int8" `753 
-V L "b2" 0 92 "int8" `754 
+F N "enviar_botones" 0 111 ""
+F G "enviar_botones" 0 111 "void()" `744 
+V L "b0" 0 112 "int8" `751 
+V L "b1" 0 113 "int8" `752 
+V L "b2" 0 114 "int8" `753 
 C L "enviar_boton" 0 4 1 "FUNCTION"
-F N "enviar_boton" 0 97 ""
-V L "boton" 0 97 "int8" `765 
-F G "enviar_boton" 0 97 "void(int8 boton)" `743 
-V L "Estado" 0 98 "int8" `764 
+F N "enviar_boton" 0 119 ""
+V L "boton" 0 119 "int8" `764 
+F G "enviar_boton" 0 119 "void(int8 boton)" `745 
+V L "Estado" 0 120 "int8" `763 
 C L "procesar_comando" 0 4 1 "FUNCTION"
-F N "procesar_comando" 0 110 ""
-F G "procesar_comando" 0 110 "void()" `741  "Comando S1 -> iniciar envío periódico de los 3 botones"
+F N "procesar_comando" 0 132 ""
+F G "procesar_comando" 0 132 "void()" `743  "Comando S1 -> iniciar envío periódico de los 3 botones"
 C L "procesar_comando" 0 4 1 "FUNCTION"
 C L "procesar_comando" 0 4 1 "FUNCTION"
 C L "procesar_comando" 0 4 1 "FUNCTION"
 C L "MAIN" 0 4 1 "FUNCTION"
-F N "MAIN" 0 139 ""
-F G "MAIN" 0 139 "void()" `779 
+F N "MAIN" 0 161 ""
+F G "MAIN" 0 161 "void()" `777 
 C L "MAIN" 0 4 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0

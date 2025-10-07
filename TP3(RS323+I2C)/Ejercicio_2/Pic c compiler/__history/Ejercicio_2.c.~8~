@@ -19,9 +19,7 @@ char dato_rx = 0;         // último byte recibido
 char Buffer[MAX_BUFFER];          // buffer para comando recibido
 int idx_comando = 0;
 char boton_periodico = '0';   // Botón específico para el modo MX
-unsigned int16 muestreo_ms = 100; // Tiempo de muestreo en ms (por defecto 100ms)
-unsigned int16 timer1_recarga;
-unsigned int contador_1000ms = 0;
+unsigned int muestreo_ms = 100; // Tiempo de muestreo en ms (por defecto 100ms)
 //----------- prototipos -----------------
 void enviar_valor(int16 valor);
 void enviar_estado_pin();
@@ -133,7 +131,7 @@ void procesar_comando() {
     // Comando S1 -> iniciar envío periódico de los 3 botones
     if (Buffer[0] == 's' && Buffer[1] == '1' && Buffer[2] == '\0') {
         estado_actual = STATE_SEND_BUTTONS;
-        printf("Modo: envío de botones cada %lu ms\r\n", muestreo_ms);
+        printf("Modo: envío de botones cada %u ms\r\n", muestreo_ms);
     }
     // Comando S0 -> detener envío
     else if (Buffer[0] == 's' && Buffer[1] == '0' && Buffer[2] == '\0') {
@@ -151,7 +149,7 @@ void procesar_comando() {
             case '1': muestreo_ms = 500; break;
             case '2': muestreo_ms = 1000; break;
         }
-        printf("Tiempo de muestreo configurado a %lu\r\n", muestreo_ms);
+        printf("Tiempo de muestreo configurado a %u ms\r\n", muestreo_ms);
     }
     else {
         printf("Comando desconocido\r\n");
