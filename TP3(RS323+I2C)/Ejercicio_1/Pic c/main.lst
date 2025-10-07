@@ -1,0 +1,375 @@
+CCS PCM C Compiler, Version 5.093, 4770               06-oct.-25 22:12
+
+               Filename:   C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP3(Comunicación I2C-RS232)\Ejercicio_1\El posta\main.lst
+
+               ROM used:   303 words (7%)
+                           Largest free fragment is 2048
+               RAM used:   7 (2%) at main() level
+                           20 (5%) worst case
+               Stack used: 1 locations
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   0AC
+0002:  NOP
+.................... #include <main.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+0003:  DATA C2,37
+0004:  DATA F4,37
+0005:  DATA 6E,29
+0006:  DATA 42,1A
+0007:  DATA 3A,10
+0008:  DATA 00,00
+0009:  DATA CE,27
+000A:  DATA 20,28
+000B:  DATA 55,26
+000C:  DATA D3,20
+000D:  DATA C4,27
+000E:  DATA 0D,05
+000F:  DATA 00,01
+0010:  DATA D0,2A
+0011:  DATA CC,29
+0012:  DATA 41,22
+0013:  DATA CF,06
+0014:  DATA 0A,00
+0015:  DATA C2,37
+0016:  DATA F4,37
+0017:  DATA 6E,29
+0018:  DATA C2,1A
+0019:  DATA 3A,10
+001A:  DATA 00,01
+001B:  DATA CE,27
+001C:  DATA 20,28
+001D:  DATA 55,26
+001E:  DATA D3,20
+001F:  DATA C4,27
+0020:  DATA 0D,05
+0021:  DATA 00,01
+0022:  DATA D0,2A
+0023:  DATA CC,29
+0024:  DATA 41,22
+0025:  DATA CF,06
+0026:  DATA 0A,00
+0027:  DATA C2,37
+0028:  DATA F4,37
+0029:  DATA 6E,29
+002A:  DATA 42,1B
+002B:  DATA 3A,10
+002C:  DATA 00,01
+002D:  DATA CE,27
+002E:  DATA 20,28
+002F:  DATA 55,26
+0030:  DATA D3,20
+0031:  DATA C4,27
+0032:  DATA 0D,05
+0033:  DATA 00,01
+0034:  DATA D0,2A
+0035:  DATA CC,29
+0036:  DATA 41,22
+0037:  DATA CF,06
+0038:  DATA 0A,00
+0039:  DATA AD,16
+003A:  DATA AD,16
+003B:  DATA AD,16
+003C:  DATA AD,16
+003D:  DATA AD,16
+003E:  DATA AD,16
+003F:  DATA AD,16
+0040:  DATA AD,16
+0041:  DATA AD,16
+0042:  DATA AD,16
+0043:  DATA 0D,05
+0044:  DATA 00,00
+0045:  MOVF   0B,W
+0046:  BCF    0B.7
+0047:  MOVLB  03
+0048:  BSF    15.7
+0049:  BSF    15.0
+004A:  NOP
+004B:  NOP
+004C:  BTFSC  09.7
+004D:  BSF    0B.7
+004E:  MOVF   13,W
+004F:  ANDLW  7F
+0050:  BTFSC  03.2
+0051:  GOTO   093
+0052:  MOVLB  00
+0053:  MOVWF  22
+0054:  MOVLB  03
+0055:  MOVF   11,W
+0056:  MOVLB  00
+0057:  MOVWF  23
+0058:  MOVLB  03
+0059:  MOVF   12,W
+005A:  MOVLB  00
+005B:  MOVWF  24
+005C:  MOVF   22,W
+005D:  BTFSS  11.4
+005E:  GOTO   05D
+005F:  MOVLB  03
+0060:  MOVWF  1A
+0061:  MOVLB  00
+0062:  MOVF   23,W
+0063:  MOVLB  03
+0064:  MOVWF  11
+0065:  MOVLB  00
+0066:  MOVF   24,W
+0067:  MOVLB  03
+0068:  MOVWF  12
+0069:  MOVF   0B,W
+006A:  BCF    0B.7
+006B:  BSF    15.7
+006C:  BSF    15.0
+006D:  NOP
+006E:  NOP
+006F:  BTFSC  09.7
+0070:  BSF    0B.7
+0071:  RLF    13,W
+0072:  RLF    14,W
+0073:  ANDLW  7F
+0074:  BTFSC  03.2
+0075:  GOTO   093
+0076:  MOVLB  00
+0077:  MOVWF  22
+0078:  MOVLB  03
+0079:  MOVF   11,W
+007A:  MOVLB  00
+007B:  MOVWF  23
+007C:  MOVLB  03
+007D:  MOVF   12,W
+007E:  MOVLB  00
+007F:  MOVWF  24
+0080:  MOVF   22,W
+0081:  BTFSS  11.4
+0082:  GOTO   081
+0083:  MOVLB  03
+0084:  MOVWF  1A
+0085:  MOVLB  00
+0086:  MOVF   23,W
+0087:  MOVLB  03
+0088:  MOVWF  11
+0089:  MOVLB  00
+008A:  MOVF   24,W
+008B:  MOVLB  03
+008C:  MOVWF  12
+008D:  INCF   11,F
+008E:  BTFSC  03.2
+008F:  INCF   12,F
+0090:  MOVLB  00
+0091:  GOTO   045
+0092:  MOVLB  03
+0093:  MOVLB  00
+0094:  RETURN
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+0095:  MOVLW  20
+0096:  MOVWF  05
+0097:  MOVLW  03
+0098:  MOVWF  04
+0099:  MOVF   00,W
+009A:  BTFSC  03.2
+009B:  GOTO   0AA
+009C:  MOVLW  01
+009D:  MOVWF  78
+009E:  CLRF   77
+009F:  DECFSZ 77,F
+00A0:  GOTO   09F
+00A1:  DECFSZ 78,F
+00A2:  GOTO   09E
+00A3:  MOVLW  4A
+00A4:  MOVWF  77
+00A5:  DECFSZ 77,F
+00A6:  GOTO   0A5
+00A7:  GOTO   0A8
+00A8:  DECFSZ 00,F
+00A9:  GOTO   09C
+00AA:  MOVLP  00
+00AB:  GOTO   12A (RETURN)
+.................... 
+.................... 
+.................... #fuses INTRC_IO, NOMCLR, NOWDT, NOLVP
+.................... #use rs232(baud=9600, parity=N, bits=8, stop=1, xmit=PIN_B2, rcv=PIN_B1) // B2 manda -B1 recibe
+.................... 
+.................... 
+.................... #define BTN1 PIN_B4
+.................... #define BTN2 PIN_B5
+.................... #define BTN3 PIN_B6
+.................... 
+.................... void main() {
+00AC:  MOVLW  6A
+00AD:  MOVLB  01
+00AE:  MOVWF  19
+00AF:  MOVLB  03
+00B0:  BCF    1F.3
+00B1:  MOVLW  19
+00B2:  MOVWF  1B
+00B3:  MOVLW  A6
+00B4:  MOVWF  1E
+00B5:  MOVLW  90
+00B6:  MOVWF  1D
+00B7:  MOVLB  00
+00B8:  CLRF   21
+00B9:  CLRF   20
+00BA:  MOVLB  03
+00BB:  CLRF   0C
+00BC:  CLRF   0D
+00BD:  MOVLB  02
+00BE:  CLRF   12
+00BF:  CLRF   11
+00C0:  CLRF   14
+00C1:  CLRF   13
+....................    setup_adc_ports(NO_ANALOGS);
+00C2:  MOVLB  01
+00C3:  BCF    1E.0
+00C4:  BCF    1E.1
+00C5:  BCF    1E.2
+00C6:  MOVLW  00
+00C7:  MOVLB  03
+00C8:  MOVWF  0C
+00C9:  MOVWF  0D
+....................    set_tris_b(0b10001110); 
+00CA:  MOVLW  8E
+00CB:  MOVLB  01
+00CC:  MOVWF  0D
+.................... 
+....................    while(TRUE) {
+....................      
+....................       printf("BotonRB4: ");
+00CD:  MOVLW  03
+00CE:  MOVLB  03
+00CF:  MOVWF  11
+00D0:  MOVLW  00
+00D1:  MOVWF  12
+00D2:  MOVLB  00
+00D3:  CALL   045
+....................       if (input(BTN1) == 0){
+00D4:  MOVLB  01
+00D5:  BSF    0D.4
+00D6:  MOVLB  00
+00D7:  BTFSC  0D.4
+00D8:  GOTO   0E1
+....................       printf("NO PULSADO\r\n");
+00D9:  MOVLW  09
+00DA:  MOVLB  03
+00DB:  MOVWF  11
+00DC:  MOVLW  00
+00DD:  MOVWF  12
+00DE:  MOVLB  00
+00DF:  CALL   045
+....................       } else { 
+00E0:  GOTO   0E8
+....................       printf("PULSADO\r\n"); }
+00E1:  MOVLW  10
+00E2:  MOVLB  03
+00E3:  MOVWF  11
+00E4:  MOVLW  00
+00E5:  MOVWF  12
+00E6:  MOVLB  00
+00E7:  CALL   045
+.................... 
+....................       printf("BotonRB5: ");
+00E8:  MOVLW  15
+00E9:  MOVLB  03
+00EA:  MOVWF  11
+00EB:  MOVLW  00
+00EC:  MOVWF  12
+00ED:  MOVLB  00
+00EE:  CALL   045
+....................       if (input(BTN2) == 0){
+00EF:  MOVLB  01
+00F0:  BSF    0D.5
+00F1:  MOVLB  00
+00F2:  BTFSC  0D.5
+00F3:  GOTO   0FC
+....................       printf("NO PULSADO\r\n");
+00F4:  MOVLW  1B
+00F5:  MOVLB  03
+00F6:  MOVWF  11
+00F7:  MOVLW  00
+00F8:  MOVWF  12
+00F9:  MOVLB  00
+00FA:  CALL   045
+....................       } else { 
+00FB:  GOTO   103
+....................       printf("PULSADO\r\n"); }
+00FC:  MOVLW  22
+00FD:  MOVLB  03
+00FE:  MOVWF  11
+00FF:  MOVLW  00
+0100:  MOVWF  12
+0101:  MOVLB  00
+0102:  CALL   045
+....................       
+....................       printf("BotonRB6: ");
+0103:  MOVLW  27
+0104:  MOVLB  03
+0105:  MOVWF  11
+0106:  MOVLW  00
+0107:  MOVWF  12
+0108:  MOVLB  00
+0109:  CALL   045
+....................       if (input(BTN3)== 0){
+010A:  MOVLB  01
+010B:  BSF    0D.6
+010C:  MOVLB  00
+010D:  BTFSC  0D.6
+010E:  GOTO   117
+....................       printf("NO PULSADO\r\n");
+010F:  MOVLW  2D
+0110:  MOVLB  03
+0111:  MOVWF  11
+0112:  MOVLW  00
+0113:  MOVWF  12
+0114:  MOVLB  00
+0115:  CALL   045
+....................       } else { 
+0116:  GOTO   11E
+....................       printf("PULSADO\r\n"); }
+0117:  MOVLW  34
+0118:  MOVLB  03
+0119:  MOVWF  11
+011A:  MOVLW  00
+011B:  MOVWF  12
+011C:  MOVLB  00
+011D:  CALL   045
+.................... 
+....................       printf("--------------------\r\n");
+011E:  MOVLW  39
+011F:  MOVLB  03
+0120:  MOVWF  11
+0121:  MOVLW  00
+0122:  MOVWF  12
+0123:  MOVLB  00
+0124:  CALL   045
+.................... 
+....................       delay_ms(1000);
+0125:  MOVLW  04
+0126:  MOVWF  22
+0127:  MOVLW  FA
+0128:  MOVWF  23
+0129:  GOTO   095
+012A:  DECFSZ 22,F
+012B:  GOTO   127
+012C:  MOVLB  01
+012D:  GOTO   0CD
+....................    }
+.................... }
+012E:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

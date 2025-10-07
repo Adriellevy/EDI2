@@ -1,0 +1,5 @@
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial RS232\Pic c compiler\Comunicacion serial rs232 on 07-oct.-25 at 10:11
+>>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial RS232\Pic c compiler\Comunicacion serial rs232.c" Line 17(6,13): Variable never used:   dato_rx
+      Memory usage:   ROM=20%      RAM=6% - 12%
+      0 Errors,  1 Warnings.
+Build Successful.

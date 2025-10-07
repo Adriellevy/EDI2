@@ -1,0 +1,5 @@
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\TP3(RS323+I2C)\Ejercicio_2\Pic c compiler\Ejercicio_2 on 07-oct.-25 at 10:48
+>>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP3(RS323+I2C)\Ejercicio_2\Pic c compiler\Ejercicio_2.c" Line 18(6,13): Variable never used:   dato_rx
+      Memory usage:   ROM=24%      RAM=6% - 13%
+      0 Errors,  1 Warnings.
+Build Successful.

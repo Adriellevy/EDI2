@@ -1,0 +1,15 @@
+읕main
+   읕main  0/131  Ram=1
+      쳐@cinit1  (Inline)  Ram=0
+      쳐@cinit2  (Inline)  Ram=0
+      쳐@PSTRINGC7_9600_106_105  0/80  Ram=3
+      쳐@PSTRINGC7_9600_106_105  0/80  Ram=3
+      쳐@PSTRINGC7_9600_106_105  0/80  Ram=3
+      쳐@PSTRINGC7_9600_106_105  0/80  Ram=3
+      쳐@PSTRINGC7_9600_106_105  0/80  Ram=3
+      쳐@PSTRINGC7_9600_106_105  0/80  Ram=3
+      쳐@PSTRINGC7_9600_106_105  0/80  Ram=3
+      쳐@PSTRINGC7_9600_106_105  0/80  Ram=3
+      쳐@PSTRINGC7_9600_106_105  0/80  Ram=3
+      쳐@PSTRINGC7_9600_106_105  0/80  Ram=3
+      읕@delay_ms1  0/23  Ram=1

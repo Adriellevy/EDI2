@@ -1,0 +1,139 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+004-005 @READ_PACKED_MEMORY.P3
+004-005 @WRITE_PACKED_MEMORY.P4
+006-007 @READ_PACKED_MEMORY.P1
+006-007 @WRITE_PACKED_MEMORY.P2
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024     @INTERRUPT_AREA
+025     @INTERRUPT_AREA
+026     @INTERRUPT_AREA
+027     @INTERRUPT_AREA
+028     estado_actual
+029     dato_rx
+02A-02C Buffer
+02D     idx_comando
+02E     boton_periodico
+02F     muestreo_ms
+030-031 @sprintf_string
+032     RDA_isr.c
+034-035 @MUL1616.P1
+034     enviar_boton.boton
+034     enviar_botones.b0
+034     @PRINTF_U_9600_106_105.P1
+034     @PSTRINGRN_9600_106_105.P2
+034     RDA_isr.@SCRATCH1
+034     timer1_isr.@SCRATCH1
+034     @PSTRINGC7_9600_106_105.@SCRATCH1
+035     @PRINTF_U_9600_106_105.P1
+035     enviar_botones.b1
+035     enviar_boton.Estado
+035     RDA_isr.@SCRATCH2
+035     timer1_isr.@SCRATCH2
+035     @PSTRINGC7_9600_106_105.@SCRATCH2
+036-037 @MUL1616.P1
+036     enviar_botones.b2
+036     timer1_isr.@SCRATCH3
+036     @PSTRINGRN_9600_106_105.@SCRATCH1
+036     @PSTRINGC7_9600_106_105.@SCRATCH3
+037     @PRINTF_D_9600_106_105.P1
+037     @PSTRINGCN7_9600_106_105.P2
+037     timer1_isr.@SCRATCH4
+037     @PSTRINGRN_9600_106_105.@SCRATCH2
+038     @PRINTF_D_9600_106_105.P1
+038     @MUL1616.@SCRATCH1
+03A     @PSTRINGCN7_9600_106_105.@SCRATCH1
+03B     @PSTRINGCN7_9600_106_105.@SCRATCH2
+03C     @PRINTF_D_9600_106_105.@SCRATCH1
+03C     @PSTRINGCN7_9600_106_105.@SCRATCH3
+03D     @PRINTF_D_9600_106_105.@SCRATCH2
+03E     @PRINTF_D_9600_106_105.@SCRATCH3
+03F     @PRINTF_D_9600_106_105.@SCRATCH4
+040     @DIV88.P1
+041     @DIV88.P1
+042     @DIV88.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+111.6   C1OUT
+113.6   C2OUT
+191-192 @READ_PROGRAM_MEMORY8.P1
+191-192 @WRITE_PROGRAM_MEMORY8.P2
+291     CCP_1_LOW
+291     CCP_1
+292     CCP_1_HIGH
+298     CCP_2
+298     CCP_2_LOW
+299     CCP_2_HIGH
+311     CCP_3_LOW
+311     CCP_3
+312     CCP_3_HIGH
+318     CCP_4_LOW
+318     CCP_4
+319     CCP_4_HIGH
+
+ROM Allocation:
+00004A  @PSTRINGRN_9600_106_105
+00005F  @DIV88
+000074  @PRINTF_U_9600_106_105
+0000B2  @PSTRINGC7_9600_106_105
+000102  @PRINTF_D_9600_106_105
+000165  enviar_boton
+0001AC  @PSTRINGCN7_9600_106_105
+000202  RDA_isr
+00021C  procesar_comando
+0002BB  timer1_isr
+0002C2  @MUL1616
+0002F0  enviar_botones
+00034E  @const755.call
+000358  @const766.call
+00037C  @const772.call
+000384  @const777.call
+000399  @const778.call
+0003A4  init_rda
+0003AF  init_timer1
+0003BC  MAIN
+0003BC  @cinit1
+0003DB  @cinit2
+
+Project Directory:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TP3(RS323+I2C)\Ejercicio_2\Pic c compiler\
+
+Project Files:
+    Ejercicio_2.c                                           [07-oct.-25 10:48  CRC=6B8BA3AD]
+    Comunicacion serial rs232.h                             [30-sep.-25 12:56  CRC=00000000]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
+
+Source signature=18D702EB
+Program memory checksum=0000
+Hex file CRC=B853
+
+Units:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TP3(RS323+I2C)\Ejercicio_2\Pic c compiler\Ejercicio_2 (main)
+
+Compiler Settings:
+    Processor:      PIC16F1827
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Enhanced 16:    Yes
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   Ejercicio_2.xsym
+    Errors:      Ejercicio_2.err
+    Ext Symbols: Ejercicio_2.esym
+    INHX8:       Ejercicio_2.hex
+    Symbols:     Ejercicio_2.sym
+    List:        Ejercicio_2.lst
+    Debug/COFF:  Ejercicio_2.cof
+    Project:     Ejercicio_2.ccspjt
+    Call Tree:   Ejercicio_2.tre
+    Statistics:  Ejercicio_2.STA

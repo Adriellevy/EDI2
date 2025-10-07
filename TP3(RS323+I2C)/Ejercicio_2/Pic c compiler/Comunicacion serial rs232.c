@@ -1,0 +1,133 @@
+#include <Comunicacion serial rs232.h>  // corregido, sin espacios
+#use RS232(BAUD=9600, BITS=8, PARITY=N, XMIT=PIN_B5, RCV=PIN_B1)
+#define MAX_BUFFER 3
+
+// ---------- Definición de estados ----------
+typedef enum {
+   STATE_IDLE = 0,
+   STATE_ADC_PERIODIC,
+   STATE_PIN_PERIODIC
+} Estado;
+
+Estado estado_actual = STATE_ADC_PERIODIC;
+
+// ---------- Variables globales ----------
+int16 valor_adc = 0;      // valor del potenciómetro
+int contador_timer = 0;   // para Timer1
+char dato_rx = 0;         // último byte recibido
+char Buffer[MAX_BUFFER];          // buffer para comando recibido
+int idx_comando = 0;
+
+//----------- prototipos -----------------
+void enviar_valor(int16 valor);
+void enviar_estado_pin();
+void init_adc();
+void init_timer1();
+void procesar_comando();
+
+// ---------- ISR RDA ----------
+#INT_RDA
+void RDA_isr(void) {
+   char c = fgetc();   // leer el carácter del stream SERIAL
+
+   // Si se presiona Enter (CR o LF)
+   if (c == '\r' || c == '\n') {
+      if (idx_comando > 0) {               // sólo si hay algo escrito
+         Buffer[idx_comando] = '\0';       // cierra la cadena con null terminador
+         idx_comando = 0;                  // resetea el índice para la próxima entrada
+         procesar_comando();
+      }
+   }
+   else {
+      // Evita desbordamiento del buffer
+      if (idx_comando < (MAX_BUFFER - 1)) {
+         Buffer[idx_comando++] = c;        // guarda carácter
+      }
+   }
+}
+
+// ---------- Función para procesar comando ----------
+void procesar_comando() {
+   if (Buffer[0] == 's' && Buffer[1] == '0' && Buffer[2] == '\0') {
+        estado_actual = STATE_ADC_PERIODIC;
+        printf("Modo: Enviando valor del ADC periodicamente\r\n");
+    }
+    else if (Buffer[0] == 's' && Buffer[1] == '1' && Buffer[2] == '\0') {
+        estado_actual = STATE_PIN_PERIODIC;
+        printf("Modo: Enviando estado del pin RA7 periodicamente\r\n");
+    }
+    else {
+        estado_actual = STATE_IDLE;
+        printf("Comando desconocido. Volviendo a modo IDLE\r\n");
+    }
+}
+
+// ---------- ISR ADC ----------
+#INT_AD
+void ADC_isr(void) {
+   valor_adc = read_adc(ADC_READ_ONLY);   // leer ADC
+   clear_interrupt(INT_AD);
+}
+
+// ---------- ISR Timer1 ----------
+#INT_TIMER1
+void timer1_isr(void) {
+   set_timer1(6072);                       // recargar Timer1 para 1s aprox
+   contador_timer++;
+   if(contador_timer > 2) {               // cada 1s
+      contador_timer = 0;
+      read_adc(ADC_START_ONLY);           // iniciar nueva conversión ADC
+      // según el estado, enviar información
+      if (estado_actual == STATE_ADC_PERIODIC) {
+         enviar_valor(valor_adc);
+      } else if (estado_actual == STATE_PIN_PERIODIC) {
+         enviar_estado_pin();
+      }
+   }
+}
+
+// ---------- Inicialización ADC ----------
+void init_adc() {
+   setup_adc(ADC_CLOCK_INTERNAL);
+   setup_adc_ports(sAN0);
+   set_adc_channel(0);
+   enable_interrupts(INT_AD);
+}
+
+// ---------- Inicialización Timer1 ----------
+void init_timer1() {
+   setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
+   set_timer1(6072);
+   enable_interrupts(INT_TIMER1);
+}
+
+// ---------- Inicialización RDA ----------
+void init_rda() {
+   enable_interrupts(INT_RDA);
+   enable_interrupts(GLOBAL);
+   set_tris_b(0b00000010); // RB0 como entrada
+}
+
+// ---------- Función enviar valor por UART ----------
+void enviar_valor(int16 valor) {
+   printf("Valor ADC: %lu\r\n", valor);  // cambiar %lu por %d
+}
+
+// ---------- Función enviar estado de un pin ----------
+void enviar_estado_pin() {
+   int estado = input(PIN_A7);
+   printf("Estado RA7: %d\r\n", estado);
+}
+
+
+// ---------- Main ----------
+void main() {
+   init_rda();
+   init_adc();
+   init_timer1();
+   //init_gpio();//IMPORTANTE PARA RSA
+   while(TRUE) {
+      
+   }
+}
+

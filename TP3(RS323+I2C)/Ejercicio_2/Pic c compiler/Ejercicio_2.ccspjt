@@ -1,0 +1,26 @@
+[PROJECT]
+Target=Ejercicio_2.hex
+Processor_Text=PIC16F1827
+CCSVersion=5.093
+Compiler=PCM
+[Target Data]
+FileList=Ejercicio_2.c
+[Ejercicio_2.c]
+Type=4
+[mru-list]
+1=Ejercicio_2.c
+
+[defines]
+buildcount=5
+
+[Opened Files]
+1=Ejercicio_2.c
+t1=45
+2=..\..\..\Comunicacion serial RS232\Pic c compiler\Comunicacion serial rs232.h
+t2=1
+3=..\..\..\Comunicacion serial RS232\Pic c compiler\16F1827.h
+t3=8
+Count=3
+[Units]
+Count=1
+1=Ejercicio_2 (main)

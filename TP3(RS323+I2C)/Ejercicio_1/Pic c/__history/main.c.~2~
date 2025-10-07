@@ -1,0 +1,38 @@
+#include <main.h>
+#fuses INTRC_IO, NOMCLR, NOWDT, NOLVP
+#use rs232(baud=9600, parity=N, bits=8, stop=1, xmit=PIN_B2, rcv=PIN_B1) // B2 manda -B1 recibe
+
+
+#define BTN1 PIN_B4
+#define BTN2 PIN_B5
+#define BTN3 PIN_B6
+
+void main() {
+   setup_adc_ports(NO_ANALOGS);
+   set_tris_b(0b10001110); 
+
+   while(TRUE) {
+     
+      printf("Boton1: ");
+      if (input(BTN1) == 0){
+      printf("NO PULSADO\r\n");
+      } else { 
+      printf("PULSADO\r\n"); }
+
+      printf("Boton2: ");
+      if (input(BTN2) == 0){
+      printf("NO PULSADO\r\n");
+      } else { 
+      printf("PULSADO\r\n"); }
+      
+      printf("Boton3: ");
+      if (input(BTN3)== 0){
+      printf("NO PULSADO\r\n");
+      } else { 
+      printf("PULSADO\r\n"); }
+
+      printf("--------------------\r\n");
+
+      delay_ms(1000);
+   }
+}
