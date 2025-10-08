@@ -1,0 +1,161 @@
+#include <16F1827.h>
+#device ADC=10
+#use delay(internal=4MHz)
+#use RS232(BAUD=9600, BITS=8, PARITY=N, XMIT=PIN_B5, RCV=PIN_B1)
+#define MAX_BUFFER 5
+#fuses NOWDT, INTRC_IO, NOMCLR
+
+// ---------- Estados ----------
+typedef enum { 
+   STATE_IDLE, 
+   STATE_RUN 
+} Estado;
+
+Estado estado_actual = STATE_IDLE;
+
+// ---------- Variables globales ----------
+volatile int16 adc_value = 0;
+char Buffer[MAX_BUFFER];
+int idx_comando = 0;
+unsigned int16 muestreo_ms = 100;
+unsigned int16 timer1_recarga;
+unsigned int contador_1000ms = 0;
+
+// ---------- Prototipos ----------
+void enviar_valor(int16 valor);
+void init_adc();
+void init_dac();
+void init_timer1();
+void init_rda();
+void procesar_comando();
+
+// ---------- RUTINA DE INTERRUPCIÓN ADC ----------
+#INT_AD
+void isr_adc(void) {
+   adc_value = read_adc(ADC_READ_ONLY);
+   dac_write(adc_value * 31 / 1023);
+   read_adc(ADC_START_ONLY);
+}
+
+// ---------- Inicialización ADC ----------
+void init_adc() {
+   setup_adc_ports(sAN0);
+   setup_adc(ADC_CLOCK_INTERNAL);
+   set_adc_channel(0);
+   read_adc(ADC_START_ONLY);
+}
+
+// ---------- Inicialización DAC ----------
+void init_dac() {
+   setup_dac(DAC_VSS_VDD | DAC_OUTPUT);
+}
+
+// ---------- RUTINA DE INTERRUPCIÓN UART ----------
+#INT_RDA
+void RDA_isr(void) {
+   char c = fgetc();
+
+   if (c == '\r' || c == '\n') {
+      if (idx_comando > 0) {
+         Buffer[idx_comando] = '\0';
+         idx_comando = 0;
+         procesar_comando();
+      }
+   } else {
+      if (idx_comando < (MAX_BUFFER - 1)) {
+         Buffer[idx_comando++] = c;
+      }
+   }
+}
+
+// ---------- RUTINA DE INTERRUPCIÓN TIMER1 ----------
+#INT_TIMER1
+void timer1_isr(void) {
+   set_timer1(timer1_recarga);
+
+   if (muestreo_ms == 1000) {
+      contador_1000ms++;
+      if (contador_1000ms < 2) return;
+      contador_1000ms = 0;
+   }
+
+   if (estado_actual == STATE_RUN) {
+      adc_value = read_adc();
+      dac_write(adc_value * 31 / 1023);
+      enviar_valor(adc_value);
+   }
+}
+
+// ---------- Inicialización TIMER1 ----------
+void init_timer1() {
+   switch (muestreo_ms) {
+      case 100:
+         timer1_recarga = 0xCF04;
+         contador_1000ms = 1;
+         break;
+      case 500:
+         timer1_recarga = 0x0BDC;
+         contador_1000ms = 1;
+         break;
+      case 1000:
+         timer1_recarga = 0x0BDC;
+         contador_1000ms = 0;
+         break;
+   }
+
+   setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
+   set_timer1(timer1_recarga);
+   enable_interrupts(INT_TIMER1);
+}
+
+// ---------- Inicialización UART ----------
+void init_rda() {
+   enable_interrupts(INT_RDA);
+   enable_interrupts(GLOBAL);
+   set_tris_b(0b00000010);
+   set_tris_a(0b00000001);
+}
+
+// ---------- Enviar valor ADC ----------
+void enviar_valor(int16 valor) {
+   printf("ADC: %lu\r\n", valor);
+}
+
+// ---------- Procesar comando ----------
+void procesar_comando() {
+   if (Buffer[0] == 'c' && Buffer[1] >= '0' && Buffer[1] <= '2' && Buffer[2] == '\0') {
+      switch (Buffer[1]) {
+         case '0': muestreo_ms = 100; break;
+         case '1': muestreo_ms = 500; break;
+         case '2': muestreo_ms = 1000; break;
+      }
+      init_timer1();
+      printf("Muestreo configurado a %lu ms\r\n", muestreo_ms);
+   } 
+   else if (Buffer[0] == 's' && (Buffer[1] == '0' || Buffer[1] == '1') && Buffer[2] == '\0') {
+      if (Buffer[1] == '1') {
+         estado_actual = STATE_RUN;
+         printf("Muestreo iniciado\r\n");
+      } else {
+         estado_actual = STATE_IDLE;
+         printf("Muestreo detenido\r\n");
+      }
+   } 
+   else {
+      printf("Comando desconocido\r\n");
+   }
+}
+
+// ---------- MAIN ----------
+void main() {
+   init_rda();
+   init_adc();
+   init_dac();
+   init_timer1();
+
+   printf("Sistema listo para comenzar.\r\n");
+
+   while (TRUE) {
+   }
+}
+

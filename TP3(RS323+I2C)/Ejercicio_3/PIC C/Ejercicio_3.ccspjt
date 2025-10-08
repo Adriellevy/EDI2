@@ -1,0 +1,23 @@
+[PROJECT]
+Target=Ejercicio_3.hex
+Processor_Text=PIC16F1827
+CCSVersion=5.093
+Compiler=PCM
+[Target Data]
+FileList=Ejercicio_3.c
+[Ejercicio_3.c]
+Type=4
+[mru-list]
+1=Ejercicio_3.c
+[Units]
+Count=1
+1=Ejercicio_3 (main)
+
+[defines]
+buildcount=1
+
+[ProjectLog]
+Days=1
+D1=07-10-2025
+D1_L=1
+D1_L1=[78758]Stopped Editing.
