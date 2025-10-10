@@ -40,6 +40,7 @@ void init_adc() {
 
 // ---------- Inicialización DAC ----------
 void init_dac() {
+   setup_comparator(NC_NC_NC_NC);
    setup_dac(DAC_VSS_VDD | DAC_OUTPUT);   
    dac_write(0);                          
 }
@@ -115,6 +116,7 @@ void timer1_isr(void) {
 
    if (estado_actual == STATE_RUN) {
       adc_value = read_adc();
+      dac_write(adc_value * 31 / 1023);
       enviar_valor(adc_value);
    }
 }

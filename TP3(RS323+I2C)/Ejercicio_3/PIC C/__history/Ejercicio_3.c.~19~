@@ -48,15 +48,15 @@ void init_dac() {
 void init_timer1() {
    switch (muestreo_ms) {
       case 100:
-         timer1_recarga = 0xCF2C;   // 100 ms
+         timer1_recarga = 0xCF2C;
          contador_1000ms = 1;
          break;
       case 10:
-         timer1_recarga = 0xFB1E;   // 10 ms
+         timer1_recarga = 0xFB1E;
          contador_1000ms = 1;
          break;
       case 1:
-         timer1_recarga = 0xFF83;   // 1 ms
+         timer1_recarga = 0xFF83;
          contador_1000ms = 0;
          break;
    }
@@ -65,7 +65,6 @@ void init_timer1() {
    set_timer1(timer1_recarga);
    enable_interrupts(INT_TIMER1);
 }
-
 
 // ---------- Inicialización UART ----------
 void init_rda() {
@@ -115,6 +114,7 @@ void timer1_isr(void) {
 
    if (estado_actual == STATE_RUN) {
       adc_value = read_adc();
+      dac_write(adc_value * 31 / 1023);
       enviar_valor(adc_value);
    }
 }

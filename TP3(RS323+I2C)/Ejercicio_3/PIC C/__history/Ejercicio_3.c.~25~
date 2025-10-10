@@ -80,7 +80,6 @@ void init_rda() {
 #INT_AD
 void isr_adc(void) {
    adc_value = read_adc(ADC_READ_ONLY);
-   dac_write(adc_value * 31 / 1023);
    read_adc(ADC_START_ONLY);
 }
 
@@ -115,6 +114,7 @@ void timer1_isr(void) {
 
    if (estado_actual == STATE_RUN) {
       adc_value = read_adc();
+      dac_write(adc_value * 31 / 1023);
       enviar_valor(adc_value);
    }
 }

@@ -1,9 +1,9 @@
 
-ROM used:   920/4096 (22%)
-            920/4096 (22%) including unused fragments
+ROM used:   888/4096 (22%)
+            888/4096 (22%) including unused fragments
 
             0.8 Average locations per line
-            11.8 Average locations per statement
+            11.4 Average locations per statement
 
 RAM used:   29/383 (8%) at main() level
             57/383 (15%) worst case
@@ -13,54 +13,54 @@ Stack size: 16
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  162    78 100  Ejercicio_3.c
+  165    78 100  Ejercicio_3.c
   965     0   0  ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
 ----- -----
- 1127    78 Total
+ 1130    78 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
-0     44   5    2     88  2.5  isr_adc
-0     21   2    5             @MUL1616
-0     37   4    5     88  2.5  @DIV1616
-0     24   3    0     67  1.2  init_adc
-0      6   1    0     25  1.2  init_dac
-0    156  17    4    292  6.0  RDA_isr
-0     97  11    2    252  5.0  timer1_isr
-0     59   6    0    300  4.1  init_timer1
-0     11   1    0     67  1.2  init_rda
+0     23   3    0     48  1.1  init_adc
+0      7   1    0     42  1.4  init_dac
+0     57   6    0    300  4.1  init_timer1
+0     12   1    0     86  1.3  init_rda
+0     98  11    2     88  2.5  isr_adc
+ Inline         5    292  6.0  @MUL1616
+ Inline         5    252  5.0  @DIV1616
+0    154  17    4    292  6.0  RDA_isr
+0     72   8    1    200  4.0  timer1_isr
  Inline         2     35  1.4  enviar_valor
-0      6   1    0     67  1.2  @const753
-0     86   9    5     35  1.4  @PSTRINGCN7_9600_106_105
-0     96  10   15             @PRINTF_LU_9600_106_105
+0      6   1    0    300  4.1  @const753
+0     86  10    5    802  8.0  @PSTRINGCN7_9600_106_105
+0     96  11   15     39  1.5  @PRINTF_LU_9600_106_105
  Inline         0    802  8.0  procesar_comando
 0     16   2    0             @const758
 0     10   1    0    802  8.0  @const759
 0     80   9    5             @PSTRINGC7_9600_106_105
-0     10   1    0             @const764
+0     10   1    0     84  1.4  @const764
 0     11   1    0             @const765
 0     52   6    0     84  1.4  MAIN
-0     16   2    0             @const769
+0     16   2    0     84  1.4  @const769
  Inline         0     84  1.4  @cinit1
 
 Program metrics:
-    Functions               15
+    Functions               19
     Statements              78
-    Comments                171
-    Volume (V)              5102
-    Difficulty (D)          46.1
-    Effort to implement (E) 235307
-    Time to implement (T)   3 hours, 38 minutes
-    Est Delivered Bugs (B)  1
-    Cyclomatic Complexity   21
-    Maintainability (MI)    70
+    Comments                174
+    Volume (V)              8114
+    Difficulty (D)          68.2
+    Effort to implement (E) 553344
+    Time to implement (T)   8 hours, 32 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   36
+    Maintainability (MI)    66
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     3  0  
 00003-00003     0  1  
 00004-00052    79  0  
-00053-007FF   838  1127  
+00053-007FF   806  1159  
 00800-00FFF     0  2048  
 
 

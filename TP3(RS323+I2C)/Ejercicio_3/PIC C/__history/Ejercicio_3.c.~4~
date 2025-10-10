@@ -1,22 +1,20 @@
 #include <16F1827.h>
 #device ADC=10
 #use delay(internal=4MHz)
-
 #use RS232(BAUD=9600, BITS=8, PARITY=N, XMIT=PIN_B5, RCV=PIN_B1)
 #define MAX_BUFFER 5
-
 #fuses NOWDT, INTRC_IO, NOMCLR
 
 // ---------- Estados ----------
-typedef enum { 
-   STATE_IDLE, 
-   STATE_RUN 
+typedef enum {
+   STATE_IDLE,
+   STATE_RUN
 } Estado;
 
 Estado estado_actual = STATE_IDLE;
 
 // ---------- Variables globales ----------
-volatile int16 adc_value = 0;
+volatile signed int16 adc_value = 0;
 char Buffer[MAX_BUFFER];
 int idx_comando = 0;
 unsigned int16 muestreo_ms = 100;
@@ -24,64 +22,33 @@ unsigned int16 timer1_recarga;
 unsigned int contador_1000ms = 0;
 
 // ---------- Prototipos ----------
-void enviar_valor(int16 valor);
+void enviar_valor(signed int16 valor);
 void init_adc();
 void init_dac();
 void init_timer1();
 void init_rda();
 void procesar_comando();
 
+// ---------- RUTINA DE INTERRUPCIÓN ADC ----------
+#INT_AD
+void isr_adc(void) {
+   int16 lectura = read_adc(ADC_READ_ONLY);
+   adc_value = (signed int16)lectura - 512;     // centra en 0 (-512 a +511)
+   dac_write((lectura) * 31 / 1023);            // salida DAC (solo positiva)
+   read_adc(ADC_START_ONLY);
+}
+
 // ---------- Inicialización ADC ----------
 void init_adc() {
-   setup_adc_ports(sAN0);
+   setup_adc_ports(sAN1);       // usar AN1 (RA1) como entrada
    setup_adc(ADC_CLOCK_INTERNAL);
-   set_adc_channel(0);
+   set_adc_channel(1);
+   read_adc(ADC_START_ONLY);
 }
 
 // ---------- Inicialización DAC ----------
 void init_dac() {
-   setup_dac(DAC_VSS_VDD | DAC_OUTPUT);   
-   dac_write(0);                          
-}
-
-// ---------- Inicialización TIMER1 ----------
-void init_timer1() {
-   switch (muestreo_ms) {
-      case 100:
-         timer1_recarga = 0xCF2C;   // 100 ms
-         contador_1000ms = 1;
-         break;
-      case 10:
-         timer1_recarga = 0xFB1E;   // 10 ms
-         contador_1000ms = 1;
-         break;
-      case 1:
-         timer1_recarga = 0xFF83;   // 1 ms
-         contador_1000ms = 0;
-         break;
-   }
-
-   setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
-   set_timer1(timer1_recarga);
-   enable_interrupts(INT_TIMER1);
-}
-
-
-// ---------- Inicialización UART ----------
-void init_rda() {
-   enable_interrupts(INT_RDA);
-   enable_interrupts(INT_AD);
-   enable_interrupts(GLOBAL);
-   set_tris_b(0b00000010);
-   set_tris_a(0b00000001);
-}
-
-// ---------- RUTINA DE INTERRUPCIÓN ADC ----------
-#INT_AD
-void isr_adc(void) {
-   adc_value = read_adc(ADC_READ_ONLY);
-   dac_write(adc_value * 31 / 1023);
-   read_adc(ADC_START_ONLY);
+   setup_dac(DAC_VSS_VDD | DAC_OUTPUT_RA2);    // salida DAC en RA2 (pin 1)
 }
 
 // ---------- RUTINA DE INTERRUPCIÓN UART ----------
@@ -114,14 +81,46 @@ void timer1_isr(void) {
    }
 
    if (estado_actual == STATE_RUN) {
-      adc_value = read_adc();
+      int16 lectura = read_adc();
+      adc_value = (signed int16)lectura - 512;  // centrar en 0
+      dac_write(lectura * 31 / 1023);           // salida DAC positiva
       enviar_valor(adc_value);
    }
 }
 
+// ---------- Inicialización TIMER1 ----------
+void init_timer1() {
+   switch (muestreo_ms) {
+      case 100:
+         timer1_recarga = 0xCF04;
+         contador_1000ms = 1;
+         break;
+      case 500:
+         timer1_recarga = 0x0BDC;
+         contador_1000ms = 1;
+         break;
+      case 1000:
+         timer1_recarga = 0x0BDC;
+         contador_1000ms = 0;
+         break;
+   }
+
+   setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
+   set_timer1(timer1_recarga);
+   enable_interrupts(INT_TIMER1);
+}
+
+// ---------- Inicialización UART ----------
+void init_rda() {
+   enable_interrupts(INT_RDA);
+   enable_interrupts(GLOBAL);
+   set_tris_b(0b00000010);
+   set_tris_a(0b00000010);    // RA1 entrada analógica
+}
+
 // ---------- Enviar valor ADC ----------
-void enviar_valor(int16 valor) {
-   printf("ADC: %lu\r\n", valor);
+void enviar_valor(signed int16 valor) {
+   printf("ADC: %ld\r\n", valor);   // imprime con signo
 }
 
 // ---------- Procesar comando ----------
@@ -129,12 +128,12 @@ void procesar_comando() {
    if (Buffer[0] == 'c' && Buffer[1] >= '0' && Buffer[1] <= '2' && Buffer[2] == '\0') {
       switch (Buffer[1]) {
          case '0': muestreo_ms = 100; break;
-         case '1': muestreo_ms = 10; break;
-         case '2': muestreo_ms = 1; break;
+         case '1': muestreo_ms = 500; break;
+         case '2': muestreo_ms = 1000; break;
       }
       init_timer1();
       printf("Muestreo configurado a %lu ms\r\n", muestreo_ms);
-   } 
+   }
    else if (Buffer[0] == 's' && (Buffer[1] == '0' || Buffer[1] == '1') && Buffer[2] == '\0') {
       if (Buffer[1] == '1') {
          estado_actual = STATE_RUN;
@@ -143,7 +142,7 @@ void procesar_comando() {
          estado_actual = STATE_IDLE;
          printf("Muestreo detenido\r\n");
       }
-   } 
+   }
    else {
       printf("Comando desconocido\r\n");
    }
@@ -157,7 +156,7 @@ void main() {
    init_timer1();
 
    printf("Sistema listo para comenzar.\r\n");
-   
+
    while (TRUE) {
    }
 }

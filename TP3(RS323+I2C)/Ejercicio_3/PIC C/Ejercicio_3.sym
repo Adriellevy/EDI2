@@ -27,7 +27,6 @@
 03C     isr_adc.@SCRATCH1
 03C     timer1_isr.@SCRATCH1
 03D     isr_adc.@SCRATCH2
-03D     timer1_isr.@SCRATCH2
 03E-03F @DIV1616.P1
 03E-03F @PRINTF_LU_9600_106_105.P2
 03E     @PSTRINGCN7_9600_106_105.P3
@@ -59,8 +58,8 @@
 113.6   C2OUT
 191-192 @WRITE_PROGRAM_MEMORY8.P1
 191-192 @READ_PROGRAM_MEMORY8.P2
-291     CCP_1
 291     CCP_1_LOW
+291     CCP_1
 292     CCP_1_HIGH
 298     CCP_2_LOW
 298     CCP_2
@@ -73,40 +72,40 @@
 319     CCP_4_HIGH
 
 ROM Allocation:
-000053  @MUL1616
-000068  @DIV1616
-00008D  isr_adc
-0000B9  init_timer1
-0000F4  @PSTRINGCN7_9600_106_105
-00014A  @PRINTF_LU_9600_106_105
-0001AA  @PSTRINGC7_9600_106_105
-0001FA  RDA_isr
-000214  procesar_comando
-000296  timer1_isr
-0002D7  enviar_valor
-0002F7  @const753.call
-0002FD  @const758.call
-00030D  @const759.call
-000317  @const764.call
-000321  @const765.call
-00032C  @const769.call
-00033C  init_rda
-000347  init_adc
-00035F  init_dac
-000365  MAIN
-000365  @cinit1
-000385  @cinit2
+000053  isr_adc
+000068  @MUL1616
+000088  @DIV1616
+0000B5  init_timer1
+0000EE  @PSTRINGCN7_9600_106_105
+000144  @PRINTF_LU_9600_106_105
+0001A4  @PSTRINGC7_9600_106_105
+0001F4  RDA_isr
+00020E  procesar_comando
+00028E  timer1_isr
+0002B6  enviar_valor
+0002D6  @const753.call
+0002DC  @const758.call
+0002EC  @const759.call
+0002F6  @const764.call
+000300  @const765.call
+00030B  @const769.call
+00031B  init_rda
+000327  init_adc
+00033E  init_dac
+000345  MAIN
+000345  @cinit1
+000365  @cinit2
 
 Project Directory:
     C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TP3(RS323+I2C)\Ejercicio_3\PIC C\
 
 Project Files:
-    Ejercicio_3.c                                           [07-Oct-25 21:48  CRC=414A897A]
+    Ejercicio_3.c                                           [10-Oct-25 18:52  CRC=E9CF5CAC]
     ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-Feb-20 15:48  CRC=D6A5AF9F]
 
-Source signature=EE95E8B8
+Source signature=971ABBEA
 Program memory checksum=0000
-Hex file CRC=B818
+Hex file CRC=2BD1
 
 Units:
     C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TP3(RS323+I2C)\Ejercicio_3\PIC C\Ejercicio_3 (main)

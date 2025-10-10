@@ -1,9 +1,9 @@
-D G "__PCM__" 0 165 ""5.093""
-D G "__DEVICE__" 0 165 "1827"
-D G "__DATE__" 0 165 ""7-Oct-25""
-D G "__TIME__" 0 165 ""21:48:09""
-D G "_UNICODE" 0 165 ""?""
-D G "__EVAL" 0 165 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
+D G "__PCM__" 0 166 ""5.093""
+D G "__DEVICE__" 0 166 "1827"
+D G "__DATE__" 0 166 ""10-Oct-25""
+D G "__TIME__" 0 166 ""18:52:23""
+D G "_UNICODE" 0 166 ""?""
+D G "__EVAL" 0 166 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 f N "set_tris_a" 1 39 ""
 v L "value" 1 39 "int8" `55 
@@ -1398,64 +1398,67 @@ d G "INT_RB6_H2L" 1 959 "0x21400B08"
 d G "INT_RB7" 1 960 "0x31800B08"
 d G "INT_RB7_L2H" 1 961 "0x11800B08"
 d G "INT_RB7_H2L" 1 962 "0x21800B08"
-D G "MAX_BUFFER" 0 5 "5"
-C L "jump_to_isr" 0 8 1 "FUNCTION"
-E G "STATE_IDLE" 0 11 "0" `726 
-E G "STATE_RUN" 0 12 "1" `727 
-T G "Estado" 0 12 "" `728 
-V G "estado_actual" 0 14 "Estado" `729 
-C L "jump_to_isr" 0 8 1 "FUNCTION"
-V G "adc_value" 0 17 "int16" `730 
-V G "Buffer" 0 18 "int8[5]" `731 
-V G "idx_comando" 0 19 "int8" `732 
-V G "muestreo_ms" 0 20 "int16" `733 
-V G "timer1_recarga" 0 21 "int16" `734 
-V G "contador_1000ms" 0 22 "int8" `735 
-C L "jump_to_isr" 0 8 1 "FUNCTION"
-F N "enviar_valor" 0 25 ""
-V L "valor" 0 25 "int16" `737 
-f G "enviar_valor" 0 25 "void(int16 valor)" `736 
-F N "init_adc" 0 26 ""
-f G "init_adc" 0 26 "void()" `738 
-F N "init_dac" 0 27 ""
-f G "init_dac" 0 27 "void()" `739 
-F N "init_timer1" 0 28 ""
-f G "init_timer1" 0 28 "void(int16 init_dac)" `740 
-F N "init_rda" 0 29 ""
-f G "init_rda" 0 29 "void()" `741 
-F N "procesar_comando" 0 30 ""
-f G "procesar_comando" 0 30 "void()" `742  "---------- RUTINA DE INTERRUPCIÓN ADC ----------"
-F N "isr_adc" 0 34 ""
-F G "isr_adc" 0 34 "void()" `743 
-C L "init_adc" 0 8 1 "FUNCTION"
-F N "init_adc" 0 41 ""
-F G "init_adc" 0 41 "void()" `738 
-C L "init_dac" 0 8 1 "FUNCTION"
-F N "init_dac" 0 49 ""
-F G "init_dac" 0 49 "void()" `739 
-C L "RDA_isr" 0 8 1 "FUNCTION"
-F N "RDA_isr" 0 55 ""
-F G "RDA_isr" 0 55 "void()" `750 
-V L "c" 0 56 "int8" `751 
-C L "timer1_isr" 0 8 1 "FUNCTION"
-F N "timer1_isr" 0 73 ""
-F G "timer1_isr" 0 73 "void(int16 )" `752 
-C L "init_timer1" 0 8 1 "FUNCTION"
-F N "init_timer1" 0 90 ""
-F G "init_timer1" 0 90 "void()" `740 
-C L "init_rda" 0 8 1 "FUNCTION"
-F N "init_rda" 0 112 ""
-F G "init_rda" 0 112 "void()" `741 
-C L "enviar_valor" 0 8 1 "FUNCTION"
-F N "enviar_valor" 0 120 ""
-V L "valor" 0 120 "int16" `754 
-F G "enviar_valor" 0 120 "void(int16 valor)" `736 
-C L "procesar_comando" 0 8 1 "FUNCTION"
-F N "procesar_comando" 0 125 ""
-F G "procesar_comando" 0 125 "void()" `742 
-C L "MAIN" 0 8 1 "FUNCTION"
-F N "MAIN" 0 150 ""
-F G "MAIN" 0 150 "void()" `766 
+D G "MAX_BUFFER" 0 6 "5"
+C L "jump_to_isr" 0 10 1 "FUNCTION"
+E G "STATE_IDLE" 0 13 "0" `726 
+E G "STATE_RUN" 0 14 "1" `727 
+T G "Estado" 0 14 "" `728 
+V G "estado_actual" 0 16 "Estado" `729 
+C L "jump_to_isr" 0 10 1 "FUNCTION"
+V G "adc_value" 0 19 "int16" `730 
+V G "Buffer" 0 20 "int8[5]" `731 
+V G "idx_comando" 0 21 "int8" `732 
+V G "muestreo_ms" 0 22 "int16" `733 
+V G "timer1_recarga" 0 23 "int16" `734 
+V G "contador_1000ms" 0 24 "int8" `735 
+C L "jump_to_isr" 0 10 1 "FUNCTION"
+F N "enviar_valor" 0 27 ""
+V L "valor" 0 27 "int16" `737 
+f G "enviar_valor" 0 27 "void(int16 valor)" `736 
+F N "init_adc" 0 28 ""
+f G "init_adc" 0 28 "void()" `738 
+F N "init_dac" 0 29 ""
+f G "init_dac" 0 29 "void()" `739 
+F N "init_timer1" 0 30 ""
+f G "init_timer1" 0 30 "void()" `740 
+F N "init_rda" 0 31 ""
+f G "init_rda" 0 31 "void()" `741 
+F N "procesar_comando" 0 32 ""
+f G "procesar_comando" 0 32 "void()" `742  "---------- Inicialización ADC ----------"
+F N "init_adc" 0 35 ""
+F G "init_adc" 0 35 "void()" `738 
+C L "init_dac" 0 10 1 "FUNCTION"
+F N "init_dac" 0 42 ""
+F G "init_dac" 0 42 "void()" `739 
+C L "init_timer1" 0 10 1 "FUNCTION"
+F N "init_timer1" 0 48 ""
+F G "init_timer1" 0 48 "void()" `740 
+C L "init_timer1" 0 10 1 "FUNCTION"
+C L "init_timer1" 0 10 1 "FUNCTION"
+C L "init_timer1" 0 10 1 "FUNCTION"
+C L "init_rda" 0 10 1 "FUNCTION"
+F N "init_rda" 0 71 ""
+F G "init_rda" 0 71 "void()" `741 
+C L "isr_adc" 0 10 1 "FUNCTION"
+F N "isr_adc" 0 81 ""
+F G "isr_adc" 0 81 "void()" `743 
+C L "RDA_isr" 0 10 1 "FUNCTION"
+F N "RDA_isr" 0 89 ""
+F G "RDA_isr" 0 89 "void(int16 ,int16 )" `750 
+V L "c" 0 90 "int8" `751 
+C L "timer1_isr" 0 10 1 "FUNCTION"
+F N "timer1_isr" 0 107 ""
+F G "timer1_isr" 0 107 "void()" `752 
+C L "enviar_valor" 0 10 1 "FUNCTION"
+F N "enviar_valor" 0 123 ""
+V L "valor" 0 123 "int16" `754 
+F G "enviar_valor" 0 123 "void(int16 valor)" `736 
+C L "procesar_comando" 0 10 1 "FUNCTION"
+F N "procesar_comando" 0 128 ""
+F G "procesar_comando" 0 128 "void()" `742 
+C L "MAIN" 0 10 1 "FUNCTION"
+F N "MAIN" 0 153 ""
+F G "MAIN" 0 153 "void()" `766 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0

@@ -9,15 +9,48 @@ FileList=Ejercicio_3.c
 Type=4
 [mru-list]
 1=Ejercicio_3.c
+
+[defines]
+buildcount=21
+
+[ProjectLog]
+Days=2
+D1=07-10-2025
+D1_L=2
+D1_L1=[78758]Stopped Editing.
+TotalEdit=1
+TotalDebug=0
+D1_E=1
+D1_D=0
+D1_L2=[79649]Project Closed.
+D2=10-10-2025
+D2_L=16
+D2_L1=[58236]Project Opened.
+D2_L2=[58396]Started Editing.
+D2_L3=[59284]Stopped Editing.
+D2_L4=[59644]Started Editing.
+D2_L5=[60435]Stopped Editing.
+D2_L6=[64036]Started Editing.
+D2_L7=[64344]Stopped Editing.
+D2_L8=[64652]Started Editing.
+D2_L9=[65704]Stopped Editing.
+D2_L10=[65840]Started Editing.
+D2_L11=[66426]Stopped Editing.
+D2_L12=[66577]Started Editing.
+D2_L13=[67205]Stopped Editing.
+D2_L14=[67841]Started Editing.
+D2_L15=[68241]Stopped Editing.
+D2_L16=[69405]Started Editing.
+
+[fileformats]
+forcecoff=0
+
+[Opened Files]
+1=Ejercicio_3.c
+t1=103
+Count=2
+2=..\..\..\TP2(Teclado+LCD)\Ejercicio_7\PIC C\main.c
+t2=21
 [Units]
 Count=1
 1=Ejercicio_3 (main)
-
-[defines]
-buildcount=1
-
-[ProjectLog]
-Days=1
-D1=07-10-2025
-D1_L=1
-D1_L1=[78758]Stopped Editing.
