@@ -1,0 +1,71 @@
+
+#include <Ejercicio_6.h>
+#fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO
+
+#use i2c(MASTER, SDA=PIN_B1, SCL=PIN_B4, SLOW) //slow indica velocidad estandar de 100kHz
+#use rs232(baud=9600, xmit=PIN_B2,  bits=8, parity=N)
+#include <lcd.c>   
+
+// Dirección del LM75 (A0, A1, A2 = 0 ? 1001 000x)
+#define LM75_ADDR_WRITE  0x90   // Dirección + W
+#define LM75_ADDR_READ   0x91   // Dirección + R
+//#define LM75_ADDR  0x48
+
+//======DEFINES_LCD======
+#define LCD_ENABLE_PIN  PIN_A5 // Pines del LCD
+#define LCD_RS_PIN      PIN_A1
+#define LCD_RW_PIN      PIN_A2
+#define LCD_DATA4       PIN_A3
+#define LCD_DATA5       PIN_A4
+#define LCD_DATA6       PIN_A6
+#define LCD_DATA7       PIN_A7
+#include <lcd.c>
+
+// Función para leer temperatura del LM75
+float LM75_ReadTemp() {
+   int8 msb, lsb;
+   int16 raw;
+   float tempC;
+
+   // Secuencia I2C según el datasheet del LM75
+   i2c_start();
+  i2c_write(LM75_ADDR_WRITE);  // Dirección + W
+  //i2c_write((LM75_ADDR<<1) | 0);
+   i2c_write(0x00);             // Registro de temperatura
+   i2c_start();
+ i2c_write(LM75_ADDR_READ);   // Dirección + R
+   //i2c_write((LM75_ADDR<<1) | 1); // Dirección + R
+   msb = i2c_read(1);  // Leer MSB con ACK
+   lsb = i2c_read(0);  // Leer LSB con NACK
+   i2c_stop();
+
+   // Conversión a °C
+   raw = make16(msb, lsb); //armo int16 con esos dos bytes
+   tempC = (signed int8)(raw >> 8);  // parte entera
+   tempC += (lsb >> 7) * 0.5;        // parte decimal (0.5 °C)
+
+   return tempC;
+}
+
+void main() {
+   
+   float temp;
+   lcd_init();   // Inicializamos el LCD
+   lcd_putc("\fLM75 I2C Sensor");
+   delay_ms(1000);
+
+   while(TRUE) {
+      temp = LM75_ReadTemp();
+
+      // Mostrar en UART
+      printf("Temperatura: %.1f C\r\n", temp);
+
+      // Mostrar en LCD
+      lcd_gotoxy(1,1);
+      printf(lcd_putc, "Temp LM75:");
+      lcd_gotoxy(1,2);
+      printf(lcd_putc, "%.1f C", temp);
+
+      delay_ms(1000);
+   }
+   }

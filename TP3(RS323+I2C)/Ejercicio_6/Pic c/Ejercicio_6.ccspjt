@@ -1,0 +1,67 @@
+[PROJECT]
+Target=Ejercicio_6.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Ejercicio_6.c
+[Directories]
+Include=
+[C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP3(Comunicación I2C-RS232)\Ejercicio_6\Pic c\Ejercicio_6]
+Type=4
+[mru-list]
+1=Ejercicio_6.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=10-10-2025
+D1_L=24
+D1_L1=[46030]Project Opened.
+D1_L2=[46062]Started Editing.
+D1_L3=[46368]Stopped Editing.
+D1_L4=[47173]Started Editing.
+D1_L5=[47479]Stopped Editing.
+D1_L6=[47566]Started Editing.
+D1_L7=[47970]Stopped Editing.
+D1_L8=[48101]Started Editing.
+D1_L9=[48916]Stopped Editing.
+D1_L10=[49088]Started Editing.
+D1_L11=[49930]Stopped Editing.
+D1_L12=[51859]Started Editing.
+D1_L13=[53332]Stopped Editing.
+D1_L14=[53572]Started Editing.
+D1_L15=[53880]Stopped Editing.
+D1_L16=[53941]Started Editing.
+D1_L17=[54739]Stopped Editing.
+D1_L18=[54824]Started Editing.
+D1_L19=[55201]Stopped Editing.
+D1_L20=[55320]Started Editing.
+D1_L21=[56478]Stopped Editing.
+D1_L22=[56658]Started Editing.
+D1_L23=[57657]Stopped Editing.
+TotalEdit=75
+TotalDebug=0
+D1_E=75
+D1_D=0
+D1_L24=[57972]Project Closed.
+
+[Opened Files]
+1=Ejercicio_6.c
+t1=5
+Count=1
+2=..\..\..\Preuba nico\Ejercicio_6.c
+t2=97
+3=..\..\..\Preuba nico\Ejercicio_6.c
+t3=1
+[Ejercicio_6.c]
+Type=4
+
+[defines]
+buildcount=35
+[Units]
+Count=1
+1=Ejercicio_6 (main)

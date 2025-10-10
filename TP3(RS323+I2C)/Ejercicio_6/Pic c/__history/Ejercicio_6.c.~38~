@@ -1,0 +1,107 @@
+#include <Ejercicio_6.h>
+#fuses INTRC_IO   // Oscilador interno con pines RA6 y RA7 como GPIO
+#fuses NOMCLR     // Desactivo el MCLR
+#fuses NOWDT      // Desactivo el watchdog
+
+#use rs232(baud=9600, xmit=PIN_B2, bits=8, parity=N)
+#use i2c(MASTER, SDA=PIN_B1, SCL=PIN_B4)   // I2C en B4 (SCL) y B1 (SDA)
+
+/* LM75 */
+#define LM75_ADDR     0x48   // 7-bit address
+#define LM75_REG_TEMP 0x00
+#define LM75_REG_CONF 0x01
+
+/* LCD (mapear antes de incluir lcd.c) */
+#define LCD_ENABLE_PIN  PIN_A0
+#define LCD_RS_PIN      PIN_A1
+#define LCD_RW_PIN      PIN_A2
+#define LCD_DATA4       PIN_A3
+#define LCD_DATA5       PIN_A4
+#define LCD_DATA6       PIN_A6
+#define LCD_DATA7       PIN_A7
+#include <lcd.c>
+
+#define TMR1_PRELOAD 53036
+
+/* Variables compartidas con la ISR */
+int cont_tmr = 0;        // cuenta interrupciones ~100ms
+int flag_segundo = 0;      // cuando vale 1 -> leer sensor
+char msb, lsb;
+
+/* ISR Timer1: sólo incrementa contador y pone flag cada 10 ticks (~1s) */
+#INT_TIMER1
+void timer1_isr(void)
+{
+   set_timer1(TMR1_PRELOAD);
+   cont_tmr++;
+   if (cont_tmr >= 10)   // 10 * 100ms = 1000ms = 1s
+   {
+      cont_tmr = 0;
+      flag_segundo = 1;
+   }
+}
+
+/* Lee LM75 y devuelve temperatura en float (°C) */
+float lm75_read_temp(void)
+{
+   char devw = (LM75_ADDR << 1) | 0;
+   char devr = (LM75_ADDR << 1) | 1;
+
+   i2c_start();
+   i2c_write(devw);               // dirección + W
+   i2c_write(LM75_REG_TEMP);      // apuntador al registro temp
+   i2c_start();                   // repeated start
+   i2c_write(devr);               // dirección + R
+   msb = i2c_read(1);             // ACK (porque viene otro byte)
+   lsb = i2c_read(0);             // NACK (último byte)
+   i2c_stop();
+
+   float temp = (float)msb;
+   return temp;
+}
+
+/* Inicializaciones */
+void init(void)
+{
+   set_tris_a(0x00);   // A: salidas (LCD)
+   set_tris_b(0b00010010); // B1 (SDA), B4 (SCL), B5 (RX) como entradas; B2 (TX) salida
+
+   setup_adc_ports(NO_ANALOGS);
+   setup_adc(ADC_OFF);
+   setup_timer_1(T1_INTERNAL | T1_DIV_BY_8); // prescaler 1:8
+   set_timer1(TMR1_PRELOAD);
+   enable_interrupts(INT_TIMER1);
+   enable_interrupts(GLOBAL);
+}
+
+void main(void)
+{
+   float temp;
+
+   init();
+   /* Inicializo LCD */
+   lcd_init();
+
+   i2c_start();
+   i2c_write((LM75_ADDR << 1) | 0);
+   i2c_write(LM75_REG_CONF);
+   i2c_write(0x00);
+   i2c_stop();
+
+   while(TRUE)
+   {
+      if (flag_segundo)
+      {
+         flag_segundo = 0;               
+         temp = lm75_read_temp();     
+
+         /* UART */
+         printf("TEMPERATURA = %.1f C\r\n", temp);
+         
+         /* LCD (1 línea: temp; 2 línea: dirección) */
+         printf(LCD_PUTC, "\f");
+         printf(LCD_PUTC, "TEMP: %.1f C", temp);
+      }
+   }
+}
+

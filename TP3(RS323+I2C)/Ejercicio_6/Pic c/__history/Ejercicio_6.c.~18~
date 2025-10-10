@@ -1,0 +1,28 @@
+#include <Ejercicio_6.h>
+#fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO, NOMCLR
+#use delay(clock=4000000)
+
+// UART para debug: TX en RB2
+#use rs232(baud=9600, xmit=PIN_B2, rcv=PIN_B3)
+
+void main() {
+   // Deshabilitar funciones analogicas/comparadores
+   //ANSELA = 0x00;
+  // ANSELB = 0x00;
+   //setup_comparator(NC_NC);
+
+   // Inicial test: pin RB0 como salida (led)
+   set_tris_b(get_tris_b() & 0b11111110); // RB0 output
+   output_low(PIN_B0);
+
+   // Mensaje inicial
+   printf("DEBUG: Arranque\r\n");
+   delay_ms(200);
+
+   while(TRUE) {
+      printf("Ticks: %u\r\n", get_timer0());  // leer contador de Timer0
+      delay_ms(500);
+   }
+
+}
+
