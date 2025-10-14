@@ -1,0 +1,24 @@
+ÀÄej5
+   ÃÄMAIN  0/261  Ram=11
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄ@cinit2  (Inline)  Ram=0
+   ³  ÃÄhw_init  0/29  Ram=0
+   ³  ³  ÀÄ@PSTRINGR_9600_106_105  0/20  Ram=2
+   ³  ÃÄprocesar_rx  0/107  Ram=2
+   ³  ³  ÃÄ@PSTRINGR_9600_106_105  0/20  Ram=2
+   ³  ³  ÀÄ@PSTRINGR_9600_106_105  0/20  Ram=2
+   ³  ÃÄ@goto65344  0/10  Ram=0
+   ³  ÃÄ@PSTRINGR_9600_106_105  0/20  Ram=2
+   ³  ÃÄ@goto65333  0/11  Ram=0
+   ³  ÃÄi2c_escribir  0/29  Ram=2
+   ³  ³  ÀÄ@I2C_WRITEU_129  (Inline)  Ram=1
+   ³  ÃÄctrl_por_canal  0/9  Ram=2
+   ³  ÃÄi2c_escribir  0/29  Ram=2
+   ³  ³  ÀÄ*
+   ³  ÃÄi2c_escribir  0/29  Ram=2
+   ³  ³  ÀÄ*
+   ³  ÃÄ@I2C_READU_129  0/16  Ram=1
+   ³  ÃÄ@I2C_READU_129  0/16  Ram=1
+   ³  ÃÄ@PSTRINGR_9600_106_105  0/20  Ram=2
+   ³  ÀÄ@PSTRINGR_9600_106_105  0/20  Ram=2
+   ÀÄisr_t1  0/24  Ram=0
