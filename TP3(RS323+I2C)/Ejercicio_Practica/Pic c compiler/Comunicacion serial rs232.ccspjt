@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=3
+Days=4
 D1=30-09-2025
 D1_L=10
 D1_L1=[46576]Project Opened.
@@ -60,6 +60,10 @@ D3_L15=[35638]Stopped Editing.
 D3_L16=[35661]Started Editing.
 D3_L17=[35963]Stopped Editing.
 D3_L18=[36017]Started Editing.
+D4=10-10-2025
+D4_L=2
+D4_L1=[83640]Project Opened.
+D4_L2=[86309]Project Closed.
 
 [Opened Files]
 1=Comunicacion serial rs232.c
