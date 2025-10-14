@@ -1,0 +1,47 @@
+#include <Blink Timer0.h>
+
+#FUSES NOWDT , NOMCLR
+
+void INIT_GPIO();
+void INIT_TIMER0();
+void TIMER0();
+
+// --- Prototipos de funciones ---
+int contador_overflows = 0;
+// --- Interrupción de TIMER0 ---
+#INT_TIMER0 //Habilito interrupciones por timer0
+void timer0_isr(void) {
+   contador_overflows++;
+
+   if(contador_overflows >= 8) {   // 8 desbordes ˜ 500 ms
+      output_toggle(PIN_A0);       // Ejemplo: toggle LED en RB0
+      contador_overflows = 0;
+   }
+}
+void main()
+{
+   INIT_GPIO();
+   while(TRUE)
+   {
+
+
+      //TODO: User Code
+   }
+
+}
+
+Void INIT_TIMER0(){
+   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);  
+   // Fuente interna (Fosc/4) y prescaler 1:256
+   set_timer0(0);                  // Iniciar en 0
+   enable_interrupts(INT_TIMER0);  // Habilitar interrupción Timer0
+   enable_interrupts(GLOBAL); 
+}
+
+
+void INIT_GPIO(){
+   set_tris_a(0b00011000);
+   set_tris_b(0b00000001);
+   output_a(0b00100001); 
+   output_b(0b00000001); 
+}

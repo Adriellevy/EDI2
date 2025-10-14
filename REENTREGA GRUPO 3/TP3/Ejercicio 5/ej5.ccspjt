@@ -1,0 +1,43 @@
+[PROJECT]
+Target=ej5.hex
+Processor_Text=PIC16F1827
+CCSVersion=5.093
+Compiler=PCM
+[Target Data]
+FileList=ej5.c
+[ej5.c]
+Type=4
+[mru-list]
+1=ej5.c
+
+[defines]
+buildcount=3
+
+[ProjectLog]
+Days=1
+D1=08-10-2025
+D1_L=9
+D1_L1=[39984]Started Editing.
+D1_L2=[40287]Stopped Editing.
+D1_L3=[43385]Started Editing.
+D1_L4=[43414]Stopped Editing.
+TotalEdit=1
+TotalDebug=0
+D1_E=1
+D1_D=0
+D1_L5=[43414]Project Closed.
+D1_L6=[43442]Project Opened.
+D1_L7=[43460]Started Editing.
+D1_L8=[44127]Stopped Editing.
+D1_L9=[44487]Started Editing.
+
+[Opened Files]
+1=ej5.c
+t1=242
+Count=1
+[Units]
+Count=1
+1=ej5 (main)
+
+[fileformats]
+forcecoff=0

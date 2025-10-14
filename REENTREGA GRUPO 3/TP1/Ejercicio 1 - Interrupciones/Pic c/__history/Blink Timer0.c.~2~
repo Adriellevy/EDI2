@@ -1,0 +1,15 @@
+#include <Blink Timer0.h>
+
+#FUSES NOWDC, NOMCLR
+
+void main()
+{
+
+   while(TRUE)
+   {
+
+
+      //TODO: User Code
+   }
+
+}
