@@ -1,0 +1,266 @@
+CCS PCM C Compiler, Version 5.093, 4770               18-sep.-25 22:09
+
+               Filename:   C:\Users\juanp\OneDrive\Desktop\Ingenieria Biomedica\EDI II\TP1(Puertos-timers-contadores)\Interrupciones\Ejercicio 1 - Interrupciones\Pic c\Blink Timer0.lst
+
+               ROM used:   122 words (3%)
+                           Largest free fragment is 2048
+               RAM used:   9 (2%) at main() level
+                           20 (5%) worst case
+               Stack used: 1 locations (0 in main + 1 for interrupts)
+               Stack size: 16
+
+0000:  MOVLP  00
+0001:  GOTO   068
+0002:  NOP
+*
+0004:  CLRF   03
+0005:  MOVLP  00
+0006:  MOVLB  00
+0007:  MOVF   77,W
+0008:  MOVWF  20
+0009:  MOVF   78,W
+000A:  MOVWF  21
+000B:  MOVF   79,W
+000C:  MOVWF  22
+000D:  MOVF   7A,W
+000E:  MOVWF  23
+000F:  BTFSS  0B.4
+0010:  GOTO   013
+0011:  BTFSC  0B.1
+0012:  GOTO   020
+0013:  BTFSS  0B.5
+0014:  GOTO   017
+0015:  BTFSC  0B.2
+0016:  GOTO   022
+0017:  MOVF   20,W
+0018:  MOVWF  77
+0019:  MOVF   21,W
+001A:  MOVWF  78
+001B:  MOVF   22,W
+001C:  MOVWF  79
+001D:  MOVF   23,W
+001E:  MOVWF  7A
+001F:  RETFIE
+0020:  MOVLP  00
+0021:  GOTO   034
+0022:  MOVLP  00
+0023:  GOTO   024
+.................... #include <Blink Timer0.h>
+.................... #include <16F1827.h>
+.................... //////////// Standard Header file for the PIC16F1827 device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F1827
+.................... 
+.................... #list
+.................... 
+.................... #device ADC=10
+.................... #use delay(internal=4MHz)
+.................... 
+.................... 
+.................... #FUSES NOWDT , NOMCLR
+.................... 
+.................... int contador = 0;  
+.................... 
+.................... void INIT_GPIO();
+.................... void INIT_TIMER0();
+.................... void TIMER0();
+.................... void INIT_INTER();
+.................... 
+.................... void INIT_GPIO(){
+....................    set_tris_a(0b00000000);
+*
+003D:  MOVLW  00
+003E:  MOVLB  01
+003F:  MOVWF  0C
+....................    set_tris_b(0b00000001);
+0040:  MOVLW  01
+0041:  MOVWF  0D
+....................    output_low(PIN_B1);
+0042:  BCF    0D.1
+0043:  MOVLB  02
+0044:  BCF    0D.1
+....................    output_low(PIN_B7); 
+0045:  MOVLB  01
+0046:  BCF    0D.7
+0047:  MOVLB  02
+0048:  BCF    0D.7
+0049:  MOVLP  00
+004A:  MOVLB  00
+004B:  GOTO   077 (RETURN)
+.................... }
+.................... 
+.................... void INIT_TIMER0(){
+....................    
+....................    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);
+004C:  MOVLB  01
+004D:  MOVF   15,W
+004E:  ANDLW  C0
+004F:  IORLW  07
+0050:  MOVWF  15
+....................    set_timer0(0); 
+0051:  MOVLB  00
+0052:  CLRF   15
+....................    enable_interrupts(INT_TIMER0);
+0053:  BSF    0B.5
+....................    enable_interrupts(GLOBAL);
+0054:  MOVLW  C0
+0055:  IORWF  0B,F
+0056:  MOVLP  00
+0057:  GOTO   078 (RETURN)
+.................... }
+.................... 
+.................... void INIT_INTER()
+.................... {
+....................    enable_interrupts(INT_EXT_L2H);
+0058:  BSF    0B.4
+0059:  MOVLB  01
+005A:  BSF    15.6
+....................    enable_interrupts(INT_RB); 
+005B:  BSF    0B.3
+005C:  MOVLW  FF
+005D:  MOVLB  07
+005E:  IORWF  11,F
+005F:  IORWF  12,F
+....................    enable_interrupts(INT_IOC);
+0060:  BSF    0B.3
+0061:  IORWF  14,F
+0062:  IORWF  15,F
+....................    enable_interrupts(GLOBAL);
+0063:  MOVLW  C0
+0064:  IORWF  0B,F
+0065:  MOVLP  00
+0066:  MOVLB  00
+0067:  GOTO   079 (RETURN)
+.................... }
+.................... 
+.................... #INT_TIMER0
+.................... void timer0_isr() {
+....................    set_timer0(0);   // Ajustar para 1 ms aprox. con prescaler
+*
+0024:  CLRF   15
+....................    contador++;
+0025:  INCF   24,F
+....................    if(contador >= 8) {     // 500 ms
+0026:  MOVF   24,W
+0027:  SUBLW  07
+0028:  BTFSC  03.0
+0029:  GOTO   031
+....................       output_toggle(PIN_B1); // Cambia el estado de RB1
+002A:  MOVLB  01
+002B:  BCF    0D.1
+002C:  MOVLW  02
+002D:  MOVLB  02
+002E:  XORWF  0D,F
+....................       contador = 0;
+002F:  MOVLB  00
+0030:  CLRF   24
+....................    }
+.................... }
+.................... 
+.................... // Interrupción externa en RB0
+0031:  BCF    0B.2
+0032:  MOVLP  00
+0033:  GOTO   017
+.................... #INT_EXT
+.................... void ext_isr() {
+....................    output_toggle(PIN_B7);    // Cambia el estado del LED
+0034:  MOVLB  01
+0035:  BCF    0D.7
+0036:  MOVLW  80
+0037:  MOVLB  02
+0038:  XORWF  0D,F
+0039:  BCF    0B.1
+003A:  MOVLP  00
+003B:  MOVLB  00
+003C:  GOTO   017
+.................... }
+.................... 
+.................... void main() {
+*
+0068:  MOVLW  6A
+0069:  MOVLB  01
+006A:  MOVWF  19
+006B:  MOVLB  00
+006C:  CLRF   24
+006D:  MOVLB  03
+006E:  CLRF   0C
+006F:  CLRF   0D
+0070:  MOVLB  02
+0071:  CLRF   12
+0072:  CLRF   11
+0073:  CLRF   14
+0074:  CLRF   13
+.................... 
+....................    INIT_GPIO();
+0075:  MOVLB  00
+0076:  GOTO   03D
+....................    INIT_TIMER0();
+0077:  GOTO   04C
+....................    INIT_INTER();
+0078:  GOTO   058
+....................    
+....................      while(TRUE) 
+....................      {
+0079:  GOTO   079
+....................       // El trabajo lo hacen las interrupciones
+....................    }
+.................... }
+.................... 
+007A:  SLEEP
+.................... //!void INIT_GPIO();
+.................... //!void INIT_TIMER0();
+.................... //!void TIMER0();
+.................... //!
+.................... //!// --- Prototipos de funciones ---
+.................... //!int contador_overflows = 0;
+.................... //!
+.................... //!void main()
+.................... //!{
+.................... //!   INIT_GPIO();
+.................... //!   INIT_TIMER0();
+.................... //!   while(TRUE)
+.................... //!   {
+.................... //!
+.................... //!
+.................... //!      //TODO: User Code
+.................... //!   }
+.................... //!
+.................... //!}
+.................... //!
+.................... //!Void INIT_TIMER0(){
+.................... //!   set_timer0(0);                    // arrancar TMR0 en 0
+.................... //!   clear_interrupt(INT_TIMER0); 
+.................... //!   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);  
+.................... //!   // Fuente interna (Fosc/4) y prescaler 1:256
+.................... //!   enable_interrupts(INT_TIMER0);  // Habilitar interrupción Timer0
+.................... //!   enable_interrupts(GLOBAL); 
+.................... //!}
+.................... //!
+.................... //!// --- Interrupción de TIMER0 ---
+.................... //!#INT_TIMER0 //Habilito interrupciones por timer0
+.................... //!void timer0_isr(void) {
+.................... //!   contador_overflows++;
+.................... //!
+.................... //!   if(contador_overflows >= 8) {   // 8 desbordes ˜ 500 ms
+.................... //!      output_toggle(PIN_A0);       // Ejemplo: toggle LED en RB0
+.................... //!      contador_overflows = 0;
+.................... //!   }
+.................... //!}
+.................... //!void INIT_GPIO(){
+.................... //!   set_tris_a(0b00011000);
+.................... //!   set_tris_b(0b00000001);
+.................... //!   output_a(0b00100001); 
+.................... //!   output_b(0b00000001); 
+.................... //!}
+
+Configuration Fuses:
+   Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP

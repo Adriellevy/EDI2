@@ -1,0 +1,110 @@
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PACKED_MEMORY.P2
+004-005 @READ_PROGRAM_MEMORY8.P3
+004-005 @WRITE_PACKED_MEMORY.P4
+006-007 @WRITE_PACKED_MEMORY.P1
+006-007 @READ_PACKED_MEMORY.P2
+020     @INTERRUPT_AREA
+021     @INTERRUPT_AREA
+022     @INTERRUPT_AREA
+023     @INTERRUPT_AREA
+024.0   flag_tickH
+024.1   muestreo_activo
+024.2   have_cmd0
+025-026 acum_ms
+027-028 H_ms
+029     estado_app
+02A     estado_i2c
+02B     canal
+02C-031 valores
+032-033 @sprintf_string
+034     cmd0
+035     MAIN.hi
+036     MAIN.lo
+037-038 MAIN.raw16
+03C     @I2C_READU_129.P1
+03C     ctrl_por_canal.ch
+03C     procesar_rx.c
+03C     MAIN.@SCRATCH1
+03D     ctrl_por_canal.c
+03D     i2c_escribir.b
+03D     procesar_rx.@SCRATCH1
+03D     MAIN.@SCRATCH2
+03E     @I2C_WRITEU_129.P1
+03E     @PSTRINGR_9600_106_105.@SCRATCH1
+03E     i2c_escribir.@SCRATCH1
+03E     MAIN.@SCRATCH3
+03F     @PSTRINGR_9600_106_105.@SCRATCH2
+03F     MAIN.@SCRATCH4
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+111.6   C1OUT
+113.6   C2OUT
+191-192 @WRITE_PROGRAM_MEMORY8.P1
+191-192 @READ_PROGRAM_MEMORY8.P2
+291     CCP_1
+291     CCP_1_LOW
+292     CCP_1_HIGH
+298     CCP_2
+298     CCP_2_LOW
+299     CCP_2_HIGH
+311     CCP_3_LOW
+311     CCP_3
+312     CCP_3_HIGH
+318     CCP_4
+318     CCP_4_LOW
+319     CCP_4_HIGH
+
+ROM Allocation:
+000021  isr_t1
+000039  @PSTRINGR_9600_106_105
+00004D  hw_init
+00006A  procesar_rx
+0000D5  i2c_escribir
+0000D7  @I2C_WRITEU_129
+0000F2  ctrl_por_canal
+0000FB  @I2C_READU_129
+00010B  @cinit1
+00010B  MAIN
+000139  @cinit2
+000210  @goto892
+00021B  @goto904
+
+Project Directory:
+    C:\Users\zavid\OneDrive\Escritorio\Facu\tercero(2cuatri)\EDI2\TP3\Ej5\
+
+Project Files:
+    ej5.c                                                   [08-oct-25 12:03  CRC=EE96B879]
+    ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb-20 15:48  CRC=D6A5AF9F]
+
+Source signature=9BE217B7
+Program memory checksum=0000
+Hex file CRC=14A5
+
+Units:
+    C:\Users\zavid\OneDrive\Escritorio\Facu\tercero(2cuatri)\EDI2\TP3\Ej5\ej5 (main)
+
+Compiler Settings:
+    Processor:      PIC16F1827
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Enhanced 16:    Yes
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   ej5.xsym
+    Errors:      ej5.err
+    Ext Symbols: ej5.esym
+    INHX8:       ej5.hex
+    Symbols:     ej5.sym
+    List:        ej5.lst
+    Debug/COFF:  ej5.cof
+    Project:     ej5.ccspjt
+    Call Tree:   ej5.tre
+    Statistics:  ej5.STA

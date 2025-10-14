@@ -1,0 +1,9 @@
+ÀÄBlink Timer0
+   ÃÄMAIN  0/19  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄ@cinit2  (Inline)  Ram=0
+   ³  ÃÄINIT_GPIO  0/15  Ram=0
+   ³  ÃÄINIT_TIMER0  0/12  Ram=0
+   ³  ÀÄINIT_INTER  0/16  Ram=0
+   ÃÄtimer0_isr  0/16  Ram=0
+   ÀÄext_isr  0/9  Ram=0

@@ -1,0 +1,101 @@
+#include <Blink Timer0.h>
+#FUSES NOWDT , NOMCLR
+
+int contador = 0;  
+
+void INIT_GPIO();
+void INIT_TIMER0();
+void TIMER0();
+void INIT_INTER();
+
+void INIT_GPIO(){
+   set_tris_a(0b00000000);
+   set_tris_b(0b00000001);
+   output_low(PIN_B1);
+   output_low(PIN_B7); 
+}
+
+void INIT_TIMER0(){
+   
+   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);
+   set_timer0(0); 
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL);
+}
+
+void INIT_INTER()
+{
+   enable_interrupts(INT_EXT_L2H);
+   enable_interrupts(INT_RB); 
+   enable_interrupts(INT_IOC);
+   enable_interrupts(GLOBAL);
+}
+
+#INT_TIMER0
+void timer0_isr() {
+   set_timer0(0);   // Ajustar para 1 ms aprox. con prescaler
+   contador++;
+   if(contador >= 8) {     // 500 ms
+      output_toggle(PIN_B1); // Cambia el estado de RB1
+      contador = 0;
+   }
+}
+
+// Interrupción externa en RB0
+#INT_EXT
+void ext_isr() {
+   output_toggle(PIN_B7);    // Cambia el estado del LED
+}
+
+void main() {
+     while(TRUE) 
+     {
+      // El trabajo lo hacen las interrupciones
+   }
+}
+
+//!void INIT_GPIO();
+//!void INIT_TIMER0();
+//!void TIMER0();
+//!
+//!// --- Prototipos de funciones ---
+//!int contador_overflows = 0;
+//!
+//!void main()
+//!{
+//!   INIT_GPIO();
+//!   INIT_TIMER0();
+//!   while(TRUE)
+//!   {
+//!
+//!
+//!      //TODO: User Code
+//!   }
+//!
+//!}
+//!
+//!Void INIT_TIMER0(){
+//!   set_timer0(0);                    // arrancar TMR0 en 0
+//!   clear_interrupt(INT_TIMER0); 
+//!   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);  
+//!   // Fuente interna (Fosc/4) y prescaler 1:256
+//!   enable_interrupts(INT_TIMER0);  // Habilitar interrupción Timer0
+//!   enable_interrupts(GLOBAL); 
+//!}
+//!
+//!// --- Interrupción de TIMER0 ---
+//!#INT_TIMER0 //Habilito interrupciones por timer0
+//!void timer0_isr(void) {
+//!   contador_overflows++;
+//!
+//!   if(contador_overflows >= 8) {   // 8 desbordes ˜ 500 ms
+//!      output_toggle(PIN_A0);       // Ejemplo: toggle LED en RB0
+//!      contador_overflows = 0;
+//!   }
+//!}
+//!void INIT_GPIO(){
+//!   set_tris_a(0b00011000);
+//!   set_tris_b(0b00000001);
+//!   output_a(0b00100001); 
+//!   output_b(0b00000001); 
+//!}

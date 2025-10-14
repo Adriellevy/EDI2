@@ -1,0 +1,64 @@
+#include <Blink Timer0.h>
+
+#FUSES NOWDT , NOMCLR
+
+void INIT_GPIO();
+void INIT_TIMER0();
+void TIMER0();
+
+// --- Prototipos de funciones ---
+int contador_overflows = 0;
+// --- Interrupción de TIMER0 ---
+/* ---------- ISR de Timer0 ---------- */
+/* Cada vez que Timer0 desborda entra acá. Implementamos un esquema:
+   - Hacemos 7 overflows "completos" (256 ticks cada uno)
+   - En el 8º ciclo precargamos TMR0 con 95 para que el último ciclo tenga
+     solo 161 ticks (7*256 + 161 = 1953 ticks totales)
+   - 1953 ticks * (prescaler*instruction_cycle) = 500 ms exactos (ver cálculo)
+*/
+#INT_TIMER0
+void timer0_isr(void) {
+   contador_overflows++;
+
+   if (contador_overflows < 7) {
+      // Overflows 1..7: dejamos timer en 0 (conteo completo de 256)
+      set_timer0(0);
+   } else if (contador_overflows == 7) {
+      // Antes del 8º overflow, precargamos TMR0 con 95
+      // (256 - 95 = 161 ticks -> tiempo parcial para completar 500 ms)
+      set_timer0(95);
+   } else {
+      // Llegó el 8º overflow (7 completos + 1 parcial) -> ~500 ms pasaron
+      output_toggle(PIN_A0);      // alterna el estado de RA0 (LED)
+      contador_overflows = 0;         // reiniciamos el contador
+      set_timer0(0);              // volvemos a contar desde 0 para la siguiente ronda
+   }
+}
+void main()
+{
+   INIT_GPIO();
+   while(TRUE)
+   {
+
+
+      //TODO: User Code
+   }
+
+}
+
+Void INIT_TIMER0(){
+   set_timer0(0);                    // arrancar TMR0 en 0
+   clear_interrupt(INT_TIMER0); 
+   setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);  
+   // Fuente interna (Fosc/4) y prescaler 1:256
+   enable_interrupts(INT_TIMER0);  // Habilitar interrupción Timer0
+   enable_interrupts(GLOBAL); 
+}
+
+
+void INIT_GPIO(){
+   set_tris_a(0b00011000);
+   set_tris_b(0b00000001);
+   output_a(0b00100001); 
+   output_b(0b00000001); 
+}
