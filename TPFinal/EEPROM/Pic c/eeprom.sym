@@ -1,0 +1,169 @@
+004-005 @WRITE_PACKED_MEMORY.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+004-005 @READ_PACKED_MEMORY.P3
+004-005 @WRITE_PROGRAM_MEMORY8.P4
+006-007 @READ_PACKED_MEMORY.P1
+006-007 @WRITE_PACKED_MEMORY.P2
+020     LCD_ADDR
+021     lcd_total_rows
+022     lcd_total_columns
+023     new_row_request
+024     BACKLIGHT_LED
+025     lcd_gotoxy.data
+026-029 run_time
+02A     record_index
+02B.0   last_button_state
+02C-02D stored_value
+02E-02F @sprintf_string
+030     MAIN.total_records
+031     MAIN.remaining
+032.0   MAIN.button_state
+033     MAIN.saved
+034     show_all_records.i
+034     lcd_init.addr
+034     get_record_count.count
+034     MAIN.@SCRATCH1
+035     get_record_count.i
+035-036 show_all_records.val
+035     lcd_init.col
+035     MAIN.@SCRATCH2
+036     lcd_init.row
+036-037 get_record_count.val
+036-037 save_run_time.seconds
+037     lcd_init.i
+038     save_run_time.lowb
+038     lcd_init.@SCRATCH1
+038     show_all_records.@SCRATCH1
+038     get_record_count.@SCRATCH1
+039-03A @PRINTF_LU_757.P1
+039     @PRINTF_U_757.P2
+039     save_run_time.highb
+039     @PSTRINGCN7_757.P1
+039     show_all_records.@SCRATCH2
+039     get_record_count.@SCRATCH2
+03A     @PRINTF_U_757.P1
+03A     save_run_time.i
+03A     @PSTRINGC7_757.@SCRATCH1
+03A     @PSTRINGCN7_757.@SCRATCH1
+03B     @DIV88.P1
+03B-03C save_run_time.val
+03B     @PSTRINGC7_757.@SCRATCH2
+03B     @PSTRINGCN7_757.@SCRATCH2
+03C     @DIV88.P1
+03C     @PSTRINGC7_757.@SCRATCH3
+03C     @PSTRINGCN7_757.@SCRATCH3
+03D     @DIV88.@SCRATCH1
+03E     save_run_time.@SCRATCH1
+03F     @PRINTF_LU_757.@SCRATCH1
+03F     save_run_time.@SCRATCH2
+040     @PRINTF_LU_757.@SCRATCH2
+041     @PRINTF_LU_757.@SCRATCH3
+042     @PRINTF_LU_757.@SCRATCH4
+043     @PRINTF_LU_757.@SCRATCH5
+044     @PRINTF_LU_757.@SCRATCH6
+045     @PRINTF_LU_757.@SCRATCH7
+046     LCD_PUTC.in_data
+047     @delay_ms1.P1
+047     lcd_gotoxy.x
+048     lcd_gotoxy.y
+049     lcd_gotoxy.row
+04A     lcd_gotoxy.column
+04B     lcd_gotoxy.row_addr
+04C     lcd_gotoxy.lcd_address
+04D     lcd_gotoxy.@SCRATCH1
+04E     lcd_send_byte.data
+04F     lcd_send_byte.type
+050     lcd_send_byte.@SCRATCH1
+051     i2c_send_nibble.data
+052     i2c_send_nibble.type
+053     i2c_send_nibble.@SCRATCH1
+054     @I2C_WRITEU_129.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+111.6   C1OUT
+113.6   C2OUT
+191-192 @WRITE_PROGRAM_MEMORY8.P1
+191-192 @READ_PROGRAM_MEMORY8.P2
+291     CCP_1
+291     CCP_1_LOW
+292     CCP_1_HIGH
+298     CCP_2_LOW
+298     CCP_2
+299     CCP_2_HIGH
+311     CCP_3
+311     CCP_3_LOW
+312     CCP_3_HIGH
+318     CCP_4_LOW
+318     CCP_4
+319     CCP_4_HIGH
+
+ROM Allocation:
+000003  LCD_INIT_STRING.call
+000004  LCD_INIT_STRING.data
+000008  @const764.call
+000010  @const771.call
+000017  @const797.call
+000020  @const798.call
+000027  @const799.call
+00002F  @const802.call
+000036  @const803.call
+00003B  @delay_ms1
+000051  @I2C_WRITEU_129
+000065  i2c_send_nibble
+0000AF  lcd_send_byte
+0000CD  lcd_clear
+0000D7  lcd_init
+000122  lcd_gotoxy
+000159  LCD_PUTC
+00017E  @PSTRINGC7_757
+0001C8  @PSTRINGCN7_757
+000218  @DIV88
+00022D  @PRINTF_U_757
+000262  @PRINTF_LU_757
+0002C7  show_all_records
+00033B  get_record_count
+00036D  save_run_time
+0003D9  @cinit1
+0003D9  MAIN
+0003FD  @cinit2
+
+Project Directory:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\EEPROM\Pic c\
+
+Project Files:
+    eeprom.c                                                [14-oct.-25 15:06  CRC=D13D36B7]
+    eeprom.h                                                [14-oct.-25 14:27  CRC=00000000]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
+    i2c_Flex_LCD.c                                          [26-abr.-20 15:13  CRC=16AFB211]
+
+Source signature=D5424A78
+Program memory checksum=0000
+Hex file CRC=FC93
+
+Units:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\EEPROM\Pic c\eeprom (main)
+
+Compiler Settings:
+    Processor:      PIC16F1827
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Enhanced 16:    Yes
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   eeprom.xsym
+    Errors:      eeprom.err
+    Ext Symbols: eeprom.esym
+    INHX8:       eeprom.hex
+    Symbols:     eeprom.sym
+    List:        eeprom.lst
+    Debug/COFF:  eeprom.cof
+    Project:     eeprom.ccspjt
+    Call Tree:   eeprom.tre
+    Statistics:  eeprom.STA

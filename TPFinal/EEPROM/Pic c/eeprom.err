@@ -1,0 +1,7 @@
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\EEPROM\Pic c\eeprom on 14-oct.-25 at 15:06
+>>> Warning 236 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\EEPROM\Pic c\eeprom.c" Line 6(9,17): Defined identifier matches a variable ID
+>>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\EEPROM\Pic c\i2c_Flex_LCD.c" Line 174(13,17): Variable never used:   data
+>>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\EEPROM\Pic c\eeprom.c" Line 18(16,28): Variable never used:   stored_value
+      Memory usage:   ROM=30%      RAM=7% - 18%
+      0 Errors,  3 Warnings.
+Build Successful.

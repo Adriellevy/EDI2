@@ -1,0 +1,41 @@
+[PROJECT]
+Target=eeprom.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=eeprom.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\EEPROM\Pic c\eeprom]
+Type=4
+[mru-list]
+1=eeprom.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=14-10-2025
+D1_L=4
+D1_L1=[52030]Project Opened.
+D1_L2=[52294]Started Editing.
+D1_L3=[52602]Stopped Editing.
+D1_L4=[53749]Started Editing.
+
+[Opened Files]
+1=eeprom.c
+t1=1
+Count=2
+2=eeprom.h
+t2=1
+[eeprom.c]
+Type=4
+
+[defines]
+buildcount=5
+[Units]
+Count=1
+1=eeprom (main)

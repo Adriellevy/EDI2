@@ -1,41 +1,49 @@
 #include <Comunicacion serial rs232.h>  // corregido, sin espacios
-#include <string.h>                      // para strcmp
-#use RS232(BAUD=9600, BITS=8, PARITY=N, XMIT=PIN_B5, RCV=PIN_B2)
+#use RS232(BAUD=9600, BITS=8, PARITY=N, XMIT=PIN_B5, RCV=PIN_B1)
+#define MAX_BUFFER 3
 
+// ---------- Definición de estados ----------
+typedef enum {
+    STATE_IDLE = 0,          // no envía nada
+    STATE_SEND_BUTTONS,      // envía los 3 botones periódicamente
+    STATE_SEND_BUTTON_X      // envía un botón específico periódicamente
+} Estado;
+
+Estado estado_actual = STATE_IDLE;
+// ---------- Variables globales ----------
 int16 valor_adc = 0;      // valor del potenciómetro
 int contador_timer = 0;   // para Timer1
 char dato_rx = 0;         // último byte recibido
-char comando[3];          // buffer para comando recibido
+char Buffer[MAX_BUFFER];          // buffer para comando recibido
 int idx_comando = 0;
-
+char boton_periodico = '0';   // Botón específico para el modo MX
+unsigned int muestreo_ms = 100; // Tiempo de muestreo en ms (por defecto 100ms)
 //----------- prototipos -----------------
 void enviar_valor(int16 valor);
 void enviar_estado_pin();
 void init_adc();
 void init_timer1();
 void procesar_comando();
-
+void enviar_botones();
+void enviar_boton();
 // ---------- ISR RDA ----------
 #INT_RDA
 void RDA_isr(void) {
-   dato_rx = getc();        // leer byte recibido
-   if(dato_rx != '\n' && idx_comando < 2) {
-      comando[idx_comando++] = dato_rx;  // guardar en buffer
-   } else {
-      comando[idx_comando] = '\0';      // terminar string
-      procesar_comando();               // procesar comando
-      idx_comando = 0;                  // reiniciar buffer
-   }
-}
+   char c = fgetc();   // leer el carácter del stream SERIAL
 
-// ---------- Función para procesar comando ----------
-void procesar_comando() {
-   if(strcmp(comando, "s1") == 0) {
-      enviar_valor(valor_adc);
-   } else if(strcmp(comando, "s0") == 0) {
-      enviar_estado_pin();
-   } else {
-      printf("Comando invalido\r\n");
+   // Si se presiona Enter (CR o LF)
+   if (c == '\r' || c == '\n') {
+      if (idx_comando > 0) {               // sólo si hay algo escrito
+         Buffer[idx_comando] = '\0';       // cierra la cadena con null terminador
+         idx_comando = 0;                  // resetea el índice para la próxima entrada
+         procesar_comando();
+      }
+   }
+   else {
+      // Evita desbordamiento del buffer
+      if (idx_comando < (MAX_BUFFER - 1)) {
+         Buffer[idx_comando++] = c;        // guarda carácter
+      }
    }
 }
 
@@ -49,12 +57,20 @@ void ADC_isr(void) {
 // ---------- ISR Timer1 ----------
 #INT_TIMER1
 void timer1_isr(void) {
-   set_timer1(6072);                       // recargar Timer1 para 1s aprox
-   contador_timer++;
-   if(contador_timer > 2) {               // cada ~3s
-      contador_timer = 0;
-      read_adc(ADC_START_ONLY);           // iniciar nueva conversión ADC
-   }
+   // recarga según el tiempo de muestreo
+    set_timer1(65536 - (muestreo_ms * 10));  // ajustar según tu clock
+
+    // envío según el estado
+    switch (estado_actual) {
+        case STATE_SEND_BUTTONS:
+            enviar_botones();
+            break;
+        case STATE_SEND_BUTTON_X:
+            enviar_boton(boton_periodico);
+            break;
+        default:
+            break;
+    }
 }
 
 // ---------- Inicialización ADC ----------
@@ -67,7 +83,7 @@ void init_adc() {
 
 // ---------- Inicialización Timer1 ----------
 void init_timer1() {
-   setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
+   setup_timer_1(T1_INTERNAL | T1_DIV_BY_1);
    set_timer1(6072);
    enable_interrupts(INT_TIMER1);
 }
@@ -76,28 +92,67 @@ void init_timer1() {
 void init_rda() {
    enable_interrupts(INT_RDA);
    enable_interrupts(GLOBAL);
+   set_tris_b(0b00000010); // RB0 como entrada
 }
 
-// ---------- Función enviar valor por UART ----------
-void enviar_valor(int16 valor) {
-   printf("Valor ADC: %d\r\n", valor);  // cambiar %lu por %d
+// ---------- Función para enviar los 3 botones ----------
+void enviar_botones() {
+    int b0 = input(BTN0);
+    int b1 = input(BTN1);
+    int b2 = input(BTN2);
+    printf("B0:%d B1:%d B2:%d\r\n", b0, b1, b2);
 }
 
-// ---------- Función enviar estado de un pin ----------
-void enviar_estado_pin() {
-   int estado = input(PIN_B0);           // leemos RB0
-   printf("Estado RB0: %d\r\n", estado); // cambiar %u por %d
+// ---------- Función para enviar estado de un botón específico ----------
+void enviar_boton(char boton) {
+    int estado = 0;
+    switch(boton) {
+        case '0': estado = input(BTN0); break;
+        case '1': estado = input(BTN1); break;
+        case '2': estado = input(BTN2); break;
+        default: estado = -1; break;
+    }
+    printf("B%c:%d\r\n", boton, estado);
 }
 
+
+// ---------- Función para procesar comando ----------
+void procesar_comando() {
+    // Comando S1 -> iniciar envío periódico de los 3 botones
+    if (Buffer[0] == 'S' && Buffer[1] == '1' && Buffer[2] == '\0') {
+        estado_actual = STATE_SEND_BUTTONS;
+        printf("Modo: envío de botones cada %u ms\r\n", muestreo_ms);
+    }
+    // Comando S0 -> detener envío
+    else if (Buffer[0] == 'S' && Buffer[1] == '0' && Buffer[2] == '\0') {
+        estado_actual = STATE_IDLE;
+        printf("Modo detenido\r\n");
+    }
+    // Comando MX -> enviar estado de botón X
+    else if (Buffer[0] == 'M' && Buffer[1] >= '0' && Buffer[1] <= '2' && Buffer[2] == '\0') {
+        enviar_boton(Buffer[1]);
+    }
+    // Comando CX -> configurar tiempo de muestreo
+    else if (Buffer[0] == 'C' && Buffer[1] >= '0' && Buffer[1] <= '2' && Buffer[2] == '\0') {
+        switch(Buffer[1]) {
+            case '0': muestreo_ms = 100; break;
+            case '1': muestreo_ms = 500; break;
+            case '2': muestreo_ms = 1000; break;
+        }
+        printf("Tiempo de muestreo configurado a %u ms\r\n", muestreo_ms);
+    }
+    else {
+        printf("Comando desconocido\r\n");
+    }
+}
 // ---------- Main ----------
 void main() {
-   set_tris_b(0x01); // RB0 como entrada
    init_rda();
    init_adc();
    init_timer1();
-
+   //init_gpio();//IMPORTANTE PARA RSA
    while(TRUE) {
-      // loop principal vacío
+      
    }
 }
 

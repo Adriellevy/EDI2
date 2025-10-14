@@ -1,0 +1,123 @@
+#include <eeprom.h>
+#fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO
+#use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)
+#include "i2c_Flex_LCD.c"
+
+#define LCD_ADDR 0x27
+#define BUTTON PIN_B0
+
+// --- Configuración EEPROM ---
+#define EEPROM_MAX 256        // EEPROM interna 256 bytes
+#define ENTRY_SIZE 2          // Cada tiempo ocupa 2 bytes
+#define MAX_RECORDS (EEPROM_MAX / ENTRY_SIZE)
+
+// --- Variables globales ---
+unsigned int16 run_time = 0;
+unsigned int8 record_index = 0;
+int1 last_button_state = 1;  // pull-up
+unsigned int16 stored_value;
+
+// --- Función para leer registros ---
+void show_all_records() {
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "Lectura EEPROM:");
+
+    delay_ms(1500);
+    lcd_clear();
+    for (int i = 0; i < MAX_RECORDS; i++) {
+        unsigned int16 val = make16(read_eeprom(i*2), read_eeprom(i*2+1));
+        if (val == 0xFFFF || val == 0x0000)
+            break;
+        lcd_clear();
+        lcd_gotoxy(1,1);
+        printf(lcd_putc, "Reg %u: %lu s", i+1, (unsigned long)val);
+        delay_ms(1500);
+    }
+}
+
+// --- Escribir nuevo valor ---
+void save_run_time(unsigned int16 seconds) {
+    unsigned int8 lowb = make8(seconds,0);
+    unsigned int8 highb = make8(seconds,1);
+
+    // Buscar siguiente espacio libre
+    for (int i = 0; i < MAX_RECORDS; i++) {
+        unsigned int16 val = make16(read_eeprom(i*2), read_eeprom(i*2+1));
+        if (val == 0xFFFF || val == 0x0000) {
+            write_eeprom(i*2, highb);
+            write_eeprom(i*2+1, lowb);
+            record_index = i + 1;
+            return;
+        }
+    }
+}
+
+// --- Calcular cuántos registros hay ---
+int get_record_count() {
+    int count = 0;
+    for (int i = 0; i < MAX_RECORDS; i++) {
+        unsigned int16 val = make16(read_eeprom(i*2), read_eeprom(i*2+1));
+        if (val == 0xFFFF || val == 0x0000)
+            break;
+        count++;
+    }
+    return count;
+}
+
+// --- Principal ---
+void main() {
+    set_tris_b(0b00000001); // RB0 como entrada (botón)
+    output_b(0b00000000);
+
+    lcd_init(LCD_ADDR << 1, 16, 2);
+    lcd_backlight_led(ON);
+    delay_ms(50);
+
+    // Mostrar registros guardados
+    show_all_records();
+
+    int total_records = get_record_count();
+    int remaining = MAX_RECORDS - total_records;
+
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "Reg:%u Libres:%u", total_records, remaining);
+    delay_ms(2000);
+
+    // Reset contador
+    run_time = 0;
+
+    while(TRUE) {
+        delay_ms(1000);
+        run_time++;
+
+        // Mostrar tiempo
+        lcd_clear();
+        lcd_gotoxy(1,1);
+        printf(lcd_putc, "Tiempo: %lu s", (unsigned long)run_time);
+        lcd_gotoxy(1,2);
+        printf(lcd_putc, "Guardar Btn RB0");
+
+        // Leer botón (pull-up)
+        int1 button_state = input(BUTTON);
+
+        if (!button_state && last_button_state) {
+            delay_ms(50); // debounce
+            if (!input(BUTTON)) {
+                save_run_time(run_time);
+                int saved = get_record_count();
+                remaining = MAX_RECORDS - saved;
+
+                lcd_clear();
+                lcd_gotoxy(1,1);
+                printf(lcd_putc, "Guardado #%u", saved);
+                lcd_gotoxy(1,2);
+                printf(lcd_putc, "Quedan:%u", remaining);
+                delay_ms(1500);
+            }
+        }
+        last_button_state = button_state;
+    }
+}
+

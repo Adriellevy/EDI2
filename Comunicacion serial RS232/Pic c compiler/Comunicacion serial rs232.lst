@@ -1,16 +1,16 @@
-CCS PCM C Compiler, Version 5.093, 4770               30-sep.-25 13:46
+CCS PCM C Compiler, Version 5.093, 4770               07-oct.-25 10:11
 
                Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial RS232\Pic c compiler\Comunicacion serial rs232.lst
 
-               ROM used:   399 words (10%)
+               ROM used:   835 words (20%)
                            Largest free fragment is 2048
-               RAM used:   15 (4%) at main() level
-                           39 (10%) worst case
-               Stack used: 1 locations (0 in main + 1 for interrupts)
+               RAM used:   23 (6%) at main() level
+                           46 (12%) worst case
+               Stack used: 2 locations (0 in main + 2 for interrupts)
                Stack size: 16
 
 0000:  MOVLP  00
-0001:  GOTO   16F
+0001:  GOTO   31F
 0002:  NOP
 *
 0004:  CLRF   03
@@ -46,44 +46,53 @@ CCS PCM C Compiler, Version 5.093, 4770               30-sep.-25 13:46
 0022:  BTFSS  00.0
 0023:  GOTO   026
 0024:  BTFSC  11.0
-0025:  GOTO   046
+0025:  GOTO   04D
 0026:  CLRF   05
 0027:  MOVLW  91
 0028:  MOVWF  04
-0029:  BTFSS  00.6
+0029:  BTFSS  00.5
 002A:  GOTO   02D
-002B:  BTFSC  11.6
-002C:  GOTO   048
-002D:  MOVF   20,W
-002E:  MOVWF  77
-002F:  MOVF   21,W
-0030:  MOVWF  78
-0031:  MOVF   22,W
-0032:  MOVWF  79
-0033:  MOVF   23,W
-0034:  MOVWF  7A
-0035:  MOVF   24,W
-0036:  MOVLB  03
-0037:  MOVWF  11
-0038:  MOVLB  00
-0039:  MOVF   25,W
-003A:  MOVLB  03
-003B:  MOVWF  12
-003C:  MOVLB  00
-003D:  MOVF   26,W
-003E:  MOVLB  03
-003F:  MOVWF  13
-0040:  MOVLB  00
-0041:  MOVF   27,W
-0042:  MOVLB  03
-0043:  MOVWF  14
-0044:  RETFIE
-0045:  MOVLB  00
-0046:  MOVLP  00
-0047:  GOTO   12F
-0048:  MOVLP  00
-0049:  GOTO   04A
-.................... #include <Comunicacion serial rs232.h>
+002B:  BTFSC  11.5
+002C:  GOTO   04F
+002D:  CLRF   05
+002E:  MOVLW  91
+002F:  MOVWF  04
+0030:  BTFSS  00.6
+0031:  GOTO   034
+0032:  BTFSC  11.6
+0033:  GOTO   051
+0034:  MOVF   20,W
+0035:  MOVWF  77
+0036:  MOVF   21,W
+0037:  MOVWF  78
+0038:  MOVF   22,W
+0039:  MOVWF  79
+003A:  MOVF   23,W
+003B:  MOVWF  7A
+003C:  MOVF   24,W
+003D:  MOVLB  03
+003E:  MOVWF  11
+003F:  MOVLB  00
+0040:  MOVF   25,W
+0041:  MOVLB  03
+0042:  MOVWF  12
+0043:  MOVLB  00
+0044:  MOVF   26,W
+0045:  MOVLB  03
+0046:  MOVWF  13
+0047:  MOVLB  00
+0048:  MOVF   27,W
+0049:  MOVLB  03
+004A:  MOVWF  14
+004B:  RETFIE
+004C:  MOVLB  00
+004D:  MOVLP  00
+004E:  GOTO   1C6
+004F:  MOVLP  00
+0050:  GOTO   0A3
+0051:  MOVLP  00
+0052:  GOTO   149
+.................... #include <Comunicacion serial rs232.h>  // corregido, sin espacios
 .................... #include <16F1827.h>
 .................... //////////// Standard Header file for the PIC16F1827 device ////////////////
 .................... ///////////////////////////////////////////////////////////////////////////
@@ -96,198 +105,480 @@ CCS PCM C Compiler, Version 5.093, 4770               30-sep.-25 13:46
 .................... //// form are not restricted in any way.                               ////
 .................... ///////////////////////////////////////////////////////////////////////////
 .................... #device PIC16F1827
-*
-0065:  MOVF   0B,W
-0066:  BCF    0B.7
-0067:  MOVLB  03
-0068:  BSF    15.7
-0069:  BSF    15.0
-006A:  NOP
-006B:  NOP
-006C:  BTFSC  09.7
-006D:  BSF    0B.7
-006E:  BTFSC  03.0
-006F:  GOTO   099
-0070:  MOVF   13,W
-0071:  ANDLW  7F
-0072:  MOVLB  00
-0073:  MOVWF  2E
-0074:  MOVLB  03
-0075:  MOVF   11,W
-0076:  MOVLB  00
-0077:  MOVWF  2F
-0078:  MOVLB  03
-0079:  MOVF   12,W
-007A:  MOVLB  00
-007B:  MOVWF  30
-007C:  MOVF   2E,W
-007D:  BTFSS  11.4
-007E:  GOTO   07D
-007F:  MOVLB  03
-0080:  MOVWF  1A
-0081:  MOVLB  00
-0082:  MOVF   2F,W
-0083:  MOVLB  03
-0084:  MOVWF  11
-0085:  MOVLB  00
-0086:  MOVF   30,W
-0087:  MOVLB  03
-0088:  MOVWF  12
-0089:  MOVF   0B,W
-008A:  BCF    0B.7
-008B:  BSF    15.7
-008C:  BSF    15.0
-008D:  NOP
-008E:  NOP
-008F:  BTFSC  09.7
-0090:  BSF    0B.7
-0091:  MOVLB  00
-0092:  DECFSZ 2D,F
-0093:  GOTO   095
-0094:  GOTO   097
+0053:  MOVF   0B,W
+0054:  BCF    0B.7
+0055:  MOVLB  03
+0056:  BSF    15.7
+0057:  BSF    15.0
+0058:  NOP
+0059:  NOP
+005A:  BTFSC  09.7
+005B:  BSF    0B.7
+005C:  MOVF   13,W
+005D:  ANDLW  7F
+005E:  BTFSC  03.2
+005F:  GOTO   0A1
+0060:  MOVLB  00
+0061:  MOVWF  34
+0062:  MOVLB  03
+0063:  MOVF   11,W
+0064:  MOVLB  00
+0065:  MOVWF  35
+0066:  MOVLB  03
+0067:  MOVF   12,W
+0068:  MOVLB  00
+0069:  MOVWF  36
+006A:  MOVF   34,W
+006B:  BTFSS  11.4
+006C:  GOTO   06B
+006D:  MOVLB  03
+006E:  MOVWF  1A
+006F:  MOVLB  00
+0070:  MOVF   35,W
+0071:  MOVLB  03
+0072:  MOVWF  11
+0073:  MOVLB  00
+0074:  MOVF   36,W
+0075:  MOVLB  03
+0076:  MOVWF  12
+0077:  MOVF   0B,W
+0078:  BCF    0B.7
+0079:  BSF    15.7
+007A:  BSF    15.0
+007B:  NOP
+007C:  NOP
+007D:  BTFSC  09.7
+007E:  BSF    0B.7
+007F:  RLF    13,W
+0080:  RLF    14,W
+0081:  ANDLW  7F
+0082:  BTFSC  03.2
+0083:  GOTO   0A1
+0084:  MOVLB  00
+0085:  MOVWF  34
+0086:  MOVLB  03
+0087:  MOVF   11,W
+0088:  MOVLB  00
+0089:  MOVWF  35
+008A:  MOVLB  03
+008B:  MOVF   12,W
+008C:  MOVLB  00
+008D:  MOVWF  36
+008E:  MOVF   34,W
+008F:  BTFSS  11.4
+0090:  GOTO   08F
+0091:  MOVLB  03
+0092:  MOVWF  1A
+0093:  MOVLB  00
+0094:  MOVF   35,W
 0095:  MOVLB  03
-0096:  GOTO   099
-0097:  GOTO   0BA
-0098:  MOVLB  03
-0099:  RLF    13,W
-009A:  RLF    14,W
-009B:  ANDLW  7F
-009C:  MOVLB  00
-009D:  MOVWF  2E
-009E:  MOVLB  03
-009F:  MOVF   11,W
-00A0:  MOVLB  00
-00A1:  MOVWF  2F
-00A2:  MOVLB  03
-00A3:  MOVF   12,W
-00A4:  MOVLB  00
-00A5:  MOVWF  30
-00A6:  MOVF   2E,W
-00A7:  BTFSS  11.4
-00A8:  GOTO   0A7
-00A9:  MOVLB  03
-00AA:  MOVWF  1A
-00AB:  MOVLB  00
-00AC:  MOVF   2F,W
-00AD:  MOVLB  03
-00AE:  MOVWF  11
-00AF:  MOVLB  00
-00B0:  MOVF   30,W
-00B1:  MOVLB  03
-00B2:  MOVWF  12
-00B3:  INCF   11,F
-00B4:  BTFSC  03.2
-00B5:  INCF   12,F
-00B6:  BCF    03.0
-00B7:  MOVLB  00
-00B8:  DECFSZ 2D,F
-00B9:  GOTO   065
+0096:  MOVWF  11
+0097:  MOVLB  00
+0098:  MOVF   36,W
+0099:  MOVLB  03
+009A:  MOVWF  12
+009B:  INCF   11,F
+009C:  BTFSC  03.2
+009D:  INCF   12,F
+009E:  MOVLB  00
+009F:  GOTO   053
+00A0:  MOVLB  03
+00A1:  MOVLB  00
+00A2:  RETURN
 *
-00C0:  MOVF   05,W
-00C1:  MOVWF  37
-00C2:  MOVF   04,W
-00C3:  MOVWF  36
-00C4:  SWAPF  2E,W
-00C5:  IORLW  F0
-00C6:  MOVWF  32
-00C7:  ADDWF  32,F
-00C8:  ADDLW  E2
-00C9:  MOVWF  33
-00CA:  ADDLW  32
-00CB:  MOVWF  35
-00CC:  MOVF   2E,W
-00CD:  ANDLW  0F
-00CE:  ADDWF  33,F
-00CF:  ADDWF  33,F
-00D0:  ADDWF  35,F
-00D1:  ADDLW  E9
-00D2:  MOVWF  34
-00D3:  ADDWF  34,F
-00D4:  ADDWF  34,F
-00D5:  SWAPF  2D,W
-00D6:  ANDLW  0F
-00D7:  ADDWF  34,F
-00D8:  ADDWF  35,F
-00D9:  RLF    34,F
-00DA:  RLF    35,F
-00DB:  COMF   35,F
-00DC:  RLF    35,F
-00DD:  MOVF   2D,W
-00DE:  ANDLW  0F
-00DF:  ADDWF  35,F
-00E0:  RLF    32,F
-00E1:  MOVLW  07
-00E2:  MOVWF  31
-00E3:  MOVLW  0A
-00E4:  ADDWF  35,F
-00E5:  DECF   34,F
-00E6:  BTFSS  03.0
-00E7:  GOTO   0E4
-00E8:  ADDWF  34,F
-00E9:  DECF   33,F
-00EA:  BTFSS  03.0
-00EB:  GOTO   0E8
-00EC:  ADDWF  33,F
-00ED:  DECF   32,F
-00EE:  BTFSS  03.0
-00EF:  GOTO   0EC
-00F0:  ADDWF  32,F
-00F1:  DECF   31,F
-00F2:  BTFSS  03.0
-00F3:  GOTO   0F0
-00F4:  MOVLW  20
-00F5:  MOVWF  05
-00F6:  MOVLW  11
-00F7:  MOVWF  04
-00F8:  MOVLW  07
-00F9:  ANDWF  36,W
-00FA:  BCF    36.6
-00FB:  ADDWF  04,F
-00FC:  MOVLW  00
-00FD:  ADDWFC 05,F
-00FE:  MOVF   04,W
-00FF:  SUBLW  15
-0100:  BTFSS  03.2
-0101:  GOTO   106
-0102:  MOVF   05,W
-0103:  SUBLW  20
-0104:  BTFSC  03.2
-0105:  BSF    36.6
-0106:  MOVF   00,W
-0107:  MOVWF  77
-0108:  BTFSS  03.2
-0109:  GOTO   112
-010A:  BTFSC  36.6
-010B:  GOTO   112
-010C:  BTFSC  36.4
-010D:  GOTO   11C
-010E:  BTFSC  36.3
-010F:  GOTO   112
-0110:  MOVLW  20
-0111:  GOTO   115
-0112:  BSF    36.3
-0113:  BCF    36.4
-0114:  MOVLW  30
-0115:  ADDWF  77,F
-0116:  MOVF   77,W
-0117:  BTFSS  11.4
-0118:  GOTO   117
-0119:  MOVLB  03
-011A:  MOVWF  1A
-011B:  MOVLB  00
-011C:  ADDFSR 01,FSR0
-011D:  BTFSS  36.6
-011E:  GOTO   0FE
+0101:  DATA CD,37
+0102:  DATA E4,37
+0103:  DATA 3A,10
+0104:  DATA 45,37
+0105:  DATA F6,34
+0106:  DATA 61,37
+0107:  DATA E4,37
+0108:  DATA 20,3B
+0109:  DATA 61,36
+010A:  DATA 6F,39
+010B:  DATA 20,32
+010C:  DATA 65,36
+010D:  DATA A0,20
+010E:  DATA C4,21
+010F:  DATA 20,38
+0110:  DATA 65,39
+0111:  DATA E9,37
+0112:  DATA E4,34
+0113:  DATA E3,30
+0114:  DATA ED,32
+0115:  DATA 6E,3A
+0116:  DATA E5,06
+0117:  DATA 0A,00
+0118:  DATA CD,37
+0119:  DATA E4,37
+011A:  DATA 3A,10
+011B:  DATA 45,37
+011C:  DATA F6,34
+011D:  DATA 61,37
+011E:  DATA E4,37
+011F:  DATA A0,32
+0120:  DATA 73,3A
+0121:  DATA 61,32
+0122:  DATA 6F,10
+0123:  DATA E4,32
+0124:  DATA 6C,10
+0125:  DATA F0,34
+0126:  DATA 6E,10
+0127:  DATA D2,20
+0128:  DATA 37,10
+0129:  DATA F0,32
+012A:  DATA F2,34
+012B:  DATA 6F,32
+012C:  DATA E9,31
+012D:  DATA E1,36
+012E:  DATA 65,37
+012F:  DATA F4,32
+0130:  DATA 0D,05
+0131:  DATA 00,01
+0132:  DATA C3,37
+0133:  DATA ED,30
+0134:  DATA 6E,32
+0135:  DATA 6F,10
+0136:  DATA E4,32
+0137:  DATA F3,31
+0138:  DATA 6F,37
+0139:  DATA EF,31
+013A:  DATA 69,32
+013B:  DATA 6F,17
+013C:  DATA 20,2B
+013D:  DATA 6F,36
+013E:  DATA F6,34
+013F:  DATA 65,37
+0140:  DATA E4,37
+0141:  DATA A0,30
+0142:  DATA A0,36
+0143:  DATA 6F,32
+0144:  DATA 6F,10
+0145:  DATA 49,22
+0146:  DATA CC,22
+0147:  DATA 0D,05
+0148:  DATA 00,00
 *
-0141:  DATA D6,30
-0142:  DATA EC,37
-0143:  DATA 72,10
-0144:  DATA 41,22
-0145:  DATA 43,1D
-0146:  DATA A0,12
-0147:  DATA EC,3A
-0148:  DATA 0D,05
-0149:  DATA 00,00
+015B:  MOVF   0B,W
+015C:  BCF    0B.7
+015D:  MOVLB  03
+015E:  BSF    15.7
+015F:  BSF    15.0
+0160:  NOP
+0161:  NOP
+0162:  BTFSC  09.7
+0163:  BSF    0B.7
+0164:  BTFSC  03.0
+0165:  GOTO   18F
+0166:  MOVF   13,W
+0167:  ANDLW  7F
+0168:  MOVLB  00
+0169:  MOVWF  37
+016A:  MOVLB  03
+016B:  MOVF   11,W
+016C:  MOVLB  00
+016D:  MOVWF  38
+016E:  MOVLB  03
+016F:  MOVF   12,W
+0170:  MOVLB  00
+0171:  MOVWF  39
+0172:  MOVF   37,W
+0173:  BTFSS  11.4
+0174:  GOTO   173
+0175:  MOVLB  03
+0176:  MOVWF  1A
+0177:  MOVLB  00
+0178:  MOVF   38,W
+0179:  MOVLB  03
+017A:  MOVWF  11
+017B:  MOVLB  00
+017C:  MOVF   39,W
+017D:  MOVLB  03
+017E:  MOVWF  12
+017F:  MOVF   0B,W
+0180:  BCF    0B.7
+0181:  BSF    15.7
+0182:  BSF    15.0
+0183:  NOP
+0184:  NOP
+0185:  BTFSC  09.7
+0186:  BSF    0B.7
+0187:  MOVLB  00
+0188:  DECFSZ 35,F
+0189:  GOTO   18B
+018A:  GOTO   18D
+018B:  MOVLB  03
+018C:  GOTO   18F
+018D:  GOTO   1B0
+018E:  MOVLB  03
+018F:  RLF    13,W
+0190:  RLF    14,W
+0191:  ANDLW  7F
+0192:  MOVLB  00
+0193:  MOVWF  37
+0194:  MOVLB  03
+0195:  MOVF   11,W
+0196:  MOVLB  00
+0197:  MOVWF  38
+0198:  MOVLB  03
+0199:  MOVF   12,W
+019A:  MOVLB  00
+019B:  MOVWF  39
+019C:  MOVF   37,W
+019D:  BTFSS  11.4
+019E:  GOTO   19D
+019F:  MOVLB  03
+01A0:  MOVWF  1A
+01A1:  MOVLB  00
+01A2:  MOVF   38,W
+01A3:  MOVLB  03
+01A4:  MOVWF  11
+01A5:  MOVLB  00
+01A6:  MOVF   39,W
+01A7:  MOVLB  03
+01A8:  MOVWF  12
+01A9:  INCF   11,F
+01AA:  BTFSC  03.2
+01AB:  INCF   12,F
+01AC:  BCF    03.0
+01AD:  MOVLB  00
+01AE:  DECFSZ 35,F
+01AF:  GOTO   15B
+01B0:  RETURN
+01B1:  MOVF   3D,W
+01B2:  CLRF   78
+01B3:  SUBWF  3C,W
+01B4:  BTFSC  03.0
+01B5:  GOTO   1B9
+01B6:  MOVF   3C,W
+01B7:  MOVWF  77
+01B8:  GOTO   1C5
+01B9:  CLRF   77
+01BA:  MOVLW  08
+01BB:  MOVWF  3E
+01BC:  RLF    3C,F
+01BD:  RLF    77,F
+01BE:  MOVF   3D,W
+01BF:  SUBWF  77,W
+01C0:  BTFSC  03.0
+01C1:  MOVWF  77
+01C2:  RLF    78,F
+01C3:  DECFSZ 3E,F
+01C4:  GOTO   1BC
+01C5:  RETURN
+*
+01EA:  MOVF   05,W
+01EB:  MOVWF  3E
+01EC:  MOVF   04,W
+01ED:  MOVWF  3D
+01EE:  SWAPF  36,W
+01EF:  IORLW  F0
+01F0:  MOVWF  39
+01F1:  ADDWF  39,F
+01F2:  ADDLW  E2
+01F3:  MOVWF  3A
+01F4:  ADDLW  32
+01F5:  MOVWF  3C
+01F6:  MOVF   36,W
+01F7:  ANDLW  0F
+01F8:  ADDWF  3A,F
+01F9:  ADDWF  3A,F
+01FA:  ADDWF  3C,F
+01FB:  ADDLW  E9
+01FC:  MOVWF  3B
+01FD:  ADDWF  3B,F
+01FE:  ADDWF  3B,F
+01FF:  SWAPF  35,W
+0200:  ANDLW  0F
+0201:  ADDWF  3B,F
+0202:  ADDWF  3C,F
+0203:  RLF    3B,F
+0204:  RLF    3C,F
+0205:  COMF   3C,F
+0206:  RLF    3C,F
+0207:  MOVF   35,W
+0208:  ANDLW  0F
+0209:  ADDWF  3C,F
+020A:  RLF    39,F
+020B:  MOVLW  07
+020C:  MOVWF  38
+020D:  MOVLW  0A
+020E:  ADDWF  3C,F
+020F:  DECF   3B,F
+0210:  BTFSS  03.0
+0211:  GOTO   20E
+0212:  ADDWF  3B,F
+0213:  DECF   3A,F
+0214:  BTFSS  03.0
+0215:  GOTO   212
+0216:  ADDWF  3A,F
+0217:  DECF   39,F
+0218:  BTFSS  03.0
+0219:  GOTO   216
+021A:  ADDWF  39,F
+021B:  DECF   38,F
+021C:  BTFSS  03.0
+021D:  GOTO   21A
+021E:  MOVLW  20
+021F:  MOVWF  05
+0220:  MOVLW  18
+0221:  MOVWF  04
+0222:  MOVLW  07
+0223:  ANDWF  3D,W
+0224:  BCF    3D.6
+0225:  ADDWF  04,F
+0226:  MOVLW  00
+0227:  ADDWFC 05,F
+0228:  MOVF   04,W
+0229:  SUBLW  1C
+022A:  BTFSS  03.2
+022B:  GOTO   230
+022C:  MOVF   05,W
+022D:  SUBLW  20
+022E:  BTFSC  03.2
+022F:  BSF    3D.6
+0230:  MOVF   00,W
+0231:  MOVWF  77
+0232:  BTFSS  03.2
+0233:  GOTO   23C
+0234:  BTFSC  3D.6
+0235:  GOTO   23C
+0236:  BTFSC  3D.4
+0237:  GOTO   246
+0238:  BTFSC  3D.3
+0239:  GOTO   23C
+023A:  MOVLW  20
+023B:  GOTO   23F
+023C:  BSF    3D.3
+023D:  BCF    3D.4
+023E:  MOVLW  30
+023F:  ADDWF  77,F
+0240:  MOVF   77,W
+0241:  BTFSS  11.4
+0242:  GOTO   241
+0243:  MOVLB  03
+0244:  MOVWF  1A
+0245:  MOVLB  00
+0246:  ADDFSR 01,FSR0
+0247:  BTFSS  3D.6
+0248:  GOTO   228
+*
+026E:  MOVLW  20
+026F:  BTFSS  35.4
+0270:  MOVLW  30
+0271:  MOVWF  38
+0272:  MOVF   34,W
+0273:  MOVWF  77
+0274:  BTFSS  34.7
+0275:  GOTO   27E
+0276:  COMF   77,F
+0277:  INCF   77,F
+0278:  MOVF   77,W
+0279:  MOVWF  34
+027A:  MOVLW  2D
+027B:  MOVWF  38
+027C:  BSF    35.7
+027D:  BSF    35.0
+027E:  MOVF   34,W
+027F:  MOVWF  3C
+0280:  MOVLW  64
+0281:  MOVWF  3D
+0282:  CALL   1B1
+0283:  MOVF   77,W
+0284:  MOVWF  34
+0285:  MOVLW  30
+0286:  ADDWF  78,W
+0287:  MOVWF  39
+0288:  MOVF   34,W
+0289:  MOVWF  3C
+028A:  MOVLW  0A
+028B:  MOVWF  3D
+028C:  CALL   1B1
+028D:  MOVLW  30
+028E:  ADDWF  77,W
+028F:  MOVWF  3B
+0290:  MOVLW  30
+0291:  ADDWF  78,W
+0292:  MOVWF  3A
+0293:  MOVF   38,W
+0294:  MOVWF  77
+0295:  MOVLW  30
+0296:  SUBWF  39,W
+0297:  BTFSC  03.2
+0298:  GOTO   29D
+0299:  BSF    35.1
+029A:  BTFSC  35.7
+029B:  BSF    35.2
+029C:  GOTO   2B1
+029D:  MOVF   38,W
+029E:  MOVWF  39
+029F:  MOVLW  20
+02A0:  MOVWF  38
+02A1:  MOVLW  30
+02A2:  SUBWF  3A,W
+02A3:  BTFSC  03.2
+02A4:  GOTO   2A9
+02A5:  BSF    35.0
+02A6:  BTFSC  35.7
+02A7:  BSF    35.1
+02A8:  GOTO   2B1
+02A9:  BTFSS  03.2
+02AA:  BSF    35.0
+02AB:  BTFSS  03.2
+02AC:  GOTO   2B1
+02AD:  MOVF   39,W
+02AE:  MOVWF  3A
+02AF:  MOVLW  20
+02B0:  MOVWF  39
+02B1:  BTFSC  35.2
+02B2:  GOTO   2B8
+02B3:  BTFSC  35.1
+02B4:  GOTO   2BE
+02B5:  BTFSC  35.0
+02B6:  GOTO   2C4
+02B7:  GOTO   2CA
+02B8:  MOVF   38,W
+02B9:  BTFSS  11.4
+02BA:  GOTO   2B9
+02BB:  MOVLB  03
+02BC:  MOVWF  1A
+02BD:  MOVLB  00
+02BE:  MOVF   39,W
+02BF:  BTFSS  11.4
+02C0:  GOTO   2BF
+02C1:  MOVLB  03
+02C2:  MOVWF  1A
+02C3:  MOVLB  00
+02C4:  MOVF   3A,W
+02C5:  BTFSS  11.4
+02C6:  GOTO   2C5
+02C7:  MOVLB  03
+02C8:  MOVWF  1A
+02C9:  MOVLB  00
+02CA:  MOVF   3B,W
+02CB:  BTFSS  11.4
+02CC:  GOTO   2CB
+02CD:  MOVLB  03
+02CE:  MOVWF  1A
+*
+02DF:  DATA D6,30
+02E0:  DATA EC,37
+02E1:  DATA 72,10
+02E2:  DATA 41,22
+02E3:  DATA 43,1D
+02E4:  DATA A0,12
+02E5:  DATA EC,3A
+02E6:  DATA 0D,05
+02E7:  DATA 00,00
+02E8:  DATA C5,39
+02E9:  DATA F4,30
+02EA:  DATA E4,37
+02EB:  DATA 20,29
+02EC:  DATA C1,1B
+02ED:  DATA 3A,10
+02EE:  DATA 25,32
+02EF:  DATA 0D,05
+02F0:  DATA 80,1E
 .................... 
 .................... #list
 .................... 
@@ -295,210 +586,433 @@ CCS PCM C Compiler, Version 5.093, 4770               30-sep.-25 13:46
 .................... #use delay(internal=4MHz)
 .................... 
 .................... 
-.................... #use RS232(BAUD=9600, BITS=8, PARITY=N, XMIT=PIN_B5, RCV=PIN_B2)
+.................... #use RS232(BAUD=9600, BITS=8, PARITY=N, XMIT=PIN_B5, RCV=PIN_B1)
+.................... #define MAX_BUFFER 3
 .................... 
-.................... int16 valor_adc = 0;   // variable global para guardar el valor del ADC
-.................... int contador_timer=0;
+.................... // ---------- Definición de estados ----------
+.................... typedef enum {
+....................    STATE_IDLE = 0,
+....................    STATE_ADC_PERIODIC,
+....................    STATE_PIN_PERIODIC
+.................... } Estado;
+.................... 
+.................... Estado estado_actual = STATE_ADC_PERIODIC;
+.................... 
+.................... // ---------- Variables globales ----------
+.................... int16 valor_adc = 0;      // valor del potenciómetro
+.................... int contador_timer = 0;   // para Timer1
+.................... char dato_rx = 0;         // último byte recibido
+.................... char Buffer[MAX_BUFFER];          // buffer para comando recibido
+.................... int idx_comando = 0;
+.................... 
 .................... //----------- prototipos -----------------
 .................... void enviar_valor(int16 valor);
+.................... void enviar_estado_pin();
 .................... void init_adc();
 .................... void init_timer1();
+.................... void procesar_comando();
+.................... 
+.................... // ---------- ISR RDA ----------
+.................... #INT_RDA
+.................... void RDA_isr(void) {
+*
+00A3:  BTFSS  11.5
+00A4:  GOTO   0A3
+00A5:  MOVLB  03
+00A6:  MOVF   19,W
+00A7:  MOVLB  00
+00A8:  MOVWF  33
+....................    char c = fgetc();   // leer el carácter del stream SERIAL
+.................... 
+....................    // Si se presiona Enter (CR o LF)
+....................    if (c == '\r' || c == '\n') {
+00A9:  MOVF   33,W
+00AA:  SUBLW  0D
+00AB:  BTFSC  03.2
+00AC:  GOTO   0B1
+00AD:  MOVF   33,W
+00AE:  SUBLW  0A
+00AF:  BTFSS  03.2
+00B0:  GOTO   0F0
+....................       if (idx_comando > 0) {               // sólo si hay algo escrito
+00B1:  MOVF   30,F
+00B2:  BTFSC  03.2
+00B3:  GOTO   0EF
+....................          Buffer[idx_comando] = '\0';       // cierra la cadena con null terminador
+00B4:  MOVLW  0D
+00B5:  ADDWF  30,W
+00B6:  MOVWF  04
+00B7:  MOVLW  20
+00B8:  MOVWF  05
+00B9:  BTFSC  03.0
+00BA:  INCF   05,F
+00BB:  CLRF   00
+....................          idx_comando = 0;                  // resetea el índice para la próxima entrada
+00BC:  CLRF   30
+....................          procesar_comando();
+....................       }
+....................    }
+*
+00EF:  GOTO   0FE
+....................    else {
+....................       // Evita desbordamiento del buffer
+....................       if (idx_comando < (MAX_BUFFER - 1)) {
+00F0:  MOVF   30,W
+00F1:  SUBLW  01
+00F2:  BTFSS  03.0
+00F3:  GOTO   0FE
+....................          Buffer[idx_comando++] = c;        // guarda carácter
+00F4:  MOVF   30,W
+00F5:  INCF   30,F
+00F6:  ADDLW  0D
+00F7:  MOVWF  04
+00F8:  MOVLW  20
+00F9:  MOVWF  05
+00FA:  BTFSC  03.0
+00FB:  INCF   05,F
+00FC:  MOVF   33,W
+00FD:  MOVWF  00
+....................       }
+....................    }
+00FE:  BCF    11.5
+00FF:  MOVLP  00
+0100:  GOTO   034
+.................... }
+.................... 
+.................... // ---------- Función para procesar comando ----------
+.................... void procesar_comando() {
+....................    if (Buffer[0] == 's' && Buffer[1] == '0' && Buffer[2] == '\0') {
+*
+00BD:  MOVF   2D,W
+00BE:  SUBLW  73
+00BF:  BTFSS  03.2
+00C0:  GOTO   0D2
+00C1:  MOVF   2E,W
+00C2:  SUBLW  30
+00C3:  BTFSS  03.2
+00C4:  GOTO   0D2
+00C5:  MOVF   2F,F
+00C6:  BTFSS  03.2
+00C7:  GOTO   0D2
+....................         estado_actual = STATE_ADC_PERIODIC;
+00C8:  MOVLW  01
+00C9:  MOVWF  28
+....................         printf("Modo: Enviando valor del ADC periodicamente\r\n");
+00CA:  MOVLW  01
+00CB:  MOVLB  03
+00CC:  MOVWF  11
+00CD:  MOVLW  01
+00CE:  MOVWF  12
+00CF:  MOVLB  00
+00D0:  CALL   053
+....................     }
+00D1:  GOTO   0EF
+....................     else if (Buffer[0] == 's' && Buffer[1] == '1' && Buffer[2] == '\0') {
+00D2:  MOVF   2D,W
+00D3:  SUBLW  73
+00D4:  BTFSS  03.2
+00D5:  GOTO   0E7
+00D6:  MOVF   2E,W
+00D7:  SUBLW  31
+00D8:  BTFSS  03.2
+00D9:  GOTO   0E7
+00DA:  MOVF   2F,F
+00DB:  BTFSS  03.2
+00DC:  GOTO   0E7
+....................         estado_actual = STATE_PIN_PERIODIC;
+00DD:  MOVLW  02
+00DE:  MOVWF  28
+....................         printf("Modo: Enviando estado del pin RA7 periodicamente\r\n");
+00DF:  MOVLW  18
+00E0:  MOVLB  03
+00E1:  MOVWF  11
+00E2:  MOVLW  01
+00E3:  MOVWF  12
+00E4:  MOVLB  00
+00E5:  CALL   053
+....................     }
+00E6:  GOTO   0EF
+....................     else {
+....................         estado_actual = STATE_IDLE;
+00E7:  CLRF   28
+....................         printf("Comando desconocido. Volviendo a modo IDLE\r\n");
+00E8:  MOVLW  32
+00E9:  MOVLB  03
+00EA:  MOVWF  11
+00EB:  MOVLW  01
+00EC:  MOVWF  12
+00ED:  MOVLB  00
+00EE:  CALL   053
+....................     }
+.................... }
 .................... 
 .................... // ---------- ISR ADC ----------
 .................... #INT_AD
 .................... void ADC_isr(void) {
-....................    valor_adc = read_adc(ADC_READ_ONLY);   // leer resultado de 10 bits
+....................    valor_adc = read_adc(ADC_READ_ONLY);   // leer ADC
 *
-004A:  MOVLW  11
-004B:  MOVWF  77
-004C:  MOVLB  01
-004D:  BTFSS  1D.1
-004E:  GOTO   051
-004F:  DECFSZ 77,F
-0050:  GOTO   04D
-0051:  MOVF   1B,W
-0052:  MOVWF  78
-0053:  MOVF   1C,W
-0054:  MOVLB  00
-0055:  MOVWF  29
-0056:  MOVF   78,W
-0057:  MOVWF  28
-....................    enviar_valor(valor_adc);               // mandar el valor al terminal
-0058:  MOVF   29,W
-0059:  MOVWF  2C
-005A:  MOVF   28,W
-005B:  MOVWF  2B
-....................    clear_interrupt(INT_AD);               // limpiar flag de interrupción
-*
-012A:  MOVLB  00
-012B:  BCF    11.6
+0149:  MOVLW  11
+014A:  MOVWF  77
+014B:  MOVLB  01
+014C:  BTFSS  1D.1
+014D:  GOTO   150
+014E:  DECFSZ 77,F
+014F:  GOTO   14C
+0150:  MOVF   1B,W
+0151:  MOVWF  78
+0152:  MOVF   1C,W
+0153:  MOVLB  00
+0154:  MOVWF  2A
+0155:  MOVF   78,W
+0156:  MOVWF  29
+....................    clear_interrupt(INT_AD);
+0157:  BCF    11.6
 .................... }
 .................... 
 .................... // ---------- ISR Timer1 ----------
-012C:  BCF    11.6
-012D:  MOVLP  00
-012E:  GOTO   02D
+0158:  BCF    11.6
+0159:  MOVLP  00
+015A:  GOTO   034
 .................... #INT_TIMER1
 .................... void timer1_isr(void) {
-....................    clear_interrupt(INT_TIMER1);           // limpiar flag de Timer1
-012F:  BCF    11.0
-....................    set_timer1(6072);
-0130:  CLRF   16
-0131:  MOVLW  17
-0132:  MOVWF  17
-0133:  MOVLW  B8
-0134:  MOVWF  16
+....................    set_timer1(6072);                       // recargar Timer1 para 1s aprox
+*
+01C6:  CLRF   16
+01C7:  MOVLW  17
+01C8:  MOVWF  17
+01C9:  MOVLW  B8
+01CA:  MOVWF  16
 ....................    contador_timer++;
-0135:  INCF   2A,F
-....................    if(contador_timer>2){
-0136:  MOVF   2A,W
-0137:  SUBLW  02
-0138:  BTFSC  03.0
-0139:  GOTO   13E
-....................       contador_timer=0;
-013A:  CLRF   2A
-....................       read_adc(ADC_START_ONLY);              // iniciar nueva conversión ADC
-013B:  MOVLB  01
-013C:  BSF    1D.1
-013D:  MOVLB  00
+01CB:  INCF   2B,F
+....................    if(contador_timer > 2) {               // cada 1s
+01CC:  MOVF   2B,W
+01CD:  SUBLW  02
+01CE:  BTFSC  03.0
+01CF:  GOTO   2DC
+....................       contador_timer = 0;
+01D0:  CLRF   2B
+....................       read_adc(ADC_START_ONLY);           // iniciar nueva conversión ADC
+01D1:  MOVLB  01
+01D2:  BSF    1D.1
+....................       // según el estado, enviar información
+....................       if (estado_actual == STATE_ADC_PERIODIC) {
+01D3:  MOVLB  00
+01D4:  DECFSZ 28,W
+01D5:  GOTO   256
+....................          enviar_valor(valor_adc);
+01D6:  MOVF   2A,W
+01D7:  MOVWF  34
+01D8:  MOVF   29,W
+01D9:  MOVWF  33
+....................       } else if (estado_actual == STATE_PIN_PERIODIC) {
+*
+0254:  GOTO   2DB
+0255:  MOVLB  00
+0256:  MOVF   28,W
+0257:  SUBLW  02
+0258:  BTFSS  03.2
+0259:  GOTO   2DC
+....................          enviar_estado_pin();
+....................       }
 ....................    }
-013E:  BCF    11.0
-013F:  MOVLP  00
-0140:  GOTO   02D
+*
+02DC:  BCF    11.0
+02DD:  MOVLP  00
+02DE:  GOTO   034
 .................... }
 .................... 
 .................... // ---------- Inicialización ADC ----------
 .................... void init_adc() {
-....................    setup_adc(ADC_CLOCK_INTERNAL);   // reloj interno para el ADC
+....................    setup_adc(ADC_CLOCK_INTERNAL);
 *
-014A:  MOVLB  01
-014B:  BSF    1E.4
-014C:  BSF    1E.5
-014D:  BCF    1E.6
-014E:  BSF    1E.7
-014F:  BSF    1D.0
-....................    setup_adc_ports(sAN0);           // habilitar AN0 como entrada analógica
-0150:  BCF    1E.0
-0151:  BCF    1E.1
-0152:  BCF    1E.2
-0153:  MOVLW  01
-0154:  MOVLB  03
-0155:  MOVWF  0C
-0156:  MOVLW  00
-0157:  MOVWF  0D
-....................    set_adc_channel(0);              // canal 0
-0158:  MOVWF  78
-0159:  MOVLB  01
-015A:  MOVF   1D,W
-015B:  ANDLW  83
-015C:  IORWF  78,W
-015D:  MOVWF  1D
-....................    enable_interrupts(INT_AD);       // habilitar interrupción ADC
-015E:  BSF    11.6
-015F:  MOVLP  00
-0160:  MOVLB  00
-0161:  GOTO   18D (RETURN)
+02FA:  MOVLB  01
+02FB:  BSF    1E.4
+02FC:  BSF    1E.5
+02FD:  BCF    1E.6
+02FE:  BSF    1E.7
+02FF:  BSF    1D.0
+....................    setup_adc_ports(sAN0);
+0300:  BCF    1E.0
+0301:  BCF    1E.1
+0302:  BCF    1E.2
+0303:  MOVLW  01
+0304:  MOVLB  03
+0305:  MOVWF  0C
+0306:  MOVLW  00
+0307:  MOVWF  0D
+....................    set_adc_channel(0);
+0308:  MOVWF  78
+0309:  MOVLB  01
+030A:  MOVF   1D,W
+030B:  ANDLW  83
+030C:  IORWF  78,W
+030D:  MOVWF  1D
+....................    enable_interrupts(INT_AD);
+030E:  BSF    11.6
+030F:  MOVLP  00
+0310:  MOVLB  00
+0311:  GOTO   341 (RETURN)
 .................... }
 .................... 
-.................... // ---------- Inicialización Timer1 (1 segundo aprox) ----------
+.................... // ---------- Inicialización Timer1 ----------
 .................... void init_timer1() {
-....................    setup_timer_1(T1_INTERNAL | T1_DIV_BY_8); // reloj interno con prescaler /8
-0162:  MOVLW  35
-0163:  MOVWF  18
-0164:  CLRF   19
-....................    set_timer1(6072);        
-0165:  CLRF   16
-0166:  MOVLW  17
-0167:  MOVWF  17
-0168:  MOVLW  B8
-0169:  MOVWF  16
+....................    setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
+0312:  MOVLW  35
+0313:  MOVWF  18
+0314:  CLRF   19
+....................    set_timer1(6072);
+0315:  CLRF   16
+0316:  MOVLW  17
+0317:  MOVWF  17
+0318:  MOVLW  B8
+0319:  MOVWF  16
 ....................    enable_interrupts(INT_TIMER1);
-016A:  MOVLB  01
-016B:  BSF    11.0
-016C:  MOVLP  00
-016D:  MOVLB  00
-016E:  GOTO   18E (RETURN)
+031A:  MOVLB  01
+031B:  BSF    11.0
+031C:  MOVLP  00
+031D:  MOVLB  00
+031E:  GOTO   342 (RETURN)
 .................... }
 .................... 
-.................... // ---------- Función para enviar valor por UART ----------
-.................... void enviar_valor(int16 valor) {
-....................    printf("Valor ADC: %lu\r\n", valor);
+.................... // ---------- Inicialización RDA ----------
+.................... void init_rda() {
+....................    enable_interrupts(INT_RDA);
 *
-005C:  MOVLW  41
-005D:  MOVLB  03
-005E:  MOVWF  11
-005F:  MOVLW  01
-0060:  MOVWF  12
-0061:  BCF    03.0
-0062:  MOVLW  0B
-0063:  MOVLB  00
-0064:  MOVWF  2D
-*
-00BA:  MOVLW  10
-00BB:  MOVWF  04
-00BC:  MOVF   2C,W
-00BD:  MOVWF  2E
-00BE:  MOVF   2B,W
-00BF:  MOVWF  2D
-*
-011F:  MOVLW  0D
-0120:  BTFSS  11.4
-0121:  GOTO   120
-0122:  MOVLB  03
-0123:  MOVWF  1A
-0124:  MOVLW  0A
-0125:  MOVLB  00
-0126:  BTFSS  11.4
-0127:  GOTO   126
-0128:  MOVLB  03
-0129:  MOVWF  1A
+02F1:  MOVLB  01
+02F2:  BSF    11.5
+....................    enable_interrupts(GLOBAL);
+02F3:  MOVLW  C0
+02F4:  IORWF  0B,F
+....................    set_tris_b(0b00000010); // RB0 como entrada
+02F5:  MOVLW  02
+02F6:  MOVWF  0D
+02F7:  MOVLP  00
+02F8:  MOVLB  00
+02F9:  GOTO   340 (RETURN)
 .................... }
+.................... 
+.................... // ---------- Función enviar valor por UART ----------
+.................... void enviar_valor(int16 valor) {
+....................    printf("Valor ADC: %lu\r\n", valor);  // cambiar %lu por %d
+*
+01DA:  MOVLW  DF
+01DB:  MOVLB  03
+01DC:  MOVWF  11
+01DD:  MOVLW  02
+01DE:  MOVWF  12
+01DF:  BCF    03.0
+01E0:  MOVLW  0B
+01E1:  MOVLB  00
+01E2:  MOVWF  35
+01E3:  CALL   15B
+01E4:  MOVLW  10
+01E5:  MOVWF  04
+01E6:  MOVF   34,W
+01E7:  MOVWF  36
+01E8:  MOVF   33,W
+01E9:  MOVWF  35
+*
+0249:  MOVLW  0D
+024A:  BTFSS  11.4
+024B:  GOTO   24A
+024C:  MOVLB  03
+024D:  MOVWF  1A
+024E:  MOVLW  0A
+024F:  MOVLB  00
+0250:  BTFSS  11.4
+0251:  GOTO   250
+0252:  MOVLB  03
+0253:  MOVWF  1A
+.................... }
+.................... 
+.................... // ---------- Función enviar estado de un pin ----------
+.................... void enviar_estado_pin() {
+*
+025A:  MOVLB  01
+025B:  BSF    0C.7
+....................    int estado = input(PIN_A7);
+....................    printf("Estado RA7: %d\r\n", estado);
+*
+0260:  MOVLW  E8
+0261:  MOVLB  03
+0262:  MOVWF  11
+0263:  MOVLW  02
+0264:  MOVWF  12
+0265:  BCF    03.0
+0266:  MOVLW  0C
+0267:  MOVLB  00
+0268:  MOVWF  35
+0269:  CALL   15B
+026A:  MOVF   33,W
+026B:  MOVWF  34
+026C:  MOVLW  18
+026D:  MOVWF  35
+*
+02CF:  MOVLW  0D
+02D0:  MOVLB  00
+02D1:  BTFSS  11.4
+02D2:  GOTO   2D1
+02D3:  MOVLB  03
+02D4:  MOVWF  1A
+02D5:  MOVLW  0A
+02D6:  MOVLB  00
+02D7:  BTFSS  11.4
+02D8:  GOTO   2D7
+02D9:  MOVLB  03
+02DA:  MOVWF  1A
+02DB:  MOVLB  00
+.................... }
+.................... 
 .................... 
 .................... // ---------- Main ----------
 .................... void main() {
 *
-016F:  MOVLW  6A
-0170:  MOVLB  01
-0171:  MOVWF  19
-0172:  MOVLB  02
-0173:  BSF    1E.0
-0174:  BSF    1D.7
-0175:  MOVLB  03
-0176:  BCF    1F.3
-0177:  MOVLW  19
-0178:  MOVWF  1B
-0179:  MOVLW  A6
-017A:  MOVWF  1E
-017B:  MOVLW  90
-017C:  MOVWF  1D
-017D:  MOVLB  00
-017E:  CLRF   29
-017F:  CLRF   28
-0180:  CLRF   2A
-0181:  MOVLB  03
-0182:  CLRF   0C
-0183:  CLRF   0D
-0184:  MOVLB  02
-0185:  CLRF   12
-0186:  CLRF   11
-0187:  CLRF   14
-0188:  CLRF   13
-....................    enable_interrupts(GLOBAL);   // habilitar interrupciones globales
-0189:  MOVLW  C0
-018A:  IORWF  0B,F
+031F:  MOVLW  6A
+0320:  MOVLB  01
+0321:  MOVWF  19
+0322:  MOVLB  02
+0323:  BSF    1E.0
+0324:  MOVLB  03
+0325:  BCF    1F.3
+0326:  MOVLW  19
+0327:  MOVWF  1B
+0328:  MOVLW  A6
+0329:  MOVWF  1E
+032A:  MOVLW  90
+032B:  MOVWF  1D
+032C:  MOVLW  01
+032D:  MOVLB  00
+032E:  MOVWF  28
+032F:  CLRF   2A
+0330:  CLRF   29
+0331:  CLRF   2B
+0332:  CLRF   2C
+0333:  CLRF   30
+0334:  CLRF   32
+0335:  CLRF   31
+0336:  MOVLB  03
+0337:  CLRF   0C
+0338:  CLRF   0D
+0339:  MOVLB  02
+033A:  CLRF   12
+033B:  CLRF   11
+033C:  CLRF   14
+033D:  CLRF   13
+....................    init_rda();
+033E:  MOVLB  00
+033F:  GOTO   2F1
 ....................    init_adc();
-018B:  MOVLB  00
-018C:  GOTO   14A
+0340:  GOTO   2FA
 ....................    init_timer1();
-018D:  GOTO   162
-.................... 
+0341:  GOTO   312
+....................    //init_gpio();//IMPORTANTE PARA RSA
 ....................    while(TRUE) {
-018E:  GOTO   18E
-....................       // El main queda libre, todo lo hace Timer1 y la ISR ADC
+0342:  GOTO   342
+....................       
 ....................    }
 .................... }
 .................... 
-018F:  SLEEP
+0343:  SLEEP
 
 Configuration Fuses:
    Word  1: 3FC4   INTRC_IO NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN

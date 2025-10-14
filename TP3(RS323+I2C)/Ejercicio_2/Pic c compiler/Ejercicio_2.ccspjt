@@ -25,9 +25,15 @@ Count=3
 [ProjectLog]
 Days=1
 D1=07-10-2025
-D1_L=2
+D1_L=4
 D1_L1=[39177]Stopped Editing.
 D1_L2=[41035]Started Editing.
+D1_L3=[41495]Stopped Editing.
+TotalEdit=16
+TotalDebug=0
+D1_E=16
+D1_D=0
+D1_L4=[41495]Project Closed.
 [Units]
 Count=1
 1=Ejercicio_2 (main)
