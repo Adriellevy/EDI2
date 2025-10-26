@@ -15,7 +15,7 @@ buildcount=7
 
 [Opened Files]
 1=Ejercicio_2.c
-t1=134
+t1=102
 2=..\..\..\Comunicacion serial RS232\Pic c compiler\Comunicacion serial rs232.h
 t2=1
 3=..\..\..\Comunicacion serial RS232\Pic c compiler\16F1827.h
@@ -23,7 +23,7 @@ t3=8
 Count=3
 
 [ProjectLog]
-Days=1
+Days=2
 D1=07-10-2025
 D1_L=4
 D1_L1=[39177]Stopped Editing.
@@ -34,6 +34,13 @@ TotalDebug=0
 D1_E=16
 D1_D=0
 D1_L4=[41495]Project Closed.
+D2=14-10-2025
+D2_L=2
+D2_L1=[51925]Project Opened.
+D2_L2=[51934]Project Closed.
 [Units]
 Count=1
 1=Ejercicio_2 (main)
+
+[fileformats]
+forcecoff=0

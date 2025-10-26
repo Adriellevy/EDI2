@@ -1,5 +1,6 @@
-Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial RS232\Pic c compiler\Comunicacion serial rs232 on 07-oct.-25 at 10:11
->>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\Comunicacion serial RS232\Pic c compiler\Comunicacion serial rs232.c" Line 17(6,13): Variable never used:   dato_rx
-      Memory usage:   ROM=20%      RAM=6% - 12%
-      0 Errors,  1 Warnings.
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\TP3(RS323+I2C)\Ejercicio_Practica\Pic c compiler\Comunicacion serial rs232 on 16-oct.-25 at 13:20
+>>> Warning 216 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP3(RS323+I2C)\Ejercicio_Practica\Pic c compiler\Comunicacion serial rs232.c" Line 135(1,2): Interrupts disabled during call to prevent re-entrancy:  (@PSTRINGC7_9600_106_105)
+>>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TP3(RS323+I2C)\Ejercicio_Practica\Pic c compiler\Comunicacion serial rs232.c" Line 17(6,13): Variable never used:   dato_rx
+      Memory usage:   ROM=21%      RAM=6% - 14%
+      0 Errors,  2 Warnings.
 Build Successful.

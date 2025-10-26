@@ -106,7 +106,7 @@ void init_timer1() {
 void init_rda() {
    enable_interrupts(INT_RDA);
    enable_interrupts(GLOBAL);
-   //set_tris_b(0b00000010); // RB0 como entrada
+   set_tris_b(0b00000010); // RB0 como entrada
 }
 
 // ---------- Función enviar valor por UART ----------

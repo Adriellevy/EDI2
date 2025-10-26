@@ -1,9 +1,9 @@
 
-ROM used:   1222/4096 (30%)
-            1222/4096 (30%) including unused fragments
+ROM used:   1216/4096 (30%)
+            1216/4096 (30%) including unused fragments
 
             0.9 Average locations per line
-            8.8 Average locations per statement
+            8.9 Average locations per statement
 
 RAM used:   26/383 (7%) at main() level
             68/383 (18%) worst case
@@ -13,12 +13,12 @@ Stack size: 16
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  122    62  45  eeprom.c
+  122    60  44  eeprom.c
     5     0   0  eeprom.h
   965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
-  211    77  55  i2c_Flex_LCD.c
+  211    77  56  i2c_Flex_LCD.c
 ----- -----
- 1303   139 Total
+ 1303   137 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
@@ -27,12 +27,12 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0     74   6    3    574  5.9  i2c_send_nibble
 0     30   2    3    149  2.8  lcd_send_byte
 0     10   1    0     61  1.9  lcd_clear
-0      5   0    0     61  1.9  @const747
+0      5   0    0             @const747
 0     75   6    5    902  5.8  lcd_init
 0     55   5    7    681  8.0  lcd_gotoxy
 0     37   3    1    321  4.9  LCD_PUTC
-0    116   9    6    595  7.3  show_all_records
-0      8   1    0    321  4.9  @const764
+0    116  10    6    595  7.3  show_all_records
+0      8   1    0             @const764
 0     74   6    5             @PSTRINGC7_757
 0      7   1    0             @const771
 0     80   7    4             @PSTRINGCN7_757
@@ -41,30 +41,30 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    101   8   13             @PRINTF_LU_757
 0    108   9   10    579  8.2  save_run_time
 0     50   4    6    333  7.7  get_record_count
-0    237  19    6   1284  6.4  MAIN
-0      9   1    0    333  7.7  @const797
-0      7   1    0   1348  6.4  @const798
+0    231  19    6   1220  6.4  MAIN
+0      9   1    0             @const797
+0      7   1    0             @const798
 0      8   1    0             @const799
 0      7   1    0             @const802
 0      5   0    0             @const803
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               14
-    Statements              139
-    Comments                255
-    Volume (V)              11998
-    Difficulty (D)          80.4
-    Effort to implement (E) 964346
-    Time to implement (T)   14 hours, 53 minutes
-    Est Delivered Bugs (B)  3
-    Cyclomatic Complexity   33
-    Maintainability (MI)    114
+    Functions               10
+    Statements              137
+    Comments                256
+    Volume (V)              8282
+    Difficulty (D)          57.9
+    Effort to implement (E) 479672
+    Time to implement (T)   7 hours, 24 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   24
+    Maintainability (MI)    143
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     3  0  
-00003-007FF  1219  826  
+00003-007FF  1213  832  
 00800-00FFF     0  2048  
 
 

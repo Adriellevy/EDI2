@@ -1,9 +1,9 @@
-D G "__PCM__" 0 135 ""5.093""
-D G "__DEVICE__" 0 135 "1827"
-D G "__DATE__" 0 135 ""7-Oct-25""
-D G "__TIME__" 0 135 ""10:11:44""
-D G "_UNICODE" 0 135 ""?""
-D G "__EVAL" 0 135 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
+D G "__PCM__" 0 138 ""5.093""
+D G "__DEVICE__" 0 138 "1827"
+D G "__DATE__" 0 138 ""16-Oct-25""
+D G "__TIME__" 0 138 ""13:20:11""
+D G "_UNICODE" 0 138 ""?""
+D G "__EVAL" 0 138 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
 f N "set_tris_a" 2 39 ""
 v L "value" 2 39 "int8" `55 
@@ -1449,27 +1449,27 @@ C L "timer1_isr" 0 5 1 "FUNCTION"
 C L "timer1_isr" 0 5 1 "FUNCTION"
 C L "timer1_isr" 0 5 2 "FUNCTION"
 C L "init_adc" 0 5 1 "FUNCTION"
-F N "init_adc" 0 90 ""
-F G "init_adc" 0 90 "void()" `739 
+F N "init_adc" 0 91 ""
+F G "init_adc" 0 91 "void()" `739 
 C L "init_timer1" 0 5 1 "FUNCTION"
-F N "init_timer1" 0 98 ""
-F G "init_timer1" 0 98 "void()" `740 
+F N "init_timer1" 0 99 ""
+F G "init_timer1" 0 99 "void()" `740 
 C L "init_rda" 0 5 1 "FUNCTION"
-F N "init_rda" 0 105 ""
-F G "init_rda" 0 105 "void()" `753 
+F N "init_rda" 0 106 ""
+F G "init_rda" 0 106 "void()" `753 
 C L "init_rda" 0 5 1 "FUNCTION"
 C L "enviar_valor" 0 5 1 "FUNCTION"
-F N "enviar_valor" 0 112 ""
-V L "valor" 0 112 "int16" `755 
-F G "enviar_valor" 0 112 "void(int16 valor)" `736 
+F N "enviar_valor" 0 113 ""
+V L "valor" 0 113 "int16" `755 
+F G "enviar_valor" 0 113 "void(int16 valor)" `736 
 C L "enviar_valor" 0 5 1 "FUNCTION"
 C L "enviar_estado_pin" 0 5 1 "FUNCTION"
-F N "enviar_estado_pin" 0 117 ""
-F G "enviar_estado_pin" 0 117 "void()" `738 
-V L "Estado" 0 118 "int8" `759 
+F N "enviar_estado_pin" 0 118 ""
+F G "enviar_estado_pin" 0 118 "void()" `738 
+V L "Estado" 0 119 "int8" `759 
 C L "MAIN" 0 5 1 "FUNCTION"
-F N "MAIN" 0 124 ""
-F G "MAIN" 0 124 "void()" `767 
+F N "MAIN" 0 125 ""
+F G "MAIN" 0 125 "void()" `767 
 C L "MAIN" 0 5 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0

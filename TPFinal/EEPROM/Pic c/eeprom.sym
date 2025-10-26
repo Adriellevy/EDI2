@@ -134,14 +134,14 @@ Project Directory:
     C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\EEPROM\Pic c\
 
 Project Files:
-    eeprom.c                                                [14-oct.-25 15:06  CRC=D13D36B7]
+    eeprom.c                                                [26-oct.-25 09:56  CRC=3592C1A0]
     eeprom.h                                                [14-oct.-25 14:27  CRC=00000000]
     ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
     i2c_Flex_LCD.c                                          [26-abr.-20 15:13  CRC=16AFB211]
 
-Source signature=D5424A78
+Source signature=3997D561
 Program memory checksum=0000
-Hex file CRC=FC93
+Hex file CRC=682E
 
 Units:
     C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\EEPROM\Pic c\eeprom (main)

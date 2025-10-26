@@ -1,8 +1,8 @@
-CCS PCM C Compiler, Version 5.093, 4770               14-oct.-25 15:06
+CCS PCM C Compiler, Version 5.093, 4770               26-oct.-25 09:56
 
                Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\EEPROM\Pic c\eeprom.lst
 
-               ROM used:   1222 words (30%)
+               ROM used:   1216 words (30%)
                            Largest free fragment is 2048
                RAM used:   26 (7%) at main() level
                            68 (18%) worst case
@@ -820,7 +820,7 @@ CCS PCM C Compiler, Version 5.093, 4770               14-oct.-25 15:06
 011E:  MOVLW  C0
 011F:  IORWF  0B,F
 0120:  MOVLP  00
-0121:  GOTO   40C (RETURN)
+0121:  GOTO   406 (RETURN)
 .................... } 
 .................... 
 .................... void lcd_gotoxy( byte x, byte y) 
@@ -1104,7 +1104,7 @@ CCS PCM C Compiler, Version 5.093, 4770               14-oct.-25 15:06
 0338:  GOTO   2DC
 ....................     }
 0339:  MOVLP  00
-033A:  GOTO   40D (RETURN)
+033A:  GOTO   407 (RETURN)
 .................... }
 .................... 
 .................... // --- Escribir nuevo valor ---
@@ -1230,7 +1230,7 @@ CCS PCM C Compiler, Version 5.093, 4770               14-oct.-25 15:06
 03D6:  GOTO   372
 ....................     }
 03D7:  MOVLP  00
-03D8:  GOTO   48C (RETURN)
+03D8:  GOTO   486 (RETURN)
 .................... }
 .................... 
 .................... // --- Calcular cuántos registros hay ---
@@ -1337,257 +1337,251 @@ CCS PCM C Compiler, Version 5.093, 4770               14-oct.-25 15:06
 03FC:  CLRF   13
 03FD:  MOVLB  00
 03FE:  CLRF   25
-....................     set_tris_b(0b00000001); // RB0 como entrada (botón)
-03FF:  MOVLW  01
-0400:  MOVLB  01
-0401:  MOVWF  0D
-....................     output_b(0b00000000);
-0402:  MOVLB  02
-0403:  CLRF   0D
+....................     //set_tris_b(0b00000001); // RB0 como entrada (botón)
+....................     //output_b(0b00000000);
 .................... 
 ....................     lcd_init(LCD_ADDR << 1, 16, 2);
-0404:  MOVLW  4E
-0405:  MOVLB  00
-0406:  MOVWF  34
-0407:  MOVLW  10
-0408:  MOVWF  35
-0409:  MOVLW  02
-040A:  MOVWF  36
-040B:  GOTO   0D7
+03FF:  MOVLW  4E
+0400:  MOVWF  34
+0401:  MOVLW  10
+0402:  MOVWF  35
+0403:  MOVLW  02
+0404:  MOVWF  36
+0405:  GOTO   0D7
 .................... 
 ....................     // Mostrar registros guardados
 ....................     show_all_records();
-040C:  GOTO   2C7
+0406:  GOTO   2C7
 .................... 
 ....................     int total_records = get_record_count();
 ....................     int remaining = MAX_RECORDS - total_records;
-040D:  CALL   33B
-040E:  MOVF   78,W
-040F:  MOVWF  30
-0410:  SUBLW  80
-0411:  MOVWF  31
+0407:  CALL   33B
+0408:  MOVF   78,W
+0409:  MOVWF  30
+040A:  SUBLW  80
+040B:  MOVWF  31
 .................... 
 ....................     lcd_clear();
-0412:  CALL   0CD
+040C:  CALL   0CD
 ....................     lcd_gotoxy(1,1);
-0413:  MOVLW  01
-0414:  MOVWF  47
-0415:  MOVWF  48
-0416:  CALL   122
+040D:  MOVLW  01
+040E:  MOVWF  47
+040F:  MOVWF  48
+0410:  CALL   122
 ....................     printf(lcd_putc, "Reg:%u Libres:%u", total_records, remaining);
-0417:  MOVLW  17
-0418:  MOVLB  03
-0419:  MOVWF  11
-041A:  MOVLW  00
-041B:  MOVWF  12
-041C:  BCF    03.0
-041D:  MOVLW  04
-041E:  MOVLB  00
-041F:  MOVWF  39
-0420:  CALL   1C8
-0421:  MOVF   30,W
-0422:  MOVWF  39
-0423:  MOVLW  1B
-0424:  MOVWF  3A
-0425:  CALL   22D
-0426:  MOVLW  1A
-0427:  MOVLB  03
-0428:  MOVWF  11
-0429:  MOVLW  00
-042A:  MOVWF  12
-042B:  BCF    03.0
-042C:  MOVLW  08
-042D:  MOVLB  00
-042E:  MOVWF  39
-042F:  CALL   1C8
-0430:  MOVF   31,W
-0431:  MOVWF  39
-0432:  MOVLW  1B
-0433:  MOVWF  3A
-0434:  CALL   22D
+0411:  MOVLW  17
+0412:  MOVLB  03
+0413:  MOVWF  11
+0414:  MOVLW  00
+0415:  MOVWF  12
+0416:  BCF    03.0
+0417:  MOVLW  04
+0418:  MOVLB  00
+0419:  MOVWF  39
+041A:  CALL   1C8
+041B:  MOVF   30,W
+041C:  MOVWF  39
+041D:  MOVLW  1B
+041E:  MOVWF  3A
+041F:  CALL   22D
+0420:  MOVLW  1A
+0421:  MOVLB  03
+0422:  MOVWF  11
+0423:  MOVLW  00
+0424:  MOVWF  12
+0425:  BCF    03.0
+0426:  MOVLW  08
+0427:  MOVLB  00
+0428:  MOVWF  39
+0429:  CALL   1C8
+042A:  MOVF   31,W
+042B:  MOVWF  39
+042C:  MOVLW  1B
+042D:  MOVWF  3A
+042E:  CALL   22D
 ....................     delay_ms(2000);
-0435:  MOVLW  08
-0436:  MOVWF  34
-0437:  MOVLW  FA
-0438:  MOVWF  47
-0439:  CALL   03B
-043A:  DECFSZ 34,F
-043B:  GOTO   437
+042F:  MOVLW  08
+0430:  MOVWF  34
+0431:  MOVLW  FA
+0432:  MOVWF  47
+0433:  CALL   03B
+0434:  DECFSZ 34,F
+0435:  GOTO   431
 .................... 
 ....................     // Reset contador
 ....................     run_time = 0;
-043C:  CLRF   29
-043D:  CLRF   28
-043E:  CLRF   27
-043F:  CLRF   26
+0436:  CLRF   29
+0437:  CLRF   28
+0438:  CLRF   27
+0439:  CLRF   26
 .................... 
 ....................     while(TRUE) {
 ....................         delay_ms(1000);
-0440:  MOVLW  04
-0441:  MOVWF  34
-0442:  MOVLW  FA
-0443:  MOVWF  47
-0444:  CALL   03B
-0445:  DECFSZ 34,F
-0446:  GOTO   442
+043A:  MOVLW  04
+043B:  MOVWF  34
+043C:  MOVLW  FA
+043D:  MOVWF  47
+043E:  CALL   03B
+043F:  DECFSZ 34,F
+0440:  GOTO   43C
 ....................         run_time++;
-0447:  MOVLW  01
-0448:  ADDWF  26,F
-0449:  BTFSC  03.0
-044A:  INCF   27,F
-044B:  BTFSC  03.2
-044C:  INCF   28,F
-044D:  BTFSC  03.2
-044E:  INCF   29,F
+0441:  MOVLW  01
+0442:  ADDWF  26,F
+0443:  BTFSC  03.0
+0444:  INCF   27,F
+0445:  BTFSC  03.2
+0446:  INCF   28,F
+0447:  BTFSC  03.2
+0448:  INCF   29,F
 .................... 
 ....................         // Mostrar tiempo
 ....................         lcd_clear();
-044F:  CALL   0CD
+0449:  CALL   0CD
 ....................         lcd_gotoxy(1,1);
-0450:  MOVLW  01
-0451:  MOVWF  47
-0452:  MOVWF  48
-0453:  CALL   122
+044A:  MOVLW  01
+044B:  MOVWF  47
+044C:  MOVWF  48
+044D:  CALL   122
 ....................         printf(lcd_putc, "Tiempo: %lu s", (unsigned long)run_time);
-0454:  MOVLW  20
-0455:  MOVLB  03
-0456:  MOVWF  11
-0457:  MOVLW  00
-0458:  MOVWF  12
-0459:  BCF    03.0
-045A:  MOVLW  08
-045B:  MOVLB  00
-045C:  MOVWF  39
-045D:  CALL   1C8
-045E:  MOVLW  10
-045F:  MOVWF  04
-0460:  MOVF   27,W
-0461:  MOVWF  3A
-0462:  MOVF   26,W
-0463:  MOVWF  39
-0464:  CALL   262
-0465:  MOVLW  20
-0466:  MOVWF  46
-0467:  CALL   159
-0468:  MOVLW  73
-0469:  MOVWF  46
-046A:  CALL   159
+044E:  MOVLW  20
+044F:  MOVLB  03
+0450:  MOVWF  11
+0451:  MOVLW  00
+0452:  MOVWF  12
+0453:  BCF    03.0
+0454:  MOVLW  08
+0455:  MOVLB  00
+0456:  MOVWF  39
+0457:  CALL   1C8
+0458:  MOVLW  10
+0459:  MOVWF  04
+045A:  MOVF   27,W
+045B:  MOVWF  3A
+045C:  MOVF   26,W
+045D:  MOVWF  39
+045E:  CALL   262
+045F:  MOVLW  20
+0460:  MOVWF  46
+0461:  CALL   159
+0462:  MOVLW  73
+0463:  MOVWF  46
+0464:  CALL   159
 ....................         lcd_gotoxy(1,2);
-046B:  MOVLW  01
-046C:  MOVWF  47
-046D:  MOVLW  02
-046E:  MOVWF  48
-046F:  CALL   122
+0465:  MOVLW  01
+0466:  MOVWF  47
+0467:  MOVLW  02
+0468:  MOVWF  48
+0469:  CALL   122
 ....................         printf(lcd_putc, "Guardar Btn RB0");
-0470:  MOVLW  27
-0471:  MOVLB  03
-0472:  MOVWF  11
-0473:  MOVLW  00
-0474:  MOVWF  12
-0475:  MOVLB  00
-0476:  CALL   17E
+046A:  MOVLW  27
+046B:  MOVLB  03
+046C:  MOVWF  11
+046D:  MOVLW  00
+046E:  MOVWF  12
+046F:  MOVLB  00
+0470:  CALL   17E
 .................... 
 ....................         // Leer botón (pull-up)
 ....................         int1 button_state = input(BUTTON);
-0477:  BCF    32.0
-0478:  BTFSC  0D.0
-0479:  BSF    32.0
+0471:  BCF    32.0
+0472:  BTFSC  0D.0
+0473:  BSF    32.0
 .................... 
 ....................         if (!button_state && last_button_state) {
-047A:  BTFSC  32.0
-047B:  GOTO   4C1
-047C:  BTFSS  2B.0
-047D:  GOTO   4C1
+0474:  BTFSC  32.0
+0475:  GOTO   4BB
+0476:  BTFSS  2B.0
+0477:  GOTO   4BB
 ....................             delay_ms(50); // debounce
-047E:  MOVLW  32
-047F:  MOVWF  47
-0480:  CALL   03B
+0478:  MOVLW  32
+0479:  MOVWF  47
+047A:  CALL   03B
 ....................             if (!input(BUTTON)) {
-0481:  BTFSC  0D.0
-0482:  GOTO   4C1
+047B:  BTFSC  0D.0
+047C:  GOTO   4BB
 ....................                 save_run_time(run_time);
-0483:  MOVF   27,W
-0484:  MOVWF  35
-0485:  MOVF   26,W
-0486:  MOVWF  34
-0487:  MOVF   27,W
-0488:  MOVWF  37
-0489:  MOVF   26,W
-048A:  MOVWF  36
-048B:  GOTO   36D
+047D:  MOVF   27,W
+047E:  MOVWF  35
+047F:  MOVF   26,W
+0480:  MOVWF  34
+0481:  MOVF   27,W
+0482:  MOVWF  37
+0483:  MOVF   26,W
+0484:  MOVWF  36
+0485:  GOTO   36D
 ....................                 int saved = get_record_count();
-048C:  CALL   33B
-048D:  MOVF   78,W
-048E:  MOVWF  33
+0486:  CALL   33B
+0487:  MOVF   78,W
+0488:  MOVWF  33
 ....................                 remaining = MAX_RECORDS - saved;
-048F:  MOVF   33,W
-0490:  SUBLW  80
-0491:  MOVWF  31
+0489:  MOVF   33,W
+048A:  SUBLW  80
+048B:  MOVWF  31
 .................... 
 ....................                 lcd_clear();
-0492:  CALL   0CD
+048C:  CALL   0CD
 ....................                 lcd_gotoxy(1,1);
-0493:  MOVLW  01
-0494:  MOVWF  47
-0495:  MOVWF  48
-0496:  CALL   122
+048D:  MOVLW  01
+048E:  MOVWF  47
+048F:  MOVWF  48
+0490:  CALL   122
 ....................                 printf(lcd_putc, "Guardado #%u", saved);
-0497:  MOVLW  2F
-0498:  MOVLB  03
-0499:  MOVWF  11
-049A:  MOVLW  00
-049B:  MOVWF  12
-049C:  BCF    03.0
-049D:  MOVLW  0A
-049E:  MOVLB  00
-049F:  MOVWF  39
-04A0:  CALL   1C8
-04A1:  MOVF   33,W
-04A2:  MOVWF  39
-04A3:  MOVLW  1B
-04A4:  MOVWF  3A
-04A5:  CALL   22D
+0491:  MOVLW  2F
+0492:  MOVLB  03
+0493:  MOVWF  11
+0494:  MOVLW  00
+0495:  MOVWF  12
+0496:  BCF    03.0
+0497:  MOVLW  0A
+0498:  MOVLB  00
+0499:  MOVWF  39
+049A:  CALL   1C8
+049B:  MOVF   33,W
+049C:  MOVWF  39
+049D:  MOVLW  1B
+049E:  MOVWF  3A
+049F:  CALL   22D
 ....................                 lcd_gotoxy(1,2);
-04A6:  MOVLW  01
-04A7:  MOVWF  47
-04A8:  MOVLW  02
-04A9:  MOVWF  48
-04AA:  CALL   122
+04A0:  MOVLW  01
+04A1:  MOVWF  47
+04A2:  MOVLW  02
+04A3:  MOVWF  48
+04A4:  CALL   122
 ....................                 printf(lcd_putc, "Quedan:%u", remaining);
-04AB:  MOVLW  36
-04AC:  MOVLB  03
-04AD:  MOVWF  11
-04AE:  MOVLW  00
-04AF:  MOVWF  12
-04B0:  BCF    03.0
-04B1:  MOVLW  07
-04B2:  MOVLB  00
-04B3:  MOVWF  39
-04B4:  CALL   1C8
-04B5:  MOVF   31,W
-04B6:  MOVWF  39
-04B7:  MOVLW  1B
-04B8:  MOVWF  3A
-04B9:  CALL   22D
+04A5:  MOVLW  36
+04A6:  MOVLB  03
+04A7:  MOVWF  11
+04A8:  MOVLW  00
+04A9:  MOVWF  12
+04AA:  BCF    03.0
+04AB:  MOVLW  07
+04AC:  MOVLB  00
+04AD:  MOVWF  39
+04AE:  CALL   1C8
+04AF:  MOVF   31,W
+04B0:  MOVWF  39
+04B1:  MOVLW  1B
+04B2:  MOVWF  3A
+04B3:  CALL   22D
 ....................                 delay_ms(1500);
-04BA:  MOVLW  06
-04BB:  MOVWF  34
-04BC:  MOVLW  FA
-04BD:  MOVWF  47
-04BE:  CALL   03B
-04BF:  DECFSZ 34,F
-04C0:  GOTO   4BC
+04B4:  MOVLW  06
+04B5:  MOVWF  34
+04B6:  MOVLW  FA
+04B7:  MOVWF  47
+04B8:  CALL   03B
+04B9:  DECFSZ 34,F
+04BA:  GOTO   4B6
 ....................             }
 ....................         }
 ....................         last_button_state = button_state;
-04C1:  BCF    2B.0
-04C2:  BTFSC  32.0
-04C3:  BSF    2B.0
-04C4:  GOTO   440
+04BB:  BCF    2B.0
+04BC:  BTFSC  32.0
+04BD:  BSF    2B.0
+04BE:  GOTO   43A
 ....................     }
 .................... }
 .................... 
-04C5:  SLEEP
+04BF:  SLEEP
 
 Configuration Fuses:
    Word  1: 3FC4   INTRC_IO NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN

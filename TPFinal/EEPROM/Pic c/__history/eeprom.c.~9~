@@ -67,8 +67,8 @@ int get_record_count() {
 
 // --- Principal ---
 void main() {
-    //set_tris_b(0b00000001); // RB0 como entrada (botón)
-    //output_b(0b00000000);
+    set_tris_b(0b00000001); // RB0 como entrada (botón)
+    output_b(0b00000000);
 
     lcd_init(LCD_ADDR << 1, 16, 2);
 

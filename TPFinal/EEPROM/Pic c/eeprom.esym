@@ -1,7 +1,7 @@
 D G "__PCM__" 0 123 ""5.093""
 D G "__DEVICE__" 0 123 "1827"
-D G "__DATE__" 0 123 ""14-Oct-25""
-D G "__TIME__" 0 123 ""15:06:11""
+D G "__DATE__" 0 123 ""26-Oct-25""
+D G "__TIME__" 0 123 ""09:56:05""
 D G "_UNICODE" 0 123 ""?""
 D G "__EVAL" 0 123 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
@@ -1486,7 +1486,7 @@ V L "i" 0 59 "int8" `790
 V L "val" 0 60 "int16" `791 
 C L "MAIN" 0 9 1 "FUNCTION"
 F N "MAIN" 0 69 ""
-F G "MAIN" 0 69 "void()" `792 
+F G "MAIN" 0 69 "void()" `792  "set_tris_b(0b00000001); // RB0 como entrada (botón)"
 C L "MAIN" 0 9 1 "FUNCTION"
 C L "MAIN" 0 9 1 "FUNCTION"
 V L "total_records" 0 78 "int8" `795 

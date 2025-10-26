@@ -50,11 +50,11 @@ void RDA_isr(void) {
 void procesar_comando() {
    if (Buffer[0] == 's' && Buffer[1] == '0' && Buffer[2] == '\0') {
         estado_actual = STATE_ADC_PERIODIC;
-        printf("Modo: Pausando el envio de datos\r\n");
+        printf("Modo: Enviando valor del ADC periodicamente\r\n");
     }
     else if (Buffer[0] == 's' && Buffer[1] == '1' && Buffer[2] == '\0') {
         estado_actual = STATE_PIN_PERIODIC;
-        printf("Modo: Enviando estado del pin RA7 y potenciometro periodicamente\r\n");
+        printf("Modo: Enviando estado del pin RA7 periodicamente\r\n");
     }
     else {
         estado_actual = STATE_IDLE;
@@ -106,7 +106,7 @@ void init_timer1() {
 void init_rda() {
    enable_interrupts(INT_RDA);
    enable_interrupts(GLOBAL);
-   //set_tris_b(0b00000010); // RB0 como entrada
+   set_tris_b(0b00000010); // RB0 como entrada
 }
 
 // ---------- Función enviar valor por UART ----------
@@ -127,8 +127,6 @@ void main() {
    init_adc();
    init_timer1();
    //init_gpio();//IMPORTANTE PARA RSA
-   
-   printf("Modo: Pausando el envio de datos\r\n");
    while(TRUE) {
       
    }
