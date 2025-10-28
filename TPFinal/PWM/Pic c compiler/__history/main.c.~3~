@@ -1,0 +1,98 @@
+//====================================
+//  PIC16F1827 - Lectura de Joystick
+//  XC8 - 4MHz (interno)
+//====================================
+#include <xc.h>
+#include <stdint.h>
+
+//------------------------------------
+// CONFIGURACIÓN
+//------------------------------------
+#pragma config FOSC = INTOSC    // Oscilador interno
+#pragma config WDTE = OFF       // Watchdog Timer desactivado
+#pragma config PWRTE = OFF
+#pragma config MCLRE = OFF
+#pragma config CP = OFF
+#pragma config CPD = OFF
+#pragma config BOREN = OFF
+#pragma config CLKOUTEN = OFF
+#pragma config IESO = OFF
+#pragma config FCMEN = OFF
+
+#define _XTAL_FREQ 4000000  // Frecuencia del oscilador
+
+//------------------------------------
+// FUNCIONES UART
+//------------------------------------
+void UART_Init(void) {
+    TXSTAbits.SYNC = 0;    // Modo asíncrono
+    TXSTAbits.BRGH = 1;    // Alta velocidad
+    BAUDCONbits.BRG16 = 0; // 8 bits de Baud Rate
+    SPBRG = 25;            // 9600 baudios con 4MHz (ver datasheet)
+
+    RCSTAbits.SPEN = 1;    // Habilitar UART (TX/RX)
+    TXSTAbits.TXEN = 1;    // Habilitar transmisión
+}
+
+void UART_Write(char data) {
+    while (!TXSTAbits.TRMT);  // Esperar hasta que el buffer de transmisión esté vacío
+    TXREG = data;             // Escribir el dato en el registro de transmisión
+}
+
+void UART_Write_Text(const char *text) {
+    while (*text) {
+        UART_Write(*text++);   // Enviar cada carácter del texto
+    }
+}
+
+//------------------------------------
+// FUNCIONES ADC
+//------------------------------------
+void ADC_Init(void) {
+    ADCON1bits.ADCS = 0b101;  // Fosc/16
+    ADCON1bits.ADFM = 1;      // Resultado justificado a la derecha
+    ADCON0bits.ADON = 1;      // Habilitar ADC
+}
+
+uint16_t ADC_Read(uint8_t channel) {
+    ADCON0bits.CHS = channel; // Seleccionar canal
+    __delay_us(10);           // Pequeño retardo
+    ADCON0bits.GO_nDONE = 1;  // Iniciar conversión
+    while (ADCON0bits.GO_nDONE);  // Esperar a que la conversión termine
+    return ((ADRESH << 8) + ADRESL);  // Retornar el valor convertido
+}
+
+//------------------------------------
+// PROGRAMA PRINCIPAL
+//------------------------------------
+void main(void) {
+    OSCCON = 0b01101010;  // Configurar el oscilador a 4 MHz
+
+    TRISA0 = 1; // AN0 (X) como entrada
+    TRISA1 = 1; // AN1 (Y) como entrada
+    TRISB0 = 1; // Botón como entrada
+
+    ANSELA = 0b00000011; // RA0 y RA1 como entradas analógicas
+    ANSELB = 0x00;       // PORTB digital
+
+    ADC_Init();          // Inicializar el ADC
+    UART_Init();         // Inicializar la UART
+
+    UART_Write_Text("Joystick PIC16F1827 listo\r\n");
+
+    uint16_t xVal, yVal;
+    uint8_t button;
+
+    while (1) {
+        xVal = ADC_Read(0);  // Leer el valor de RA0 (X)
+        yVal = ADC_Read(1);  // Leer el valor de RA1 (Y)
+        button = PORTBbits.RB0;  // Leer el estado del botón
+
+        char buffer[40];
+        sprintf(buffer, "X:%4u | Y:%4u | Btn:%u\r\n", xVal, yVal, button);
+        UART_Write_Text(buffer);  // Enviar los datos por UART
+
+        __delay_ms(200);  // Esperar 200 ms antes de la siguiente lectura
+    }
+}
+

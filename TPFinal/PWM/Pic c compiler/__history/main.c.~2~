@@ -1,0 +1,34 @@
+//====================================
+//  PIC16F1827 - Lectura de Joystick
+//  XC8 - 4MHz (interno)
+//====================================
+#include <xc.h>
+#include <stdint.h>
+
+//------------------------------------
+// CONFIGURACIÓN
+//------------------------------------
+#pragma config FOSC = INTOSC    // Oscilador interno
+#pragma config WDTE = OFF       // Watchdog Timer desactivado
+#pragma config PWRTE = OFF
+#pragma config MCLRE = OFF
+#pragma config CP = OFF
+#pragma config CPD = OFF
+#pragma config BOREN = OFF
+#pragma config CLKOUTEN = OFF
+#pragma config IESO = OFF
+#pragma config FCMEN = OFF
+
+#define _XTAL_FREQ 4000000  // Frecuencia del oscilador
+
+//------------------------------------
+// FUNCIONES UART
+//------------------------------------
+void UART_Init(void) {
+    TXSTAbits.SYNC = 0;    // Modo asíncrono
+    TXSTAbits.BRGH = 1;    // Alta velocidad
+    BAUDCONbits.BRG16 = 0; // 8 bits de Baud Rate
+    SPBRG = 25;            // 9600 baudios con 4MHz (ver datasheet)
+
+    RCSTAbits.SPEN = 1;    // Habilitar UART (TX/RX)
+

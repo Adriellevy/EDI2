@@ -1,0 +1,45 @@
+[PROJECT]
+Target=Stick.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=Stick.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Stick\pic c\Stick]
+Type=4
+[mru-list]
+1=Stick.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=28-10-2025
+D1_L=6
+D1_L1=[50129]Project Opened.
+D1_L2=[50151]Started Editing.
+D1_L3=[50492]Stopped Editing.
+D1_L4=[51660]Started Editing.
+D1_L5=[51960]Stopped Editing.
+TotalEdit=1
+TotalDebug=0
+D1_E=1
+D1_D=0
+D1_L6=[54126]Project Closed.
+
+[Opened Files]
+1=Stick.c
+t1=25
+Count=1
+[Stick.c]
+Type=4
+
+[defines]
+buildcount=3
+[Units]
+Count=1
+1=Stick (main)

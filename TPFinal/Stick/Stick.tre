@@ -1,0 +1,10 @@
+읕Stick
+   읕main  0/195  Ram=6
+      쳐@cinit1  (Inline)  Ram=0
+      쳐@cinit2  (Inline)  Ram=0
+      쳐@PSTRINGC7_9600_106_105  0/81  Ram=4
+      쳐@PRINTF_LU_9600_106_105  0/96  Ram=9
+      쳐@PRINTF_LU_9600_106_105  0/96  Ram=9
+      쳐@PSTRINGCN7_9600_106_105  0/87  Ram=6
+      쳐@PSTRINGR_9600_106_105  0/21  Ram=2
+      읕@delay_ms1  0/23  Ram=1
