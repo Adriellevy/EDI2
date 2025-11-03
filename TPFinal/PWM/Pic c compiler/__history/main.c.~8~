@@ -44,5 +44,5 @@ void main() {
       // set_pwm1_duty(percent_to_pwm(duty1));
       
       delay_ms(100);
-      }
+   }
 }
