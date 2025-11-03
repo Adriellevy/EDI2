@@ -1,0 +1,4 @@
+Compiling C:\Users\54232\Desktop\Mateo\2022\BME\Tercer año\EDI2\GITHUB\EDI2\TPFinal\LCD\Pic c compiler\menuRGB on 03-nov-25 at 16:57
+*** Error 112 "C:\Users\54232\Desktop\Mateo\2022\BME\Tercer año\EDI2\GITHUB\EDI2\TPFinal\LCD\Pic c compiler\menuRGB.c" Line 125(1,1): Function used but not defined:  ... leer_entrada_r 503  SCR=822
+      1 Errors,  0 Warnings.
+Build Failed.

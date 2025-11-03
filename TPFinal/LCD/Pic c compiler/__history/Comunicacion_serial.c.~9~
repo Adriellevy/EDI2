@@ -1,0 +1,75 @@
+#include <16F1827.h>
+#fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO
+#use delay(clock=4000000)     // Ajustá al clock real de tu PIC
+#use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)  
+
+#define PCF8574_ADDR 0x4E     // Dirección del expansor (A0=A1=A2=VCC)
+#define LCD_RS  0x01
+#define LCD_EN  0x04
+#define LCD_BL  0x08           // Bit para luz de fondo
+#define LCD_CMD 0
+#define LCD_DATA 1
+
+// ==== Función para enviar nibble ====
+void lcd_send_nibble(BYTE nibble, BYTE rs)
+{
+   BYTE data;
+   data = (nibble << 4) | LCD_BL | (rs ? LCD_RS : 0);
+   i2c_start();
+   i2c_write(PCF8574_ADDR);
+   i2c_write(data | LCD_EN);
+   delay_us(50);
+   i2c_write(data & ~LCD_EN);
+   i2c_stop();
+}
+
+// ==== Función para enviar byte (comando o dato) ====
+void lcd_send_byte(BYTE rs, BYTE value)
+{
+   lcd_send_nibble(value >> 4, rs);
+   lcd_send_nibble(value & 0x0F, rs);
+   delay_ms(2);
+}
+
+// ==== Inicialización del LCD ====
+void lcd_init()
+{
+   delay_ms(50);         // Esperar que el LCD arranque
+   lcd_send_nibble(0x03, LCD_CMD);
+   delay_ms(5);
+   lcd_send_nibble(0x03, LCD_CMD);
+   delay_us(150);
+   lcd_send_nibble(0x02, LCD_CMD);   // Modo 4 bits
+
+   lcd_send_byte(LCD_CMD, 0x28);     // 4 bits, 2 líneas, 5x8
+   lcd_send_byte(LCD_CMD, 0x0C);     // Display ON, cursor OFF
+   lcd_send_byte(LCD_CMD, 0x06);     // Entry mode
+   lcd_send_byte(LCD_CMD, 0x01);     // Clear display
+   delay_ms(5);
+}
+
+// ==== Mostrar cadena en LCD ====
+void lcd_puts(char *texto)
+{
+   while(*texto)
+      lcd_send_byte(LCD_DATA, *texto++);
+}
+
+// ==== Posicionar cursor ====
+void lcd_gotoxy(int x, int y)
+{
+   BYTE pos = (y == 2 ? 0x40 : 0x00) + (x - 1);
+   lcd_send_byte(LCD_CMD, 0x80 | pos);
+}
+
+// ==== Programa principal ====
+void main()
+{
+   lcd_init();
+   lcd_gotoxy(1,1);
+   lcd_puts("Hola Mundo!");
+   lcd_gotoxy(1,2);
+   lcd_puts("I2C OK");
+   while(TRUE);
+}
+

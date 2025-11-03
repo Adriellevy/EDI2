@@ -1,0 +1,6 @@
+Compiling C:\Users\54232\Desktop\Mateo\2022\BME\Tercer año\EDI2\GITHUB\EDI2\TPFinal\LCD\Pic c compiler\Comunicacion_serial on 03-nov-25 at 17:13
+>>> Warning 236 "C:\Users\54232\Desktop\Mateo\2022\BME\Tercer año\EDI2\GITHUB\EDI2\TPFinal\LCD\Pic c compiler\Comunicacion_serial.c" Line 10(9,17): Defined identifier matches a variable ID
+>>> Warning 202 "C:\Users\54232\Desktop\Mateo\2022\BME\Tercer año\EDI2\GITHUB\EDI2\TPFinal\LCD\Pic c compiler\i2c_Flex_LCD.c" Line 174(13,17): Variable never used:   data
+      Memory usage:   ROM=11%      RAM=8% - 14%
+      0 Errors,  2 Warnings.
+Build Successful.

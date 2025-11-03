@@ -1,0 +1,89 @@
+#include <Comunicacion_serial.h>
+
+#use rs232(baud=9600, xmit=PIN_A0, rcv=PIN_A1, stream=SERIAL) // opcional
+// Activar módulo I2C por software en los pines que quieras
+#use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow,ADDRESS=0x4E)  
+
+#define PCF8574_ADDR 0x4E     // Dirección del expansor (A0=A1=A2=VCC)
+
+// LCD + I2C funciones básicas
+#define LCD_RS 0x01
+#define LCD_EN 0x04
+#define LCD_BACKLIGHT 0x08
+
+void i2c_lcd_send_nibble(int8 nibble, int8 rs)
+{
+   int8 data;
+
+   data = nibble | LCD_BACKLIGHT | rs;
+   i2c_start();
+   i2c_write(PCF8574_ADDR);
+   i2c_write(data | LCD_EN);
+   delay_us(1);
+   i2c_write(data & ~LCD_EN);
+   i2c_stop();
+}
+
+void i2c_lcd_send_byte(int8 data, int8 rs)
+{
+   i2c_lcd_send_nibble(data & 0xF0, rs);
+   i2c_lcd_send_nibble((data << 4) & 0xF0, rs);
+}
+
+void lcd_cmd(int8 cmd)
+{
+   i2c_lcd_send_byte(cmd, 0);
+   delay_ms(2);
+}
+
+void lcd_putc(char c)
+{
+   i2c_lcd_send_byte(c, LCD_RS);
+   delay_ms(1);
+}
+
+void lcd_init()
+{
+   delay_ms(50);
+
+   i2c_lcd_send_nibble(0x30, 0);
+   delay_ms(5);
+   i2c_lcd_send_nibble(0x30, 0);
+   delay_us(200);
+   i2c_lcd_send_nibble(0x30, 0);
+   delay_ms(5);
+
+   i2c_lcd_send_nibble(0x20, 0); 
+   delay_ms(5);
+
+   lcd_cmd(0x28); // 4 bits, 2 líneas, 5x8
+   lcd_cmd(0x0C); // Display ON, cursor OFF
+   lcd_cmd(0x06); // Incremento automático
+   lcd_cmd(0x01); // Clear
+   delay_ms(5);
+}
+
+void lcd_gotoxy(int8 x, int8 y)
+{
+   int8 addr;
+   if(y==1)
+      addr=0x80 + (x-1);
+   else
+      addr=0xC0 + (x-1);
+   lcd_cmd(addr);
+}
+
+void main()
+{
+   lcd_init();
+
+   lcd_gotoxy(1,1);
+   printf("Hola");
+   
+   lcd_gotoxy(1,2);
+   printf("PIC16F1827");
+
+   while(TRUE) {
+      // Loop infinito
+   }
+}

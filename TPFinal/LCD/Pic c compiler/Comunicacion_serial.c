@@ -1,0 +1,34 @@
+#include <16F1827.h>
+#fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO
+#use delay(clock=4000000)
+#use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)
+
+// Incluimos la librería tal cual
+#include "i2c_Flex_LCD.c"
+
+// Dirección típica del PCF8574 (puede variar: 0x27 o 0x3F)
+#define LCD_ADDR 0x27
+
+void main() {
+    // Inicialización del LCD
+    lcd_init(LCD_ADDR << 1, 16, 2);  // Shift 1 bit para R/W
+    lcd_backlight_led(ON);           // Encender backlight
+    delay_ms(50);                    // Espera para asegurar inicialización
+
+    lcd_clear();                     // Limpiar pantalla
+    lcd_gotoxy(1,1);                 // Posicionar cursor en columna 1, fila 1
+
+    // Enviar texto al LCD
+    char *msg = "HOLA QUE HACE?";
+    int i=0;
+    while(msg[i]) {
+        LCD_PUTC(msg[i]);            // La función correcta es LCD_PUTC
+        i++;
+    }
+
+    while(TRUE) {
+        // Loop infinito (LCD mantiene el mensaje)
+        delay_ms(1000);
+    }
+}
+
