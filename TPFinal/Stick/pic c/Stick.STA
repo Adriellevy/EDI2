@@ -1,53 +1,53 @@
 
-ROM used:   631/4096 (15%)
-            631/4096 (15%) including unused fragments
+ROM used:   736/4096 (18%)
+            736/4096 (18%) including unused fragments
 
-            0.6 Average locations per line
-            37.1 Average locations per statement
+            0.7 Average locations per line
+            30.7 Average locations per statement
 
-RAM used:   12/383 (3%) at main() level
-            34/383 (9%) worst case
+RAM used:   14/383 (4%) at main() level
+            36/383 (9%) worst case
 
-Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack used: 2 worst case (2 in main + 0 for interrupts)
 Stack size: 16
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   45    17 100  Stick.c
-    5     0   0  Stick.h
-  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+   69    24 100  Stick.c
+  965     0   0  ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
 ----- -----
- 1015    17 Total
+ 1034    24 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
-0     23   4    1             @delay_ms2
-0    188  30    6    482  3.3  main
-0     20   3    0             @const735
-0     81  13    4             @PSTRINGC7_9600_106_105
-0     12   2    0             @const740
-0     96  15    9             @PRINTF_LU_9600_106_105
-0     87  14    6             @PSTRINGCN7_9600_106_105
+0     23   3    1             @delay_ms1
+0    298  40    8    827  5.8  main
+0     20   3    0             @const733
+0     81  11    5             @PSTRINGC7_9600_106_105
+0     24   3    0             @const738
+0     96  13   15             @PRINTF_LU_9600_106_105
 0     21   3    3             @DIV88
-0    100  16    8             @PRINTF_D_9600_106_105
+0     62   8    2             @PRINTF_U_9600_106_105
+0     86  12    5             @PSTRINGCN7_9600_106_105
+0     22   3    0             @const749
  Inline         0             @cinit1
 
 Program metrics:
     Functions               1
-    Statements              17
-    Comments                167
-    Volume (V)              502
-    Difficulty (D)          2.7
-    Effort to implement (E) 1359
-    Time to implement (T)   1 minutes
+    Statements              24
+    Comments                175
+    Volume (V)              850
+    Difficulty (D)          5.0
+    Effort to implement (E) 4286
+    Time to implement (T)   4 minutes
     Est Delivered Bugs (B)  0
     Cyclomatic Complexity   1
-    Maintainability (MI)    139
+    Maintainability (MI)    134
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     3  0  
-00003-007FF   628  1417  
+00003-007FF   733  1312  
 00800-00FFF     0  2048  
 
 
