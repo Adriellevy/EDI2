@@ -1,0 +1,64 @@
+#include <16F1827.h>
+#device ADC=10
+#fuses NOWDT, INTRC_IO, NOPROTECT, NOLVP, NOMCLR
+#use delay(clock=4MHz)
+#use RS232(BAUD=9600, BITS=8, PARITY=N, XMIT=PIN_B5, RCV=PIN_B1)
+
+// ---------------- Definiciones ----------------
+#define PIN_X   PIN_A0    // Eje X del joystick (VRx)
+#define PIN_Y   PIN_A1    // Eje Y del joystick (VRy)
+#define PIN_BTN PIN_B0    // Botón del joystick (SW)
+
+// ---------------- Programa principal ----------------
+void main() {
+    // Configuración básica
+    setup_oscillator(OSC_4MHZ);
+    setup_adc_ports(sAN0 | sAN1, VSS_VDD);
+    setup_adc(ADC_CLOCK_INTERNAL);
+
+    set_tris_a(0b00000011); // RA0 y RA1 entradas analógicas
+    set_tris_b(0b00000001); // RB0 entrada digital (botón)
+
+    unsigned int16 ejeX, ejeY;           // Originales 0-1023
+    unsigned int8  ejeX_8bit, ejeY_8bit; // Convertidos 0-255
+    int1 boton;
+
+    printf("\r\n--- Lectura Joystick PIC16F1827 ---\r\n");
+
+    while(TRUE) {
+        // Leer eje X
+        set_adc_channel(0);
+        delay_us(20);
+        ejeX = read_adc();
+
+        // Leer eje Y
+        set_adc_channel(1);
+        delay_us(20);
+        ejeY = read_adc();
+
+        // Leer botón (activo en 0)
+        boton = input(PIN_BTN);
+
+        // ***** INICIO DE LA MODIFICACIÓN *****
+        // Convertir de 10 bits (0-1023) a 8 bits (0-255)
+        // Usamos un desplazamiento de 2 bits a la derecha (>> 2)
+        // Es lo mismo que dividir por 4, pero mucho más rápido.
+        ejeX_8bit = ejeX >> 2;
+        ejeY_8bit = ejeY >> 2;
+        // ***** FIN DE LA MODIFICACIÓN *****
+
+
+        // Mostrar los valores (originales y convertidos)
+        // Usamos %3u para los valores de 8 bits (0-255)
+        printf("X=%4Lu (%3u) \t Y=%4Lu (%3u) \t BTN=%s \r\n",
+               ejeX, ejeX_8bit,
+               ejeY, ejeY_8bit,
+               (boton ? "SUELTO" : "PRESIONADO"));
+
+        // Aquí es donde usarías ejeX_8bit y ejeY_8bit
+        // para controlar tus LEDs (probablemente con PWM)
+        // ej: set_pwm1_duty(ejeX_8bit);
+
+        delay_ms(1000);
+    }
+}
