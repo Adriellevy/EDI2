@@ -26,13 +26,23 @@ D1_L3=[48749]Stopped Editing.
 D1_L4=[48854]Started Editing.
 D1_L5=[49402]Project Closed.
 D2=03-11-2025
-D2_L=2
+D2_L=8
 D2_L1=[58456]Project Opened.
 D2_L2=[58465]Started Editing.
+D2_L3=[58870]Project Opened.
+D2_L4=[63476]Started Editing.
+D2_L5=[64307]Stopped Editing.
+D2_L6=[64979]Started Editing.
+D2_L7=[65057]Stopped Editing.
+TotalEdit=11
+TotalDebug=0
+D2_E=11
+D2_D=0
+D2_L8=[65060]Project Closed.
 
 [Opened Files]
 1=main.c
-t1=29
+t1=24
 Count=1
 2=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdint.h
 t2=1
@@ -42,7 +52,7 @@ t3=1
 Type=4
 
 [defines]
-buildcount=3
+buildcount=15
 [Units]
 Count=1
 1=main (main)

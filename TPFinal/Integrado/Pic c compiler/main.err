@@ -1,0 +1,8 @@
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main on 03-nov.-25 at 18:21
+>>> Warning 236 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main.c" Line 11(9,17): Defined identifier matches a variable ID
+>>> Warning 205 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main.c" Line 132(1,1): Unsigned variable is never less than zero
+>>> Warning 204 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main.c" Line 132(1,1): Condition always FALSE
+>>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\i2c_Flex_LCD.c" Line 174(13,17): Variable never used:   data
+      Memory usage:   ROM=75%      RAM=6% - 22%
+      0 Errors,  4 Warnings.
+Build Successful.

@@ -5,9 +5,9 @@
 #define _XTAL_FREQ 4000000
 
 // Variables de control de los 3 PWM (0 a 100 %)
-unsigned int8 duty1 = 100;  // PWM1 = 50%
-unsigned int8 duty2 = 100;  // PWM2 = 75%
-unsigned int8 duty3 = 0;  // PWM3 = 25%
+unsigned int8 duty1 = 50;  // PWM1 = 50%
+unsigned int8 duty2 = 75;  // PWM2 = 75%
+unsigned int8 duty3 = 25;  // PWM3 = 25%
 
 // Función para convertir porcentaje a valor PWM (10 bits)
 unsigned int16 percent_to_pwm(unsigned int8 percent) {
@@ -31,9 +31,9 @@ void main() {
    setup_ccp3(CCP_PWM);
    
    // Establecer los duty cycles iniciales
-   set_pwm1_duty(0);       //verde (CP1)
-   set_pwm2_duty(1023);    //Azul (CP2)
-   set_pwm3_duty(0);       //Rojo (CP3)
+   set_pwm1_duty(percent_to_pwm(duty1));
+   set_pwm2_duty(percent_to_pwm(duty2));
+   set_pwm3_duty(percent_to_pwm(duty3));
    
    while(TRUE) {
       // Aquí puedes modificar las variables duty1, duty2, duty3
@@ -43,5 +43,6 @@ void main() {
       // duty1 = 100;
       // set_pwm1_duty(percent_to_pwm(duty1));
       
+      delay_ms(100);
       }
 }

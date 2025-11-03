@@ -1,0 +1,470 @@
+// Proyecto integrado PIC16F1827 - PWM RGB + Joystick + EEPROM + LCD I2C
+// Usa CCS C Compiler
+#include <16F1827.h>
+#device ADC=10
+#fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO, NOMCLR
+#use delay(clock=4000000)
+
+// I2C para LCD (según tus snippets)
+#use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)
+#include "i2c_Flex_LCD.c"   // archivo que proporcionaste previamente
+#define LCD_ADDR 0x27
+
+
+// -------------------- DEFINICIONES DE PINES --------------------
+// ADC / Potenciómetros (entradas analógicas)
+#define PIN_R     PIN_A0   // AN0 - Pot R
+#define PIN_G     PIN_A1   // AN1 - Pot G
+#define PIN_B     PIN_A2   // AN2 - Pot B
+
+// Joystick botón / botones
+#define BTN_SELECT PIN_B0   // Botón de selección GUARDAR/ENTER (activo 0)
+#define BTN_BACK   PIN_B2   // Botón de retroceso / cancelar (activo 0)
+
+// PWM outputs (usa CCP1, CCP2, CCP3)
+#define PWM_R_PIN PIN_C2    // ejemplo: salida PWM para Rojo (CCP2/CCPx según MCU)
+#define PWM_G_PIN PIN_C1    // Verde
+#define PWM_B_PIN PIN_C0    // Azul
+
+// -------------------- EEPROM / LÓGICA --------------------
+#define EEPROM_MAX 256        // bytes
+#define COLOR_SIZE 3          // bytes por color (guardaremos 8-bit cada canal)
+#define MAX_COLORS (EEPROM_MAX / COLOR_SIZE) // 85 colores
+
+// -------------------- TIPOS Y PROTOTIPOS --------------------
+typedef struct {
+    unsigned int16 r; // 0..1023 (10-bit)
+    unsigned int16 g;
+    unsigned int16 b;
+} color_t;
+
+void set_rgb(unsigned int16 r, unsigned int16 g, unsigned int16 b);
+void guardar_color(color_t c, int8 direccion);      // direccion ignorada en impl. (opcional)
+color_t recuperar_color(int8 direccion);
+void mostrar_menu();
+void menu_variar_color();
+void menu_guardar_recuperar();
+void menu_eeprom_basico();
+void menu_personalizado_1();
+int8 leer_entrada_r();
+int8 leer_entrada_g();
+int8 leer_entrada_b();
+
+// utilidades
+unsigned int16 percent_to_pwm(unsigned int8 percent);
+unsigned int16 adc10_to_pwm(unsigned int16 v10);
+unsigned int8 adc10_to_8bit(unsigned int16 v10);
+unsigned int16 read_adc_channel(int channel);
+
+// Variables globales
+int8 opcion_menu = 0;
+color_t color_actual = {0,0,0};
+
+// debounce
+int1 last_select_state = 1;
+int1 last_back_state = 1;
+
+// -------------------- IMPLEMENTACIÓN --------------------
+
+unsigned int16 percent_to_pwm(unsigned int8 percent) {
+   if (percent > 100) percent = 100;
+   return (unsigned int16)((percent * 1023) / 100);
+}
+
+unsigned int16 adc10_to_pwm(unsigned int16 v10) {
+    // ADC 0..1023 -> PWM 0..1023 (identidad)
+    if (v10 > 1023) v10 = 1023;
+    return v10;
+}
+
+unsigned int8 adc10_to_8bit(unsigned int16 v10) {
+    // para almacenar en eeprom (1 byte), escalamos 0..1023 -> 0..255
+    return (unsigned int8)( (v10 * 255) / 1023 );
+}
+
+unsigned int16 read_adc_channel(int channel) {
+    set_adc_channel(channel);
+    delay_us(20);
+    return read_adc(); // 0..1023
+}
+
+// set_rgb: recibe valores 0..1023 para cada canal
+void set_rgb(unsigned int16 r, unsigned int16 g, unsigned int16 b) {
+    // establece los PWM (set_pwmX_duty usa 0..1023)
+    set_pwm1_duty(g); // mapping: CCP1 -> Verde (como en tu snippet original)
+    set_pwm2_duty(r); // CCP2 -> Rojo
+    set_pwm3_duty(b); // CCP3 -> Azul
+    // actualizar variable global
+    color_actual.r = r;
+    color_actual.g = g;
+    color_actual.b = b;
+}
+
+// guardar_color: recibe color 10-bit -> guarda 8-bit en EEPROM
+void guardar_color(color_t c, int8 direccion) {
+    // busco primera posición libre (0xFF, EEPROM virgen)
+    for (int i=0; i< MAX_COLORS; i++) {
+        unsigned int8 r_chk = read_eeprom(i*3);
+        unsigned int8 g_chk = read_eeprom(i*3 + 1);
+        unsigned int8 b_chk = read_eeprom(i*3 + 2);
+        if (r_chk == 0xFF && g_chk == 0xFF && b_chk == 0xFF) {
+            unsigned int8 r8 = adc10_to_8bit(c.r);
+            unsigned int8 g8 = adc10_to_8bit(c.g);
+            unsigned int8 b8 = adc10_to_8bit(c.b);
+            write_eeprom(i*3, r8);
+            write_eeprom(i*3 + 1, g8);
+            write_eeprom(i*3 + 2, b8);
+            return;
+        }
+    }
+    // si está llena, sobreescribimos la última posición
+    unsigned int8 r8 = adc10_to_8bit(c.r);
+    unsigned int8 g8 = adc10_to_8bit(c.g);
+    unsigned int8 b8 = adc10_to_8bit(c.b);
+    write_eeprom((MAX_COLORS-1)*3, r8);
+    write_eeprom((MAX_COLORS-1)*3 + 1, g8);
+    write_eeprom((MAX_COLORS-1)*3 + 2, b8);
+}
+
+// recuperar_color: lee dirección (0..MAX_COLORS-1) -> devuelve 10-bit (escalado)
+color_t recuperar_color(int8 direccion) {
+    color_t res = {0,0,0};
+    if (direccion < 0) direccion = 0;
+    if (direccion >= MAX_COLORS) direccion = MAX_COLORS - 1;
+    unsigned int8 r8 = read_eeprom(direccion*3);
+    unsigned int8 g8 = read_eeprom(direccion*3 + 1);
+    unsigned int8 b8 = read_eeprom(direccion*3 + 2);
+
+    // Si EEPROM virgen suele ser 0xFF -> tratamos como 0
+    if (r8 == 0xFF && g8 == 0xFF && b8 == 0xFF) {
+        res.r = res.g = res.b = 0;
+        return res;
+    }
+    // Escalar 0..255 -> 0..1023
+    res.r = (unsigned int16)((r8 * 1023) / 255);
+    res.g = (unsigned int16)((g8 * 1023) / 255);
+    res.b = (unsigned int16)((b8 * 1023) / 255);
+    return res;
+}
+
+// contar colores guardados
+int get_color_count() {
+    int count = 0;
+    for (int i=0; i<MAX_COLORS; i++) {
+        unsigned int8 r = read_eeprom(i*3);
+        unsigned int8 g = read_eeprom(i*3 + 1);
+        unsigned int8 b = read_eeprom(i*3 + 2);
+        if (r == 0xFF && g == 0xFF && b == 0xFF) break;
+        count++;
+    }
+    return count;
+}
+
+// Mostrar menu principal (navegación con eje X del joystick, seleccionar con BTN_SELECT)
+void mostrar_menu() {
+    // Opciones del menú:
+    // 1. Variar Color
+    // 2. Guardar/Recuperar
+    // 3. EEPROM Basico
+    // 4. Personalizado 1
+
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "Menu:");
+    lcd_gotoxy(1,2);
+    switch(opcion_menu) {
+        case 0: printf(lcd_putc, ">1 Variar"); break;
+        case 1: printf(lcd_putc, ">2 Guardar"); break;
+        case 2: printf(lcd_putc, ">3 EEPROM"); break;
+        case 3: printf(lcd_putc, ">4 Pers1"); break;
+        default: opcion_menu = 0; printf(lcd_putc, ">1 Variar"); break;
+    }
+    delay_ms(300);
+}
+
+// menu para variar color con potenciómetros (live)
+void menu_variar_color() {
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "Variar Color (BTN sel)");
+    delay_ms(800);
+
+    while(TRUE) {
+        unsigned int16 r10 = read_adc_channel(0); // AN0
+        unsigned int16 g10 = read_adc_channel(1); // AN1
+        unsigned int16 b10 = read_adc_channel(2); // AN2
+
+        set_rgb(r10, g10, b10); // aplica PWM
+
+        lcd_clear();
+        lcd_gotoxy(1,1);
+        printf(lcd_putc, "R:%u G:%u", (unsigned int)adc10_to_8bit(r10), (unsigned int)adc10_to_8bit(g10));
+        lcd_gotoxy(1,2);
+        printf(lcd_putc, "B:%u", (unsigned int)adc10_to_8bit(b10));
+
+        // Leer botón select para volver al menu o guardar
+        int1 sel = input(BTN_SELECT);
+        if (!sel && last_select_state) { // flanco a 0
+            delay_ms(40);
+            if (!input(BTN_SELECT)) {
+                // al presionar volvemos al menu principal
+                last_select_state = 0;
+                delay_ms(200);
+                break;
+            }
+        }
+        last_select_state = sel;
+
+        // boton back también rompe
+        int1 back = input(BTN_BACK);
+        if (!back && last_back_state) {
+            delay_ms(40);
+            if (!input(BTN_BACK)) {
+                last_back_state = 0;
+                delay_ms(200);
+                break;
+            }
+        }
+        last_back_state = back;
+
+        delay_ms(200);
+    }
+}
+
+// menu para guardar o recuperar colores
+void menu_guardar_recuperar() {
+    int8 subop = 0; // 0: guardar, 1: listar, 2: recuperar (por indice)
+    int8 index = 0;
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "Guardar/Recuperar");
+    delay_ms(700);
+
+    while(TRUE) {
+        lcd_clear();
+        lcd_gotoxy(1,1);
+        if (subop == 0) printf(lcd_putc, ">Guardar color");
+        else if (subop == 1) printf(lcd_putc, ">Listar guardados");
+        else if (subop == 2) printf(lcd_putc, ">Recuperar idx:%u", index);
+
+        lcd_gotoxy(1,2);
+        printf(lcd_putc, "Sel=OK Back=Volver");
+        delay_ms(200);
+
+        // navegar con joystick X
+        unsigned int16 x = read_adc_channel(0);
+        if (x < 200) { // izquierda -> decrementar
+            if (subop > 0) { subop--; delay_ms(250); }
+        } else if (x > 800) { // derecha -> incrementar
+            if (subop < 2) { subop++; delay_ms(250); }
+        }
+
+        // si elegimos recuperar, usar eje Y para cambiar index
+        if (subop == 2) {
+            unsigned int16 y = read_adc_channel(1);
+            int maxc = get_color_count();
+            if (maxc == 0) maxc = 1;
+            // map y 0..1023 -> 0..maxc-1
+            index = (int8)((y * (maxc-1)) / 1023);
+        }
+
+        // botones
+        int1 sel = input(BTN_SELECT);
+        if (!sel && last_select_state) {
+            delay_ms(40);
+            if (!input(BTN_SELECT)) {
+                // acción
+                if (subop == 0) {
+                    // Guardar color_actual
+                    guardar_color(color_actual, 0);
+                    lcd_clear();
+                    lcd_gotoxy(1,1);
+                    printf(lcd_putc, "Color guardado");
+                    delay_ms(1000);
+                } else if (subop == 1) {
+                    // listar
+                    lcd_clear();
+                    lcd_gotoxy(1,1);
+                    printf(lcd_putc, "Listando...");
+                    delay_ms(500);
+                    // reusar enfoque show_all_colors
+                    for (int i=0; i<MAX_COLORS; i++) {
+                        unsigned int8 r = read_eeprom(i*3);
+                        unsigned int8 g = read_eeprom(i*3 + 1);
+                        unsigned int8 b = read_eeprom(i*3 + 2);
+                        if (r == 0xFF && g == 0xFF && b == 0xFF) break;
+                        lcd_clear();
+                        lcd_gotoxy(1,1);
+                        printf(lcd_putc, "Color %u:", i+1);
+                        lcd_gotoxy(1,2);
+                        printf(lcd_putc, "R:%u G:%u B:%u", r, g, b);
+                        delay_ms(900);
+                    }
+                } else if (subop == 2) {
+                    // recuperar en index
+                    color_t rc = recuperar_color(index);
+                    set_rgb(rc.r, rc.g, rc.b);
+                    lcd_clear();
+                    lcd_gotoxy(1,1);
+                    printf(lcd_putc, "Recup #%u", index+1);
+                    lcd_gotoxy(1,2);
+                    printf(lcd_putc, "R:%u G:%u B:%u", (unsigned int)adc10_to_8bit(rc.r),
+                                                     (unsigned int)adc10_to_8bit(rc.g),
+                                                     (unsigned int)adc10_to_8bit(rc.b));
+                    delay_ms(1200);
+                }
+            }
+        }
+        last_select_state = sel;
+
+        int1 back = input(BTN_BACK);
+        if (!back && last_back_state) {
+            delay_ms(40);
+            if (!input(BTN_BACK)) {
+                // volver al menu principal
+                last_back_state = 0;
+                delay_ms(200);
+                break;
+            }
+        }
+        last_back_state = back;
+
+        delay_ms(120);
+    }
+}
+
+// EEPROM basico: muestra contadores
+void menu_eeprom_basico() {
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "EEPROM Basico");
+    delay_ms(700);
+
+    int total = get_color_count();
+    int libres = MAX_COLORS - total;
+
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "Guardados:%u", total);
+    lcd_gotoxy(1,2);
+    printf(lcd_putc, "Libres:%u", libres);
+    delay_ms(2000);
+}
+
+// ejemplo personalizado
+void menu_personalizado_1() {
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "Personalizado 1");
+    lcd_gotoxy(1,2);
+    printf(lcd_putc, "Pulsa sel para OK");
+    delay_ms(1000);
+
+    // accion simple: ciclo de colores predefinido
+    color_t presets[4] = {
+        {1023,0,0},
+        {0,1023,0},
+        {0,0,1023},
+        {1023,1023,0}
+    };
+    for (int i=0; i<4; i++) {
+        set_rgb(presets[i].r, presets[i].g, presets[i].b);
+        lcd_clear();
+        lcd_gotoxy(1,1);
+        printf(lcd_putc, "Preset %u", i+1);
+        lcd_gotoxy(1,2);
+        printf(lcd_putc, "R:%u G:%u B:%u", (unsigned int)adc10_to_8bit(presets[i].r),
+                                         (unsigned int)adc10_to_8bit(presets[i].g),
+                                         (unsigned int)adc10_to_8bit(presets[i].b));
+        delay_ms(900);
+        int1 back = input(BTN_BACK);
+        if (!back) { delay_ms(50); if (!input(BTN_BACK)) break; }
+    }
+}
+
+// funciones de lectura de entrada (firmas pedidas)
+int8 leer_entrada_r() {
+    return (int8)adc10_to_8bit(read_adc_channel(0));
+}
+int8 leer_entrada_g() {
+    return (int8)adc10_to_8bit(read_adc_channel(1));
+}
+int8 leer_entrada_b() {
+    return (int8)adc10_to_8bit(read_adc_channel(2));
+}
+
+// -------------------- MAIN --------------------
+void main() {
+    // --- Inicializaciones hardware ---
+    // Puertos
+
+    // ADC
+    setup_adc_ports(sAN0 | sAN1 | sAN2, VSS_VDD);
+    setup_adc(ADC_CLOCK_INTERNAL);
+
+    // PWM (CCP1, CCP2, CCP3)
+    setup_ccp1(CCP_PWM); // CCP1 -> Verde (mapeado en set_rgb)
+    setup_ccp2(CCP_PWM); // CCP2 -> Rojo
+    setup_ccp3(CCP_PWM); // CCP3 -> Azul
+    setup_timer_2(T2_DIV_BY_1, 255, 1); // Timer2 para PWM (Periodo ~255)
+
+    // Inicializar LCD
+    lcd_init(LCD_ADDR << 1, 16, 2);
+    delay_ms(50);
+
+    // Inicializar estado de botones
+    last_select_state = input(BTN_SELECT);
+    last_back_state = input(BTN_BACK);
+
+    // Estado inicial PWM a 0
+    set_pwm1_duty(0);
+    set_pwm2_duty(0);
+    set_pwm3_duty(0);
+
+    opcion_menu = 0;
+    color_actual.r = 0; color_actual.g = 0; color_actual.b = 0;
+
+    // Mensaje inicial
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "Sistema RGB listo");
+    delay_ms(1200);
+
+    while(TRUE) {
+        mostrar_menu();
+
+        // Navegación menú con eje X (izq/der)
+        unsigned int16 x = read_adc_channel(0);
+        if (x < 200) { // izquierda -> decrementar
+            if (opcion_menu > 0) { opcion_menu--; lcd_clear(); delay_ms(200); }
+        } else if (x > 800) { // derecha -> incrementar
+            if (opcion_menu < 3) { opcion_menu++; lcd_clear(); delay_ms(200); }
+        }
+
+        // Seleccionar con BTN_SELECT (activo 0)
+        int1 sel = input(BTN_SELECT);
+        if (!sel && last_select_state) {
+            delay_ms(40);
+            if (!input(BTN_SELECT)) {
+                // ejecutar opcion
+                switch(opcion_menu) {
+                    case 0: menu_variar_color(); break;
+                    case 1: menu_guardar_recuperar(); break;
+                    case 2: menu_eeprom_basico(); break;
+                    case 3: menu_personalizado_1(); break;
+                }
+            }
+        }
+        last_select_state = sel;
+
+        // Actualizar color_actual leyendo potes (para que guardar use valor actual)
+        color_actual.r = read_adc_channel(0);
+        color_actual.g = read_adc_channel(1);
+        color_actual.b = read_adc_channel(2);
+        // aplicar al PWM continuamente
+        set_rgb(color_actual.r, color_actual.g, color_actual.b);
+
+        delay_ms(200);
+    }
+}
+

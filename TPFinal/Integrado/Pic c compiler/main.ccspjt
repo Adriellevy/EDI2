@@ -1,0 +1,39 @@
+[PROJECT]
+Target=main.hex
+Processor_Text=PIC16F1827
+CCSVerions=5.093
+Compiler=PCM
+CCSVersion=5.093
+[Target Data]
+FileList=main.c
+[Directories]
+Include=
+[C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main]
+Type=4
+[mru-list]
+1=main.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=03-11-2025
+D1_L=4
+D1_L1=[65166]Project Opened.
+D1_L2=[65180]Started Editing.
+D1_L3=[65685]Stopped Editing.
+D1_L4=[65979]Started Editing.
+
+[Opened Files]
+1=main.c
+t1=229
+Count=1
+[main.c]
+Type=4
+
+[defines]
+buildcount=5
+[Units]
+Count=1
+1=main (main)

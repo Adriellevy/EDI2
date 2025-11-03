@@ -1,16 +1,16 @@
-CCS PCM C Compiler, Version 5.093, 4770               03-Nov-25 16:15
+CCS PCM C Compiler, Version 5.093, 4770               03-nov.-25 17:44
 
-               Filename:   C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\PWM\Pic c compiler\main.lst
+               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\PWM\Pic c compiler\main.lst
 
-               ROM used:   267 words (7%)
+               ROM used:   83 words (2%)
                            Largest free fragment is 2048
-               RAM used:   10 (3%) at main() level
-                           27 (7%) worst case
+               RAM used:   7 (2%) at main() level
+                           18 (5%) worst case
                Stack used: 0 locations
                Stack size: 16
 
 0000:  MOVLP  00
-0001:  GOTO   06F
+0001:  GOTO   003
 0002:  NOP
 .................... #include <16F1827.h>
 .................... //////////// Standard Header file for the PIC16F1827 device ////////////////
@@ -24,310 +24,125 @@ CCS PCM C Compiler, Version 5.093, 4770               03-Nov-25 16:15
 .................... //// form are not restricted in any way.                               ////
 .................... ///////////////////////////////////////////////////////////////////////////
 .................... #device PIC16F1827
-*
-0010:  MOVLW  10
-0011:  MOVWF  29
-0012:  CLRF   77
-0013:  CLRF   7A
-0014:  RRF    26,F
-0015:  RRF    25,F
-0016:  BTFSS  03.0
-0017:  GOTO   01E
-0018:  MOVF   27,W
-0019:  ADDWF  77,F
-001A:  BTFSC  03.0
-001B:  INCF   7A,F
-001C:  MOVF   28,W
-001D:  ADDWF  7A,F
-001E:  RRF    7A,F
-001F:  RRF    77,F
-0020:  RRF    79,F
-0021:  RRF    78,F
-0022:  DECFSZ 29,F
-0023:  GOTO   014
-*
-002F:  CLRF   78
-0030:  CLRF   79
-0031:  CLRF   77
-0032:  CLRF   7A
-0033:  MOVF   2A,W
-0034:  BTFSS  03.2
-0035:  GOTO   039
-0036:  MOVF   29,W
-0037:  BTFSC  03.2
-0038:  GOTO   053
-0039:  MOVLW  10
-003A:  MOVWF  2B
-003B:  BCF    03.0
-003C:  RLF    27,F
-003D:  RLF    28,F
-003E:  RLF    77,F
-003F:  RLF    7A,F
-0040:  MOVF   2A,W
-0041:  SUBWF  7A,W
-0042:  BTFSS  03.2
-0043:  GOTO   046
-0044:  MOVF   29,W
-0045:  SUBWF  77,W
-0046:  BTFSS  03.0
-0047:  GOTO   04F
-0048:  MOVF   29,W
-0049:  SUBWF  77,F
-004A:  BTFSS  03.0
-004B:  DECF   7A,F
-004C:  MOVF   2A,W
-004D:  SUBWF  7A,F
-004E:  BSF    03.0
-004F:  RLF    78,F
-0050:  RLF    79,F
-0051:  DECFSZ 2B,F
-0052:  GOTO   03B
 .................... 
 .................... #list
 .................... 
 .................... #fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO
 .................... #use delay(clock=4000000)
-*
-0058:  MOVLW  20
-0059:  MOVWF  05
-005A:  MOVLW  03
-005B:  MOVWF  04
-005C:  MOVF   00,W
-005D:  BTFSC  03.2
-005E:  GOTO   06D
-005F:  MOVLW  01
-0060:  MOVWF  78
-0061:  CLRF   77
-0062:  DECFSZ 77,F
-0063:  GOTO   062
-0064:  DECFSZ 78,F
-0065:  GOTO   061
-0066:  MOVLW  4A
-0067:  MOVWF  77
-0068:  DECFSZ 77,F
-0069:  GOTO   068
-006A:  GOTO   06B
-006B:  DECFSZ 00,F
-006C:  GOTO   05F
-006D:  MOVLP  00
-006E:  GOTO   108 (RETURN)
 .................... 
 .................... #define _XTAL_FREQ 4000000
 .................... 
 .................... // Variables de control de los 3 PWM (0 a 100 %)
-.................... unsigned int8 duty1 = 50;  // PWM1 = 50%
-.................... unsigned int8 duty2 = 75;  // PWM2 = 75%
-.................... unsigned int8 duty3 = 25;  // PWM3 = 25%
+.................... unsigned int8 duty1 = 100;  // PWM1 = 50%
+.................... unsigned int8 duty2 = 100;  // PWM2 = 75%
+.................... unsigned int8 duty3 = 0;  // PWM3 = 25%
 .................... 
 .................... // Función para convertir porcentaje a valor PWM (10 bits)
 .................... unsigned int16 percent_to_pwm(unsigned int8 percent) {
 ....................    if (percent > 100) percent = 100;
-*
-0003:  MOVF   23,W
-0004:  SUBLW  64
-0005:  BTFSC  03.0
-0006:  GOTO   009
-0007:  MOVLW  64
-0008:  MOVWF  23
 ....................    return (unsigned int16)((percent * 1023) / 100);
-0009:  CLRF   26
-000A:  MOVF   23,W
-000B:  MOVWF  25
-000C:  MOVLW  03
-000D:  MOVWF  28
-000E:  MOVLW  FF
-000F:  MOVWF  27
-*
-0024:  MOVF   79,W
-0025:  MOVWF  25
-0026:  MOVF   78,W
-0027:  MOVWF  24
-0028:  MOVF   25,W
-0029:  MOVWF  28
-002A:  MOVF   24,W
-002B:  MOVWF  27
-002C:  CLRF   2A
-002D:  MOVLW  64
-002E:  MOVWF  29
-*
-0053:  MOVF   79,W
-0054:  MOVWF  7A
-0055:  MOVF   79,W
-0056:  MOVWF  79
-0057:  RETURN
 .................... }
 .................... 
 .................... void main() {
-*
-006F:  MOVLW  6A
-0070:  MOVLB  01
-0071:  MOVWF  19
-0072:  MOVLW  32
-0073:  MOVLB  00
-0074:  MOVWF  20
-0075:  MOVLW  4B
-0076:  MOVWF  21
-0077:  MOVLW  19
-0078:  MOVWF  22
-0079:  MOVLB  03
-007A:  CLRF   0C
-007B:  CLRF   0D
-007C:  MOVLB  02
-007D:  CLRF   12
-007E:  CLRF   11
-007F:  CLRF   14
-0080:  CLRF   13
+0003:  MOVLW  6A
+0004:  MOVLB  01
+0005:  MOVWF  19
+0006:  MOVLW  64
+0007:  MOVLB  00
+0008:  MOVWF  20
+0009:  MOVWF  21
+000A:  CLRF   22
+000B:  MOVLB  03
+000C:  CLRF   0C
+000D:  CLRF   0D
+000E:  MOVLB  02
+000F:  CLRF   12
+0010:  CLRF   11
+0011:  CLRF   14
+0012:  CLRF   13
 ....................    
 ....................    // Configurar pines de salida PWM
 ....................    set_tris_b(0b00000000);  // Puerto C como salida
-0081:  MOVLW  00
-0082:  MOVLB  01
-0083:  MOVWF  0D
+0013:  MOVLW  00
+0014:  MOVLB  01
+0015:  MOVWF  0D
 ....................    
 ....................    // --- Configurar PWM1 ---
 ....................    setup_ccp1(CCP_PWM);
-0084:  MOVLB  02
-0085:  BCF    1D.0
-0086:  BCF    1D.1
-0087:  BCF    1D.2
-0088:  MOVLB  01
-0089:  BCF    0D.3
-008A:  MOVLB  02
-008B:  BCF    0D.3
-008C:  MOVLW  0C
-008D:  MOVLB  05
-008E:  MOVWF  13
-008F:  CLRF   14
-0090:  CLRF   15
-0091:  BCF    1E.0
-0092:  BCF    1E.1
-0093:  MOVLW  01
-0094:  MOVWF  16
+0016:  MOVLB  02
+0017:  BCF    1D.0
+0018:  BCF    1D.1
+0019:  BCF    1D.2
+001A:  MOVLB  01
+001B:  BCF    0D.3
+001C:  MOVLB  02
+001D:  BCF    0D.3
+001E:  MOVLW  0C
+001F:  MOVLB  05
+0020:  MOVWF  13
+0021:  CLRF   14
+0022:  CLRF   15
+0023:  BCF    1E.0
+0024:  BCF    1E.1
+0025:  MOVLW  01
+0026:  MOVWF  16
 ....................    setup_timer_2(T2_DIV_BY_16, 255, 1); // Frecuencia PWM
-0095:  MOVLW  00
-0096:  MOVWF  78
-0097:  IORLW  06
-0098:  MOVLB  00
-0099:  MOVWF  1C
-009A:  MOVLW  FF
-009B:  MOVWF  1B
+0027:  MOVLW  00
+0028:  MOVWF  78
+0029:  IORLW  06
+002A:  MOVLB  00
+002B:  MOVWF  1C
+002C:  MOVLW  FF
+002D:  MOVWF  1B
 ....................    
 ....................    // --- Configurar PWM2 ---
 ....................    setup_ccp2(CCP_PWM);
-009C:  MOVLB  02
-009D:  BCF    1D.3
-009E:  BCF    1D.4
-009F:  MOVLB  01
-00A0:  BCF    0D.6
-00A1:  MOVLB  02
-00A2:  BCF    0D.6
-00A3:  MOVLW  0C
-00A4:  MOVLB  05
-00A5:  MOVWF  1A
-00A6:  CLRF   1B
-00A7:  CLRF   1C
-00A8:  BCF    1E.2
-00A9:  BCF    1E.3
-00AA:  MOVLW  01
-00AB:  MOVWF  1D
+002E:  MOVLB  02
+002F:  BCF    1D.3
+0030:  BCF    1D.4
+0031:  MOVLB  01
+0032:  BCF    0D.6
+0033:  MOVLB  02
+0034:  BCF    0D.6
+0035:  MOVLW  0C
+0036:  MOVLB  05
+0037:  MOVWF  1A
+0038:  CLRF   1B
+0039:  CLRF   1C
+003A:  BCF    1E.2
+003B:  BCF    1E.3
+003C:  MOVLW  01
+003D:  MOVWF  1D
 ....................    
 ....................    // --- Configurar PWM3 (opcional, si se requiere el tercer PWM) ---
 ....................    setup_ccp3(CCP_PWM);
-00AC:  MOVLB  01
-00AD:  BCF    0C.3
-00AE:  MOVLB  02
-00AF:  BCF    0C.3
-00B0:  MOVLW  0C
-00B1:  MOVLB  06
-00B2:  MOVWF  13
-00B3:  MOVLB  05
-00B4:  BCF    1E.4
-00B5:  BCF    1E.5
+003E:  MOVLB  01
+003F:  BCF    0C.3
+0040:  MOVLB  02
+0041:  BCF    0C.3
+0042:  MOVLW  0C
+0043:  MOVLB  06
+0044:  MOVWF  13
+0045:  MOVLB  05
+0046:  BCF    1E.4
+0047:  BCF    1E.5
 ....................    
 ....................    // Establecer los duty cycles iniciales
-....................    set_pwm1_duty(percent_to_pwm(duty1));
-00B6:  MOVLB  00
-00B7:  MOVF   20,W
-00B8:  MOVWF  23
-00B9:  CALL   003
-00BA:  MOVF   79,W
-00BB:  MOVWF  25
-00BC:  MOVF   78,W
-00BD:  MOVWF  24
-00BE:  RRF    25,F
-00BF:  RRF    24,F
-00C0:  RRF    25,F
-00C1:  RRF    24,F
-00C2:  RRF    25,F
-00C3:  MOVF   24,W
-00C4:  MOVLB  05
-00C5:  MOVWF  11
-00C6:  MOVLB  00
-00C7:  RRF    25,F
-00C8:  RRF    25,W
-00C9:  ANDLW  30
-00CA:  MOVWF  77
-00CB:  MOVLB  05
-00CC:  MOVF   13,W
-00CD:  ANDLW  CF
-00CE:  IORWF  77,W
-00CF:  MOVWF  13
-....................    set_pwm2_duty(percent_to_pwm(duty2));
-00D0:  MOVLB  00
-00D1:  MOVF   21,W
-00D2:  MOVWF  23
-00D3:  CALL   003
-00D4:  MOVF   79,W
-00D5:  MOVWF  25
-00D6:  MOVF   78,W
-00D7:  MOVWF  24
-00D8:  RRF    25,F
-00D9:  RRF    24,F
-00DA:  RRF    25,F
-00DB:  RRF    24,F
-00DC:  RRF    25,F
-00DD:  MOVF   24,W
-00DE:  MOVLB  05
-00DF:  MOVWF  18
-00E0:  MOVLB  00
-00E1:  RRF    25,F
-00E2:  RRF    25,W
-00E3:  ANDLW  30
-00E4:  MOVWF  77
-00E5:  MOVLB  05
-00E6:  MOVF   1A,W
-00E7:  ANDLW  CF
-00E8:  IORWF  77,W
-00E9:  MOVWF  1A
-....................    set_pwm3_duty(percent_to_pwm(duty3));
-00EA:  MOVLB  00
-00EB:  MOVF   22,W
-00EC:  MOVWF  23
-00ED:  CALL   003
-00EE:  MOVF   79,W
-00EF:  MOVWF  25
-00F0:  MOVF   78,W
-00F1:  MOVWF  24
-00F2:  RRF    25,F
-00F3:  RRF    24,F
-00F4:  RRF    25,F
-00F5:  RRF    24,F
-00F6:  RRF    25,F
-00F7:  MOVF   24,W
-00F8:  MOVLB  06
-00F9:  MOVWF  11
-00FA:  MOVLB  00
-00FB:  RRF    25,F
-00FC:  RRF    25,W
-00FD:  ANDLW  30
-00FE:  MOVWF  77
-00FF:  MOVLB  06
-0100:  MOVF   13,W
-0101:  ANDLW  CF
-0102:  IORWF  77,W
-0103:  MOVWF  13
+....................    set_pwm1_duty(0); //verde
+0048:  CLRF   11
+....................    set_pwm2_duty(1023);    //
+0049:  MOVLW  FF
+004A:  MOVWF  18
+004B:  MOVF   1A,W
+004C:  ANDLW  CF
+004D:  IORLW  30
+004E:  MOVWF  1A
+....................    set_pwm3_duty(0);
+004F:  MOVLB  06
+0050:  CLRF   11
 ....................    
 ....................    while(TRUE) {
+0051:  GOTO   051
 ....................       // Aquí puedes modificar las variables duty1, duty2, duty3
 ....................       // y actualizar los PWM dinámicamente:
 ....................       
@@ -335,16 +150,9 @@ CCS PCM C Compiler, Version 5.093, 4770               03-Nov-25 16:15
 ....................       // duty1 = 100;
 ....................       // set_pwm1_duty(percent_to_pwm(duty1));
 ....................       
-....................       delay_ms(100);
-0104:  MOVLW  64
-0105:  MOVLB  00
-0106:  MOVWF  23
-0107:  GOTO   058
-0108:  MOVLB  06
-0109:  GOTO   104
 ....................       }
 .................... }
-010A:  SLEEP
+0052:  SLEEP
 
 Configuration Fuses:
    Word  1: 3FC4   INTRC_IO NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN

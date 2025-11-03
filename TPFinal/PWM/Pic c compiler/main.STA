@@ -1,48 +1,44 @@
 
-ROM used:   267/4096 (7%)
-            267/4096 (7%) including unused fragments
+ROM used:   83/4096 (2%)
+            83/4096 (2%) including unused fragments
 
-            0.3 Average locations per line
-            19.1 Average locations per statement
+            0.1 Average locations per line
+            6.4 Average locations per statement
 
-RAM used:   10/383 (3%) at main() level
-            27/383 (7%) worst case
+RAM used:   7/383 (2%) at main() level
+            18/383 (5%) worst case
 
 Stack used: 0 worst case (0 in main + 0 for interrupts)
 Stack size: 16
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   49    14 100  main.c
-  965     0   0  ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+   48    13 100  main.c
+  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
 ----- -----
- 1014    14 Total
+ 1013    13 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
-0     23   9    1             @delay_ms1
-0     85  32    3    116  4.2  percent_to_pwm
- Inline         5             @MUL1616
- Inline         5             @DIV1616
-0    156  58    3    258  2.3  MAIN
+0     80  96    0    197  2.3  MAIN
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               2
-    Statements              14
-    Comments                175
-    Volume (V)              455
-    Difficulty (D)          5.9
-    Effort to implement (E) 2666
-    Time to implement (T)   2 minutes
+    Functions               1
+    Statements              13
+    Comments                177
+    Volume (V)              200
+    Difficulty (D)          2.2
+    Effort to implement (E) 431
+    Time to implement (T)   0 minutes
     Est Delivered Bugs (B)  0
     Cyclomatic Complexity   1
-    Maintainability (MI)    158
+    Maintainability (MI)    151
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     3  0  
-00003-007FF   264  1781  
+00003-007FF    80  1965  
 00800-00FFF     0  2048  
 
 

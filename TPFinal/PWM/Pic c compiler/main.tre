@@ -1,12 +1,4 @@
 ÀÄmain
-   ÀÄMAIN  0/156  Ram=3
+   ÀÄMAIN  0/80  Ram=0
       ÃÄ@cinit1  (Inline)  Ram=0
-      ÃÄ@cinit2  (Inline)  Ram=0
-      ÃÄpercent_to_pwm  0/85  Ram=3
-      ³  ÃÄ@MUL1616  (Inline)  Ram=5
-      ³  ÀÄ@DIV1616  (Inline)  Ram=5
-      ÃÄpercent_to_pwm  0/85  Ram=3
-      ³  ÀÄ*
-      ÃÄpercent_to_pwm  0/85  Ram=3
-      ³  ÀÄ*
-      ÀÄ@delay_ms1  0/23  Ram=1
+      ÀÄ@cinit2  (Inline)  Ram=0

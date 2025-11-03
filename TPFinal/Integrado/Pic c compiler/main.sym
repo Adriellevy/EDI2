@@ -1,0 +1,243 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PACKED_MEMORY.P2
+004-005 @WRITE_PROGRAM_MEMORY8.P3
+004-005 @READ_PACKED_MEMORY.P4
+006-007 @READ_PACKED_MEMORY.P1
+006-007 @WRITE_PACKED_MEMORY.P2
+020     LCD_ADDR
+021     lcd_total_rows
+022     lcd_total_columns
+023     new_row_request
+024     BACKLIGHT_LED
+025     lcd_gotoxy.data
+026     opcion_menu
+027-02C color_actual
+02D.0   last_select_state
+02D.1   last_back_state
+02E-02F @sprintf_string
+030-031 MAIN.x
+032.0   MAIN.sel
+033     menu_personalizado_1.i
+033-034 menu_variar_color.r10
+033     lcd_init.addr
+033     menu_guardar_recuperar.subop
+033     menu_eeprom_basico.total
+033     MAIN.@SCRATCH1
+034     menu_guardar_recuperar.index
+034     lcd_init.col
+034-04B menu_personalizado_1.presets
+034     menu_eeprom_basico.libres
+035-036 menu_guardar_recuperar.x
+035     lcd_init.row
+035-036 menu_variar_color.g10
+035     menu_eeprom_basico.@SCRATCH1
+036     lcd_init.i
+037-038 menu_variar_color.b10
+037-038 menu_guardar_recuperar.y
+037     lcd_init.@SCRATCH1
+039     menu_guardar_recuperar.maxc
+039.0   menu_variar_color.sel
+039.1   menu_variar_color.back
+03A.0   menu_guardar_recuperar.sel
+03A.1   menu_guardar_recuperar.back
+03A     menu_variar_color.@SCRATCH1
+03B     menu_guardar_recuperar.i
+03B     menu_variar_color.@SCRATCH2
+03C     menu_guardar_recuperar.r
+03D     menu_guardar_recuperar.g
+03E     menu_guardar_recuperar.b
+03F-044 menu_guardar_recuperar.rc
+046     get_color_count.count
+046-04B guardar_color.c
+046     read_adc_channel.channel
+046     menu_guardar_recuperar.@SCRATCH1
+047     get_color_count.i
+047     menu_guardar_recuperar.@SCRATCH2
+048     get_color_count.r
+048     menu_guardar_recuperar.@SCRATCH3
+049     get_color_count.g
+04A     get_color_count.b
+04B     recuperar_color.direccion
+04B     get_color_count.@SCRATCH1
+04C-051 recuperar_color.res
+04C     guardar_color.direccion
+04C.0   menu_personalizado_1.back
+04D     guardar_color.i
+04E     guardar_color.r_chk
+04F     guardar_color.g_chk
+050     guardar_color.b_chk
+051     guardar_color.r8
+052     guardar_color.g8
+052     recuperar_color.r8
+052     menu_personalizado_1.@SCRATCH1
+053     recuperar_color.g8
+053     guardar_color.b8
+053     menu_personalizado_1.@SCRATCH2
+054     recuperar_color.b8
+054     @PSTRINGCN7_757.P1
+054     guardar_color.r8
+054     menu_personalizado_1.@SCRATCH3
+055     guardar_color.g8
+055     @PSTRINGC7_757.@SCRATCH1
+055     @PSTRINGCN7_757.@SCRATCH1
+055     menu_personalizado_1.@SCRATCH4
+056     @PRINTF_U_757.P1
+056     guardar_color.b8
+056     recuperar_color.@SCRATCH1
+056     @PSTRINGC7_757.@SCRATCH2
+056     @PSTRINGCN7_757.@SCRATCH2
+056     menu_personalizado_1.@SCRATCH5
+057-058 adc10_to_8bit.v10
+057     @MUL88.P1
+057     @PRINTF_U_757.P2
+057     guardar_color.@SCRATCH1
+057     recuperar_color.@SCRATCH2
+057     @PSTRINGC7_757.@SCRATCH3
+057     @PSTRINGCN7_757.@SCRATCH3
+057     menu_personalizado_1.@SCRATCH6
+058     LCD_PUTC.in_data
+058     @MUL88.P1
+058     @DIV88.P2
+059     @DIV88.P1
+059     lcd_gotoxy.x
+059     @delay_ms1.P1
+059-05A set_rgb.r
+05A     lcd_gotoxy.y
+05A-05B @MUL1616.P1
+05A     adc10_to_8bit.@SCRATCH1
+05A     @DIV88.@SCRATCH1
+05B     lcd_gotoxy.row
+05B-05C set_rgb.g
+05B     adc10_to_8bit.@SCRATCH2
+05C     lcd_gotoxy.column
+05C-05D @DIV1616.P1
+05C-05D @MUL1616.P2
+05D     lcd_gotoxy.row_addr
+05D-05E set_rgb.b
+05E-05F @DIV1616.P1
+05E     lcd_gotoxy.lcd_address
+05E     @MUL1616.@SCRATCH1
+05F     lcd_gotoxy.@SCRATCH1
+060     lcd_send_byte.data
+060     @DIV1616.@SCRATCH1
+061     lcd_send_byte.type
+062     lcd_send_byte.@SCRATCH1
+063     i2c_send_nibble.data
+064     i2c_send_nibble.type
+065     i2c_send_nibble.@SCRATCH1
+066     @I2C_WRITEU_129.P1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+111.6   C1OUT
+113.6   C2OUT
+191-192 @READ_PROGRAM_MEMORY8.P1
+191-192 @WRITE_PROGRAM_MEMORY8.P2
+291     CCP_1
+291     CCP_1_LOW
+292     CCP_1_HIGH
+298     CCP_2_LOW
+298     CCP_2
+299     CCP_2_HIGH
+311     CCP_3_LOW
+311     CCP_3
+312     CCP_3_HIGH
+318     CCP_4_LOW
+318     CCP_4
+319     CCP_4_HIGH
+
+ROM Allocation:
+000003  LCD_INIT_STRING.call
+000004  LCD_INIT_STRING.data
+000008  @const822.call
+00000B  @const827.call
+000010  @const828.call
+000016  @const829.call
+00001B  @const830.call
+000020  @const831.call
+000026  @const832.call
+000032  @const848.call
+00003B  @const849.call
+000043  @const850.call
+00004C  @const851.call
+000055  @const854.call
+00005F  @const859.call
+000067  @const860.call
+00006D  @const865.call
+000072  @const868.call
+000077  @const871.call
+00007E  @const874.call
+000085  @const875.call
+00008A  @const876.call
+000092  @const877.call
+00009B  @const880.call
+0000A0  @const886.call
+0000A9  @delay_ms1
+0000BF  @I2C_WRITEU_129
+0000D3  i2c_send_nibble
+00011D  lcd_send_byte
+00013B  lcd_clear
+000145  lcd_init
+000190  lcd_gotoxy
+0001C7  LCD_PUTC
+0001EC  @PSTRINGC7_757
+000236  mostrar_menu
+00027F  read_adc_channel
+00029F  set_rgb
+0002EB  @MUL1616
+000300  @DIV1616
+000325  adc10_to_8bit
+00033C  @DIV88
+000351  @PRINTF_U_757
+000386  menu_variar_color
+00042D  @PSTRINGCN7_757
+00047D  @MUL88
+0004A2  get_color_count
+0004E4  menu_eeprom_basico
+00052D  menu_personalizado_1
+000663  @cinit1
+000663  MAIN
+000684  @cinit2
+000778  @goto48961
+000800  menu_guardar_recuperar
+0008F2  guardar_color
+000B02  recuperar_color
+
+Project Directory:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\
+
+Project Files:
+    main.c                                                  [03-nov.-25 18:21  CRC=6BC9BCE9]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
+    i2c_Flex_LCD.c                                          [26-abr.-20 15:13  CRC=16AFB211]
+
+Source signature=6FCED0AA
+Program memory checksum=0000
+Hex file CRC=4169
+
+Units:
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main (main)
+
+Compiler Settings:
+    Processor:      PIC16F1827
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Enhanced 16:    Yes
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

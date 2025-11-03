@@ -31,9 +31,9 @@ void main() {
    setup_ccp3(CCP_PWM);
    
    // Establecer los duty cycles iniciales
-   set_pwm1_duty(0);       //verde (CP1)
-   set_pwm2_duty(1023);    //Azul (CP2)
-   set_pwm3_duty(0);       //Rojo (CP3)
+   set_pwm1_duty(1023); %
+   set_pwm2_duty(0);
+   set_pwm3_duty(0);
    
    while(TRUE) {
       // Aquí puedes modificar las variables duty1, duty2, duty3

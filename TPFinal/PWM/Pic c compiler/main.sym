@@ -7,18 +7,6 @@
 020     duty1
 021     duty2
 022     duty3
-023     @delay_ms1.P1
-023     percent_to_pwm.percent
-024     percent_to_pwm.@SCRATCH1
-024     MAIN.@SCRATCH1
-025-026 @MUL1616.P1
-025     percent_to_pwm.@SCRATCH2
-025     MAIN.@SCRATCH2
-027-028 @DIV1616.P1
-027-028 @MUL1616.P2
-029-02A @DIV1616.P1
-029     @MUL1616.@SCRATCH1
-02B     @DIV1616.@SCRATCH1
 077     @SCRATCH
 078     @SCRATCH
 078     _RETURN_
@@ -37,32 +25,28 @@
 311     CCP_3_LOW
 311     CCP_3
 312     CCP_3_HIGH
-318     CCP_4
 318     CCP_4_LOW
+318     CCP_4
 319     CCP_4_HIGH
 
 ROM Allocation:
-000003  percent_to_pwm
-000010  @MUL1616
-00002F  @DIV1616
-000058  @delay_ms1
-00006F  MAIN
-00006F  @cinit1
-000081  @cinit2
+000003  MAIN
+000003  @cinit1
+000013  @cinit2
 
 Project Directory:
-    C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\PWM\Pic c compiler\
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\PWM\Pic c compiler\
 
 Project Files:
-    main.c                                                  [03-Nov-25 16:15  CRC=C1D9BBBE]
-    ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-Feb-20 15:48  CRC=D6A5AF9F]
+    main.c                                                  [03-nov.-25 17:44  CRC=BF297535]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
 
-Source signature=6F251AFC
+Source signature=6C74D473
 Program memory checksum=0000
-Hex file CRC=3DAD
+Hex file CRC=23EC
 
 Units:
-    C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\PWM\Pic c compiler\main (main)
+    C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\PWM\Pic c compiler\main (main)
 
 Compiler Settings:
     Processor:      PIC16F1827
