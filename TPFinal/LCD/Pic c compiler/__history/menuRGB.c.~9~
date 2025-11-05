@@ -1,6 +1,6 @@
 #include <16F1827.h> 
 #use delay(clock=4000000) 
-#fuses HS, NOWDT, NOPROTECT // Ajustar los fusibles (?)
+#fuses HS, NOWDT, NOPROTECT // Ajustar los fusibles
 
 // Pines de Salida PWM para el LED RGB
 #define PIN_ROJO   PIN_C1 // CCP2 en 16F877A
@@ -11,7 +11,7 @@
 #define BTN_NEXT    PIN_B0
 #define BTN_SELECT  PIN_B1
 
-//Para almacenar un color (3 bytes)
+//Estructura para almacenar un color (3 bytes)
 struct color {
     int8 r;
     int8 g;
@@ -30,29 +30,32 @@ int8 leer_entrada_r();
 int8 leer_entrada_g();
 int8 leer_entrada_b();
 
-//Variables Globales
+// --- Variables Globales ---
 int8 opcion_menu = 0;
 struct color color_actual = {0, 0, 0}; // R, G, B
 
-
+// -----------------------------------------------------------------------------
+// Función Principal
+// -----------------------------------------------------------------------------
 void main() {
-    //Periféricos
+    // 1. Inicialización de Periféricos
     setup_ccp1(CCP_PWM); // Inicializar CCP1 (Verde) como PWM
     setup_ccp2(CCP_PWM); // Inicializar CCP2 (Rojo) como PWM
     setup_timer_2(T2_DIV_BY_1, 255, 1); // Configurar Timer2 para PWM (Periodo = 255)
 
-    // Inicializar pines del LED RGB no-PWM ?
+    // Inicializar pines del LED RGB no-PWM (si aplica)
     output_low(PIN_AZUL);
     
     // Inicialización de las Entradas de Botones
     output_b(0x00);
     set_tris_b(0xFF); // Puerto B como entrada (para botones)
     
+    // 2. Loop principal
     while (TRUE) {
         mostrar_menu();
 
-        // TODO: Modular entrada de usuario para seleccionar opción
-        // TODO: IMPLEMENTAR lógica de lectura de BTN_NEXT/BTN_SELECT
+        // Esperar entrada de usuario para seleccionar opción (Simulación)
+        // Aquí se implementaría la lógica de lectura de BTN_NEXT/BTN_SELECT
         
         switch (opcion_menu) {
             case 1:
@@ -67,6 +70,9 @@ void main() {
             case 4:
                 menu_personalizado_1();
                 break;
+            case 5:
+                // Otras opciones...
+                break;
         }
     }
 }
@@ -76,18 +82,19 @@ void main() {
 // -----------------------------------------------------------------------------
 
 /**
- * Configura el brillo de cada canal del LED RGB (0-255).
+ * @brief Configura el brillo de cada canal del LED RGB (0-255).
  */
 void set_rgb(int8 r, int8 g, int8 b) {
     // Usar set_pwm1_duty() y set_pwm2_duty() para los pines PWM.
-    // Usar output_high()/output_low() para el resto
+    // Usar output_high()/output_low() o PWM software para el resto.
     
     // Asumiendo que R y G están en pines CCP1 y CCP2:
     set_pwm2_duty(r); // Rojo
     set_pwm1_duty(g); // Verde
 
     // Para el Azul (simulado sin CCP3), se necesitaría un PWM por software
-    // o un enfoque más simple (ej: encendido/apagado por umbral, lo que limitaría la precisión)..
+    // o un enfoque más simple (ej: encendido/apagado por umbral, lo que limitaría la precisión).
+    // Para la consigna original, se recomienda usar un PIC con 3 salidas PWM o PWM por software.
     if (b > 127) { // Simulación simple para el Azul (baja precisión)
         output_high(PIN_AZUL);
     } else {
@@ -100,15 +107,15 @@ void set_rgb(int8 r, int8 g, int8 b) {
 }
 
 /**
- * Muestra el menú principal (ej. en LCD o Serial).
+ * @brief Muestra el menú principal (ej. en LCD o Serial).
  */
 void mostrar_menu() {
-    // TODO: Implementar visualización del menú
+    // Implementación de la visualización del menú
     // Ejemplo: printf(LCD, "\nMENU:\n1. Variar Color\n2. Guardar/Recuperar\n3. R/W EEPROM Basico\n4. Colores Predet.");
 }
 
 // -----------------------------------------------------------------------------
-//Variar Color de RGB
+// Apartado 1: Variar Color de RGB
 // -----------------------------------------------------------------------------
 void menu_variar_color() {
     int8 r, g, b;
@@ -118,15 +125,18 @@ void menu_variar_color() {
     r = leer_entrada_r(); 
     g = leer_entrada_g(); 
     b = leer_entrada_b();
-    //TODO: implementar funciones lectura de valores. Interfaz de selección de color
-    // El usuario ajusta R, G, B con POT.(?)
+    // Para simplificar, asumiremos que se leen los valores
+    //IMPLEMENTAR
+    
+    // En un sistema real se debería usar una interfaz de selección de color
+    // donde el usuario ajusta R, G, B con botones, un encoder rotatorio o un POT.
      
     set_rgb(r, g, b);
-    // TODO: Mostrar en pantalla: "Color Actual: R=150, G=50, B=200"
+    // Mostrar en pantalla: "Color Actual: R=150, G=50, B=200"
 }
 
 // -----------------------------------------------------------------------------
-//Acceder y Recuperar Registros de Colores Guardados
+// Apartado 2: Acceder y Recuperar Registros de Colores Guardados
 // -----------------------------------------------------------------------------
 void menu_guardar_recuperar() {
     int8 direccion = 0; // Dirección de memoria para guardar/recuperar (ej: 0 a 9 para 10 colores)
@@ -140,15 +150,16 @@ void menu_guardar_recuperar() {
     struct color c_recuperado;
     c_recuperado = recuperar_color(direccion);
     set_rgb(c_recuperado.r, c_recuperado.g, c_recuperado.b);
-    // TODO: Mostrar: "Color Recuperado: R=..., G=..., B=..."
+    // Mostrar: "Color Recuperado: R=..., G=..., B=..."
 }
 
 // -----------------------------------------------------------------------------
-//Lectura/Escritura (Operaciones básicas de EEPROM)
+// Apartado 3: Lectura/Escritura (Operaciones básicas de EEPROM)
 // -----------------------------------------------------------------------------
 void menu_eeprom_basico() {
     int8 dir, dato;
-    // Lógica usuario elija Leer o Escribir: ingrese Dirección y/o Dato
+    // Lógica para que el usuario elija Leer o Escribir
+    // Lógica para que el usuario ingrese Dirección y/o Dato
     
     // Opción Escribir un byte
     dir = 10; dato = 0xAA; // Ejemplo
@@ -166,7 +177,7 @@ void menu_eeprom_basico() {
 // -----------------------------------------------------------------------------
 
 /**
- *Guarda una estructura de color (R, G, B) en 3 direcciones de EEPROM.
+ * @brief Guarda una estructura de color (R, G, B) en 3 direcciones de EEPROM.
  */
 void guardar_color(struct color c, int8 direccion) {
     // Cada color ocupa 3 bytes: R, G, B
@@ -177,7 +188,7 @@ void guardar_color(struct color c, int8 direccion) {
 }
 
 /**
- *Recupera una estructura de color (R, G, B) de 3 direcciones de EEPROM.
+ * @brief Recupera una estructura de color (R, G, B) de 3 direcciones de EEPROM.
  */
 struct color recuperar_color(int8 direccion) {
     struct color c_recuperado;
@@ -186,3 +197,8 @@ struct color recuperar_color(int8 direccion) {
     c_recuperado.b = read_eeprom(direccion + 2);
     return c_recuperado;
 }
+
+// -----------------------------------------------------------------------------
+// Apartados Adicionales Funcionales
+// -----------------------------------------------------------------------------
+

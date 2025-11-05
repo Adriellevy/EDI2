@@ -67,6 +67,9 @@ void main() {
             case 4:
                 menu_personalizado_1();
                 break;
+            case 5:
+                // Otras opciones...
+                break;
         }
     }
 }
