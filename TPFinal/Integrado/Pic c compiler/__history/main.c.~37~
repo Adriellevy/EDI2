@@ -1,0 +1,314 @@
+#include <16F1827.h>
+#device ADC=10
+#fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO, NOMCLR
+#use delay(clock=4MHz)
+#use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)
+#include "i2c_Flex_LCD.c"
+
+#define LCD_ADDR 0x27
+#define BUTTON_PIN PIN_B0
+
+// EEPROM constants
+#define EEPROM_MAX 256
+#define COLOR_SIZE 3
+#define MAX_COLORS (EEPROM_MAX / COLOR_SIZE) // 85
+
+// ADC channels
+#define ADC_X 0 // RA0 (AN0)
+#define ADC_Y 1 // RA1 (AN1)
+
+// PWM pins (sin cambios, como pediste)
+#define PWM_R_PIN PIN_A3
+#define PWM_G_PIN PIN_B3
+#define PWM_B_PIN PIN_B6
+
+typedef struct {
+    int8 r;
+    int8 g;
+    int8 b;
+} color_t;
+
+// Globals
+color_t color_actual = {0,0,0};
+unsigned int8 menu_opcion = 0;
+int1 main_last_button_state = 1; 
+unsigned int8 soft_pwm_duty = 0;
+unsigned int8 soft_pwm_counter = 0;
+
+// Forward declarations
+void set_rgb(unsigned int8 r, unsigned int8 g, unsigned int8 b);
+void guardar_color(color_t c, unsigned int8 direccion_index);
+void menu_set_color();
+void menu_mostrar_colores_guardados();
+void show_all_colors();
+int get_color_count();
+void soft_pwm_isr_tick();
+
+// ------------------ Utilidades EEPROM ------------------
+// (Sin cambios en esta sección)
+void guardar_color(color_t c, unsigned int8 direccion_index) {
+    unsigned int16 addr = direccion_index * COLOR_SIZE;
+    if (direccion_index >= MAX_COLORS) return;
+    write_eeprom(addr + 0, c.r);
+    write_eeprom(addr + 1, c.g);
+    write_eeprom(addr + 2, c.b);
+}
+
+int get_color_count() {
+    int count = 0;
+    unsigned int8 r,g,b;
+    for (int i=0; i<MAX_COLORS; i++) {
+        r = read_eeprom(i*3 + 0);
+        g = read_eeprom(i*3 + 1);
+        b = read_eeprom(i*3 + 2);
+        if (r == 0xFF && g == 0xFF && b == 0xFF) break;
+        count++;
+    }
+    return count;
+}
+
+void show_all_colors() {
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "Lectura EEPROM");
+    delay_ms(800);
+
+    int total_guardados = get_color_count();
+    
+    if (total_guardados == 0) {
+        lcd_clear();
+        lcd_gotoxy(1,1);
+        printf(lcd_putc, "No hay colores");
+        delay_ms(1000);
+        return;
+    }
+
+    for (int i=0; i<total_guardados; i++) {
+        unsigned int8 r,g,b;
+        r = read_eeprom(i*3 + 0);
+        g = read_eeprom(i*3 + 1);
+        b = read_eeprom(i*3 + 2);
+        
+        lcd_clear();
+        lcd_gotoxy(1,1);
+        printf(lcd_putc, "Color %u/%u:", i+1, total_guardados);
+        lcd_gotoxy(1,2);
+        printf(lcd_putc, "R:%03u G:%03u", r, g);
+        lcd_gotoxy(11,2);
+        printf(lcd_putc, "B:%03u", b);
+        delay_ms(900);
+    }
+}
+
+// ------------------ PWM (Sin Cambios) ------------------
+void set_rgb(unsigned int8 r, unsigned int8 g, unsigned int8 b) {
+    set_pwm1_duty(r);
+    set_pwm2_duty(g);
+    soft_pwm_duty = b;
+}
+
+#int_RB
+void rb_isr() { }
+
+#int_TIMER0
+void timer0_isr() {
+    soft_pwm_counter++;
+    if (soft_pwm_counter < soft_pwm_duty) {
+        output_high(PWM_B_PIN);
+    } else {
+        output_low(PWM_B_PIN);
+    }
+}
+
+// ------------------ Lectura joystick (Sin Cambios) ------------------
+unsigned int8 read_adc_8bit(unsigned int8 channel) {
+    unsigned int16 val;
+    set_adc_channel(channel);
+    delay_us(20);
+    val = read_adc();
+    return (unsigned int8)(val >> 2);
+}
+
+// ------------------ Menús ------------------
+void mostrar_menu_principal() {
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "1:Set color 2:Ver");
+}
+
+void menu_set_color() {
+    unsigned int8 adc_x1;
+    unsigned int8 adc_y1;
+    unsigned int8 prev_adc_x = 0xFF;
+    unsigned int8 prev_adc_y = 0xFF;
+    unsigned int8 current_selector = 0;
+    int1 button;
+    int1 last_btn = 1;
+    
+    lcd_clear();
+    printf(lcd_putc, "Sel:R R:%03u", color_actual.r);
+    lcd_gotoxy(1,2);
+    printf(lcd_putc, "G:%03u B:%03u", color_actual.g, color_actual.b);
+
+    while(TRUE) {
+        adc_x1 = read_adc_8bit(ADC_X);
+        adc_y1 = read_adc_8bit(ADC_Y);
+        button = input(BUTTON_PIN);
+
+        // Lógica de Selección (Eje X)
+        if (adc_x1 <= 85) current_selector = 0;
+        else if (adc_x1 <= 170 && adc_x1 > 35) current_selector = 1;
+        else current_selector = 2;
+
+        // Actualiza el valor del componente seleccionado (Eje Y)
+        switch (current_selector) {
+            case 0: color_actual.r = adc_y1; break;
+            case 1: color_actual.g = adc_y1; break;
+            case 2: color_actual.b = adc_y1; break;
+        }
+
+        // Lógica de Actualización de LCD (Sin parpadeo)
+        if (adc_x1 != prev_adc_x) {
+            lcd_gotoxy(5,1);
+            if(current_selector == 0) printf(lcd_putc, "R");
+            else if(current_selector == 1) printf(lcd_putc, "G");
+            else printf(lcd_putc, "B");
+        }
+        
+        if (adc_y1 != prev_adc_y) {
+            switch (current_selector) {
+                case 0:
+                    lcd_gotoxy(9,1);
+                    printf(lcd_putc, "%03u", color_actual.r);
+                    break;
+                case 1:
+                    lcd_gotoxy(3,2);
+                    printf(lcd_putc, "%03u", color_actual.g);
+                    break;
+                case 2:
+                    lcd_gotoxy(11,2);
+                    printf(lcd_putc, "%03u", color_actual.b);
+                    break;
+            }
+        }
+
+        set_rgb(color_actual.r, color_actual.g, color_actual.b);
+
+        prev_adc_x = adc_x1;
+        prev_adc_y = adc_y1;
+        
+        // ---------- CAMBIO: Lógica de Botón (Guardar y Salir) ----------
+        // Ya no hay pulsación larga. Un solo click guarda y sale.
+        if (!button && last_btn) {
+            
+            // 1. Guardar
+            int idx = get_color_count();
+            if (idx < MAX_COLORS) {
+                guardar_color(color_actual, idx);
+                lcd_clear();
+                lcd_gotoxy(1,1);
+                printf(lcd_putc, "Guardado #%u", idx+1);
+                delay_ms(600); // Unico delay, para poder leer el mensaje
+            } else {
+                lcd_clear();
+                lcd_gotoxy(1,1);
+                printf(lcd_putc, "EEPROM Llena");
+                delay_ms(600); // Unico delay, para poder leer el mensaje
+            }
+            
+            // 2. Salir
+            // Esperamos a que suelte el botón para no volver a entrar
+            // al menú principal accidentalmente.
+            while(!input(BUTTON_PIN)); 
+            return; // Vuelve al main()
+        }
+        last_btn = button;
+
+        // ---------- CAMBIO: Lógica de "Mantener presionado" ELIMINADA ----------
+    }
+}
+
+
+// ---------- CAMBIO: Lógica de "Volver" simplificada ----------
+void menu_mostrar_colores_guardados() {
+    show_all_colors();
+    
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "Presiona boton");
+    lcd_gotoxy(1,2);
+    printf(lcd_putc, "para volver...");
+    
+    // 1. Espera a que suelte el botón (el que usó para entrar)
+    //    Esto es clave para que no salga instantáneamente.
+    while(!input(BUTTON_PIN));
+    
+    // 2. Espera a que presione de nuevo para salir
+    while(input(BUTTON_PIN));
+    
+    // 3. Espera a que suelte (para no re-entrar a un menú en main())
+    while(!input(BUTTON_PIN));
+
+    return; // Vuelve al main
+}
+
+// ------------------ Inicialización (Sin Cambios) ------------------
+void hardware_init() {
+    setup_oscillator(OSC_4MHZ);
+    setup_adc_ports(sAN0 | sAN1, VSS_VDD);
+    setup_adc(ADC_CLOCK_INTERNAL);
+
+    lcd_init(LCD_ADDR << 1, 16, 2);
+    lcd_clear();
+
+    setup_ccp1(CCP_PWM);
+    setup_ccp2(CCP_PWM);
+    setup_timer_2(T2_DIV_BY_1, 255, 1);
+
+    set_pwm1_duty(0);
+    set_pwm2_duty(0);
+
+    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_256);
+    set_timer0(0);
+    enable_interrupts(INT_TIMER0);
+    enable_interrupts(GLOBAL);
+}
+
+// ------------------ Main ------------------
+void main() {
+    hardware_init();
+
+    int total = get_color_count();
+    int remaining = MAX_COLORS - total;
+    lcd_clear();
+    lcd_gotoxy(1,1);
+    printf(lcd_putc, "Col:%u Libres:%u", total, remaining);
+    delay_ms(1200);
+
+    color_actual.r = 0; color_actual.g = 0; color_actual.b = 0;
+    set_rgb(0,0,0);
+
+    while(TRUE) {
+        mostrar_menu_principal();
+        
+        unsigned int8 pos = read_adc_8bit(ADC_X);
+        if (pos <= 30) menu_opcion = 1;
+        else if (pos >=235) menu_opcion = 2;
+
+        lcd_gotoxy(1,2);
+        if (menu_opcion == 1) printf(lcd_putc, ">Set Color      ");
+        else printf(lcd_putc, " >Ver Guardados");
+
+        // ---------- CAMBIO: Lógica de Botón simplificada ----------
+        // Se eliminó el delay de antirebote y la espera de liberación.
+        int1 btn = input(BUTTON_PIN);
+        if (!btn && main_last_button_state) {
+            // Presionó (falling edge)
+            if (menu_opcion == 1) menu_set_color();
+            else if (menu_opcion == 2) menu_mostrar_colores_guardados();
+        }
+        main_last_button_state = btn;
+
+        delay_ms(100); 
+    }
+}

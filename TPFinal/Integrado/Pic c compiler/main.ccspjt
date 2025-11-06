@@ -39,7 +39,7 @@ D2_L10=[74868]Started Editing.
 D2_L11=[75168]Stopped Editing.
 D2_L12=[76222]Started Editing.
 D2_L13=[76534]Stopped Editing.
-TotalEdit=4
+TotalEdit=50
 TotalDebug=0
 D2_E=4
 D2_D=0
@@ -54,15 +54,29 @@ D2_L21=[84127]Stopped Editing.
 D2_L22=[84401]Started Editing.
 D2_L23=[85235]Stopped Editing.
 D3=06-11-2025
-D3_L=4
+D3_L=16
 D3_L1=[44331]Project Opened.
 D3_L2=[44349]Project Closed.
 D3_L3=[44780]Project Opened.
 D3_L4=[46979]Started Editing.
+D3_L5=[47835]Project Opened.
+D3_L6=[49071]Started Editing.
+D3_L7=[49568]Stopped Editing.
+D3_L8=[49631]Started Editing.
+D3_L9=[50169]Stopped Editing.
+D3_L10=[50170]Started Editing.
+D3_L11=[50724]Stopped Editing.
+D3_L12=[50855]Started Editing.
+D3_L13=[51454]Stopped Editing.
+D3_L14=[51927]Started Editing.
+D3_L15=[53980]Stopped Editing.
+D3_E=46
+D3_D=0
+D3_L16=[54016]Project Closed.
 
 [Opened Files]
 1=main.c
-t1=278
+t1=308
 Count=1
 2=..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
 t2=1
@@ -72,7 +86,7 @@ t3=1
 Type=4
 
 [defines]
-buildcount=21
+buildcount=27
 [Units]
 Count=1
 1=main (main)

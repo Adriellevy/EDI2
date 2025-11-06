@@ -23,7 +23,7 @@
 #define PWM_B_PIN PIN_B6
 
 // --- NUEVO (GOAL 2): Definiciones para el Joystick "Idle-Middle" ---
-#define JOY_DEADZONE_LOW 110  // Valor ADC por debajo del cual se considera "Bajo/Izquierda"
+#define JOY_DEADZONE_LOW 85   // Valor ADC por debajo del cual se considera "Bajo/Izquierda"
 #define JOY_DEADZONE_HIGH 170 // Valor ADC por encima del cual se considera "Alto/Derecha"
 // Cualquier valor entre LOW y HIGH es la zona muerta (idle)
 
@@ -222,14 +222,12 @@ void menu_set_color() {
                 lcd_clear();
                 lcd_gotoxy(1,1);
                 printf(lcd_putc, "Guardado #%u", idx+1);
-                delay_ms(1000);
-                delay_ms(1000);
+                delay_ms(600);
             } else {
                 lcd_clear();
                 lcd_gotoxy(1,1);
                 printf(lcd_putc, "EEPROM Llena");
-                delay_ms(1000);
-                delay_ms(1000);
+                delay_ms(600);
             }
             
             // 2. Salir
@@ -238,7 +236,7 @@ void menu_set_color() {
         }
         last_btn = button;
 
-        delay_ms(50); // Polling más rápido para mejor respuesta del joystick
+        delay_ms(20); // Polling más rápido para mejor respuesta del joystick
     }
 }
 

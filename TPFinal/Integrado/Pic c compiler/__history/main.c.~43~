@@ -228,8 +228,7 @@ void menu_set_color() {
                 lcd_clear();
                 lcd_gotoxy(1,1);
                 printf(lcd_putc, "EEPROM Llena");
-                delay_ms(1000);
-                delay_ms(1000);
+                delay_ms(600);
             }
             
             // 2. Salir
