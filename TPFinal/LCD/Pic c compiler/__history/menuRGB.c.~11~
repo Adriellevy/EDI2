@@ -67,6 +67,9 @@ void main() {
             case 4:
                 menu_personalizado_1();
                 break;
+            case 5:
+                // Otras opciones...
+                break;
         }
     }
 }
@@ -177,7 +180,7 @@ void guardar_color(struct color c, int8 direccion) {
 }
 
 /**
- *Recupera una estructura de color (R, G, B) de 3 direcciones de EEPROM.
+ * @brief Recupera una estructura de color (R, G, B) de 3 direcciones de EEPROM.
  */
 struct color recuperar_color(int8 direccion) {
     struct color c_recuperado;
@@ -186,3 +189,8 @@ struct color recuperar_color(int8 direccion) {
     c_recuperado.b = read_eeprom(direccion + 2);
     return c_recuperado;
 }
+
+// -----------------------------------------------------------------------------
+// Apartados Adicionales Funcionales
+// -----------------------------------------------------------------------------
+

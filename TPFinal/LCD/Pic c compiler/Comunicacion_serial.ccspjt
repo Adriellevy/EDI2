@@ -27,7 +27,7 @@ D1_L4=[51742]Started Editing.
 D1_L5=[52270]Stopped Editing.
 D1_L6=[52524]Started Editing.
 D1_L7=[60304]Stopped Editing.
-TotalEdit=209
+TotalEdit=233
 TotalDebug=0
 D1_E=135
 D1_D=0
@@ -73,10 +73,17 @@ D6_L=2
 D6_L1=[48193]Project Opened.
 D6_L2=[49402]Project Closed.
 D7=03-11-2025
-D7_L=3
+D7_L=8
 D7_L1=[61083]Project Opened.
 D7_L2=[61312]Started Editing.
 D7_L3=[62304]Stopped Editing.
+D7_L4=[63410]Started Editing.
+D7_L5=[64397]Stopped Editing.
+D7_L6=[71904]Started Editing.
+D7_L7=[71910]Stopped Editing.
+D7_E=24
+D7_D=0
+D7_L8=[71910]Project Closed.
 
 [Opened Files]
 1=Comunicacion_serial.c
