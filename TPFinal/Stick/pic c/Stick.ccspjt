@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=2
+Days=3
 D1=28-10-2025
 D1_L=6
 D1_L1=[50129]Project Opened.
@@ -25,15 +25,22 @@ D1_L2=[50151]Started Editing.
 D1_L3=[50492]Stopped Editing.
 D1_L4=[51660]Started Editing.
 D1_L5=[51960]Stopped Editing.
-TotalEdit=1
+TotalEdit=8
 TotalDebug=0
 D1_E=1
 D1_D=0
 D1_L6=[54126]Project Closed.
 D2=03-11-2025
-D2_L=2
+D2_L=3
 D2_L1=[61006]Project Opened.
 D2_L2=[61155]Started Editing.
+D2_E=7
+D2_D=0
+D2_L3=[81444]Project Closed.
+D3=05-11-2025
+D3_L=2
+D3_L1=[71200]Project Opened.
+D3_L2=[71210]Project Closed.
 
 [Opened Files]
 1=Stick.c

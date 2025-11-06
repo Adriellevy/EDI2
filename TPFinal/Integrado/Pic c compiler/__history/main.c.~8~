@@ -19,7 +19,7 @@
 
 // Joystick botón / botones
 #define BTN_SELECT PIN_B0   // Botón de selección GUARDAR/ENTER (activo 0)
-#define BTN_BACK   PIN_B2   // Botón de retroceso / cancelar (activo 0) //HAY QUE SACAR ESTO DEL SOFTWARE O IMPLEMENTARLO EN EL PROTEUS
+#define BTN_BACK   PIN_B2   // Botón de retroceso / cancelar (activo 0)
 
 // PWM outputs (usa CCP1, CCP2, CCP3)
 #define PWM_R_PIN PIN_C2    // ejemplo: salida PWM para Rojo (CCP2/CCPx según MCU)
@@ -66,7 +66,7 @@ int1 last_back_state = 1;
 
 // -------------------- IMPLEMENTACIÓN --------------------
 
-unsigned int16 percent_to_pwm(unsigned int8 percent) { //Revisar
+unsigned int16 percent_to_pwm(unsigned int8 percent) {
    if (percent > 100) percent = 100;
    return (unsigned int16)((percent * 1023) / 100);
 }
@@ -182,13 +182,13 @@ void mostrar_menu() {
 }
 
 // menu para variar color con potenciómetros (live)
-void menu_variar_color() { 
+void menu_variar_color() {
     lcd_clear();
     lcd_gotoxy(1,1);
     printf(lcd_putc, "Variar Color (BTN sel)");
 
     while(TRUE) {
-        unsigned int16 r10 = read_adc_channel(0); // AN0 //REVISAR, LOS COLORES NO DEBEN ELEGIRSE ASI
+        unsigned int16 r10 = read_adc_channel(0); // AN0
         unsigned int16 g10 = read_adc_channel(1); // AN1
         unsigned int16 b10 = read_adc_channel(2); // AN2
 

@@ -19,7 +19,7 @@
 
 // Joystick botón / botones
 #define BTN_SELECT PIN_B0   // Botón de selección GUARDAR/ENTER (activo 0)
-#define BTN_BACK   PIN_B2   // Botón de retroceso / cancelar (activo 0) //HAY QUE SACAR ESTO DEL SOFTWARE O IMPLEMENTARLO EN EL PROTEUS
+//!#define BTN_BACK   PIN_B2   // Botón de retroceso / cancelar (activo 0)
 
 // PWM outputs (usa CCP1, CCP2, CCP3)
 #define PWM_R_PIN PIN_C2    // ejemplo: salida PWM para Rojo (CCP2/CCPx según MCU)

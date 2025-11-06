@@ -14,7 +14,7 @@ Stack size: 16
 Lines Stmts  %   Files
 ----- ----- ---  -----
   467   275  78  main.c
-  965     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+  965     0   0  ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
   211    77  22  i2c_Flex_LCD.c
 ----- -----
  1643   352 Total
@@ -22,21 +22,21 @@ Lines Stmts  %   Files
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
 0     22   1    1             @delay_ms1
-0     20   1    1    197  2.3  @I2C_WRITEU_129
+0     20   1    1             @I2C_WRITEU_129
 0     74   2    3    574  5.9  i2c_send_nibble
 0     30   1    3    149  2.8  lcd_send_byte
 0     10   0    0     61  1.9  lcd_clear
-0      5   0    0     59  1.6  @const747
+0      5   0    0             @const747
 0     75   2    5    902  5.8  lcd_init
 0     55   2    7    681  8.0  lcd_gotoxy
 0     37   1    1    335  3.9  LCD_PUTC
-0     21   1    5    444  8.4  @MUL1616
-0     37   1    5    494  4.6  @DIV1616
+0     21   1    5    116  4.2  @MUL1616
+0     37   1    5             @DIV1616
 0     23   1    5     66  2.7  adc10_to_8bit
 0     32   1    1     59  1.6  read_adc_channel
 0     76   2    6    204  3.4  set_rgb
  Inline        18   1408  9.9  guardar_color
-0     37   1    2     37  1.3  @MUL88
+0     37   1    2    785  8.4  @MUL88
  Inline        13    973  9.0  recuperar_color
 0     66   2    6    444  8.4  get_color_count
 0     73   2    0    467  4.6  mostrar_menu
@@ -46,13 +46,13 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0      6   0    0             @const828
 0      5   0    0             @const829
 0      5   0    0             @const830
-0      6   0    0             @const831
+0      6   0    0   2393  9.7  @const831
 0    167   5    9   1153  5.5  menu_variar_color
 0     12   0    0             @const832
 0     21   1    3             @DIV88
 0     53   2    2             @PRINTF_U_757
 1   1149  37   22   4070 11.8  menu_guardar_recuperar
-0      9   0    0             @const848
+0      9   0    0   4999 11.7  @const848
 0      8   0    0             @const849
 0      9   0    0             @const850
 0      9   0    0             @const851
@@ -69,23 +69,23 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    310  10   38   1288  7.2  menu_personalizado_1
 0      8   0    0             @const876
 0      9   0    0             @const877
-0      5   0    0             @const880
+0      5   0    0    391  3.3  @const880
 0    277   9    4   2025 10.2  MAIN
 0      9   0    0             @const886
-0      8   0    0             @goto48961
- Inline         0             @cinit1
+0      8   0    0             @goto22090
+ Inline         0   1517  9.7  @cinit1
 
 Program metrics:
-    Functions               23
+    Functions               24
     Statements              352
-    Comments                330
-    Volume (V)              26622
-    Difficulty (D)          124.0
-    Effort to implement (E) 3300215
-    Time to implement (T)   50 hours, 56 minutes
-    Est Delivered Bugs (B)  7
-    Cyclomatic Complexity   70
-    Maintainability (MI)    69
+    Comments                331
+    Volume (V)              40411
+    Difficulty (D)          153.1
+    Effort to implement (E) 6184867
+    Time to implement (T)   95 hours, 27 minutes
+    Est Delivered Bugs (B)  11
+    Cyclomatic Complexity   123
+    Maintainability (MI)    62
 
  Segment     Used  Free
 -----------  ----  ----

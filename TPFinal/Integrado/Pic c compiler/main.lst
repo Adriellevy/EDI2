@@ -1,6 +1,6 @@
-CCS PCM C Compiler, Version 5.093, 4770               03-nov.-25 18:21
+CCS PCM C Compiler, Version 5.093, 4770               05-Nov-25 21:10
 
-               Filename:   C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main.lst
+               Filename:   C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\main.lst
 
                ROM used:   3069 words (75%)
                            Largest free fragment is 899
@@ -1084,7 +1084,7 @@ CCS PCM C Compiler, Version 5.093, 4770               03-nov.-25 18:21
 .................... 
 .................... // Joystick botón / botones
 .................... #define BTN_SELECT PIN_B0   // Botón de selección GUARDAR/ENTER (activo 0)
-.................... #define BTN_BACK   PIN_B2   // Botón de retroceso / cancelar (activo 0)
+.................... #define BTN_BACK   PIN_B2   // Botón de retroceso / cancelar (activo 0) //HAY QUE SACAR ESTO DEL SOFTWARE O IMPLEMENTARLO EN EL PROTEUS
 .................... 
 .................... // PWM outputs (usa CCP1, CCP2, CCP3)
 .................... #define PWM_R_PIN PIN_C2    // ejemplo: salida PWM para Rojo (CCP2/CCPx según MCU)
@@ -1131,7 +1131,7 @@ CCS PCM C Compiler, Version 5.093, 4770               03-nov.-25 18:21
 .................... 
 .................... // -------------------- IMPLEMENTACIÓN --------------------
 .................... 
-.................... unsigned int16 percent_to_pwm(unsigned int8 percent) {
+.................... unsigned int16 percent_to_pwm(unsigned int8 percent) { //Revisar
 ....................    if (percent > 100) percent = 100;
 ....................    return (unsigned int16)((percent * 1023) / 100);
 .................... }
@@ -1978,7 +1978,7 @@ CCS PCM C Compiler, Version 5.093, 4770               03-nov.-25 18:21
 .................... }
 .................... 
 .................... // menu para variar color con potenciómetros (live)
-.................... void menu_variar_color() {
+.................... void menu_variar_color() { 
 ....................     lcd_clear();
 *
 0386:  CALL   13B
@@ -1997,7 +1997,7 @@ CCS PCM C Compiler, Version 5.093, 4770               03-nov.-25 18:21
 0391:  CALL   1EC
 .................... 
 ....................     while(TRUE) {
-....................         unsigned int16 r10 = read_adc_channel(0); // AN0
+....................         unsigned int16 r10 = read_adc_channel(0); // AN0 //REVISAR, LOS COLORES NO DEBEN ELEGIRSE ASI
 ....................         unsigned int16 g10 = read_adc_channel(1); // AN1
 ....................         unsigned int16 b10 = read_adc_channel(2); // AN2
 0392:  CLRF   46
