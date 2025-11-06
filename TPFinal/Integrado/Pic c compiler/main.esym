@@ -1,10 +1,10 @@
-D G "__PCM__" 0 468 ""5.093""
-D G "__DEVICE__" 0 468 "1827"
-D G "__DATE__" 0 468 ""5-Nov-25""
-D G "__TIME__" 0 468 ""21:10:36""
-D G "_UNICODE" 0 468 ""?""
-D G "__EVAL" 0 468 ""?"" "Proyecto integrado PIC16F1827 - PWM RGB + Joystick + EEPROM + LCD I2C"
-c L "set_tris_a" 1 1 6 "FUNCTION"
+D G "__PCM__" 0 316 ""5.093""
+D G "__DEVICE__" 0 316 "1827"
+D G "__DATE__" 0 316 ""5-Nov-25""
+D G "__TIME__" 0 316 ""23:42:45""
+D G "_UNICODE" 0 316 ""?""
+D G "__EVAL" 0 316 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
+c L "set_tris_a" 1 3 6 "FUNCTION"
 f N "set_tris_a" 1 39 ""
 v L "value" 1 39 "int8" `55 
 f B "set_tris_a" 1 39 "void(int8 value)" `54 
@@ -87,7 +87,7 @@ d G "putc" 1 90 "putchar"
 d G "fputc" 1 91 "putchar"
 d G "fgets" 1 92 "gets"
 d G "fputs" 1 93 "puts"
-c L "output_drive" 1 1 3 "FUNCTION"
+c L "output_drive" 1 3 3 "FUNCTION"
 f N "restart_cause" 1 98 ""
 f B "restart_cause" 1 98 "int8()" `89 
 f N "reset_cpu" 1 99 ""
@@ -105,7 +105,7 @@ d G "MCLR_FROM_RUN" 1 109 "0x37"
 d G "RESET_INSTRUCTION" 1 110 "0x3B"
 d G "STACK_OVERFLOW" 1 111 "0xBF"
 d G "STACK_UNDERFLOW" 1 112 "0x7F"
-c L "sleep" 1 1 5 "FUNCTION"
+c L "sleep" 1 3 5 "FUNCTION"
 f N "setup_timer_0" 1 119 ""
 v L "mode" 1 119 "int8" `93 
 f B "setup_timer_0" 1 119 "void(int8 mode)" `92 
@@ -149,7 +149,7 @@ d G "RTCC_DIV_64" 1 154 "5"
 d G "RTCC_DIV_128" 1 155 "6"
 d G "RTCC_DIV_256" 1 156 "7"
 d G "RTCC_8_BIT" 1 157 "0"
-c L "get_rtcc" 1 1 7 "FUNCTION"
+c L "get_rtcc" 1 3 7 "FUNCTION"
 f N "setup_wdt" 1 167 ""
 v L "mode" 1 167 "int16" `104 
 f B "setup_wdt" 1 167 "void(int16 mode)" `103 
@@ -176,7 +176,7 @@ d G "WDT_32S" 1 188 "0x10F"
 d G "WDT_64S" 1 189 "0x110"
 d G "WDT_128S" 1 190 "0x111"
 d G "WDT_256S" 1 191 "0x112"
-c L "restart_wdt" 1 1 3 "FUNCTION"
+c L "restart_wdt" 1 3 3 "FUNCTION"
 f N "setup_timer_1" 1 196 ""
 v L "mode" 1 196 "int16" `107 
 f B "setup_timer_1" 1 196 "void(int16 mode)" `106 
@@ -203,7 +203,7 @@ d G "T1_GATE_SINGLE" 1 218 "0x9000"
 d G "T1_GATE_TIMER0" 1 219 "0x8100"
 d G "T1_GATE_COMP1" 1 220 "0x8200"
 d G "T1_GATE_COMP2" 1 221 "0x8300"
-c L "set_timer1" 1 1 3 "FUNCTION"
+c L "set_timer1" 1 3 3 "FUNCTION"
 f N "setup_timer_2" 1 226 ""
 v L "mode" 1 226 "int8" `112 
 v L "period" 1 226 "int8" `113 
@@ -219,7 +219,7 @@ d G "T2_DIV_BY_1" 1 231 "4"
 d G "T2_DIV_BY_4" 1 232 "5"
 d G "T2_DIV_BY_16" 1 233 "6"
 d G "T2_DIV_BY_64" 1 234 "7"
-c L "set_timer2" 1 1 3 "FUNCTION"
+c L "set_timer2" 1 3 3 "FUNCTION"
 f N "setup_timer_4" 1 239 ""
 v L "mode" 1 239 "int16" `119 
 v L "period" 1 239 "int8" `120 
@@ -235,7 +235,7 @@ d G "T4_DIV_BY_1" 1 244 "4"
 d G "T4_DIV_BY_4" 1 245 "5"
 d G "T4_DIV_BY_16" 1 246 "6"
 d G "T4_DIV_BY_64" 1 247 "7"
-c L "set_timer4" 1 1 3 "FUNCTION"
+c L "set_timer4" 1 3 3 "FUNCTION"
 f N "setup_timer_6" 1 252 ""
 v L "mode" 1 252 "int16" `126 
 v L "period" 1 252 "int8" `127 
@@ -251,7 +251,7 @@ d G "T6_DIV_BY_1" 1 258 "4"
 d G "T6_DIV_BY_4" 1 259 "5"
 d G "T6_DIV_BY_16" 1 260 "6"
 d G "T6_DIV_BY_64" 1 261 "7"
-c L "set_timer6" 1 1 4 "FUNCTION"
+c L "set_timer6" 1 3 4 "FUNCTION"
 f N "setup_ccp1" 1 267 ""
 v L "mode" 1 267 "int32" `133 
 f B "setup_ccp1" 1 267 "void(int32 mode)" `132 
@@ -319,7 +319,7 @@ d G "CCP_P1D_B7" 1 337 "0x000"
 d G "CCP_P1D_A6" 1 338 "0x400"
 d G "CCP_P2B_B7" 1 339 "0x000"
 d G "CCP_P2B_A6" 1 340 "0x200"
-c L "set_pwm1_duty" 1 1 1 "FUNCTION"
+c L "set_pwm1_duty" 1 3 1 "FUNCTION"
 f N "setup_ccp2" 1 343 ""
 v L "mode" 1 343 "int32" `145 
 f B "setup_ccp2" 1 343 "void(int32 mode)" `144 
@@ -333,7 +333,7 @@ f B "set_pwm2_duty" 1 345 "void(int8 value)" `149
 f N "set_pwm2_duty" 1 346 ""
 v L "value" 1 346 "int16" `152 
 f B "set_pwm2_duty" 1 346 "void(int16 value)" `151 
-c L "set_pwm2_duty" 1 1 1 "FUNCTION"
+c L "set_pwm2_duty" 1 3 1 "FUNCTION"
 f N "setup_ccp3" 1 352 ""
 v L "mode" 1 352 "int32" `157 
 f B "setup_ccp3" 1 352 "void(int32 mode)" `156 
@@ -347,7 +347,7 @@ f B "set_pwm3_duty" 1 354 "void(int8 value)" `161
 f N "set_pwm3_duty" 1 355 ""
 v L "value" 1 355 "int16" `164 
 f B "set_pwm3_duty" 1 355 "void(int16 value)" `163 
-c L "set_pwm3_duty" 1 1 1 "FUNCTION"
+c L "set_pwm3_duty" 1 3 1 "FUNCTION"
 f N "setup_ccp4" 1 361 ""
 v L "mode" 1 361 "int32" `169 
 f B "setup_ccp4" 1 361 "void(int32 mode)" `168 
@@ -361,7 +361,7 @@ f B "set_pwm4_duty" 1 363 "void(int8 value)" `173
 f N "set_pwm4_duty" 1 364 ""
 v L "value" 1 364 "int16" `176 
 f B "set_pwm4_duty" 1 364 "void(int16 value)" `175 
-c L "set_pwm4_duty" 1 1 3 "FUNCTION"
+c L "set_pwm4_duty" 1 3 3 "FUNCTION"
 f N "setup_spi" 1 372 ""
 v L "mode" 1 372 "int32" `181 
 f B "setup_spi" 1 372 "void(int32 mode)" `180 
@@ -412,7 +412,7 @@ d G "SPI_SAMPLE_AT_MIDDLE" 1 403 "0x0000"
 d G "SPI_SAMPLE_AT_END" 1 404 "0x8000"
 d G "SPI_L_TO_H" 1 407 "SPI_SCK_IDLE_LOW"
 d G "SPI_H_TO_L" 1 408 "SPI_SCK_IDLE_HIGH"
-c L "spi_data_is_in2" 1 1 2 "FUNCTION"
+c L "spi_data_is_in2" 1 3 2 "FUNCTION"
 f N "setup_uart" 1 412 ""
 v L "baud" 1 412 "int32" `200 
 f B "setup_uart" 1 412 "void(int32 baud)" `199 
@@ -443,7 +443,7 @@ d G "UART_AUTODETECT" 1 423 "8"
 d G "UART_AUTODETECT_NOWAIT" 1 424 "9"
 d G "UART_WAKEUP_ON_RDA" 1 425 "10"
 d G "UART_SEND_BREAK" 1 426 "13"
-c L "set_uart_speed" 1 1 3 "FUNCTION"
+c L "set_uart_speed" 1 3 3 "FUNCTION"
 f N "setup_comparator" 1 431 ""
 v L "mode" 1 431 "int32" `218 
 f B "setup_comparator" 1 431 "void(int32 mode)" `217  "Constants used in setup_comparator() are:"
@@ -494,7 +494,7 @@ d G "CP2_INVERT" 1 483 "0x10000000"
 d G "CP2_FAST" 1 484 "0x04000000"
 d G "CP2_HYST" 1 485 "0x02000000"
 d G "CP2_SYNC" 1 486 "0x01000000"
-c L "setup_comparator" 1 1 2 "FUNCTION"
+c L "setup_comparator" 1 3 2 "FUNCTION"
 f N "setup_vref" 1 493 ""
 v L "mode" 1 493 "int8" `222 
 f B "setup_vref" 1 493 "void(int8 mode)" `221  "Constants used in setup_vref() are:"
@@ -512,7 +512,7 @@ d G "TEMPERATURE_INDICATOR_DISABLED" 1 508 "0"
 d G "TEMPERATURE_INDICATOR_ENABLED" 1 509 "0x20"
 d G "TEMPERATURE_RANGE_LOW" 1 510 "0"
 d G "TEMPERATURE_RANGE_HIGH" 1 511 "0x10"
-c L "setup_vref" 1 1 3 "FUNCTION"
+c L "setup_vref" 1 3 3 "FUNCTION"
 f N "setup_dac" 1 516 ""
 v L "mode" 1 516 "int8" `224 
 f B "setup_dac" 1 516 "void(int8 mode)" `223 
@@ -529,7 +529,7 @@ d G "DAC_VREF_FVR" 1 525 "0x89"
 d G "DAC_OUTPUT" 1 527 "0x20"
 d G "DAC_LVP_POS" 1 528 "0x40"
 d G "DAC_LVP_NEG" 1 529 "0"
-c L "dac_write" 1 1 2 "FUNCTION"
+c L "dac_write" 1 3 2 "FUNCTION"
 f N "setup_oscillator" 1 534 ""
 v L "mode" 1 534 "int8" `228 
 f B "setup_oscillator" 1 534 "void(int8 mode)" `227  "Constants used in setup_oscillator() are:"
@@ -549,7 +549,7 @@ d G "OSC_INTRC" 1 550 "2"
 d G "OSC_NORMAL" 1 551 "0"
 d G "OSC_PLL_ON" 1 553 "0x80"
 d G "OSC_PLL_OFF" 1 554 "0"
-c L "setup_oscillator" 1 1 4 "FUNCTION"
+c L "setup_oscillator" 1 3 4 "FUNCTION"
 f N "setup_adc" 1 561 ""
 v L "mode" 1 561 "int16" `230 
 f B "setup_adc" 1 561 "void(int16 mode)" `229 
@@ -573,7 +573,7 @@ d G "ADC_CLOCK_DIV_32" 1 572 "0x20"
 d G "ADC_CLOCK_DIV_16" 1 573 "0x50"
 d G "ADC_CLOCK_DIV_64" 1 574 "0x60"
 d G "ADC_CLOCK_INTERNAL" 1 575 "0x30" "Internal 2-6us"
-c L "adc_done" 1 1 1 "FUNCTION"
+c L "adc_done" 1 3 1 "FUNCTION"
 f N "setup_adc_ports" 1 578 ""
 v L "pins" 1 578 "int32" `236 
 f B "setup_adc_ports" 1 578 "void(int32 pins)" `235 
@@ -616,7 +616,7 @@ d G "FVR_CHANNEL" 1 613 "0x1F"
 d G "ADC_START_AND_READ" 1 616 "7" "This is the default if nothing is specified"
 d G "ADC_START_ONLY" 1 617 "1"
 d G "ADC_READ_ONLY" 1 618 "6"
-c L "set_adc_channel" 1 1 3 "FUNCTION"
+c L "set_adc_channel" 1 3 3 "FUNCTION"
 f N "abs" 1 624 ""
 v L "x" 1 624 "sint8" `248 
 f B "abs" 1 624 "sint8(sint8 x)" `247 
@@ -1222,7 +1222,7 @@ f B "get_capture_event" 1 817 "int8()" `659
 f N "get_capture_event" 1 818 ""
 v L "stream" 1 818 "int8" `661 
 f B "get_capture_event" 1 818 "int8(int8 stream)" `660  "Enviroment Prototypes:"
-c L "get_capture_event" 1 1 2 "FUNCTION"
+c L "get_capture_event" 1 3 2 "FUNCTION"
 f N "goto_address" 1 831 ""
 v L "address" 1 831 "int16" `663 
 f B "goto_address" 1 831 "void(int16 address)" `662 
@@ -1297,7 +1297,7 @@ f N "touchpad_getc" 1 863 ""
 f B "touchpad_getc" 1 863 "int8()" `700 
 f N "touchpad_hit" 1 864 ""
 f B "touchpad_hit" 1 864 "int8()" `701  "INT"
-c L "touchpad_hit" 1 1 4 "FUNCTION"
+c L "touchpad_hit" 1 3 4 "FUNCTION"
 f N "enable_interrupts" 1 870 ""
 v L "interrupt" 1 870 "int32" `703 
 f B "enable_interrupts" 1 870 "void(int32 interrupt)" `702 
@@ -1398,7 +1398,6 @@ d G "INT_RB6_H2L" 1 959 "0x21400B08"
 d G "INT_RB7" 1 960 "0x31800B08"
 d G "INT_RB7_L2H" 1 961 "0x11800B08"
 d G "INT_RB7_H2L" 1 962 "0x21800B08"
-C L "jump_to_isr" 0 8 1 "FUNCTION"
 C L "jump_to_isr" 2 2 47 "FUNCTION"
 V G "LCD_ADDR" 2 74 "int8" `725  "0x4E        //I2C slave address for LCD module"
 V G "lcd_total_rows" 2 75 "int8" `726  "2           //Number of rows: 1,2,3 or 4"
@@ -1457,209 +1456,119 @@ C L "LCD_PUTC" 2 2 1 "FUNCTION"
 F N "LCD_PUTC" 2 193 ""
 V L "in_data" 2 193 "int8" `758 
 F G "LCD_PUTC" 2 194 "void(int8 in_data)" `757 
-D G "LCD_ADDR" 0 11 "0x27"
-D G "PIN_R" 0 16 "PIN_A0" "AN0 - Pot R"
-D G "PIN_G" 0 17 "PIN_A1" "AN1 - Pot G"
-D G "PIN_B" 0 18 "PIN_A2" "AN2 - Pot B"
-D G "BTN_SELECT" 0 21 "PIN_B0" "Botón de selección GUARDAR/ENTER (activo 0)"
-D G "BTN_BACK" 0 22 "PIN_B2" "Botón de retroceso / cancelar (activo 0) //HAY QUE SACAR ESTO DEL SOFTWARE O IMPLEMENTARLO EN EL PROTEUS"
-D G "PWM_R_PIN" 0 25 "PIN_C2" "ejemplo: salida PWM para Rojo (CCP2/CCPx según MCU)"
-D G "PWM_G_PIN" 0 26 "PIN_C1" "Verde"
-D G "PWM_B_PIN" 0 27 "PIN_C0" "Azul"
-D G "EEPROM_MAX" 0 30 "256" "bytes"
-D G "COLOR_SIZE" 0 31 "3" "bytes por color (guardaremos 8-bit cada canal)"
-D G "MAX_COLORS" 0 32 " (EEPROM_MAX / COLOR_SIZE)" "85 colores"
-T G "color_t" 0 39 "{int16 r,int16 g,int16 b}" `763 
-F N "set_rgb" 0 41 ""
-V L "r" 0 41 "int16" `765 
-V L "g" 0 41 "int16" `766 
-V L "b" 0 41 "int16" `767 
-f G "set_rgb" 0 41 "void(int16 r,int16 g,int16 b)" `764 
-F N "guardar_color" 0 42 ""
-V L "c" 0 42 "color_t" `769 
-V L "direccion" 0 42 "int8" `770 
-f G "guardar_color" 0 42 "void(color_t c,int8 direccion)" `768  "direccion ignorada en impl. (opcional)"
-F N "recuperar_color" 0 43 ""
-V L "direccion" 0 43 "int8" `772 
-f G "recuperar_color" 0 43 "color_t(int8 direccion)" `771 
-F N "mostrar_menu" 0 44 ""
-f G "mostrar_menu" 0 44 "void()" `773 
-F N "menu_variar_color" 0 45 ""
-f G "menu_variar_color" 0 45 "void()" `774 
-F N "menu_guardar_recuperar" 0 46 ""
-f G "menu_guardar_recuperar" 0 46 "void()" `775 
-F N "menu_eeprom_basico" 0 47 ""
-f G "menu_eeprom_basico" 0 47 "void()" `776 
-F N "menu_personalizado_1" 0 48 ""
-f G "menu_personalizado_1" 0 48 "void()" `777 
-F N "leer_entrada_r" 0 49 ""
-f G "leer_entrada_r" 0 49 "int8()" `778 
-F N "leer_entrada_g" 0 50 ""
-f G "leer_entrada_g" 0 50 "int8()" `779 
-F N "leer_entrada_b" 0 51 ""
-f G "leer_entrada_b" 0 51 "int8()" `780  "utilidades"
-F N "percent_to_pwm" 0 54 ""
-V L "percent" 0 54 "int8" `782 
-f G "percent_to_pwm" 0 54 "int16(int8 percent)" `781 
-F N "adc10_to_pwm" 0 55 ""
-V L "v10" 0 55 "int16" `784 
-f G "adc10_to_pwm" 0 55 "int16(int16 v10)" `783 
-F N "adc10_to_8bit" 0 56 ""
-V L "v10" 0 56 "int16" `786 
-f G "adc10_to_8bit" 0 56 "int8(int16 v10)" `785 
-F N "read_adc_channel" 0 57 ""
-V L "channel" 0 57 "int8" `788 
-f G "read_adc_channel" 0 57 "int16(int8 channel)" `787  "Variables globales"
-V G "opcion_menu" 0 60 "int8" `789 
-V G "color_actual" 0 61 "color_t" `790 
-C L "read_adc_channel" 0 14 1 "FUNCTION"
-V G "last_select_state" 0 64 "int1" `791 
-V G "last_back_state" 0 65 "int1" `792 
-C L "read_adc_channel" 0 14 1 "FUNCTION"
-F N "percent_to_pwm" 0 69 ""
-V L "percent" 0 69 "int8" `794 
-F G "percent_to_pwm" 0 69 "int16(int8 percent)" `781  "Revisar"
-F N "adc10_to_pwm" 0 74 ""
-V L "v10" 0 74 "int16" `800 
-F G "adc10_to_pwm" 0 74 "int16(int16 v10)" `783  "ADC 0..1023 -> PWM 0..1023 (identidad)"
-F N "adc10_to_8bit" 0 80 ""
-V L "v10" 0 80 "int16" `800 
-F G "adc10_to_8bit" 0 80 "int8(int16 v10)" `785  "para almacenar en eeprom (1 byte), escalamos 0..1023 -> 0..255"
-F N "read_adc_channel" 0 85 ""
-V L "channel" 0 85 "int8" `800 
-F G "read_adc_channel" 0 85 "int16(int8 channel)" `787 
-C L "read_adc_channel" 0 14 1 "FUNCTION"
-C L "set_rgb" 0 14 1 "FUNCTION"
-F N "set_rgb" 0 92 ""
-V L "r" 0 92 "int16" `765 
-V L "g" 0 92 "int16" `766 
-V L "b" 0 92 "int16" `802 
-F G "set_rgb" 0 92 "void(int16 r,int16 g,int16 b)" `764  "establece los PWM (set_pwmX_duty usa 0..1023)"
-C L "set_rgb" 0 14 1 "FUNCTION"
-C L "set_rgb" 0 14 1 "FUNCTION"
-C L "set_rgb" 0 14 2 "FUNCTION"
-C L "guardar_color" 0 14 1 "FUNCTION"
-F N "guardar_color" 0 104 ""
-V L "c" 0 104 "color_t" `769 
-V L "direccion" 0 104 "int8" `801 
-F G "guardar_color" 0 104 "void(color_t c,int8 direccion)" `768  "busco primera posición libre (0xFF, EEPROM virgen)"
-V L "i" 0 106 "int8" `799 
-V L "r_chk" 0 107 "int8" `800 
-V L "g_chk" 0 108 "int8" `804 
-V L "b_chk" 0 109 "int8" `805 
-V L "r8" 0 111 "int8" `806 
-V L "g8" 0 112 "int8" `807 
-V L "b8" 0 113 "int8" `808 
-C L "guardar_color" 0 14 1 "FUNCTION"
-V L "r8" 0 121 "int8" `809 
-V L "g8" 0 122 "int8" `810 
-V L "b8" 0 123 "int8" `811 
-C L "recuperar_color" 0 14 1 "FUNCTION"
-F N "recuperar_color" 0 130 ""
-V L "direccion" 0 130 "int8" `813 
-F G "recuperar_color" 0 130 "color_t(int8 direccion)" `771 
-V L "res" 0 131 "color_t" `812 
-V L "r8" 0 134 "int8" `813 
-V L "g8" 0 135 "int8" `814 
-V L "b8" 0 136 "int8" `815 
-C L "recuperar_color" 0 14 1 "FUNCTION"
-C L "recuperar_color" 0 14 1 "FUNCTION"
-C L "get_color_count" 0 14 1 "FUNCTION"
-F N "get_color_count" 0 151 ""
-F G "get_color_count" 0 151 "int8()" `816 
-V L "count" 0 152 "int8" `817 
-V L "i" 0 153 "int8" `818 
-V L "r" 0 154 "int8" `819 
-V L "g" 0 155 "int8" `820 
-V L "b" 0 156 "int8" `821 
-C L "mostrar_menu" 0 14 1 "FUNCTION"
-F N "mostrar_menu" 0 164 ""
-F G "mostrar_menu" 0 164 "void()" `773  "Opciones del menú:"
-C L "mostrar_menu" 0 14 4 "FUNCTION"
-C L "menu_variar_color" 0 14 1 "FUNCTION"
-F N "menu_variar_color" 0 185 ""
-F G "menu_variar_color" 0 185 "void()" `774 
-V L "r10" 0 191 "int16" `833 
-C L "menu_variar_color" 0 14 1 "FUNCTION"
-V L "g10" 0 192 "int16" `834 
-C L "menu_variar_color" 0 14 1 "FUNCTION"
-V L "b10" 0 193 "int16" `835 
-C L "menu_variar_color" 0 14 1 "FUNCTION"
-C L "menu_variar_color" 0 14 1 "FUNCTION"
-C L "menu_variar_color" 0 14 1 "FUNCTION"
-V L "sel" 0 204 "int1" `844 
-C L "menu_variar_color" 0 14 1 "FUNCTION"
-C L "menu_variar_color" 0 14 1 "FUNCTION"
-C L "menu_variar_color" 0 14 1 "FUNCTION"
-V L "back" 0 217 "int1" `845 
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-F N "menu_guardar_recuperar" 0 231 ""
-F G "menu_guardar_recuperar" 0 231 "void()" `775 
-V L "subop" 0 232 "int8" `846 
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-V L "index" 0 233 "int8" `847 
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-V L "x" 0 251 "int16" `855 
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-V L "y" 0 260 "int16" `856 
-V L "maxc" 0 261 "int8" `857 
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-V L "sel" 0 268 "int1" `858 
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-V L "i" 0 287 "int8" `861 
-V L "r" 0 288 "int8" `862 
-V L "g" 0 289 "int8" `863 
-V L "b" 0 290 "int8" `864 
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-V L "rc" 0 301 "color_t" `867 
-V L "back" 0 316 "int1" `870 
-C L "menu_guardar_recuperar" 0 14 1 "FUNCTION"
-C L "menu_eeprom_basico" 0 14 1 "FUNCTION"
-F N "menu_eeprom_basico" 0 333 ""
-F G "menu_eeprom_basico" 0 333 "void()" `776 
-V L "total" 0 339 "int8" `872 
-V L "libres" 0 340 "int8" `873 
-C L "menu_personalizado_1" 0 14 1 "FUNCTION"
-F N "menu_personalizado_1" 0 351 ""
-F G "menu_personalizado_1" 0 351 "void()" `777 
-C L "menu_personalizado_1" 0 14 1 "FUNCTION"
-V L "presets" 0 360 "color_t[4]" `878 
-V L "i" 0 366 "int8" `879 
-V L "back" 0 376 "int1" `882 
-C L "leer_entrada_r" 0 14 1 "FUNCTION"
-F N "leer_entrada_r" 0 382 ""
-F G "leer_entrada_r" 0 382 "int8()" `778 
-F N "leer_entrada_g" 0 385 ""
-F G "leer_entrada_g" 0 385 "int8()" `779 
-F N "leer_entrada_b" 0 388 ""
-F G "leer_entrada_b" 0 388 "int8()" `780 
-C L "MAIN" 0 14 1 "FUNCTION"
-F N "MAIN" 0 393 ""
-F G "MAIN" 0 393 "void()" `883  "--- Inicializaciones hardware ---"
-C L "MAIN" 0 14 2 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 2 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-V L "x" 0 433 "int16" `887 
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-V L "sel" 0 441 "int1" `888 
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
+D G "LCD_ADDR" 0 8 "0x27"
+D G "BUTTON_PIN" 0 9 "PIN_B0"
+D G "EEPROM_MAX" 0 12 "256"
+D G "COLOR_SIZE" 0 13 "3"
+D G "MAX_COLORS" 0 14 " (EEPROM_MAX / COLOR_SIZE)" "85"
+D G "ADC_X" 0 17 "0" "RA0 (AN0)"
+D G "ADC_Y" 0 18 "1" "RA1 (AN1)"
+D G "PWM_R_PIN" 0 21 "PIN_A3"
+D G "PWM_G_PIN" 0 22 "PIN_B3"
+D G "PWM_B_PIN" 0 23 "PIN_B6"
+T G "color_t" 0 29 "{int8 r,int8 g,int8 b}" `763  "Globals"
+V G "color_actual" 0 32 "color_t" `764 
+V G "menu_opcion" 0 33 "int8" `765 
+V G "main_last_button_state" 0 34 "int1" `766 
+V G "soft_pwm_duty" 0 35 "int8" `767 
+V G "soft_pwm_counter" 0 36 "int8" `768 
+C L "set_rgb" 0 11 1 "FUNCTION"
+F N "set_rgb" 0 39 ""
+V L "r" 0 39 "int8" `770 
+V L "g" 0 39 "int8" `771 
+V L "b" 0 39 "int8" `772 
+f G "set_rgb" 0 39 "void(int8 r,int8 g,int8 b)" `769 
+F N "guardar_color" 0 40 ""
+V L "c" 0 40 "color_t" `774 
+V L "direccion_index" 0 40 "int8" `775 
+f G "guardar_color" 0 40 "void(color_t c,int8 direccion_index)" `773 
+F N "menu_set_color" 0 41 ""
+f G "menu_set_color" 0 41 "void()" `776 
+F N "menu_mostrar_colores_guardados" 0 42 ""
+f G "menu_mostrar_colores_guardados" 0 42 "void()" `777 
+F N "show_all_colors" 0 43 ""
+f G "show_all_colors" 0 43 "void()" `778 
+F N "get_color_count" 0 44 ""
+f G "get_color_count" 0 44 "int8()" `779 
+F N "soft_pwm_isr_tick" 0 45 ""
+f G "soft_pwm_isr_tick" 0 45 "void()" `780  "------------------ Utilidades EEPROM ------------------"
+C L "soft_pwm_isr_tick" 0 11 1 "FUNCTION"
+F N "guardar_color" 0 49 ""
+V L "c" 0 49 "color_t" `774 
+V L "direccion_index" 0 49 "int8" `783 
+F G "guardar_color" 0 49 "void(color_t c,int8 direccion_index)" `773 
+V L "addr" 0 50 "int16" `781 
+F N "get_color_count" 0 57 ""
+F G "get_color_count" 0 57 "int8()" `779 
+V L "count" 0 58 "int8" `785 
+V L "r" 0 59 "int8" `786 
+V L "g" 0 59 "int8" `787 
+V L "b" 0 59 "int8" `788 
+V L "i" 0 60 "int8" `789 
+F N "show_all_colors" 0 70 ""
+F G "show_all_colors" 0 70 "void()" `778 
+V L "total_guardados" 0 76 "int8" `795 
+V L "i" 0 86 "int8" `797 
+V L "r" 0 87 "int8" `798 
+V L "g" 0 87 "int8" `799 
+V L "b" 0 87 "int8" `800 
+C L "set_rgb" 0 11 1 "FUNCTION"
+F N "set_rgb" 0 104 ""
+V L "r" 0 104 "int8" `770 
+V L "g" 0 104 "int8" `771 
+V L "b" 0 104 "int8" `815 
+F G "set_rgb" 0 104 "void(int8 r,int8 g,int8 b)" `769 
+F N "rb_isr" 0 111 ""
+F G "rb_isr" 0 111 "void(int8 r,int8 g,int8 b)" `812 
+F N "timer0_isr" 0 114 ""
+F G "timer0_isr" 0 114 "void(int8 g,int8 b)" `813 
+C L "read_adc_8bit" 0 11 1 "FUNCTION"
+F N "read_adc_8bit" 0 124 ""
+V L "channel" 0 124 "int8" `815 
+F G "read_adc_8bit" 0 124 "int8(int8 channel)" `814 
+V L "val" 0 125 "int16" `816 
+C L "mostrar_menu_principal" 0 11 1 "FUNCTION"
+F N "mostrar_menu_principal" 0 133 ""
+F G "mostrar_menu_principal" 0 133 "void()" `817 
+F N "menu_set_color" 0 139 ""
+F G "menu_set_color" 0 139 "void()" `776 
+V L "adc_x1" 0 140 "int8" `819 
+V L "adc_y1" 0 141 "int8" `820 
+V L "prev_adc_x" 0 142 "int8" `821 
+V L "prev_adc_y" 0 143 "int8" `822 
+V L "current_selector" 0 144 "int8" `823 
+V L "button" 0 145 "int1" `824 
+V L "last_btn" 0 146 "int1" `825 
+C L "menu_set_color" 0 11 1 "FUNCTION"
+C L "menu_set_color" 0 11 1 "FUNCTION"
+C L "menu_set_color" 0 11 1 "FUNCTION"
+C L "menu_set_color" 0 11 2 "FUNCTION"
+C L "menu_set_color" 0 11 1 "FUNCTION"
+V L "idx" 0 205 "int8" `834 
+C L "menu_set_color" 0 11 1 "FUNCTION"
+C L "menu_set_color" 0 11 1 "FUNCTION"
+C L "menu_set_color" 0 11 3 "FUNCTION"
+C L "menu_set_color" 0 11 1 "FUNCTION"
+C L "menu_set_color" 0 11 1 "FUNCTION"
+C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
+F N "menu_mostrar_colores_guardados" 0 233 ""
+F G "menu_mostrar_colores_guardados" 0 233 "void()" `777 
+C L "menu_mostrar_colores_guardados" 0 11 2 "FUNCTION"
+C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
+C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
+C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
+C L "hardware_init" 0 11 1 "FUNCTION"
+F N "hardware_init" 0 256 ""
+F G "hardware_init" 0 256 "void()" `839 
+C L "MAIN" 0 11 1 "FUNCTION"
+F N "MAIN" 0 278 ""
+F G "MAIN" 0 278 "void()" `840 
+V L "total" 0 281 "int8" `843 
+V L "remaining" 0 282 "int8" `844 
+V L "pos" 0 294 "int8" `846 
+C L "MAIN" 0 11 2 "FUNCTION"
+V L "btn" 0 304 "int1" `849 
+C L "MAIN" 0 11 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0

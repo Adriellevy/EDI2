@@ -1,97 +1,85 @@
 
-ROM used:   3069/4096 (75%)
-            3197/4096 (78%) including unused fragments
+ROM used:   1729/4096 (42%)
+            1729/4096 (42%) including unused fragments
 
-            1.9 Average locations per line
-            8.7 Average locations per statement
+            1.2 Average locations per line
+            6.9 Average locations per statement
 
-RAM used:   24/383 (6%) at main() level
-            86/383 (22%) worst case
+RAM used:   32/383 (8%) at main() level
+            71/383 (19%) worst case
 
-Stack used: 6 worst case (6 in main + 0 for interrupts)
+Stack used: 7 worst case (6 in main + 1 for interrupts)
 Stack size: 16
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  467   275  78  main.c
+  315   174  69  main.c
   965     0   0  ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
-  211    77  22  i2c_Flex_LCD.c
+  211    77  31  i2c_Flex_LCD.c
 ----- -----
- 1643   352 Total
+ 1491   251 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
 0     22   1    1             @delay_ms1
-0     20   1    1             @I2C_WRITEU_129
-0     74   2    3    574  5.9  i2c_send_nibble
-0     30   1    3    149  2.8  lcd_send_byte
-0     10   0    0     61  1.9  lcd_clear
-0      5   0    0             @const747
-0     75   2    5    902  5.8  lcd_init
-0     55   2    7    681  8.0  lcd_gotoxy
-0     37   1    1    335  3.9  LCD_PUTC
-0     21   1    5    116  4.2  @MUL1616
-0     37   1    5             @DIV1616
-0     23   1    5     66  2.7  adc10_to_8bit
-0     32   1    1     59  1.6  read_adc_channel
-0     76   2    6    204  3.4  set_rgb
- Inline        18   1408  9.9  guardar_color
-0     37   1    2    785  8.4  @MUL88
- Inline        13    973  9.0  recuperar_color
-0     66   2    6    444  8.4  get_color_count
-0     73   2    0    467  4.6  mostrar_menu
-0      3   0    0             @const822
-0     74   2    5             @PSTRINGC7_757
-0      5   0    0             @const827
-0      6   0    0             @const828
-0      5   0    0             @const829
-0      5   0    0             @const830
-0      6   0    0   2393  9.7  @const831
-0    167   5    9   1153  5.5  menu_variar_color
-0     12   0    0             @const832
-0     21   1    3             @DIV88
-0     53   2    2             @PRINTF_U_757
-1   1149  37   22   4070 11.8  menu_guardar_recuperar
-0      9   0    0   4999 11.7  @const848
-0      8   0    0             @const849
-0      9   0    0             @const850
-0      9   0    0             @const851
-0     80   3    4             @PSTRINGCN7_757
-0     10   0    0             @const854
-0      8   0    0             @const859
-0      6   0    0             @const860
-0      5   0    0             @const865
-0      5   0    0             @const868
-0     73   2    3    391  3.3  menu_eeprom_basico
-0      7   0    0             @const871
-0      7   0    0             @const874
-0      5   0    0             @const875
-0    310  10   38   1288  7.2  menu_personalizado_1
-0      8   0    0             @const876
-0      9   0    0             @const877
-0      5   0    0    391  3.3  @const880
-0    277   9    4   2025 10.2  MAIN
-0      9   0    0             @const886
-0      8   0    0             @goto22090
- Inline         0   1517  9.7  @cinit1
+0     20   1    1     63  2.3  @I2C_WRITEU_129
+0     74   4    3    574  5.9  i2c_send_nibble
+0     30   2    3    149  2.8  lcd_send_byte
+0     10   1    0     61  1.9  lcd_clear
+0      5   0    0    681  8.0  @const747
+ Inline         5    902  5.8  lcd_init
+0     55   3    7    681  8.0  lcd_gotoxy
+0     37   2    1    331  4.1  LCD_PUTC
+0     37   2    2     82  3.3  @MUL88
+ Inline         8    300  5.8  guardar_color
+0     66   4    6    478  8.0  get_color_count
+ Inline         6   1045  6.4  show_all_colors
+0      8   0    0    923  7.3  @const790
+0     74   4    4    460  8.4  @PSTRINGC7_757
+0      8   0    0    607  6.6  @const796
+0      7   0    0    890  4.9  @const801
+0     80   5    6    444  8.4  @PSTRINGCN7_757
+0     21   1    3    328  4.4  @DIV88
+0     53   3    2    328  4.4  @PRINTF_U_757
+0     11   1    3    102  3.1  set_rgb
+0      8   0    0      3  0.0  rb_isr
+0     19   1    0     84  2.7  timer0_isr
+0     40   2    3    136  3.2  read_adc_8bit
+0     14   1    0     65  1.4  mostrar_menu_principal
+0      9   1    0   3718 11.8  @const818
+0    355  21    8   2805 11.5  menu_set_color
+0      7   0    0   3349 15.1  @const826
+0      7   0    0             @const835
+0      7   0    0             @const836
+0    227  13    0    265  3.0  menu_mostrar_colores_guardados
+0      8   0    0   1154  7.4  @const837
+0      8   0    0             @const838
+0    153   9    0    417  3.3  hardware_init
+0    156   9    5   1049  7.4  MAIN
+0      9   1    0    303  2.7  @const845
+0      9   1    0    391  3.3  @const847
+0      8   0    0   1097  5.6  @const848
+ Inline         0    417  3.3  @cinit1
 
 Program metrics:
-    Functions               24
-    Statements              352
-    Comments                331
-    Volume (V)              40411
-    Difficulty (D)          153.1
-    Effort to implement (E) 6184867
-    Time to implement (T)   95 hours, 27 minutes
-    Est Delivered Bugs (B)  11
-    Cyclomatic Complexity   123
-    Maintainability (MI)    62
+    Functions               35
+    Statements              251
+    Comments                275
+    Volume (V)              42165
+    Difficulty (D)          195.6
+    Effort to implement (E) 8246041
+    Time to implement (T)   127 hours, 15 minutes
+    Est Delivered Bugs (B)  14
+    Cyclomatic Complexity   104
+    Maintainability (MI)    55
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     3  0  
-00003-007FF  1917  128  
-00800-00FFF  1149  899  
+00003-00003     0  1  
+00004-00043    64  0  
+00044-007FF  1662  318  
+00800-00FFF     0  2048  
 
 
 

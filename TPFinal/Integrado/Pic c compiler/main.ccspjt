@@ -25,7 +25,7 @@ D1_L2=[65180]Started Editing.
 D1_L3=[65685]Stopped Editing.
 D1_L4=[65979]Started Editing.
 D2=05-11-2025
-D2_L=12
+D2_L=23
 D2_L1=[71249]Project Opened.
 D2_L2=[71979]Started Editing.
 D2_L3=[72284]Stopped Editing.
@@ -38,18 +38,35 @@ D2_L9=[74788]Stopped Editing.
 D2_L10=[74868]Started Editing.
 D2_L11=[75168]Stopped Editing.
 D2_L12=[76222]Started Editing.
+D2_L13=[76534]Stopped Editing.
+TotalEdit=4
+TotalDebug=0
+D2_E=4
+D2_D=0
+D2_L14=[78723]Project Closed.
+D2_L15=[81221]Project Opened.
+D2_L16=[81304]Started Editing.
+D2_L17=[82088]Stopped Editing.
+D2_L18=[82185]Started Editing.
+D2_L19=[82640]Stopped Editing.
+D2_L20=[83231]Started Editing.
+D2_L21=[84127]Stopped Editing.
+D2_L22=[84401]Started Editing.
+D2_L23=[85235]Stopped Editing.
 
 [Opened Files]
 1=main.c
-t1=9
-Count=2
-2=i2c_Flex_LCD.c
-t2=18
+t1=277
+Count=3
+2=..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h
+t2=1
+3=i2c_Flex_LCD.c
+t3=1
 [main.c]
 Type=4
 
 [defines]
-buildcount=8
+buildcount=18
 [Units]
 Count=1
 1=main (main)

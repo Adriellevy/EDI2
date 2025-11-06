@@ -1,8 +1,6 @@
-Compiling C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\main on 05-Nov-25 at 21:10
->>> Warning 236 "C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\main.c" Line 11(9,17): Defined identifier matches a variable ID
->>> Warning 205 "C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\main.c" Line 132(1,1): Unsigned variable is never less than zero
->>> Warning 204 "C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\main.c" Line 132(1,1): Condition always FALSE
+Compiling C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\main on 05-Nov-25 at 23:42
+>>> Warning 236 "C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\main.c" Line 8(9,17): Defined identifier matches a variable ID
 >>> Warning 202 "C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\i2c_Flex_LCD.c" Line 174(13,17): Variable never used:   data
-      Memory usage:   ROM=75%      RAM=6% - 22%
-      0 Errors,  4 Warnings.
+      Memory usage:   ROM=42%      RAM=8% - 19%
+      0 Errors,  2 Warnings.
 Build Successful.
