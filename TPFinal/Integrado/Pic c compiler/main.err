@@ -1,6 +1,6 @@
-Compiling C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\main on 05-Nov-25 at 23:42
->>> Warning 236 "C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\main.c" Line 8(9,17): Defined identifier matches a variable ID
->>> Warning 202 "C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\i2c_Flex_LCD.c" Line 174(13,17): Variable never used:   data
+Compiling C:\Users\54232\Desktop\Mateo\2022\BME\Tercer año\EDI2\GITHUB\EDI2\TPFinal\Integrado\Pic c compiler\main on 06-nov-25 at 13:13
+>>> Warning 236 "C:\Users\54232\Desktop\Mateo\2022\BME\Tercer año\EDI2\GITHUB\EDI2\TPFinal\Integrado\Pic c compiler\main.c" Line 8(9,17): Defined identifier matches a variable ID
+>>> Warning 202 "C:\Users\54232\Desktop\Mateo\2022\BME\Tercer año\EDI2\GITHUB\EDI2\TPFinal\Integrado\Pic c compiler\i2c_Flex_LCD.c" Line 174(13,17): Variable never used:   data
       Memory usage:   ROM=42%      RAM=8% - 19%
       0 Errors,  2 Warnings.
 Build Successful.

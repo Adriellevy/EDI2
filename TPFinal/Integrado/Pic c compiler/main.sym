@@ -153,27 +153,27 @@ ROM Allocation:
 0003AA  mostrar_menu_principal
 0003B8  read_adc_8bit
 0003E0  menu_set_color
-0004A8  guardar_color
-000543  menu_mostrar_colores_guardados
-000543  show_all_colors
-000626  @cinit1
-000626  MAIN
-000648  @cinit2
+0004AC  guardar_color
+000547  menu_mostrar_colores_guardados
+000547  show_all_colors
+00062A  @cinit1
+00062A  MAIN
+00064C  @cinit2
 
 Project Directory:
-    C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\
+    C:\Users\54232\Desktop\Mateo\2022\BME\Tercer año\EDI2\GITHUB\EDI2\TPFinal\Integrado\Pic c compiler\
 
 Project Files:
-    main.c                                                  [05-Nov-25 23:35  CRC=50243018]
-    ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-Feb-20 15:48  CRC=D6A5AF9F]
-    i2c_Flex_LCD.c                                          [05-Nov-25 21:10  CRC=16AFB211]
+    main.c                                                  [06-nov-25 13:13  CRC=BF4484CA]
+    ..\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb-20 15:48  CRC=D6A5AF9F]
+    i2c_Flex_LCD.c                                          [05-nov-25 20:54  CRC=16AFB211]
 
-Source signature=542943D9
+Source signature=C349988B
 Program memory checksum=0000
-Hex file CRC=C5A1
+Hex file CRC=802A
 
 Units:
-    C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\main (main)
+    C:\Users\54232\Desktop\Mateo\2022\BME\Tercer año\EDI2\GITHUB\EDI2\TPFinal\Integrado\Pic c compiler\main (main)
 
 Compiler Settings:
     Processor:      PIC16F1827

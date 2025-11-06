@@ -1,5 +1,5 @@
 ÀÄmain
-   ÃÄMAIN  0/156  Ram=5
+   ÃÄMAIN  0/160  Ram=5
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄ@cinit2  (Inline)  Ram=0
    ³  ÃÄhardware_init  0/153  Ram=0
@@ -87,7 +87,7 @@
    ³  ³  ÀÄ*
    ³  ÃÄ@PSTRINGC7_757  0/74  Ram=4
    ³  ³  ÀÄ*
-   ³  ÃÄmenu_set_color  0/355  Ram=8
+   ³  ÃÄmenu_set_color  0/359  Ram=8
    ³  ³  ÃÄlcd_clear  0/10  Ram=0
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄ@PSTRINGCN7_757  0/80  Ram=6

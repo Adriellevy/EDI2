@@ -1,8 +1,8 @@
-CCS PCM C Compiler, Version 5.093, 4770               05-Nov-25 23:42
+CCS PCM C Compiler, Version 5.093, 4770               06-nov-25 13:13
 
-               Filename:   C:\Users\bauti\OneDrive\Escritorio\pepe\Estudio\Universidad\3RO\EDI2\REPO\TPFinal\Integrado\Pic c compiler\main.lst
+               Filename:   C:\Users\54232\Desktop\Mateo\2022\BME\Tercer año\EDI2\GITHUB\EDI2\TPFinal\Integrado\Pic c compiler\main.lst
 
-               ROM used:   1729 words (42%)
+               ROM used:   1737 words (42%)
                            Largest free fragment is 2048
                RAM used:   32 (8%) at main() level
                            71 (19%) worst case
@@ -10,7 +10,7 @@ CCS PCM C Compiler, Version 5.093, 4770               05-Nov-25 23:42
                Stack size: 16
 
 0000:  MOVLP  00
-0001:  GOTO   626
+0001:  GOTO   62A
 0002:  NOP
 *
 0004:  CLRF   03
@@ -1045,104 +1045,104 @@ CCS PCM C Compiler, Version 5.093, 4770               05-Nov-25 23:42
 .................... // (Sin cambios en esta sección)
 .................... void guardar_color(color_t c, unsigned int8 direccion_index) {
 *
-04A8:  MOVF   45,W
-04A9:  MOVWF  48
-04AA:  MOVLW  03
-04AB:  MOVWF  49
-04AC:  CALL   1F8
-04AD:  CLRF   47
-04AE:  MOVF   78,W
-04AF:  MOVWF  46
+04AC:  MOVF   45,W
+04AD:  MOVWF  48
+04AE:  MOVLW  03
+04AF:  MOVWF  49
+04B0:  CALL   1F8
+04B1:  CLRF   47
+04B2:  MOVF   78,W
+04B3:  MOVWF  46
 ....................     unsigned int16 addr = direccion_index * COLOR_SIZE;
 ....................     if (direccion_index >= MAX_COLORS) return;
-04B0:  MOVF   45,W
-04B1:  SUBLW  54
-04B2:  BTFSS  03.0
-04B3:  GOTO   505
+04B4:  MOVF   45,W
+04B5:  SUBLW  54
+04B6:  BTFSS  03.0
+04B7:  GOTO   509
 ....................     write_eeprom(addr + 0, c.r);
-04B4:  MOVF   0B,W
-04B5:  MOVWF  77
-04B6:  BCF    0B.7
-04B7:  MOVF   46,W
-04B8:  MOVLB  03
-04B9:  MOVWF  11
-04BA:  MOVLB  00
-04BB:  MOVF   42,W
+04B8:  MOVF   0B,W
+04B9:  MOVWF  77
+04BA:  BCF    0B.7
+04BB:  MOVF   46,W
 04BC:  MOVLB  03
-04BD:  MOVWF  13
-04BE:  BCF    15.7
-04BF:  BSF    15.2
-04C0:  MOVLW  55
-04C1:  MOVWF  16
-04C2:  MOVLW  AA
-04C3:  MOVWF  16
-04C4:  BSF    15.1
-04C5:  BTFSC  15.1
-04C6:  GOTO   4C5
-04C7:  BCF    15.2
-04C8:  MOVF   77,W
-04C9:  IORWF  0B,F
+04BD:  MOVWF  11
+04BE:  MOVLB  00
+04BF:  MOVF   42,W
+04C0:  MOVLB  03
+04C1:  MOVWF  13
+04C2:  BCF    15.7
+04C3:  BSF    15.2
+04C4:  MOVLW  55
+04C5:  MOVWF  16
+04C6:  MOVLW  AA
+04C7:  MOVWF  16
+04C8:  BSF    15.1
+04C9:  BTFSC  15.1
+04CA:  GOTO   4C9
+04CB:  BCF    15.2
+04CC:  MOVF   77,W
+04CD:  IORWF  0B,F
 ....................     write_eeprom(addr + 1, c.g);
-04CA:  MOVLW  01
-04CB:  MOVLB  00
-04CC:  ADDWF  46,W
-04CD:  MOVWF  48
-04CE:  MOVLW  00
-04CF:  ADDWFC 47,W
-04D0:  MOVWF  49
-04D1:  MOVF   0B,W
-04D2:  MOVWF  77
-04D3:  BCF    0B.7
-04D4:  MOVF   48,W
-04D5:  MOVLB  03
-04D6:  MOVWF  11
-04D7:  MOVLB  00
-04D8:  MOVF   43,W
+04CE:  MOVLW  01
+04CF:  MOVLB  00
+04D0:  ADDWF  46,W
+04D1:  MOVWF  48
+04D2:  MOVLW  00
+04D3:  ADDWFC 47,W
+04D4:  MOVWF  49
+04D5:  MOVF   0B,W
+04D6:  MOVWF  77
+04D7:  BCF    0B.7
+04D8:  MOVF   48,W
 04D9:  MOVLB  03
-04DA:  MOVWF  13
-04DB:  BCF    15.7
-04DC:  BSF    15.2
-04DD:  MOVLW  55
-04DE:  MOVWF  16
-04DF:  MOVLW  AA
-04E0:  MOVWF  16
-04E1:  BSF    15.1
-04E2:  BTFSC  15.1
-04E3:  GOTO   4E2
-04E4:  BCF    15.2
-04E5:  MOVF   77,W
-04E6:  IORWF  0B,F
+04DA:  MOVWF  11
+04DB:  MOVLB  00
+04DC:  MOVF   43,W
+04DD:  MOVLB  03
+04DE:  MOVWF  13
+04DF:  BCF    15.7
+04E0:  BSF    15.2
+04E1:  MOVLW  55
+04E2:  MOVWF  16
+04E3:  MOVLW  AA
+04E4:  MOVWF  16
+04E5:  BSF    15.1
+04E6:  BTFSC  15.1
+04E7:  GOTO   4E6
+04E8:  BCF    15.2
+04E9:  MOVF   77,W
+04EA:  IORWF  0B,F
 ....................     write_eeprom(addr + 2, c.b);
-04E7:  MOVLW  02
-04E8:  MOVLB  00
-04E9:  ADDWF  46,W
-04EA:  MOVWF  48
-04EB:  MOVLW  00
-04EC:  ADDWFC 47,W
-04ED:  MOVWF  49
-04EE:  MOVF   0B,W
-04EF:  MOVWF  77
-04F0:  BCF    0B.7
-04F1:  MOVF   48,W
-04F2:  MOVLB  03
-04F3:  MOVWF  11
-04F4:  MOVLB  00
-04F5:  MOVF   44,W
+04EB:  MOVLW  02
+04EC:  MOVLB  00
+04ED:  ADDWF  46,W
+04EE:  MOVWF  48
+04EF:  MOVLW  00
+04F0:  ADDWFC 47,W
+04F1:  MOVWF  49
+04F2:  MOVF   0B,W
+04F3:  MOVWF  77
+04F4:  BCF    0B.7
+04F5:  MOVF   48,W
 04F6:  MOVLB  03
-04F7:  MOVWF  13
-04F8:  BCF    15.7
-04F9:  BSF    15.2
-04FA:  MOVLW  55
-04FB:  MOVWF  16
-04FC:  MOVLW  AA
-04FD:  MOVWF  16
-04FE:  BSF    15.1
-04FF:  BTFSC  15.1
-0500:  GOTO   4FF
-0501:  BCF    15.2
-0502:  MOVF   77,W
-0503:  IORWF  0B,F
-0504:  MOVLB  00
+04F7:  MOVWF  11
+04F8:  MOVLB  00
+04F9:  MOVF   44,W
+04FA:  MOVLB  03
+04FB:  MOVWF  13
+04FC:  BCF    15.7
+04FD:  BSF    15.2
+04FE:  MOVLW  55
+04FF:  MOVWF  16
+0500:  MOVLW  AA
+0501:  MOVWF  16
+0502:  BSF    15.1
+0503:  BTFSC  15.1
+0504:  GOTO   503
+0505:  BCF    15.2
+0506:  MOVF   77,W
+0507:  IORWF  0B,F
+0508:  MOVLB  00
 .................... }
 .................... 
 .................... int get_color_count() {
@@ -1228,220 +1228,220 @@ CCS PCM C Compiler, Version 5.093, 4770               05-Nov-25 23:42
 .................... void show_all_colors() {
 ....................     lcd_clear();
 *
-0543:  CALL   155
+0547:  CALL   155
 ....................     lcd_gotoxy(1,1);
-0544:  MOVLW  01
-0545:  MOVWF  4A
-0546:  MOVWF  4B
-0547:  CALL   25F
+0548:  MOVLW  01
+0549:  MOVWF  4A
+054A:  MOVWF  4B
+054B:  CALL   25F
 ....................     printf(lcd_putc, "Lectura EEPROM");
-0548:  MOVLW  49
-0549:  MOVLB  03
-054A:  MOVWF  11
-054B:  MOVLW  00
-054C:  MOVWF  12
-054D:  MOVLB  00
-054E:  CALL   360
+054C:  MOVLW  49
+054D:  MOVLB  03
+054E:  MOVWF  11
+054F:  MOVLW  00
+0550:  MOVWF  12
+0551:  MOVLB  00
+0552:  CALL   360
 ....................     delay_ms(800);
-054F:  MOVLW  04
-0550:  MOVWF  40
-0551:  MOVLW  C8
-0552:  MOVWF  4A
-0553:  CALL   0C3
-0554:  DECFSZ 40,F
-0555:  GOTO   551
+0553:  MOVLW  04
+0554:  MOVWF  40
+0555:  MOVLW  C8
+0556:  MOVWF  4A
+0557:  CALL   0C3
+0558:  DECFSZ 40,F
+0559:  GOTO   555
 .................... 
 ....................     int total_guardados = get_color_count();
-0556:  CALL   21D
-0557:  MOVF   78,W
-0558:  MOVWF  3B
+055A:  CALL   21D
+055B:  MOVF   78,W
+055C:  MOVWF  3B
 ....................     
 ....................     if (total_guardados == 0) {
-0559:  MOVF   3B,F
-055A:  BTFSS  03.2
-055B:  GOTO   570
+055D:  MOVF   3B,F
+055E:  BTFSS  03.2
+055F:  GOTO   574
 ....................         lcd_clear();
-055C:  CALL   155
+0560:  CALL   155
 ....................         lcd_gotoxy(1,1);
-055D:  MOVLW  01
-055E:  MOVWF  4A
-055F:  MOVWF  4B
-0560:  CALL   25F
+0561:  MOVLW  01
+0562:  MOVWF  4A
+0563:  MOVWF  4B
+0564:  CALL   25F
 ....................         printf(lcd_putc, "No hay colores");
-0561:  MOVLW  51
-0562:  MOVLB  03
-0563:  MOVWF  11
-0564:  MOVLW  00
-0565:  MOVWF  12
-0566:  MOVLB  00
-0567:  CALL   360
+0565:  MOVLW  51
+0566:  MOVLB  03
+0567:  MOVWF  11
+0568:  MOVLW  00
+0569:  MOVWF  12
+056A:  MOVLB  00
+056B:  CALL   360
 ....................         delay_ms(1000);
-0568:  MOVLW  04
-0569:  MOVWF  40
-056A:  MOVLW  FA
-056B:  MOVWF  4A
-056C:  CALL   0C3
-056D:  DECFSZ 40,F
-056E:  GOTO   56A
+056C:  MOVLW  04
+056D:  MOVWF  40
+056E:  MOVLW  FA
+056F:  MOVWF  4A
+0570:  CALL   0C3
+0571:  DECFSZ 40,F
+0572:  GOTO   56E
 ....................         return;
-056F:  GOTO   5FD
+0573:  GOTO   601
 ....................     }
 .................... 
 ....................     for (int i=0; i<total_guardados; i++) {
-0570:  CLRF   3C
-0571:  MOVF   3B,W
-0572:  SUBWF  3C,W
-0573:  BTFSC  03.0
-0574:  GOTO   5FD
+0574:  CLRF   3C
+0575:  MOVF   3B,W
+0576:  SUBWF  3C,W
+0577:  BTFSC  03.0
+0578:  GOTO   601
 ....................         unsigned int8 r,g,b;
 ....................         r = read_eeprom(i*3 + 0);
-0575:  MOVF   3C,W
-0576:  MOVWF  48
-0577:  MOVLW  03
-0578:  MOVWF  49
-0579:  CALL   1F8
-057A:  MOVF   78,W
-057B:  MOVWF  40
-057C:  MOVF   40,W
-057D:  MOVLB  03
-057E:  MOVWF  11
-057F:  BCF    15.7
-0580:  BSF    15.0
-0581:  MOVF   13,W
-0582:  MOVLB  00
-0583:  MOVWF  3D
+0579:  MOVF   3C,W
+057A:  MOVWF  48
+057B:  MOVLW  03
+057C:  MOVWF  49
+057D:  CALL   1F8
+057E:  MOVF   78,W
+057F:  MOVWF  40
+0580:  MOVF   40,W
+0581:  MOVLB  03
+0582:  MOVWF  11
+0583:  BCF    15.7
+0584:  BSF    15.0
+0585:  MOVF   13,W
+0586:  MOVLB  00
+0587:  MOVWF  3D
 ....................         g = read_eeprom(i*3 + 1);
-0584:  MOVF   3C,W
-0585:  MOVWF  48
-0586:  MOVLW  03
-0587:  MOVWF  49
-0588:  CALL   1F8
-0589:  MOVLW  01
-058A:  ADDWF  78,W
-058B:  MOVWF  40
-058C:  MOVF   40,W
-058D:  MOVLB  03
-058E:  MOVWF  11
-058F:  BCF    15.7
-0590:  BSF    15.0
-0591:  MOVF   13,W
-0592:  MOVLB  00
-0593:  MOVWF  3E
+0588:  MOVF   3C,W
+0589:  MOVWF  48
+058A:  MOVLW  03
+058B:  MOVWF  49
+058C:  CALL   1F8
+058D:  MOVLW  01
+058E:  ADDWF  78,W
+058F:  MOVWF  40
+0590:  MOVF   40,W
+0591:  MOVLB  03
+0592:  MOVWF  11
+0593:  BCF    15.7
+0594:  BSF    15.0
+0595:  MOVF   13,W
+0596:  MOVLB  00
+0597:  MOVWF  3E
 ....................         b = read_eeprom(i*3 + 2);
-0594:  MOVF   3C,W
-0595:  MOVWF  48
-0596:  MOVLW  03
-0597:  MOVWF  49
-0598:  CALL   1F8
-0599:  MOVLW  02
-059A:  ADDWF  78,W
-059B:  MOVWF  40
-059C:  MOVF   40,W
-059D:  MOVLB  03
-059E:  MOVWF  11
-059F:  BCF    15.7
-05A0:  BSF    15.0
-05A1:  MOVF   13,W
-05A2:  MOVLB  00
-05A3:  MOVWF  3F
+0598:  MOVF   3C,W
+0599:  MOVWF  48
+059A:  MOVLW  03
+059B:  MOVWF  49
+059C:  CALL   1F8
+059D:  MOVLW  02
+059E:  ADDWF  78,W
+059F:  MOVWF  40
+05A0:  MOVF   40,W
+05A1:  MOVLB  03
+05A2:  MOVWF  11
+05A3:  BCF    15.7
+05A4:  BSF    15.0
+05A5:  MOVF   13,W
+05A6:  MOVLB  00
+05A7:  MOVWF  3F
 ....................         
 ....................         lcd_clear();
-05A4:  CALL   155
+05A8:  CALL   155
 ....................         lcd_gotoxy(1,1);
-05A5:  MOVLW  01
-05A6:  MOVWF  4A
-05A7:  MOVWF  4B
-05A8:  CALL   25F
-....................         printf(lcd_putc, "Color %u/%u:", i+1, total_guardados);
 05A9:  MOVLW  01
-05AA:  ADDWF  3C,W
-05AB:  MOVWF  40
-05AC:  MOVLW  59
-05AD:  MOVLB  03
-05AE:  MOVWF  11
-05AF:  MOVLW  00
-05B0:  MOVWF  12
-05B1:  BCF    03.0
-05B2:  MOVLW  06
-05B3:  MOVLB  00
-05B4:  MOVWF  43
-05B5:  CALL   2BB
-05B6:  MOVF   40,W
-05B7:  MOVWF  43
-05B8:  MOVLW  1B
-05B9:  MOVWF  44
-05BA:  CALL   320
-05BB:  MOVLW  2F
-05BC:  MOVWF  49
-05BD:  CALL   296
-05BE:  MOVF   3B,W
-05BF:  MOVWF  43
-05C0:  MOVLW  1B
-05C1:  MOVWF  44
-05C2:  CALL   320
-05C3:  MOVLW  3A
-05C4:  MOVWF  49
-05C5:  CALL   296
+05AA:  MOVWF  4A
+05AB:  MOVWF  4B
+05AC:  CALL   25F
+....................         printf(lcd_putc, "Color %u/%u:", i+1, total_guardados);
+05AD:  MOVLW  01
+05AE:  ADDWF  3C,W
+05AF:  MOVWF  40
+05B0:  MOVLW  59
+05B1:  MOVLB  03
+05B2:  MOVWF  11
+05B3:  MOVLW  00
+05B4:  MOVWF  12
+05B5:  BCF    03.0
+05B6:  MOVLW  06
+05B7:  MOVLB  00
+05B8:  MOVWF  43
+05B9:  CALL   2BB
+05BA:  MOVF   40,W
+05BB:  MOVWF  43
+05BC:  MOVLW  1B
+05BD:  MOVWF  44
+05BE:  CALL   320
+05BF:  MOVLW  2F
+05C0:  MOVWF  49
+05C1:  CALL   296
+05C2:  MOVF   3B,W
+05C3:  MOVWF  43
+05C4:  MOVLW  1B
+05C5:  MOVWF  44
+05C6:  CALL   320
+05C7:  MOVLW  3A
+05C8:  MOVWF  49
+05C9:  CALL   296
 ....................         lcd_gotoxy(1,2);
-05C6:  MOVLW  01
-05C7:  MOVWF  4A
-05C8:  MOVLW  02
-05C9:  MOVWF  4B
-05CA:  CALL   25F
+05CA:  MOVLW  01
+05CB:  MOVWF  4A
+05CC:  MOVLW  02
+05CD:  MOVWF  4B
+05CE:  CALL   25F
 ....................         printf(lcd_putc, "R:%03u G:%03u", r, g);
-05CB:  MOVLW  52
-05CC:  MOVWF  49
-05CD:  CALL   296
-05CE:  MOVLW  3A
-05CF:  MOVWF  49
-05D0:  CALL   296
-05D1:  MOVF   3D,W
-05D2:  MOVWF  43
-05D3:  MOVLW  03
-05D4:  MOVWF  44
-05D5:  CALL   320
-05D6:  MOVLW  20
-05D7:  MOVWF  49
-05D8:  CALL   296
-05D9:  MOVLW  47
-05DA:  MOVWF  49
-05DB:  CALL   296
-05DC:  MOVLW  3A
-05DD:  MOVWF  49
-05DE:  CALL   296
-05DF:  MOVF   3E,W
-05E0:  MOVWF  43
-05E1:  MOVLW  03
-05E2:  MOVWF  44
-05E3:  CALL   320
+05CF:  MOVLW  52
+05D0:  MOVWF  49
+05D1:  CALL   296
+05D2:  MOVLW  3A
+05D3:  MOVWF  49
+05D4:  CALL   296
+05D5:  MOVF   3D,W
+05D6:  MOVWF  43
+05D7:  MOVLW  03
+05D8:  MOVWF  44
+05D9:  CALL   320
+05DA:  MOVLW  20
+05DB:  MOVWF  49
+05DC:  CALL   296
+05DD:  MOVLW  47
+05DE:  MOVWF  49
+05DF:  CALL   296
+05E0:  MOVLW  3A
+05E1:  MOVWF  49
+05E2:  CALL   296
+05E3:  MOVF   3E,W
+05E4:  MOVWF  43
+05E5:  MOVLW  03
+05E6:  MOVWF  44
+05E7:  CALL   320
 ....................         lcd_gotoxy(11,2);
-05E4:  MOVLW  0B
-05E5:  MOVWF  4A
-05E6:  MOVLW  02
-05E7:  MOVWF  4B
-05E8:  CALL   25F
+05E8:  MOVLW  0B
+05E9:  MOVWF  4A
+05EA:  MOVLW  02
+05EB:  MOVWF  4B
+05EC:  CALL   25F
 ....................         printf(lcd_putc, "B:%03u", b);
-05E9:  MOVLW  42
-05EA:  MOVWF  49
-05EB:  CALL   296
-05EC:  MOVLW  3A
-05ED:  MOVWF  49
-05EE:  CALL   296
-05EF:  MOVF   3F,W
-05F0:  MOVWF  43
-05F1:  MOVLW  03
-05F2:  MOVWF  44
-05F3:  CALL   320
+05ED:  MOVLW  42
+05EE:  MOVWF  49
+05EF:  CALL   296
+05F0:  MOVLW  3A
+05F1:  MOVWF  49
+05F2:  CALL   296
+05F3:  MOVF   3F,W
+05F4:  MOVWF  43
+05F5:  MOVLW  03
+05F6:  MOVWF  44
+05F7:  CALL   320
 ....................         delay_ms(900);
-05F4:  MOVLW  04
-05F5:  MOVWF  40
-05F6:  MOVLW  E1
-05F7:  MOVWF  4A
-05F8:  CALL   0C3
-05F9:  DECFSZ 40,F
-05FA:  GOTO   5F6
-05FB:  INCF   3C,F
-05FC:  GOTO   571
+05F8:  MOVLW  04
+05F9:  MOVWF  40
+05FA:  MOVLW  E1
+05FB:  MOVWF  4A
+05FC:  CALL   0C3
+05FD:  DECFSZ 40,F
+05FE:  GOTO   5FA
+05FF:  INCF   3C,F
+0600:  GOTO   575
 ....................     }
 .................... }
 .................... 
@@ -1574,7 +1574,7 @@ CCS PCM C Compiler, Version 5.093, 4770               05-Nov-25 23:42
 03B4:  MOVLB  00
 03B5:  CALL   360
 03B6:  MOVLP  00
-03B7:  GOTO   685 (RETURN)
+03B7:  GOTO   689 (RETURN)
 .................... }
 .................... 
 .................... void menu_set_color() {
@@ -1670,267 +1670,271 @@ CCS PCM C Compiler, Version 5.093, 4770               05-Nov-25 23:42
 0424:  BTFSS  03.0
 0425:  GOTO   428
 0426:  CLRF   3F
-0427:  GOTO   431
-....................         else if (adc_x1 <= 170) current_selector = 1;
+0427:  GOTO   435
+....................         else if (adc_x1 <= 170 && adc_x1 > 35) current_selector = 1;
 0428:  MOVF   3B,W
 0429:  SUBLW  AA
 042A:  BTFSS  03.0
-042B:  GOTO   42F
-042C:  MOVLW  01
-042D:  MOVWF  3F
-042E:  GOTO   431
+042B:  GOTO   433
+042C:  MOVF   3B,W
+042D:  SUBLW  23
+042E:  BTFSC  03.0
+042F:  GOTO   433
+0430:  MOVLW  01
+0431:  MOVWF  3F
+0432:  GOTO   435
 ....................         else current_selector = 2;
-042F:  MOVLW  02
-0430:  MOVWF  3F
+0433:  MOVLW  02
+0434:  MOVWF  3F
 .................... 
 ....................         // Actualiza el valor del componente seleccionado (Eje Y)
 ....................         switch (current_selector) {
-0431:  MOVF   3F,W
-0432:  BTFSC  03.2
-0433:  GOTO   43B
-0434:  XORLW  01
-0435:  BTFSC  03.2
-0436:  GOTO   43E
-0437:  XORLW  03
-0438:  BTFSC  03.2
-0439:  GOTO   441
-043A:  GOTO   443
+0435:  MOVF   3F,W
+0436:  BTFSC  03.2
+0437:  GOTO   43F
+0438:  XORLW  01
+0439:  BTFSC  03.2
+043A:  GOTO   442
+043B:  XORLW  03
+043C:  BTFSC  03.2
+043D:  GOTO   445
+043E:  GOTO   447
 ....................             case 0: color_actual.r = adc_y1; break;
-043B:  MOVF   3C,W
-043C:  MOVWF  2E
-043D:  GOTO   443
+043F:  MOVF   3C,W
+0440:  MOVWF  2E
+0441:  GOTO   447
 ....................             case 1: color_actual.g = adc_y1; break;
-043E:  MOVF   3C,W
-043F:  MOVWF  2F
-0440:  GOTO   443
+0442:  MOVF   3C,W
+0443:  MOVWF  2F
+0444:  GOTO   447
 ....................             case 2: color_actual.b = adc_y1; break;
-0441:  MOVF   3C,W
-0442:  MOVWF  30
+0445:  MOVF   3C,W
+0446:  MOVWF  30
 ....................         }
 .................... 
 ....................         // Lógica de Actualización de LCD (Sin parpadeo)
 ....................         if (adc_x1 != prev_adc_x) {
-0443:  MOVF   3D,W
-0444:  SUBWF  3B,W
-0445:  BTFSC  03.2
-0446:  GOTO   45C
+0447:  MOVF   3D,W
+0448:  SUBWF  3B,W
+0449:  BTFSC  03.2
+044A:  GOTO   460
 ....................             lcd_gotoxy(5,1);
-0447:  MOVLW  05
-0448:  MOVWF  4A
-0449:  MOVLW  01
-044A:  MOVWF  4B
-044B:  CALL   25F
+044B:  MOVLW  05
+044C:  MOVWF  4A
+044D:  MOVLW  01
+044E:  MOVWF  4B
+044F:  CALL   25F
 ....................             if(current_selector == 0) printf(lcd_putc, "R");
-044C:  MOVF   3F,F
-044D:  BTFSS  03.2
-044E:  GOTO   453
-044F:  MOVLW  52
-0450:  MOVWF  49
-0451:  CALL   296
-0452:  GOTO   45C
+0450:  MOVF   3F,F
+0451:  BTFSS  03.2
+0452:  GOTO   457
+0453:  MOVLW  52
+0454:  MOVWF  49
+0455:  CALL   296
+0456:  GOTO   460
 ....................             else if(current_selector == 1) printf(lcd_putc, "G");
-0453:  DECFSZ 3F,W
-0454:  GOTO   459
-0455:  MOVLW  47
-0456:  MOVWF  49
-0457:  CALL   296
-0458:  GOTO   45C
-....................             else printf(lcd_putc, "B");
-0459:  MOVLW  42
+0457:  DECFSZ 3F,W
+0458:  GOTO   45D
+0459:  MOVLW  47
 045A:  MOVWF  49
 045B:  CALL   296
+045C:  GOTO   460
+....................             else printf(lcd_putc, "B");
+045D:  MOVLW  42
+045E:  MOVWF  49
+045F:  CALL   296
 ....................         }
 ....................         
 ....................         if (adc_y1 != prev_adc_y) {
-045C:  MOVF   3E,W
-045D:  SUBWF  3C,W
-045E:  BTFSC  03.2
-045F:  GOTO   48A
+0460:  MOVF   3E,W
+0461:  SUBWF  3C,W
+0462:  BTFSC  03.2
+0463:  GOTO   48E
 ....................             switch (current_selector) {
-0460:  MOVF   3F,W
-0461:  BTFSC  03.2
-0462:  GOTO   46A
-0463:  XORLW  01
-0464:  BTFSC  03.2
-0465:  GOTO   475
-0466:  XORLW  03
-0467:  BTFSC  03.2
-0468:  GOTO   480
-0469:  GOTO   48A
+0464:  MOVF   3F,W
+0465:  BTFSC  03.2
+0466:  GOTO   46E
+0467:  XORLW  01
+0468:  BTFSC  03.2
+0469:  GOTO   479
+046A:  XORLW  03
+046B:  BTFSC  03.2
+046C:  GOTO   484
+046D:  GOTO   48E
 ....................                 case 0:
 ....................                     lcd_gotoxy(9,1);
-046A:  MOVLW  09
-046B:  MOVWF  4A
-046C:  MOVLW  01
-046D:  MOVWF  4B
-046E:  CALL   25F
+046E:  MOVLW  09
+046F:  MOVWF  4A
+0470:  MOVLW  01
+0471:  MOVWF  4B
+0472:  CALL   25F
 ....................                     printf(lcd_putc, "%03u", color_actual.r);
-046F:  MOVF   2E,W
-0470:  MOVWF  43
-0471:  MOVLW  03
-0472:  MOVWF  44
-0473:  CALL   320
+0473:  MOVF   2E,W
+0474:  MOVWF  43
+0475:  MOVLW  03
+0476:  MOVWF  44
+0477:  CALL   320
 ....................                     break;
-0474:  GOTO   48A
+0478:  GOTO   48E
 ....................                 case 1:
 ....................                     lcd_gotoxy(3,2);
-0475:  MOVLW  03
-0476:  MOVWF  4A
-0477:  MOVLW  02
-0478:  MOVWF  4B
-0479:  CALL   25F
+0479:  MOVLW  03
+047A:  MOVWF  4A
+047B:  MOVLW  02
+047C:  MOVWF  4B
+047D:  CALL   25F
 ....................                     printf(lcd_putc, "%03u", color_actual.g);
-047A:  MOVF   2F,W
-047B:  MOVWF  43
-047C:  MOVLW  03
-047D:  MOVWF  44
-047E:  CALL   320
+047E:  MOVF   2F,W
+047F:  MOVWF  43
+0480:  MOVLW  03
+0481:  MOVWF  44
+0482:  CALL   320
 ....................                     break;
-047F:  GOTO   48A
+0483:  GOTO   48E
 ....................                 case 2:
 ....................                     lcd_gotoxy(11,2);
-0480:  MOVLW  0B
-0481:  MOVWF  4A
-0482:  MOVLW  02
-0483:  MOVWF  4B
-0484:  CALL   25F
+0484:  MOVLW  0B
+0485:  MOVWF  4A
+0486:  MOVLW  02
+0487:  MOVWF  4B
+0488:  CALL   25F
 ....................                     printf(lcd_putc, "%03u", color_actual.b);
-0485:  MOVF   30,W
-0486:  MOVWF  43
-0487:  MOVLW  03
-0488:  MOVWF  44
-0489:  CALL   320
+0489:  MOVF   30,W
+048A:  MOVWF  43
+048B:  MOVLW  03
+048C:  MOVWF  44
+048D:  CALL   320
 ....................                     break;
 ....................             }
 ....................         }
 .................... 
 ....................         set_rgb(color_actual.r, color_actual.g, color_actual.b);
-048A:  MOVF   2E,W
-048B:  MOVWF  42
-048C:  MOVF   2F,W
-048D:  MOVWF  43
-048E:  MOVF   30,W
-048F:  MOVWF  44
-0490:  CALL   355
+048E:  MOVF   2E,W
+048F:  MOVWF  42
+0490:  MOVF   2F,W
+0491:  MOVWF  43
+0492:  MOVF   30,W
+0493:  MOVWF  44
+0494:  CALL   355
 .................... 
 ....................         prev_adc_x = adc_x1;
-0491:  MOVF   3B,W
-0492:  MOVWF  3D
+0495:  MOVF   3B,W
+0496:  MOVWF  3D
 ....................         prev_adc_y = adc_y1;
-0493:  MOVF   3C,W
-0494:  MOVWF  3E
+0497:  MOVF   3C,W
+0498:  MOVWF  3E
 ....................         
 ....................         // ---------- CAMBIO: Lógica de Botón (Guardar y Salir) ----------
 ....................         // Ya no hay pulsación larga. Un solo click guarda y sale.
 ....................         if (!button && last_btn) {
-0495:  BTFSC  40.0
-0496:  GOTO   53D
-0497:  BTFSS  40.1
-0498:  GOTO   53D
+0499:  BTFSC  40.0
+049A:  GOTO   541
+049B:  BTFSS  40.1
+049C:  GOTO   541
 ....................             
 ....................             // 1. Guardar
 ....................             int idx = get_color_count();
-0499:  CALL   21D
-049A:  MOVF   78,W
-049B:  MOVWF  41
+049D:  CALL   21D
+049E:  MOVF   78,W
+049F:  MOVWF  41
 ....................             if (idx < MAX_COLORS) {
-049C:  MOVF   41,W
-049D:  SUBLW  54
-049E:  BTFSS  03.0
-049F:  GOTO   524
+04A0:  MOVF   41,W
+04A1:  SUBLW  54
+04A2:  BTFSS  03.0
+04A3:  GOTO   528
 ....................                 guardar_color(color_actual, idx);
-04A0:  MOVF   30,W
-04A1:  MOVWF  44
-04A2:  MOVF   2F,W
-04A3:  MOVWF  43
-04A4:  MOVF   2E,W
-04A5:  MOVWF  42
-04A6:  MOVF   41,W
-04A7:  MOVWF  45
+04A4:  MOVF   30,W
+04A5:  MOVWF  44
+04A6:  MOVF   2F,W
+04A7:  MOVWF  43
+04A8:  MOVF   2E,W
+04A9:  MOVWF  42
+04AA:  MOVF   41,W
+04AB:  MOVWF  45
 ....................                 lcd_clear();
 *
-0505:  CALL   155
+0509:  CALL   155
 ....................                 lcd_gotoxy(1,1);
-0506:  MOVLW  01
-0507:  MOVWF  4A
-0508:  MOVWF  4B
-0509:  CALL   25F
-....................                 printf(lcd_putc, "Guardado #%u", idx+1);
 050A:  MOVLW  01
-050B:  ADDWF  41,W
-050C:  MOVWF  42
-050D:  MOVLW  8B
-050E:  MOVLB  03
-050F:  MOVWF  11
-0510:  MOVLW  00
-0511:  MOVWF  12
-0512:  BCF    03.0
-0513:  MOVLW  0A
-0514:  MOVLB  00
-0515:  MOVWF  43
-0516:  CALL   2BB
-0517:  MOVF   42,W
-0518:  MOVWF  43
-0519:  MOVLW  1B
-051A:  MOVWF  44
-051B:  CALL   320
+050B:  MOVWF  4A
+050C:  MOVWF  4B
+050D:  CALL   25F
+....................                 printf(lcd_putc, "Guardado #%u", idx+1);
+050E:  MOVLW  01
+050F:  ADDWF  41,W
+0510:  MOVWF  42
+0511:  MOVLW  8B
+0512:  MOVLB  03
+0513:  MOVWF  11
+0514:  MOVLW  00
+0515:  MOVWF  12
+0516:  BCF    03.0
+0517:  MOVLW  0A
+0518:  MOVLB  00
+0519:  MOVWF  43
+051A:  CALL   2BB
+051B:  MOVF   42,W
+051C:  MOVWF  43
+051D:  MOVLW  1B
+051E:  MOVWF  44
+051F:  CALL   320
 ....................                 delay_ms(600); // Unico delay, para poder leer el mensaje
-051C:  MOVLW  03
-051D:  MOVWF  42
-051E:  MOVLW  C8
-051F:  MOVWF  4A
-0520:  CALL   0C3
-0521:  DECFSZ 42,F
-0522:  GOTO   51E
+0520:  MOVLW  03
+0521:  MOVWF  42
+0522:  MOVLW  C8
+0523:  MOVWF  4A
+0524:  CALL   0C3
+0525:  DECFSZ 42,F
+0526:  GOTO   522
 ....................             } else {
-0523:  GOTO   537
+0527:  GOTO   53B
 ....................                 lcd_clear();
-0524:  CALL   155
+0528:  CALL   155
 ....................                 lcd_gotoxy(1,1);
-0525:  MOVLW  01
-0526:  MOVWF  4A
-0527:  MOVWF  4B
-0528:  CALL   25F
+0529:  MOVLW  01
+052A:  MOVWF  4A
+052B:  MOVWF  4B
+052C:  CALL   25F
 ....................                 printf(lcd_putc, "EEPROM Llena");
-0529:  MOVLW  92
-052A:  MOVLB  03
-052B:  MOVWF  11
-052C:  MOVLW  00
-052D:  MOVWF  12
-052E:  MOVLB  00
-052F:  CALL   360
+052D:  MOVLW  92
+052E:  MOVLB  03
+052F:  MOVWF  11
+0530:  MOVLW  00
+0531:  MOVWF  12
+0532:  MOVLB  00
+0533:  CALL   360
 ....................                 delay_ms(600); // Unico delay, para poder leer el mensaje
-0530:  MOVLW  03
-0531:  MOVWF  42
-0532:  MOVLW  C8
-0533:  MOVWF  4A
-0534:  CALL   0C3
-0535:  DECFSZ 42,F
-0536:  GOTO   532
+0534:  MOVLW  03
+0535:  MOVWF  42
+0536:  MOVLW  C8
+0537:  MOVWF  4A
+0538:  CALL   0C3
+0539:  DECFSZ 42,F
+053A:  GOTO   536
 ....................             }
 ....................             
 ....................             // 2. Salir
 ....................             // Esperamos a que suelte el botón para no volver a entrar
 ....................             // al menú principal accidentalmente.
 ....................             while(!input(BUTTON_PIN)); 
-0537:  MOVLB  01
-0538:  BSF    0D.0
-0539:  MOVLB  00
-053A:  BTFSS  0D.0
-053B:  GOTO   537
+053B:  MOVLB  01
+053C:  BSF    0D.0
+053D:  MOVLB  00
+053E:  BTFSS  0D.0
+053F:  GOTO   53B
 ....................             return; // Vuelve al main()
-053C:  GOTO   541
+0540:  GOTO   545
 ....................         }
 ....................         last_btn = button;
-053D:  BCF    40.1
-053E:  BTFSC  40.0
-053F:  BSF    40.1
-0540:  GOTO   413
+0541:  BCF    40.1
+0542:  BTFSC  40.0
+0543:  BSF    40.1
+0544:  GOTO   413
 .................... 
 ....................         // ---------- CAMBIO: Lógica de "Mantener presionado" ELIMINADA ----------
 ....................     }
-0541:  MOVLP  00
-0542:  GOTO   6BA (RETURN)
+0545:  MOVLP  00
+0546:  GOTO   6C2 (RETURN)
 .................... }
 .................... 
 .................... 
@@ -1940,63 +1944,63 @@ CCS PCM C Compiler, Version 5.093, 4770               05-Nov-25 23:42
 ....................     
 ....................     lcd_clear();
 *
-05FD:  CALL   155
+0601:  CALL   155
 ....................     lcd_gotoxy(1,1);
-05FE:  MOVLW  01
-05FF:  MOVWF  4A
-0600:  MOVWF  4B
-0601:  CALL   25F
+0602:  MOVLW  01
+0603:  MOVWF  4A
+0604:  MOVWF  4B
+0605:  CALL   25F
 ....................     printf(lcd_putc, "Presiona boton");
-0602:  MOVLW  99
-0603:  MOVLB  03
-0604:  MOVWF  11
-0605:  MOVLW  00
-0606:  MOVWF  12
-0607:  MOVLB  00
-0608:  CALL   360
+0606:  MOVLW  99
+0607:  MOVLB  03
+0608:  MOVWF  11
+0609:  MOVLW  00
+060A:  MOVWF  12
+060B:  MOVLB  00
+060C:  CALL   360
 ....................     lcd_gotoxy(1,2);
-0609:  MOVLW  01
-060A:  MOVWF  4A
-060B:  MOVLW  02
-060C:  MOVWF  4B
-060D:  CALL   25F
+060D:  MOVLW  01
+060E:  MOVWF  4A
+060F:  MOVLW  02
+0610:  MOVWF  4B
+0611:  CALL   25F
 ....................     printf(lcd_putc, "para volver...");
-060E:  MOVLW  A1
-060F:  MOVLB  03
-0610:  MOVWF  11
-0611:  MOVLW  00
-0612:  MOVWF  12
-0613:  MOVLB  00
-0614:  CALL   360
+0612:  MOVLW  A1
+0613:  MOVLB  03
+0614:  MOVWF  11
+0615:  MOVLW  00
+0616:  MOVWF  12
+0617:  MOVLB  00
+0618:  CALL   360
 ....................     
 ....................     // 1. Espera a que suelte el botón (el que usó para entrar)
 ....................     //    Esto es clave para que no salga instantáneamente.
 ....................     while(!input(BUTTON_PIN));
-0615:  MOVLB  01
-0616:  BSF    0D.0
-0617:  MOVLB  00
-0618:  BTFSS  0D.0
-0619:  GOTO   615
+0619:  MOVLB  01
+061A:  BSF    0D.0
+061B:  MOVLB  00
+061C:  BTFSS  0D.0
+061D:  GOTO   619
 ....................     
 ....................     // 2. Espera a que presione de nuevo para salir
 ....................     while(input(BUTTON_PIN));
-061A:  MOVLB  01
-061B:  BSF    0D.0
-061C:  MOVLB  00
-061D:  BTFSC  0D.0
-061E:  GOTO   61A
+061E:  MOVLB  01
+061F:  BSF    0D.0
+0620:  MOVLB  00
+0621:  BTFSC  0D.0
+0622:  GOTO   61E
 ....................     
 ....................     // 3. Espera a que suelte (para no re-entrar a un menú en main())
 ....................     while(!input(BUTTON_PIN));
-061F:  MOVLB  01
-0620:  BSF    0D.0
-0621:  MOVLB  00
-0622:  BTFSS  0D.0
-0623:  GOTO   61F
+0623:  MOVLB  01
+0624:  BSF    0D.0
+0625:  MOVLB  00
+0626:  BTFSS  0D.0
+0627:  GOTO   623
 .................... 
 ....................     return; // Vuelve al main
-0624:  MOVLP  00
-0625:  GOTO   6BA (RETURN)
+0628:  MOVLP  00
+0629:  GOTO   6C2 (RETURN)
 .................... }
 .................... 
 .................... // ------------------ Inicialización (Sin Cambios) ------------------
@@ -2100,204 +2104,208 @@ CCS PCM C Compiler, Version 5.093, 4770               05-Nov-25 23:42
 01F4:  MOVLW  C0
 01F5:  IORWF  0B,F
 01F6:  MOVLP  00
-01F7:  GOTO   64E (RETURN)
+01F7:  GOTO   652 (RETURN)
 .................... }
 .................... 
 .................... // ------------------ Main ------------------
 .................... void main() {
 *
-0626:  MOVLW  6A
-0627:  MOVLB  01
-0628:  MOVWF  19
-0629:  BSF    0D.4
-062A:  BSF    0D.1
-062B:  MOVLB  04
-062C:  BCF    17.0
-062D:  BCF    17.1
-062E:  BCF    17.3
-062F:  MOVLW  09
-0630:  MOVWF  12
-0631:  MOVLW  28
-0632:  MOVWF  15
-0633:  BSF    14.7
-0634:  BCF    14.6
-0635:  MOVLW  01
-0636:  MOVLB  00
-0637:  MOVWF  2B
-0638:  MOVLW  08
-0639:  MOVWF  2C
-063A:  CLRF   31
-063B:  BSF    32.0
-063C:  CLRF   33
-063D:  CLRF   34
-063E:  CLRF   36
-063F:  CLRF   35
-0640:  MOVLB  03
-0641:  CLRF   0C
-0642:  CLRF   0D
-0643:  MOVLB  02
-0644:  CLRF   12
-0645:  CLRF   11
-0646:  CLRF   14
-0647:  CLRF   13
-0648:  MOVLB  00
-0649:  CLRF   2D
-064A:  CLRF   2E
-064B:  CLRF   2F
-064C:  CLRF   30
+062A:  MOVLW  6A
+062B:  MOVLB  01
+062C:  MOVWF  19
+062D:  BSF    0D.4
+062E:  BSF    0D.1
+062F:  MOVLB  04
+0630:  BCF    17.0
+0631:  BCF    17.1
+0632:  BCF    17.3
+0633:  MOVLW  09
+0634:  MOVWF  12
+0635:  MOVLW  28
+0636:  MOVWF  15
+0637:  BSF    14.7
+0638:  BCF    14.6
+0639:  MOVLW  01
+063A:  MOVLB  00
+063B:  MOVWF  2B
+063C:  MOVLW  08
+063D:  MOVWF  2C
+063E:  CLRF   31
+063F:  BSF    32.0
+0640:  CLRF   33
+0641:  CLRF   34
+0642:  CLRF   36
+0643:  CLRF   35
+0644:  MOVLB  03
+0645:  CLRF   0C
+0646:  CLRF   0D
+0647:  MOVLB  02
+0648:  CLRF   12
+0649:  CLRF   11
+064A:  CLRF   14
+064B:  CLRF   13
+064C:  MOVLB  00
+064D:  CLRF   2D
+064E:  CLRF   2E
+064F:  CLRF   2F
+0650:  CLRF   30
 ....................     hardware_init();
-064D:  GOTO   15F
+0651:  GOTO   15F
 .................... 
 ....................     int total = get_color_count();
 ....................     int remaining = MAX_COLORS - total;
-064E:  CALL   21D
-064F:  MOVF   78,W
-0650:  MOVWF  37
-0651:  SUBLW  55
-0652:  MOVWF  38
+0652:  CALL   21D
+0653:  MOVF   78,W
+0654:  MOVWF  37
+0655:  SUBLW  55
+0656:  MOVWF  38
 ....................     lcd_clear();
-0653:  CALL   155
+0657:  CALL   155
 ....................     lcd_gotoxy(1,1);
-0654:  MOVLW  01
-0655:  MOVWF  4A
-0656:  MOVWF  4B
-0657:  CALL   25F
+0658:  MOVLW  01
+0659:  MOVWF  4A
+065A:  MOVWF  4B
+065B:  CALL   25F
 ....................     printf(lcd_putc, "Col:%u Libres:%u", total, remaining);
-0658:  MOVLW  A9
-0659:  MOVLB  03
-065A:  MOVWF  11
-065B:  MOVLW  00
-065C:  MOVWF  12
-065D:  BCF    03.0
-065E:  MOVLW  04
-065F:  MOVLB  00
-0660:  MOVWF  43
-0661:  CALL   2BB
-0662:  MOVF   37,W
-0663:  MOVWF  43
-0664:  MOVLW  1B
-0665:  MOVWF  44
-0666:  CALL   320
-0667:  MOVLW  AC
-0668:  MOVLB  03
-0669:  MOVWF  11
-066A:  MOVLW  00
-066B:  MOVWF  12
-066C:  BCF    03.0
-066D:  MOVLW  08
-066E:  MOVLB  00
-066F:  MOVWF  43
-0670:  CALL   2BB
-0671:  MOVF   38,W
-0672:  MOVWF  43
-0673:  MOVLW  1B
-0674:  MOVWF  44
-0675:  CALL   320
+065C:  MOVLW  A9
+065D:  MOVLB  03
+065E:  MOVWF  11
+065F:  MOVLW  00
+0660:  MOVWF  12
+0661:  BCF    03.0
+0662:  MOVLW  04
+0663:  MOVLB  00
+0664:  MOVWF  43
+0665:  CALL   2BB
+0666:  MOVF   37,W
+0667:  MOVWF  43
+0668:  MOVLW  1B
+0669:  MOVWF  44
+066A:  CALL   320
+066B:  MOVLW  AC
+066C:  MOVLB  03
+066D:  MOVWF  11
+066E:  MOVLW  00
+066F:  MOVWF  12
+0670:  BCF    03.0
+0671:  MOVLW  08
+0672:  MOVLB  00
+0673:  MOVWF  43
+0674:  CALL   2BB
+0675:  MOVF   38,W
+0676:  MOVWF  43
+0677:  MOVLW  1B
+0678:  MOVWF  44
+0679:  CALL   320
 ....................     delay_ms(1200);
-0676:  MOVLW  05
-0677:  MOVWF  3B
-0678:  MOVLW  F0
-0679:  MOVWF  4A
-067A:  CALL   0C3
-067B:  DECFSZ 3B,F
-067C:  GOTO   678
+067A:  MOVLW  05
+067B:  MOVWF  3B
+067C:  MOVLW  F0
+067D:  MOVWF  4A
+067E:  CALL   0C3
+067F:  DECFSZ 3B,F
+0680:  GOTO   67C
 .................... 
 ....................     color_actual.r = 0; color_actual.g = 0; color_actual.b = 0;
-067D:  CLRF   2E
-067E:  CLRF   2F
-067F:  CLRF   30
+0681:  CLRF   2E
+0682:  CLRF   2F
+0683:  CLRF   30
 ....................     set_rgb(0,0,0);
-0680:  CLRF   42
-0681:  CLRF   43
-0682:  CLRF   44
-0683:  CALL   355
+0684:  CLRF   42
+0685:  CLRF   43
+0686:  CLRF   44
+0687:  CALL   355
 .................... 
 ....................     while(TRUE) {
 ....................         mostrar_menu_principal();
-0684:  GOTO   3AA
+0688:  GOTO   3AA
 ....................         
 ....................         unsigned int8 pos = read_adc_8bit(ADC_X);
-0685:  CLRF   42
-0686:  CALL   3B8
-0687:  MOVF   78,W
-0688:  MOVWF  39
-....................         if (pos <= 127) menu_opcion = 1;
-0689:  MOVF   39,W
-068A:  SUBLW  7F
-068B:  BTFSS  03.0
-068C:  GOTO   690
-068D:  MOVLW  01
-068E:  MOVWF  31
-068F:  GOTO   692
-....................         else menu_opcion = 2;
-0690:  MOVLW  02
-0691:  MOVWF  31
+0689:  CLRF   42
+068A:  CALL   3B8
+068B:  MOVF   78,W
+068C:  MOVWF  39
+....................         if (pos <= 30) menu_opcion = 1;
+068D:  MOVF   39,W
+068E:  SUBLW  1E
+068F:  BTFSS  03.0
+0690:  GOTO   694
+0691:  MOVLW  01
+0692:  MOVWF  31
+0693:  GOTO   69A
+....................         else if (pos >=235) menu_opcion = 2;
+0694:  MOVF   39,W
+0695:  SUBLW  EA
+0696:  BTFSC  03.0
+0697:  GOTO   69A
+0698:  MOVLW  02
+0699:  MOVWF  31
 .................... 
 ....................         lcd_gotoxy(1,2);
-0692:  MOVLW  01
-0693:  MOVWF  4A
-0694:  MOVLW  02
-0695:  MOVWF  4B
-0696:  CALL   25F
+069A:  MOVLW  01
+069B:  MOVWF  4A
+069C:  MOVLW  02
+069D:  MOVWF  4B
+069E:  CALL   25F
 ....................         if (menu_opcion == 1) printf(lcd_putc, ">Set Color      ");
-0697:  DECFSZ 31,W
-0698:  GOTO   6A1
-0699:  MOVLW  B2
-069A:  MOVLB  03
-069B:  MOVWF  11
-069C:  MOVLW  00
-069D:  MOVWF  12
-069E:  MOVLB  00
-069F:  CALL   360
-06A0:  GOTO   6A8
-....................         else printf(lcd_putc, " >Ver Guardados");
-06A1:  MOVLW  BB
+069F:  DECFSZ 31,W
+06A0:  GOTO   6A9
+06A1:  MOVLW  B2
 06A2:  MOVLB  03
 06A3:  MOVWF  11
 06A4:  MOVLW  00
 06A5:  MOVWF  12
 06A6:  MOVLB  00
 06A7:  CALL   360
+06A8:  GOTO   6B0
+....................         else printf(lcd_putc, " >Ver Guardados");
+06A9:  MOVLW  BB
+06AA:  MOVLB  03
+06AB:  MOVWF  11
+06AC:  MOVLW  00
+06AD:  MOVWF  12
+06AE:  MOVLB  00
+06AF:  CALL   360
 .................... 
 ....................         // ---------- CAMBIO: Lógica de Botón simplificada ----------
 ....................         // Se eliminó el delay de antirebote y la espera de liberación.
 ....................         int1 btn = input(BUTTON_PIN);
-06A8:  MOVLB  01
-06A9:  BSF    0D.0
-06AA:  MOVLB  00
-06AB:  BCF    3A.0
-06AC:  BTFSC  0D.0
-06AD:  BSF    3A.0
+06B0:  MOVLB  01
+06B1:  BSF    0D.0
+06B2:  MOVLB  00
+06B3:  BCF    3A.0
+06B4:  BTFSC  0D.0
+06B5:  BSF    3A.0
 ....................         if (!btn && main_last_button_state) {
-06AE:  BTFSC  3A.0
-06AF:  GOTO   6BA
-06B0:  BTFSS  32.0
-06B1:  GOTO   6BA
+06B6:  BTFSC  3A.0
+06B7:  GOTO   6C2
+06B8:  BTFSS  32.0
+06B9:  GOTO   6C2
 ....................             // Presionó (falling edge)
 ....................             if (menu_opcion == 1) menu_set_color();
-06B2:  DECFSZ 31,W
-06B3:  GOTO   6B6
-06B4:  GOTO   3E0
-06B5:  GOTO   6BA
+06BA:  DECFSZ 31,W
+06BB:  GOTO   6BE
+06BC:  GOTO   3E0
+06BD:  GOTO   6C2
 ....................             else if (menu_opcion == 2) menu_mostrar_colores_guardados();
-06B6:  MOVF   31,W
-06B7:  SUBLW  02
-06B8:  BTFSC  03.2
-06B9:  GOTO   543
+06BE:  MOVF   31,W
+06BF:  SUBLW  02
+06C0:  BTFSC  03.2
+06C1:  GOTO   547
 ....................         }
 ....................         main_last_button_state = btn;
-06BA:  BCF    32.0
-06BB:  BTFSC  3A.0
-06BC:  BSF    32.0
+06C2:  BCF    32.0
+06C3:  BTFSC  3A.0
+06C4:  BSF    32.0
 .................... 
 ....................         delay_ms(100); 
-06BD:  MOVLW  64
-06BE:  MOVWF  4A
-06BF:  CALL   0C3
-06C0:  GOTO   684
+06C5:  MOVLW  64
+06C6:  MOVWF  4A
+06C7:  CALL   0C3
+06C8:  GOTO   688
 ....................     }
 .................... }
-06C1:  SLEEP
+06C9:  SLEEP
 
 Configuration Fuses:
    Word  1: 3F84   INTRC_IO NOWDT PUT NOMCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
