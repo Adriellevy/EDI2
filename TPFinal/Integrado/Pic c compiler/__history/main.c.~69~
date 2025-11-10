@@ -3,9 +3,7 @@
 #fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO, NOMCLR
 #use delay(clock=4MHz)
 #use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)
-#use fast_io;
 #include "i2c_Flex_LCD.c"
-
 
 #define LCD_ADDR 0x27
 #define BUTTON_PIN PIN_B0
@@ -77,22 +75,22 @@ int get_color_count() {
 void set_rgb(unsigned int8 r, unsigned int8 g, unsigned int8 b) {
     set_pwm1_duty(r);
     set_pwm2_duty(g);
-    set_pwm3_duty(b);
+    set_pwm3_duty(1023);
 }
 
-//!#int_RB
-//!void rb_isr() { }
-//!
-//!#int_TIMER0
-//!void timer0_isr() {
-//!    soft_pwm_counter++;
-//!    if (soft_pwm_counter < soft_pwm_duty) {
-//!        output_high(PWM_B_PIN);
-//!    } else {
-//!        output_low(PWM_B_PIN);
-//!    }
-//!}
-//!
+#int_RB
+void rb_isr() { }
+
+#int_TIMER0
+void timer0_isr() {
+    soft_pwm_counter++;
+    if (soft_pwm_counter < soft_pwm_duty) {
+        output_high(PWM_B_PIN);
+    } else {
+        output_low(PWM_B_PIN);
+    }
+}
+
 // ------------------ Lectura joystick (Sin Cambios) ------------------
 unsigned int8 read_adc_8bit(unsigned int8 channel) {
     unsigned int16 val;
@@ -323,11 +321,12 @@ void hardware_init() {
 
     lcd_init(LCD_ADDR << 1, 16, 2);
     lcd_clear();
+
     setup_ccp1(CCP_PWM);
     setup_ccp2(CCP_PWM);
     setup_ccp3(CCP_PWM);
-    setup_timer_2(T2_DIV_BY_16, 255, 1);
-    set_tris_b(get_tris_b() & 0b11110111);  
+    setup_timer_2(T2_DIV_BY_1, 255, 1);
+
     set_pwm1_duty(0);
     set_pwm2_duty(0);
     set_pwm3_duty(1023);

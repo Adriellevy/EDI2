@@ -3,7 +3,6 @@
 #fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO, NOMCLR
 #use delay(clock=4MHz)
 #use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)
-#use fast_io;
 #include "i2c_Flex_LCD.c"
 
 

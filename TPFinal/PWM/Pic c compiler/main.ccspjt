@@ -17,7 +17,7 @@ Type=4
 forcecoff=0
 
 [ProjectLog]
-Days=2
+Days=3
 D1=28-10-2025
 D1_L=5
 D1_L1=[47857]Project Opened.
@@ -34,15 +34,23 @@ D2_L4=[63476]Started Editing.
 D2_L5=[64307]Stopped Editing.
 D2_L6=[64979]Started Editing.
 D2_L7=[65057]Stopped Editing.
-TotalEdit=11
+TotalEdit=13
 TotalDebug=0
 D2_E=11
 D2_D=0
 D2_L8=[65060]Project Closed.
+D3=10-11-2025
+D3_L=4
+D3_L1=[63092]Project Opened.
+D3_L2=[63138]Started Editing.
+D3_L3=[63244]Stopped Editing.
+D3_E=2
+D3_D=0
+D3_L4=[63245]Project Closed.
 
 [Opened Files]
 1=main.c
-t1=24
+t1=21
 Count=1
 2=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdint.h
 t2=1
@@ -52,7 +60,7 @@ t3=1
 Type=4
 
 [defines]
-buildcount=15
+buildcount=16
 [Units]
 Count=1
 1=main (main)

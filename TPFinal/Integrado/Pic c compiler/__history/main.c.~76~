@@ -3,10 +3,9 @@
 #fuses NOWDT, NOPROTECT, NOLVP, INTRC_IO, NOMCLR
 #use delay(clock=4MHz)
 #use i2c(Master, SDA=PIN_B1, SCL=PIN_B4, slow)
-#use fast_io;
 #include "i2c_Flex_LCD.c"
 
-
+#define _XTAL_FREQ 4000000
 #define LCD_ADDR 0x27
 #define BUTTON_PIN PIN_B0
 
@@ -323,11 +322,12 @@ void hardware_init() {
 
     lcd_init(LCD_ADDR << 1, 16, 2);
     lcd_clear();
+
     setup_ccp1(CCP_PWM);
     setup_ccp2(CCP_PWM);
     setup_ccp3(CCP_PWM);
     setup_timer_2(T2_DIV_BY_16, 255, 1);
-    set_tris_b(get_tris_b() & 0b11110111);  
+
     set_pwm1_duty(0);
     set_pwm2_duty(0);
     set_pwm3_duty(1023);

@@ -327,7 +327,8 @@ void hardware_init() {
     setup_ccp2(CCP_PWM);
     setup_ccp3(CCP_PWM);
     setup_timer_2(T2_DIV_BY_16, 255, 1);
-    set_tris_b(get_tris_b() & 0b11110111);  
+    
+
     set_pwm1_duty(0);
     set_pwm2_duty(0);
     set_pwm3_duty(1023);

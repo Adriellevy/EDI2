@@ -38,12 +38,12 @@ Project Directory:
     C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\PWM\Pic c compiler\
 
 Project Files:
-    main.c                                                  [03-nov.-25 17:44  CRC=BF297535]
+    main.c                                                  [10-nov.-25 17:32  CRC=3731CA66]
     ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
 
-Source signature=6C74D473
+Source signature=E47D29A4
 Program memory checksum=0000
-Hex file CRC=23EC
+Hex file CRC=F21F
 
 Units:
     C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\PWM\Pic c compiler\main (main)
