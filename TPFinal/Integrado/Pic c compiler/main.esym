@@ -1,9 +1,9 @@
-D G "__PCM__" 0 405 ""5.093""
-D G "__DEVICE__" 0 405 "1827"
-D G "__DATE__" 0 405 ""6-Nov-25""
-D G "__TIME__" 0 405 ""14:13:40""
-D G "_UNICODE" 0 405 ""?""
-D G "__EVAL" 0 405 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
+D G "__PCM__" 0 394 ""5.093""
+D G "__DEVICE__" 0 394 "1827"
+D G "__DATE__" 0 394 ""10-Nov-25""
+D G "__TIME__" 0 394 ""17:02:11""
+D G "_UNICODE" 0 394 ""?""
+D G "__EVAL" 0 394 ""?"" "Standard Header file for the PIC16F1827 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 f N "set_tris_a" 1 39 ""
 v L "value" 1 39 "int8" `55 
@@ -1466,8 +1466,8 @@ D G "ADC_Y" 0 18 "1" "RA1 (AN1)"
 D G "PWM_R_PIN" 0 21 "PIN_A3"
 D G "PWM_G_PIN" 0 22 "PIN_B3"
 D G "PWM_B_PIN" 0 23 "PIN_B6"
-D G "JOY_DEADZONE_LOW" 0 26 "110" "Valor ADC por debajo del cual se considera "Bajo/Izquierda""
-D G "JOY_DEADZONE_HIGH" 0 27 "170" "Valor ADC por encima del cual se considera "Alto/Derecha""
+D G "JOY_DEADZONE_LOW" 0 26 "50" "Valor ADC por debajo del cual se considera "Bajo/Izquierda""
+D G "JOY_DEADZONE_HIGH" 0 27 "205" "Valor ADC por encima del cual se considera "Alto/Derecha""
 T G "color_t" 0 34 "{int8 r,int8 g,int8 b}" `763  "Globals"
 V G "color_actual" 0 37 "color_t" `764 
 V G "menu_opcion" 0 38 "int8" `765 
@@ -1530,33 +1530,21 @@ F N "menu_set_color" 0 112 ""
 F G "menu_set_color" 0 112 "void()" `776 
 V L "adc_x1" 0 113 "int8" `800 
 V L "adc_y1" 0 113 "int8" `801 
-V L "current_selector" 0 114 "int8" `802 
+V L "current_selector" 0 114 "sint8" `802 
 C L "menu_set_color" 0 11 1 "FUNCTION"
 V L "last_selector" 0 115 "int8" `803 
 V L "last_color" 0 116 "color_t" `804 
 C L "menu_set_color" 0 11 1 "FUNCTION"
 V L "button" 0 117 "int1" `805 
 V L "last_btn" 0 118 "int1" `806 
+V L "paso" 0 119 "int8" `807 
 C L "menu_set_color" 0 11 1 "FUNCTION"
-V L "y_state" 0 121 "int8" `807 
-C L "menu_set_color" 0 11 1 "FUNCTION"
-V L "y_delay_counter" 0 122 "int8" `808 
-D G "Y_DELAY_FAST" 0 124 "2" "40ms"
-D G "Y_DELAY_SLOW" 0 125 "10" "200ms"
-V L "current_delay" 0 126 "int8" `809 
+V L "y_state" 0 122 "sint8" `808 
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 1 "FUNCTION"
-C L "menu_set_color" 0 11 1 "FUNCTION"
-C L "menu_set_color" 0 11 1 "FUNCTION"
-C L "menu_set_color" 0 11 1 "FUNCTION"
-C L "menu_set_color" 0 11 1 "FUNCTION"
-C L "menu_set_color" 0 11 1 "FUNCTION"
-C L "menu_set_color" 0 11 1 "FUNCTION"
-V L "temp_val" 0 165 "int16" `820 
-V L "increment" 0 166 "int8" `821 
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 3 "FUNCTION"
@@ -1565,37 +1553,37 @@ C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 1 "FUNCTION"
-V L "idx" 0 219 "int8" `828 
+V L "idx" 0 206 "int8" `825 
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_set_color" 0 11 1 "FUNCTION"
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
-F N "menu_mostrar_colores_guardados" 0 247 ""
-F G "menu_mostrar_colores_guardados" 0 247 "void()" `777 
-V L "total_guardados" 0 248 "int8" `831 
-V L "current_index" 0 249 "int8" `832 
-V L "last_index" 0 250 "int8" `833 
+F N "menu_mostrar_colores_guardados" 0 234 ""
+F G "menu_mostrar_colores_guardados" 0 234 "void()" `777 
+V L "total_guardados" 0 235 "int8" `828 
+V L "current_index" 0 236 "int8" `829 
+V L "last_index" 0 237 "int8" `830 
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
-V L "last_btn" 0 251 "int1" `834 
+V L "last_btn" 0 238 "int1" `831 
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
-V L "adc_y1" 0 254 "int8" `835 
-V L "y_state" 0 255 "int8" `836 
+V L "adc_y1" 0 241 "int8" `832 
+V L "y_state" 0 242 "sint8" `833 
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
-V L "last_y_state" 0 256 "int8" `837 
+V L "last_y_state" 0 243 "sint8" `834 
 C L "menu_mostrar_colores_guardados" 0 11 2 "FUNCTION"
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
-V L "btn" 0 279 "int1" `839 
+V L "btn" 0 266 "int1" `836 
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
 C L "menu_mostrar_colores_guardados" 0 11 2 "FUNCTION"
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
-V L "r" 0 298 "int8" `840 
-V L "g" 0 298 "int8" `841 
-V L "b" 0 298 "int8" `842 
-V L "addr" 0 299 "int16" `843 
+V L "r" 0 285 "int8" `837 
+V L "g" 0 285 "int8" `838 
+V L "b" 0 285 "int8" `839 
+V L "addr" 0 286 "int16" `840 
 C L "menu_mostrar_colores_guardados" 0 11 2 "FUNCTION"
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
@@ -1606,23 +1594,19 @@ C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
 C L "menu_mostrar_colores_guardados" 0 11 1 "FUNCTION"
 C L "hardware_init" 0 11 1 "FUNCTION"
-F N "hardware_init" 0 330 ""
-F G "hardware_init" 0 330 "void()" `846 
+F N "hardware_init" 0 317 ""
+F G "hardware_init" 0 317 "void()" `843 
 C L "MAIN" 0 11 2 "FUNCTION"
-F N "MAIN" 0 353 ""
-F G "MAIN" 0 353 "void()" `847 
-V L "total" 0 356 "int8" `850 
-V L "remaining" 0 357 "int8" `851 
-V L "pos" 0 369 "int8" `853 
+F N "MAIN" 0 340 ""
+F G "MAIN" 0 340 "void()" `844 
+V L "total" 0 343 "int8" `847 
+V L "remaining" 0 344 "int8" `848 
+V L "pos" 0 356 "int8" `850 
 C L "MAIN" 0 11 2 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 2 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-C L "MAIN" 0 11 1 "FUNCTION"
-V L "btn" 0 385 "int1" `856 
 C L "MAIN" 0 11 1 "FUNCTION"
 C L "MAIN" 0 11 2 "FUNCTION"
 C L "MAIN" 0 11 1 "FUNCTION"
+C L "MAIN" 0 11 14 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0

@@ -116,7 +116,7 @@ void menu_set_color() {
     color_t last_color = {1,1,1}; // Iniciar con valores != para forzar update
     int1 button;
     int1 last_btn = 1;
-    int8 paso = 5;
+    int8 paso = 0;
     
     // Variables para el control relativo del Eje Y
     signed int8 y_state = 0; // -1=down, 0=middle, 1=up
@@ -154,16 +154,16 @@ void menu_set_color() {
         else y_state = 0;
         
         switch (current_selector) {
-            case 0:  if (color_actual.r < paso && y_state == -1) {break;}
-                     else if (color_actual.r > 255 - paso && y_state == 1) {break;}
+            case 0:  if (color_actual.r == 0 && y_state == -1) {break;}
+                     else if (color_actual.r == 255 && y_state == 1) {break;}
                      color_actual.r = color_actual.r + (y_state*paso);
                      break;
-            case 1: if (color_actual.g < paso && y_state == -1) {break;}
-                     else if (color_actual.g > 255 - paso && y_state == 1) {break;}
+            case 1: if (color_actual.g == 0 && y_state == -1) {break;}
+                     else if (color_actual.g == 255 && y_state == 1) {break;}
                      color_actual.g = color_actual.g + (y_state*paso);
                      break;
-            case 2: if (color_actual.b < paso && y_state == -1) {break;}
-                     else if (color_actual.b > 255 - paso && y_state == 1) {break;}
+            case 2: if (color_actual.b == 0 && y_state == -1) {break;}
+                     else if (color_actual.b == 255 && y_state == 1) {break;}
                      color_actual.b = color_actual.b + (y_state*paso);
                      break;
         }
@@ -225,7 +225,7 @@ void menu_set_color() {
         }
         last_btn = button;
 
-        delay_ms(100); // Polling más rápido para mejor respuesta del joystick
+        delay_ms(50); // Polling más rápido para mejor respuesta del joystick
     }
 }
 
@@ -239,8 +239,8 @@ void menu_mostrar_colores_guardados() {
 
     // --- GOAL 2: Idle-Middle (Relative) ---
     unsigned int8 adc_y1;
-    signed int8 y_state = 0; // -1=down, 0=middle, 1=up
-    signed int8 last_y_state = 0; // Para detectar flancos (transiciones)
+    int8 y_state = 0; // -1=down, 0=middle, 1=up
+    int8 last_y_state = 0; // Para detectar flancos (transiciones)
 
 
     // Caso 1: No hay colores (Sin cambios)
@@ -387,6 +387,7 @@ void main() {
         //}
         
         //ACA HAY QUE HACER LOGICA DE GUARDADO CUANDO SE APRETE 1 OTRA VEZ, Y VOLVER AL MENU. REVISAR MENU SET COLOR
+        main_last_button_state = btn;
         delay_ms(100);
-    }
+    
 }

@@ -23,8 +23,8 @@
 #define PWM_B_PIN PIN_B6
 
 // --- NUEVO (GOAL 2): Definiciones para el Joystick "Idle-Middle" ---
-#define JOY_DEADZONE_LOW 50  // Valor ADC por debajo del cual se considera "Bajo/Izquierda"
-#define JOY_DEADZONE_HIGH 205 // Valor ADC por encima del cual se considera "Alto/Derecha"
+#define JOY_DEADZONE_LOW 110  // Valor ADC por debajo del cual se considera "Bajo/Izquierda"
+#define JOY_DEADZONE_HIGH 170 // Valor ADC por encima del cual se considera "Alto/Derecha"
 // Cualquier valor entre LOW y HIGH es la zona muerta (idle)
 
 typedef struct {
@@ -111,16 +111,19 @@ void mostrar_menu_principal() {
 // ---------- REESCRITO (GOAL 2): Lógica "Idle-Middle" Relativa ----------
 void menu_set_color() {
     unsigned int8 adc_x1, adc_y1;
-    signed int8 current_selector = 1; // 0=R, 1=G, 2=B. Empezar en G (idle)
+    unsigned int8 current_selector = 1; // 0=R, 1=G, 2=B. Empezar en G (idle)
     unsigned int8 last_selector = 0xFF;
     color_t last_color = {1,1,1}; // Iniciar con valores != para forzar update
     int1 button;
     int1 last_btn = 1;
-    int8 paso = 5;
     
     // Variables para el control relativo del Eje Y
-    signed int8 y_state = 0; // -1=down, 0=middle, 1=up
-
+    int8 y_state = 0; // -1=down, 0=middle, 1=up
+    unsigned int8 y_delay_counter = 0;
+    // Velocidad de incremento (en ciclos de delay_ms(20))
+    #define Y_DELAY_FAST 2  // 40ms
+    #define Y_DELAY_SLOW 10 // 200ms
+    unsigned int8 current_delay = Y_DELAY_SLOW;
 
     lcd_clear();
     // Empezar seleccionando G (la posición idle del joystick)
@@ -133,42 +136,55 @@ void menu_set_color() {
         adc_y1 = read_adc_8bit(ADC_Y);
         button = input(BUTTON_PIN);
 
-         
+        // 1. Lógica de Selección (Eje X) - (L=R, M=G, R=B)
         if (adc_x1 == 0) {
-            current_selector = current_selector - 1; // R     
-        } else if (adc_x1 == 255) {
-            current_selector = current_selector + 1; // B
+            current_selector = current_selector - 1; // R
+            delay_ms(100)
+            if (current_selector == -1) {current_selector = 0;}
+            
+        } else if (adc_x1 >= JOY_DEADZONE_HIGH) {
+            current_selector = 2; // B
+        } else {
+            current_selector = 1; // G (Idle)
         }
-        
-        // Esperar estado, pausa.
-        delay_ms(250); 
-        
-        // Si se va de rango lo devuelvo a su ultima posicion valida
-        if(current_selector == -1) {current_selector = 0; 
-        } else if (current_selector == 3) {current_selector = 2;}
 
         // 2. Lógica de Valor (Eje Y) - Relativo/Incremental
-        
+        y_state = 0;
         if (adc_y1 <= JOY_DEADZONE_LOW) y_state = -1; // Down
         else if (adc_y1 >= JOY_DEADZONE_HIGH) y_state = 1; // Up
-        else y_state = 0;
-        
-        switch (current_selector) {
-            case 0:  if (color_actual.r < paso && y_state == -1) {break;}
-                     else if (color_actual.r > 255 - paso && y_state == 1) {break;}
-                     color_actual.r = color_actual.r + (y_state*paso);
-                     break;
-            case 1: if (color_actual.g < paso && y_state == -1) {break;}
-                     else if (color_actual.g > 255 - paso && y_state == 1) {break;}
-                     color_actual.g = color_actual.g + (y_state*paso);
-                     break;
-            case 2: if (color_actual.b < paso && y_state == -1) {break;}
-                     else if (color_actual.b > 255 - paso && y_state == 1) {break;}
-                     color_actual.b = color_actual.b + (y_state*paso);
-                     break;
-        }
-        // Fin lógica Eje Y
 
+        if (y_state == 0) {
+            y_delay_counter = 0; // Resetea el contador en la zona muerta
+            current_delay = Y_DELAY_SLOW; // Resetea a velocidad lenta
+        } else {
+            y_delay_counter++;
+        }
+
+        // Si mantenemos presionado (fuera de la zona muerta)
+        if (y_delay_counter > current_delay) {
+            y_delay_counter = 0; // Reinicia el contador para el próximo incremento
+            current_delay = Y_DELAY_FAST; // Acelera si se mantiene presionado
+
+            int16 temp_val = 0;
+            int8 increment = 5; // Incrementar/Decrementar de 5 en 5
+
+            switch (current_selector) {
+                case 0: temp_val = color_actual.r; break;
+                case 1: temp_val = color_actual.g; break;
+                case 2: temp_val = color_actual.b; break;
+            }
+
+            temp_val += (y_state * increment); // y_state es -1 o 1
+
+            if (temp_val > 255) temp_val = 255;
+            if (temp_val < 0) temp_val = 0;
+
+            switch (current_selector) {
+                case 0: color_actual.r = (unsigned int8)temp_val; break;
+                case 1: color_actual.g = (unsigned int8)temp_val; break;
+                case 2: color_actual.b = (unsigned int8)temp_val; break;
+            }
+        } // Fin lógica Eje Y
 
         // 3. Lógica de Actualización de LCD (Sin parpadeo)
         // Actualizar selector (R/G/B)
@@ -225,7 +241,7 @@ void menu_set_color() {
         }
         last_btn = button;
 
-        delay_ms(100); // Polling más rápido para mejor respuesta del joystick
+        delay_ms(50); // Polling más rápido para mejor respuesta del joystick
     }
 }
 
@@ -239,8 +255,8 @@ void menu_mostrar_colores_guardados() {
 
     // --- GOAL 2: Idle-Middle (Relative) ---
     unsigned int8 adc_y1;
-    signed int8 y_state = 0; // -1=down, 0=middle, 1=up
-    signed int8 last_y_state = 0; // Para detectar flancos (transiciones)
+    int8 y_state = 0; // -1=down, 0=middle, 1=up
+    int8 last_y_state = 0; // Para detectar flancos (transiciones)
 
 
     // Caso 1: No hay colores (Sin cambios)
@@ -368,25 +384,23 @@ void main() {
             printf(lcd_putc, " >Ver Guardados");
         }
         
-        menu_set_color();
         // Lógica de Botón
-//!        int1 btn = input(BUTTON_PIN);
-//!        if (btn==1) {
-//!            // Presionó (flanco de bajada)
-//!            if (menu_opcion == 1) {
-//!                menu_set_color();
-//!            } else if (menu_opcion == 2) {
-//!                menu_mostrar_colores_guardados();
-//!            }
-            
+        int1 btn = input(BUTTON_PIN);
+        if (!btn && main_last_button_state) {
+            // Presionó (flanco de bajada)
+            if (menu_opcion == 1) {
+                menu_set_color();
+            } else if (menu_opcion == 2) {
+                menu_mostrar_colores_guardados();
+            }
             
             // Forzamos el estado del botón a "suelto"
             // ya que los sub-menús esperan a que se suelte.
-//!            main_last_button_state = 1;  
-//!            continue; // Volver al inicio del bucle para refrescar la pantalla
-        //}
-        
-        //ACA HAY QUE HACER LOGICA DE GUARDADO CUANDO SE APRETE 1 OTRA VEZ, Y VOLVER AL MENU. REVISAR MENU SET COLOR
-        delay_ms(100);
+            main_last_button_state = 1;  
+            continue; // Volver al inicio del bucle para refrescar la pantalla
+        }
+        main_last_button_state = btn;
+
+        delay_ms(100); 
     }
 }
