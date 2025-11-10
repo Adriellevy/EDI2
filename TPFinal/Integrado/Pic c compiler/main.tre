@@ -1,8 +1,8 @@
 ÀÄmain
-   ÀÄMAIN  0/145  Ram=4
+   ÀÄMAIN  1/257  Ram=5
       ÃÄ@cinit1  (Inline)  Ram=0
       ÃÄ@cinit2  (Inline)  Ram=0
-      ÃÄhardware_init  0/168  Ram=1
+      ÃÄhardware_init  0/163  Ram=1
       ³  ÃÄlcd_init  (Inline)  Ram=5
       ³  ³  ÃÄ@delay_ms1  0/22  Ram=1
       ³  ³  ÃÄ@I2C_WRITEU_129  0/20  Ram=1
@@ -43,7 +43,7 @@
       ÃÄlcd_gotoxy  0/55  Ram=7
       ³  ÀÄlcd_send_byte  0/30  Ram=3
       ³     ÀÄ*
-      ÃÄ@PSTRINGCN7_757  0/80  Ram=5
+      ÃÄ@PSTRINGCN7_757  0/80  Ram=6
       ³  ÃÄLCD_PUTC  0/37  Ram=1
       ³  ³  ÃÄlcd_clear  0/10  Ram=0
       ³  ³  ³  ÀÄ*
@@ -64,7 +64,7 @@
       ³  ³  ÀÄ*
       ³  ÀÄLCD_PUTC  0/37  Ram=1
       ³     ÀÄ*
-      ÃÄ@PSTRINGCN7_757  0/80  Ram=5
+      ÃÄ@PSTRINGCN7_757  0/80  Ram=6
       ³  ÀÄ*
       ÃÄ@PRINTF_U_757  0/53  Ram=2
       ³  ÀÄ*
@@ -75,7 +75,7 @@
       ³  ³  ÀÄ*
       ³  ÃÄlcd_gotoxy  0/55  Ram=7
       ³  ³  ÀÄ*
-      ³  ÀÄ@PSTRINGC7_757  0/74  Ram=3
+      ³  ÀÄ@PSTRINGC7_757  0/74  Ram=4
       ³     ÃÄLCD_PUTC  0/37  Ram=1
       ³     ³  ÀÄ*
       ³     ÀÄLCD_PUTC  0/37  Ram=1
@@ -83,14 +83,16 @@
       ÃÄread_adc_8bit  0/40  Ram=3
       ÃÄlcd_gotoxy  0/55  Ram=7
       ³  ÀÄ*
-      ÃÄ@PSTRINGC7_757  0/74  Ram=3
+      ÃÄ@PSTRINGC7_757  0/74  Ram=4
       ³  ÀÄ*
-      ÃÄ@PSTRINGC7_757  0/74  Ram=3
+      ÃÄ@PSTRINGC7_757  0/74  Ram=4
       ³  ÀÄ*
-      ÃÄmenu_set_color  0/482  Ram=12
+      ÃÄ@PSTRINGC7_757  0/74  Ram=4
+      ³  ÀÄ*
+      ÃÄmenu_set_color  0/481  Ram=12
       ³  ÃÄlcd_clear  0/10  Ram=0
       ³  ³  ÀÄ*
-      ³  ÃÄ@PSTRINGCN7_757  0/80  Ram=5
+      ³  ÃÄ@PSTRINGCN7_757  0/80  Ram=6
       ³  ³  ÀÄ*
       ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
       ³  ³  ÀÄ*
@@ -139,13 +141,13 @@
       ³  ÃÄset_rgb  0/13  Ram=3
       ³  ÃÄget_color_count  0/66  Ram=6
       ³  ³  ÀÄ*
-      ³  ÃÄguardar_color  (Inline)  Ram=9
+      ³  ÃÄguardar_color  (Inline)  Ram=8
       ³  ³  ÀÄ@MUL88  0/37  Ram=2
       ³  ÃÄlcd_clear  0/10  Ram=0
       ³  ³  ÀÄ*
       ³  ÃÄlcd_gotoxy  0/55  Ram=7
       ³  ³  ÀÄ*
-      ³  ÃÄ@PSTRINGCN7_757  0/80  Ram=5
+      ³  ÃÄ@PSTRINGCN7_757  0/80  Ram=6
       ³  ³  ÀÄ*
       ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
       ³  ³  ÀÄ*
@@ -155,9 +157,128 @@
       ³  ³  ÀÄ*
       ³  ÃÄlcd_gotoxy  0/55  Ram=7
       ³  ³  ÀÄ*
-      ³  ÃÄ@PSTRINGC7_757  0/74  Ram=3
+      ³  ÃÄ@PSTRINGC7_757  0/74  Ram=4
       ³  ³  ÀÄ*
       ³  ÃÄ@delay_ms1  0/22  Ram=1
       ³  ÃÄ@delay_ms1  0/22  Ram=1
       ³  ÀÄ@delay_ms1  0/22  Ram=1
+      ÃÄmenu_mostrar_colores_guardados  0/262  Ram=15
+      ³  ÃÄget_color_count  0/66  Ram=6
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_clear  0/10  Ram=0
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/55  Ram=7
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGC7_757  0/74  Ram=4
+      ³  ³  ÀÄ*
+      ³  ÃÄ@delay_ms1  0/22  Ram=1
+      ³  ÃÄ@delay_ms1  0/22  Ram=1
+      ³  ÃÄlcd_clear  0/10  Ram=0
+      ³  ³  ÀÄ*
+      ³  ÃÄread_adc_8bit  0/40  Ram=3
+      ³  ÃÄ@MUL88  0/37  Ram=2
+      ³  ÃÄset_rgb  0/13  Ram=3
+      ³  ÃÄlcd_gotoxy  0/55  Ram=7
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGCN7_757  0/80  Ram=6
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGCN7_757  0/80  Ram=6
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/55  Ram=7
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/55  Ram=7
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄset_rgb  0/13  Ram=3
+      ³  ÀÄ@delay_ms1  0/22  Ram=1
+      ÃÄmenu_recuperar_color  0/312  Ram=17
+      ³  ÃÄget_color_count  0/66  Ram=6
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_clear  0/10  Ram=0
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/55  Ram=7
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGC7_757  0/74  Ram=4
+      ³  ³  ÀÄ*
+      ³  ÃÄ@delay_ms1  0/22  Ram=1
+      ³  ÃÄ@delay_ms1  0/22  Ram=1
+      ³  ÃÄlcd_clear  0/10  Ram=0
+      ³  ³  ÀÄ*
+      ³  ÃÄread_adc_8bit  0/40  Ram=3
+      ³  ÃÄ@MUL88  0/37  Ram=2
+      ³  ÃÄlcd_clear  0/10  Ram=0
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/55  Ram=7
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGCN7_757  0/80  Ram=6
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/55  Ram=7
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/55  Ram=7
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄLCD_PUTC  0/37  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PRINTF_U_757  0/53  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄ@MUL88  0/37  Ram=2
+      ³  ÃÄset_rgb  0/13  Ram=3
+      ³  ÃÄlcd_clear  0/10  Ram=0
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/55  Ram=7
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGC7_757  0/74  Ram=4
+      ³  ³  ÀÄ*
+      ³  ÃÄ@delay_ms1  0/22  Ram=1
+      ³  ÀÄ@delay_ms1  0/22  Ram=1
+      ÃÄ@delay_ms1  0/22  Ram=1
+      ÃÄ@delay_ms1  0/22  Ram=1
+      ÃÄmenu_set_color  0/481  Ram=12
+      ³  ÀÄ*
       ÀÄ@delay_ms1  0/22  Ram=1

@@ -1,9 +1,8 @@
-Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main on 10-nov.-25 at 17:43
+Compiling C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main on 10-nov.-25 at 18:43
 >>> Warning 236 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main.c" Line 9(9,17): Defined identifier matches a variable ID
 >>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\i2c_Flex_LCD.c" Line 174(13,17): Variable never used:   data
->>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main.c" Line 40(6,28): Variable never used:   main_last_button_state
 >>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main.c" Line 41(15,28): Variable never used:   soft_pwm_duty
 >>> Warning 202 "C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main.c" Line 42(15,31): Variable never used:   soft_pwm_counter
-      Memory usage:   ROM=37%      RAM=6% - 17%
-      0 Errors,  5 Warnings.
+      Memory usage:   ROM=55%      RAM=6% - 19%
+      0 Errors,  4 Warnings.
 Build Successful.

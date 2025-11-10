@@ -373,7 +373,7 @@ void menu_recuperar_color() {
             lcd_gotoxy(12,1);
             printf(lcd_putc, "R:%03u", r);
             lcd_gotoxy(1,2);
-            printf(lcd_putc, "G:%03u B:%03u", g,b);
+            printf(lcd_putc, "G:%03u B:%03u", r,g,b);
         }
 
         // Botón presionado ? aplicar color y salir

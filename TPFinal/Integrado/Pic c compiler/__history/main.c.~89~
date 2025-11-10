@@ -190,7 +190,7 @@ void menu_set_color() {
             printf(lcd_putc, "%03u", color_actual.g);
         }
         if (color_actual.b != last_color.b) {
-            lcd_gotoxy(9,2);
+            lcd_gotoxy(11,2);
             printf(lcd_putc, "%03u", color_actual.b);
         }
 
@@ -294,10 +294,8 @@ void menu_mostrar_colores_guardados() {
             // Actualizar LCD
             lcd_gotoxy(1,1);
             printf(lcd_putc, "Color %u/%u:      ", current_index + 1, total_guardados);
-            lcd_gotoxy(12,1);
-            printf(lcd_putc, "R:%03u",r);
             lcd_gotoxy(1,2);
-            printf(lcd_putc, "G:%03u B:%03u",g,b);
+            printf(lcd_putc, "R:%03u G:%03u B:%03u", r, g, b);
         }
 
         // 4. Comprobar Salida
@@ -370,10 +368,8 @@ void menu_recuperar_color() {
             lcd_clear();
             lcd_gotoxy(1,1);
             printf(lcd_putc, "Recup %u/%u", current_index+1, total_guardados);
-            lcd_gotoxy(12,1);
-            printf(lcd_putc, "R:%03u", r);
             lcd_gotoxy(1,2);
-            printf(lcd_putc, "G:%03u B:%03u", g,b);
+            printf(lcd_putc, "R:%03u G:%03u B:%03u", r,g,b);
         }
 
         // Botón presionado ? aplicar color y salir
