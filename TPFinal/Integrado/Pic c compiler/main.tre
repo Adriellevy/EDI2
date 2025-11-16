@@ -162,7 +162,7 @@
       ³  ÃÄ@delay_ms1  0/22  Ram=1
       ³  ÃÄ@delay_ms1  0/22  Ram=1
       ³  ÀÄ@delay_ms1  0/22  Ram=1
-      ÃÄmenu_mostrar_colores_guardados  0/262  Ram=15
+      ÃÄmenu_mostrar_colores_guardados  0/269  Ram=15
       ³  ÃÄget_color_count  0/66  Ram=6
       ³  ³  ÀÄ*
       ³  ÃÄlcd_clear  0/10  Ram=0
@@ -171,6 +171,7 @@
       ³  ³  ÀÄ*
       ³  ÃÄ@PSTRINGC7_757  0/74  Ram=4
       ³  ³  ÀÄ*
+      ³  ÃÄ@delay_ms1  0/22  Ram=1
       ³  ÃÄ@delay_ms1  0/22  Ram=1
       ³  ÃÄ@delay_ms1  0/22  Ram=1
       ³  ÃÄlcd_clear  0/10  Ram=0
@@ -216,7 +217,7 @@
       ³  ³  ÀÄ*
       ³  ÃÄset_rgb  0/13  Ram=3
       ³  ÀÄ@delay_ms1  0/22  Ram=1
-      ÃÄmenu_recuperar_color  0/312  Ram=17
+      ÃÄmenu_recuperar_color  0/319  Ram=17
       ³  ÃÄget_color_count  0/66  Ram=6
       ³  ³  ÀÄ*
       ³  ÃÄlcd_clear  0/10  Ram=0
@@ -225,6 +226,7 @@
       ³  ³  ÀÄ*
       ³  ÃÄ@PSTRINGC7_757  0/74  Ram=4
       ³  ³  ÀÄ*
+      ³  ÃÄ@delay_ms1  0/22  Ram=1
       ³  ÃÄ@delay_ms1  0/22  Ram=1
       ³  ÃÄ@delay_ms1  0/22  Ram=1
       ³  ÃÄlcd_clear  0/10  Ram=0

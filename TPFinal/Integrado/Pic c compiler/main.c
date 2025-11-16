@@ -253,7 +253,7 @@ void menu_mostrar_colores_guardados() {
         while(!input(BUTTON_PIN));
         return;
     }
-
+    delay_ms(750);
     // Espera a que suelte el botón (el que usó para entrar)
     while(!input(BUTTON_PIN));
     delay_ms(50); // Antirebote
@@ -335,7 +335,7 @@ void menu_recuperar_color() {
         while(!input(BUTTON_PIN));
         return;
     }
-
+    delay_ms(750);
     // Espera a que suelte el botón de entrada
     while(!input(BUTTON_PIN));
     delay_ms(50);

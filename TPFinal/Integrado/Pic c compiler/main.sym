@@ -172,7 +172,7 @@ ROM Allocation:
 00039B  menu_set_color
 0004D1  guardar_color
 00057C  menu_mostrar_colores_guardados
-000682  menu_recuperar_color
+000689  menu_recuperar_color
 000800  MAIN
 000800  @cinit1
 000823  @cinit2
@@ -181,13 +181,13 @@ Project Directory:
     C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\
 
 Project Files:
-    main.c                                                  [10-nov.-25 18:43  CRC=A4E01FF3]
+    main.c                                                  [11-nov.-25 14:43  CRC=082B135B]
     ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F1827.h [21-feb.-20 15:48  CRC=D6A5AF9F]
     i2c_Flex_LCD.c                                          [26-abr.-20 15:13  CRC=16AFB211]
 
-Source signature=A8E533B4
+Source signature=0C30271C
 Program memory checksum=0000
-Hex file CRC=4B2A
+Hex file CRC=59C0
 
 Units:
     C:\Users\adrie\OneDrive\Escritorio\EDI2\TPFinal\Integrado\Pic c compiler\main (main)
